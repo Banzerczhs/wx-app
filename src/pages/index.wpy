@@ -3,9 +3,8 @@
 </style>
 <template>
     <block>
-      <image src="/assets/img/背景.png" class="pagebg"/>
-      <view class="indexCon">
-        <view class="indexnav">
+      <view class="{{ismask ? 'indexCon allFilter': 'indexCon'}}">
+        <!-- <view class="indexnav" >
           <image src="/assets/img/Building/x_0042_失物招领-4.png" class="x_0042"/>
           <image src="/assets/img/Building/x_0038_图书馆21.png" class="x_0038"/>
           <image src="/assets/img/Building/x_0037_教学楼2.png" class="x_0037"/>
@@ -13,7 +12,7 @@
           <image src="/assets/img/Building/x_0040_宿舍.png" class="x_0040"/>
           <image src="/assets/img/Building/x_0041_点歌台-6.png" class="x_0041"/>
           <image src="/assets/img/Building/x_0036_网络中心.png" class="x_0036"/>
-        </view>
+        </view> 
         <view class="fishtop">
           <image src="/assets/img/Bubble/x_0011_气泡.png" />
           <image src="/assets/img/Bubble/x_0007_气泡.png" />
@@ -28,7 +27,24 @@
           <image src="/assets/img/Bubble/x_0011_气泡.png" />
           <image src="/assets/img/Bubble/x_0007_气泡.png" />
           <image src="/assets/img/fish/x_0006_鱼.png"/>
-        </view>
+        </view> 
+        -->
+         <!--循环渲染 建筑-->
+        <repeat for="{{list.indexlist}}" index="index">
+          <view class="{{index}}">
+          <repeat for="{{list.indexlist[index]}}" index="n" item="child">
+           <image src="{{child.src}}" class="{{child.class}}" @tap="Building({{child.name}})"/>
+          </repeat>
+          </view>
+        </repeat>
+         <!--循环渲染 三条鱼-->
+        <repeat for="{{list.fish}}" index="index">
+          <view class="{{index}}">
+          <repeat for="{{list.fish[index]}}" index="n" item="child">
+           <image src="{{child.src}}" class="{{child.class}}" />
+          </repeat>
+          </view>
+        </repeat>
         <view class="index-bottom-bg">
           <image src="/assets/img/seaweed/x_0003_左海草从.png" class="x_0003"/>
           <image src="/assets/img/seaweed/x_0002_右海草丛.png" class="x_0002"/>
@@ -38,10 +54,17 @@
             <image src="/assets/img/seaweed/x_0015_左海草下.png"/>
           </view>
           <image src="/assets/img/seaweed/x_0013_右海草.png" class="rightSeaweed"/>
-          <view class="indexbg-Beck">
-              <image src="/assets/img/贝壳.png"/>
+          <view class="indexbg-Beck" style="background-position:0px {{Beckposition}}px" @tap="Beck">
+              <!-- <image src="/assets/img/贝壳.png"/> -->
           </view>
         </view>
+    </view>
+    <view class="{{ismask==true? 'maskin':'mask'}}" >
+      <view class="mask-box">
+          <view class="mask-element {{elemnum>=1?'mask-element-show':''}}" @tap="maskElement">xxxx</view>
+          <view class="mask-element {{elemnum>=2?'mask-element-show':''}}">xxx</view>
+          <view class="mask-element {{elemnum>=3?'mask-element-show':''}}">xxxx</view>
+      </view>
     </view>
   </block>
 </template>
@@ -49,7 +72,8 @@
 <script>
   import wepy from 'wepy'
   import { connect } from 'wepy-redux'
-
+  import indexList from "@/listdata/indexList.js"
+  let times;
   export default class Index extends wepy.page {
     config = {  //页面配置对象，对应于原生的page.json文件，类似于app.wpy中的config
       navigationBarTitleText: '首页'
@@ -58,24 +82,56 @@
     
     }
     data={
-      
+      Beckposition:0,
+      list:{...indexList},
+      ismask:false,
+      elemnum:0
     }
     computed = {
      
     }
 
     methods = {
-
+      Beck(){ //贝克背景切换
+        clearInterval(times);
+        times = setInterval(()=>{
+          this.Beckposition += -83.612493;
+          if(this.Beckposition<=-2436){
+            clearInterval(times);
+            this.Beckposition=-83.612493*29;
+          }
+          this.$apply();
+        },1000/60);
+      },
+      Building(e){//建筑物点击
+        this.ismask = true;
+        this.elemnum = 0;
+        this.maskElemShow();
+      },
+      maskElement(){//选项点击
+        this.ismask = false;
+      }
     }
 
     events = {
-    /*WePY组件事件处理函数对象，
-    存放响应组件之间通过$broadcast、$emit、$invoke所传递的事件的函数*/
+      /*WePY组件事件处理函数对象，
+      存放响应组件之间通过$broadcast、$emit、$invoke所传递的事件的函数*/
     
     }
 
     onLoad() {
 
+    }
+
+    maskElemShow(){
+      let timer=null;
+      timer=setInterval(()=>{
+        if(this.elemnum>3){
+          clearInterval(timer);
+        }
+        this.elemnum++;
+        this.$apply();
+      },100);
     }
   }
 </script>

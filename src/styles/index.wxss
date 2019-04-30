@@ -1,9 +1,10 @@
 
-page,.pagebg,.indexCon,.indexnav{
+page,.pagebg,.indexCon,.indexnav,.maskin,.mask{
   width:100%;
   height:100%;
+  overflow: hidden;
 }
-.pagebg{
+.pagebg,.mask{
 position:absolute;
 left:0;
 top:0;
@@ -11,10 +12,15 @@ z-index:-1;
 }
 .indexCon{
   position: relative;
-  overflow: hidden;
+  background:url('http://www.quyun.online/assets/image/%E8%83%8C%E6%99%AF.png') no-repeat 0 0;
+  background-size: 100% 100%;
 }
 .indexCon image,.indexbg-Beck,.leftSeaweed{
   position: absolute;
+}
+.allFilter{
+  filter:blur(2px);
+  transition: filter 1s;
 }
 .x_0042{
   width: 214rpx;
@@ -58,6 +64,7 @@ z-index:-1;
   left:250rpx;
   top:650rpx;
 }
+
 /*fish 样式
 */
 .fishtop{
@@ -143,12 +150,14 @@ z-index:-1;
   width:647rpx;
   height: 231rpx;
   right:252rpx;
+  animation: animationSea 4s linear infinite  alternate;
 }
 .x_0002{
   width:295rpx;
   height:225rpx;
   bottom:-124rpx;
   right:-172rpx;
+  animation: animationSea 4s linear infinite  alternate;
 }
 .x_0001{
   width:100%;
@@ -156,22 +165,21 @@ z-index:-1;
   bottom:-10rpx;
 }
 .indexbg-Beck{
-  width:214rpx;
-  height:170rpx;
-  right:74rpx;
-  bottom:10rpx;
+  width:220rpx;
+  height:167rpx;
+  right:70rpx;
+  bottom:14rpx;
   overflow: hidden;
-}
-.indexbg-Beck > image{
- width:100%;
- height:2900px;
- top:-14px;
+  background-image:url('http://www.quyun.online/assets/image/%E8%B4%9D%E5%A3%B3.png');
+  background-size:100%;
+  background-repeat: no-repeat;
 }
 .leftSeaweed{
   width:193rpx;
   height:216rpx;
   bottom:219rpx;
   left:-125rpx;
+  animation: animationleft 3s  linear infinite  alternate;
 }
 .leftSeaweed >image:nth-child(1){
   width:158rpx;
@@ -192,4 +200,76 @@ z-index:-1;
   height:174rpx;
   bottom:284rpx;
   right:-77rpx;
+  animation: animationright 2s 1s linear infinite  alternate;
+}
+/*遮罩*/
+.mask{
+  position: absolute;
+  z-index:-1;
+  left:0;top:0;
+  opacity: 0;
+  transition: 1.5s;
+}
+.maskin{
+  position: absolute;
+  left:0;top:0;
+  opacity:1;
+  z-index:10; 
+  transition: 1.5s;
+}
+.mask-box{
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 200rpx;
+  min-height: 200rpx;
+}
+.mask-element{
+  text-align: center;
+  box-shadow: 2px 2px 5px #333;
+  margin: 15px 0;
+  width:200rpx;
+  height: 200rpx;
+  line-height:200rpx;
+  border-radius:50%;
+  background:rgba(250,250,250,0.5);
+  transform: scale(0);
+  transform-origin: center center;
+  transition: .5s cubic-bezier(0.5,0.4,0.5,1.5);
+}
+.mask-element-show{
+  transform: scale(1);
+  background:rgba(250,250,250,1);
+}
+/*背景动画*/
+@keyframes animationleft{
+  0%{
+   transform: translateX(0px) skewX(-10deg);
+ 
+  }
+  100%{
+    transform: translateX(15px)  skewX(-20deg) ;
+  }
+}
+@keyframes animationright{
+  0%{
+   transform: translateX(0px) skewX(10deg);
+ 
+  }
+  100%{
+    transform: translateX(15px)  skewX(0deg) ;
+  }
+}
+@keyframes animationSea{
+  0%{
+   transform: skewX(0deg) ;
+ 
+  }
+  50%{
+    transform: skewX(4deg);
+  }
+  100%{
+    transform: skewX(-4deg) ;
+  }
 }
