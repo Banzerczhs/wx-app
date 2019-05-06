@@ -111,7 +111,7 @@
                 let deg=!index?30:(40*index+30);
                 let tx=sign<0?0:-Math.round(Math.cos(Math.PI/180*deg)*ir);
                 let ty=sign<0?0:-Math.round(Math.sin(Math.PI/180*deg)*ir);
-                animation.translate(tx*2/windowiScale,ty*2/windowiScale).scale(sign<0?0:1).opacity(sign<0?0:1).step();
+                animation.translate(tx*windowiScale/windowiScale,ty*windowiScale/windowiScale).scale(sign<0?0:1).opacity(sign<0?0:1).step();
                 animateArr.push(animation.export());
             })
             this.appmove=[...animateArr];

@@ -10,6 +10,7 @@
               <image 
                 src="{{child.src}}"
                 class="{{child.class}}"
+                style="left:{{child.left}}px;top:{{child.top}}px"
                 @tap="Building({{child.name}})"
                 animation="{{aniamtionsecon[child.name]}}"
               ></image>
@@ -49,7 +50,10 @@
       style="display:{{ismask?'block':'none'}}"
       @tap="hideMask"
       data-tap="tap">
-      <view class="mask-box">
+      <view 
+        class="mask-box"
+        style="display:{{beckzIndex?'block':'none'}}"
+      >
           <view 
             class="mask-element"
             animation="{{maskement[0]}}"
@@ -162,7 +166,16 @@
     }
 
     onReady(){
+      let {windowiScale}=this;
+      console.log(windowiScale);
       this.applist=["item1","item2","item3","item4"];
+      let seconpos=[{l : 109,t : 55},{l : 40,t : 125},{l : 239,t : 135},{l : 1,t : 208},{l : 125,t : 158},{l : 248,t : 244},{l : 125,t : 325}];
+      this.list.indexlist.indexnav.forEach((item,index)=>{
+        item.left=Math.round(seconpos[index].l*2/windowiScale);
+        item.top=Math.round(seconpos[index].t*2/windowiScale);
+      });
+
+      this.$apply();
     }
 
     async beckMove(sign){
