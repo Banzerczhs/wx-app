@@ -1,32 +1,31 @@
-
 page,.pagebg,.indexCon,.indexnav,.maskin,.mask{
   width:100%;
   height:100%;
   overflow: hidden;
 }
-.pagebg,.mask{
-position:absolute;
-left:0;
-top:0;
-z-index:-1;
+.pagebg{
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:-1;
 }
 .indexCon{
   position: relative;
-  background:url('http://www.quyun.online/assets/image/%E8%83%8C%E6%99%AF.png') no-repeat 0 0;
+  background:url('https://www.quyun.online/assets/image/%E8%83%8C%E6%99%AF.png') no-repeat 0 0;
   background-size: 100% 100%;
 }
-.indexCon image,.indexbg-Beck,.leftSeaweed{
+.indexCon image,.indexCon image,.indexbg-Beck,.leftSeaweed{
   position: absolute;
 }
-.allFilter{
+.addFilter{
   filter:blur(2px);
-  transition: filter 1s;
+  -webkit-filter: blur(2px);
 }
 .x_0042{
-  width: 214rpx;
+  width: 360rpx;
   height:230rpx;
-  top:105rpx;
-  left:353rpx;
+  top:110rpx;
+  left:218rpx;
 }
 .x_0038{
   width: 240rpx;
@@ -77,11 +76,15 @@ z-index:-1;
 .fishtop image:nth-child(1){
   width:30rpx;
   height: 30rpx;
+  left: -5px;
+  top:-5px;
 }
 .fishtop image:nth-child(2){
   width:20rpx;
   height:20rpx;
   top:22rpx;
+  top:8px;
+  left: 0px;
 }
 .fishtop image:nth-child(3){
   width:75rpx;
@@ -150,7 +153,8 @@ z-index:-1;
   width:647rpx;
   height: 231rpx;
   right:252rpx;
-  animation: animationSea 4s linear infinite  alternate;
+  animation: animationSea 4s linear infinite alternate;
+  -webkit-animation: animationSea 4s linear infinite alternate;
 }
 .x_0002{
   width:295rpx;
@@ -158,6 +162,7 @@ z-index:-1;
   bottom:-124rpx;
   right:-172rpx;
   animation: animationSea 4s linear infinite  alternate;
+  -webkit-animation: animationSea 4s linear infinite alternate;
 }
 .x_0001{
   width:100%;
@@ -165,14 +170,31 @@ z-index:-1;
   bottom:-10rpx;
 }
 .indexbg-Beck{
-  width:220rpx;
-  height:167rpx;
-  right:70rpx;
+  width:225rpx;
+  height:170rpx;
+  right:100rpx;
   bottom:14rpx;
+  position: absolute;
+}
+.indexbg-Beck.filter{
+  filter: blur(2px);
+  -webkit-filter: blur(2px);
+}
+.beckzIndex{
+  position: absolute;
+  width:225rpx;
+  height:170rpx;
+  right:72rpx;
+  bottom:14rpx;
+}
+.indexbg-Beck .Beckimg{
   overflow: hidden;
-  background-image:url('http://www.quyun.online/assets/image/%E8%B4%9D%E5%A3%B3.png');
-  background-size:100%;
-  background-repeat: no-repeat;
+  height: 100%;
+}
+.indexbg-Beck .beck{
+  width: 100%;
+  height: 5040rpx;
+  position: relative;
 }
 .leftSeaweed{
   width:193rpx;
@@ -180,6 +202,7 @@ z-index:-1;
   bottom:219rpx;
   left:-125rpx;
   animation: animationleft 3s  linear infinite  alternate;
+  -webkit-animation: animationleft 3s  linear infinite  alternate;
 }
 .leftSeaweed >image:nth-child(1){
   width:158rpx;
@@ -201,27 +224,20 @@ z-index:-1;
   bottom:284rpx;
   right:-77rpx;
   animation: animationright 2s 1s linear infinite  alternate;
+  -webkit-animation: animationright 2s 1s linear infinite  alternate;
 }
 /*遮罩*/
 .mask{
   position: absolute;
-  z-index:-1;
   left:0;top:0;
-  opacity: 0;
-  transition: 1.5s;
-}
-.maskin{
-  position: absolute;
-  left:0;top:0;
-  opacity:1;
-  z-index:10; 
-  transition: 1.5s;
+  background-color:rgba(27, 27, 27, 0.233);
 }
 .mask-box{
   position: absolute;
   top:50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
   width: 200rpx;
   min-height: 200rpx;
 }
@@ -233,17 +249,27 @@ z-index:-1;
   height: 200rpx;
   line-height:200rpx;
   border-radius:50%;
-  background:rgba(250,250,250,0.5);
-  transform: scale(0);
-  transform-origin: center center;
-  transition: .5s cubic-bezier(0.5,0.4,0.5,1.5);
+  background:rgb(250, 250, 250);
+  transform: scale(0,0);
+  -webkit-transform: scale(0,0);
+  /* will-change: transform; */
 }
-.mask-element-show{
-  transform: scale(1);
-  background:rgba(250,250,250,1);
-}
+
 /*背景动画*/
+.animationStop{
+  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+}
 @keyframes animationleft{
+  0%{
+   transform: translateX(0px) skewX(-10deg);
+ 
+  }
+  100%{
+    transform: translateX(15px)  skewX(-20deg) ;
+  }
+}
+@-webkit-keyframes animationleft{
   0%{
    transform: translateX(0px) skewX(-10deg);
  
@@ -261,7 +287,28 @@ z-index:-1;
     transform: translateX(15px)  skewX(0deg) ;
   }
 }
+@-webkit-keyframes animationright{
+  0%{
+   transform: translateX(0px) skewX(10deg);
+ 
+  }
+  100%{
+    transform: translateX(15px)  skewX(0deg) ;
+  }
+}
 @keyframes animationSea{
+  0%{
+   transform: skewX(0deg) ;
+ 
+  }
+  50%{
+    transform: skewX(4deg);
+  }
+  100%{
+    transform: skewX(-4deg) ;
+  }
+}
+@-webkit-keyframes animationSea{
   0%{
    transform: skewX(0deg) ;
  

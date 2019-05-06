@@ -3,135 +3,231 @@
 </style>
 <template>
     <block>
-      <view class="{{ismask ? 'indexCon allFilter': 'indexCon'}}">
-        <!-- <view class="indexnav" >
-          <image src="/assets/img/Building/x_0042_失物招领-4.png" class="x_0042"/>
-          <image src="/assets/img/Building/x_0038_图书馆21.png" class="x_0038"/>
-          <image src="/assets/img/Building/x_0037_教学楼2.png" class="x_0037"/>
-          <image src="/assets/img/Building/x_0039_社团.png" class="x_0039"/>
-          <image src="/assets/img/Building/x_0040_宿舍.png" class="x_0040"/>
-          <image src="/assets/img/Building/x_0041_点歌台-6.png" class="x_0041"/>
-          <image src="/assets/img/Building/x_0036_网络中心.png" class="x_0036"/>
-        </view> 
-        <view class="fishtop">
-          <image src="/assets/img/Bubble/x_0011_气泡.png" />
-          <image src="/assets/img/Bubble/x_0007_气泡.png" />
-          <image src="/assets/img/fish/x_0010_鱼.png" />
-        </view>
-        <view class="fishmiddle">
-          <image src="/assets/img/Bubble/x_0011_气泡.png"/>
-          <image src="/assets/img/Bubble/x_0007_气泡.png" />
-          <image src="/assets/img/fish/x_0009_鱼.png"/>
-        </view>
-        <view class="fishbottom">
-          <image src="/assets/img/Bubble/x_0011_气泡.png" />
-          <image src="/assets/img/Bubble/x_0007_气泡.png" />
-          <image src="/assets/img/fish/x_0006_鱼.png"/>
-        </view> 
-        -->
-         <!--循环渲染 建筑-->
+      <view class="indexCon {{ismask ? 'addFilter':''}}">
         <repeat for="{{list.indexlist}}" index="index">
           <view class="{{index}}">
-          <repeat for="{{list.indexlist[index]}}" index="n" item="child">
-           <image src="{{child.src}}" class="{{child.class}}" @tap="Building({{child.name}})"/>
-          </repeat>
+            <repeat for="{{list.indexlist[index]}}" index="n" item="child" key="child.src">
+              <image 
+                src="{{child.src}}"
+                class="{{child.class}}"
+                @tap="Building({{child.name}})"
+                animation="{{aniamtionsecon[child.name]}}"
+              ></image>
+            </repeat>
           </view>
         </repeat>
-         <!--循环渲染 三条鱼-->
-        <repeat for="{{list.fish}}" index="index">
+        <!--循环渲染 三条鱼-->
+        <!-- <repeat for="{{list.fish}}" index="index">
           <view class="{{index}}">
           <repeat for="{{list.fish[index]}}" index="n" item="child">
-           <image src="{{child.src}}" class="{{child.class}}" />
+          <image src="{{child.src}}" class="{{child.class}}" />
           </repeat>
           </view>
-        </repeat>
+        </repeat> -->
         <view class="index-bottom-bg">
-          <image src="/assets/img/seaweed/x_0003_左海草从.png" class="x_0003"/>
-          <image src="/assets/img/seaweed/x_0002_右海草丛.png" class="x_0002"/>
-          <image src="/assets/img/seaweed/x_0001_海底.png" class="x_0001"/>
-          <view class="leftSeaweed"> 
-            <image src="/assets/img/seaweed/x_0014_左海草上.png"/>
-            <image src="/assets/img/seaweed/x_0015_左海草下.png"/>
+          <image
+            src="/assets/img/seaweed/x_0003.png"
+            class="x_0003 {{backAnimationState?'animationStop':''}}"
+          />
+          <image
+            src="/assets/img/seaweed/x_0002.png"
+            class="x_0002 {{backAnimationState?'animationStop':''}}"
+          />
+          <image src="/assets/img/seaweed/x_0001.png" class="x_0001"/>
+          <view class="leftSeaweed {{backAnimationState?'animationStop':''}}">
+            <image src="/assets/img/seaweed/x_0014.png"/>
+            <image src="/assets/img/seaweed/x_0015.png"/>
           </view>
-          <image src="/assets/img/seaweed/x_0013_右海草.png" class="rightSeaweed"/>
-          <view class="indexbg-Beck" style="background-position:0px {{Beckposition}}px" @tap="Beck">
-              <!-- <image src="/assets/img/贝壳.png"/> -->
-          </view>
+          <image
+            src="/assets/img/seaweed/x_0013.png"
+            class="rightSeaweed {{backAnimationState?'animationStop':''}}"
+          />
         </view>
     </view>
-    <view class="{{ismask==true? 'maskin':'mask'}}" >
+    <view
+      class="mask"
+      style="display:{{ismask?'block':'none'}}"
+      @tap="hideMask"
+      data-tap="tap">
       <view class="mask-box">
-          <view class="mask-element {{elemnum>=1?'mask-element-show':''}}" @tap="maskElement">xxxx</view>
-          <view class="mask-element {{elemnum>=2?'mask-element-show':''}}">xxx</view>
-          <view class="mask-element {{elemnum>=3?'mask-element-show':''}}">xxxx</view>
+          <view 
+            class="mask-element"
+            animation="{{maskement[0]}}"
+          >xxxx</view>
+          <view
+            class="mask-element"
+            animation="{{maskement[1]}}"
+          >xxx</view>
+          <view 
+            class="mask-element"
+            animation="{{maskement[2]}}"
+          >xxxx</view>
       </view>
     </view>
+    <view
+      class="indexbg-Beck {{beckzIndex?'filter':''}}"
+      data-sign="true"
+      @tap="Beck">
+      <recentlyUsed :appList.sync="applist"></recentlyUsed>
+      <view class="Beckimg">
+        <view animation="{{animationbeck}}">
+          <image src="https://www.quyun.online/assets/image/%E8%B4%9D%E5%A3%B3.png" class="beck"></image>
+        </view>
+      </view>
+    </view>
+    <view class="{{beckzIndex?'beckzIndex':''}}"></view>
   </block>
 </template>
  
 <script>
-  import wepy from 'wepy'
-  import { connect } from 'wepy-redux'
-  import indexList from "@/listdata/indexList.js"
-  let times;
+  import wepy from 'wepy';
+  import { connect } from 'wepy-redux';
+  import indexList from "@/structure/index/indexList";
+  import Tools from "@/util/tools";
+  import RecentlyUsed from "@/components/index/RecentlyUsed";
+
   export default class Index extends wepy.page {
     config = {  //页面配置对象，对应于原生的page.json文件，类似于app.wpy中的config
       navigationBarTitleText: '首页'
     }
-    components = {
-    
-    }
+
     data={
       Beckposition:0,
       list:{...indexList},
-      ismask:false,
-      elemnum:0
+      ismask : false,
+      animationbeck : {},
+      aniamtionsecon : {},
+      maskement : [],
+      applist : [],
+      beckzIndex : false,
+      backAnimationState : false
     }
-    computed = {
-     
+
+    components={
+      recentlyUsed : RecentlyUsed
     }
 
     methods = {
-      Beck(){ //贝克背景切换
-        clearInterval(times);
-        times = setInterval(()=>{
-          this.Beckposition += -83.612493;
-          if(this.Beckposition<=-2436){
-            clearInterval(times);
-            this.Beckposition=-83.612493*29;
-          }
-          this.$apply();
-        },1000/60);
+      Beck(){ //贝壳背景切换
+        let sign=1;
+        if(this.beckState==null){
+          sign=-1;
+        }
+        this.ismask=!this.ismask;
+        this.beckMove(sign);
       },
-      Building(e){//建筑物点击
+      
+      Building(name){//建筑物点击
         this.ismask = true;
-        this.elemnum = 0;
-        this.maskElemShow();
+        this.beckzIndex = true;
+        this.seconMove(3,name);
+        this.backAnimationState=true;
+        setTimeout(() => {
+          this.maskElemShow();
+          this.seconMove(0,name);
+        },200);
       },
-      maskElement(){//选项点击
-        this.ismask = false;
+
+      //隐藏遮罩
+      hideMask(ev){
+        let {target}=ev;
+        if(target.dataset.tap){
+          let animation=this.setAnimation({
+            duration : 0,
+            timingFunction : 'ease'
+          });
+          animation.scale(0).step();
+          this.maskelemt=this.maskement.fill(animation.export());
+          this.ismask=false;
+          if(!this.beckzIndex){
+            this.beckMove(1);
+          }
+          this.beckzIndex=false;
+          this.backAnimationState=false;
+          
+        }
       }
     }
 
-    events = {
-      /*WePY组件事件处理函数对象，
-      存放响应组件之间通过$broadcast、$emit、$invoke所传递的事件的函数*/
-    
+    onLoad() {
+      let _this=this;
+      wepy.getSystemInfo({
+        success(res){
+          _this.windowiScale=750/res.windowWidth;
+          _this.$apply();
+        }
+      })
+      //贝壳状态
+      this.beckState=null;
     }
 
-    onLoad() {
+    onReady(){
+      this.applist=["item1","item2","item3","item4"];
+    }
 
+    async beckMove(sign){
+      if(this.beckState) return;
+      this.beckState=true;
+      let num=0;
+      let {setAnimation,windowiScale,getWxmlInfo}=this;
+      let animation=setAnimation({
+        duration : 0,
+        timingFunction : 'linear'
+      });
+      //向子组件广播事件
+      this.$broadcast('bubble-show',sign<0?1:-1);
+      let beckInfo=await getWxmlInfo('.indexbg-Beck');
+
+      let timer=setInterval(()=>{
+        sign<0?
+          animation.translate(0,-(168*num++)/windowiScale).step():
+          animation.translate(0,-(168*28)/windowiScale+(168*num++)/windowiScale).step();
+        this.animationbeck=animation.export();
+        if(num>=29){
+          clearInterval(timer);
+          this.beckState=sign<0?false:null;
+        }
+        this.$apply();
+      },1000/120);
     }
 
     maskElemShow(){
       let timer=null;
-      timer=setInterval(()=>{
-        if(this.elemnum>3){
-          clearInterval(timer);
-        }
-        this.elemnum++;
-        this.$apply();
-      },100);
+      let {setAnimation}=this;
+      let animation=setAnimation({
+          duration : 300,
+          timingFunction : 'ease'
+      });
+      this.maskement.length=3;
+      animation.scale(1).step();
+      this.maskement=this.maskement.fill(animation.export());
+      this.$apply();
+    }
+
+    //建筑移动
+    seconMove(target,name){
+      let {setAnimation}=this;
+      let aniamtion=setAnimation({
+        duration : 200,
+        timingFunction : 'ease'
+      });
+      aniamtion.translate(0,target).step();
+      this.aniamtionsecon[name]=aniamtion.export();
+    }
+
+    setAnimation(option){
+      let animation=wepy.createAnimation(option);
+      return animation;
+    }
+
+    getWxmlInfo(wxml){
+      let query=wepy.createSelectorQuery();
+      return new Promise(function(res,rej){
+        query.select(wxml)
+        .boundingClientRect(function(rect){
+            res(rect);
+        }).exec();
+      })
     }
   }
 </script>

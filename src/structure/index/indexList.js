@@ -1,0 +1,78 @@
+let indexlist = {
+    indexnav:[
+        {
+            src:"https://www.quyun.online/assets/image/x_0042_%E5%A4%B1%E7%89%A9%E6%8B%9B%E9%A2%86.png",
+            class:"x_0042",
+            name:'lostFind'
+        },
+        {
+            src:"https://www.quyun.online/assets/image/x_0038_%E5%9B%BE%E4%B9%A6%E9%A6%86.png",
+            class:"x_0038",
+            name:'books'
+        },
+        {
+            src:"https://www.quyun.online/assets/image/x_0037_%E6%95%99%E5%AD%A6%E6%A5%BC.png",
+            class:"x_0037",
+            name:'classroom'
+        },
+        {
+            src:"https://www.quyun.online/assets/image/x_0039_%E7%A4%BE%E5%9B%A2.png",
+            class:"x_0039",
+            name:'association'
+        },
+        {
+            src:"https://www.quyun.online/assets/image/x_0040_%E5%AE%BF%E8%88%8D.png",
+            class:"x_0040",
+            name:'dorm'
+        },
+        {
+            src:"https://www.quyun.online/assets/image/x_0041_%E7%82%B9%E6%AD%8C%E5%8F%B0.png",
+            class:"x_0041",
+            name:'music'
+        },
+        {
+            src:"https://www.quyun.online/assets/image/x_0036_%E7%BD%91%E7%BB%9C%E4%B8%AD%E5%BF%83.png",
+            class:"x_0036",
+            name:'network'
+        }
+    ]
+}
+let fish ={
+    fishtop:[
+        {
+            src:"/assets/img/Bubble/x_0011.png",
+        },
+        {
+            src:"/assets/img/Bubble/x_0007.png",
+        },
+        {
+            src:"/assets/img/fish/x_0010.png",
+        },
+    ],
+    fishmiddle:[
+        {
+            src:"/assets/img/Bubble/x_0011.png",
+        },
+        {
+            src:"/assets/img/Bubble/x_0007.png",
+        },
+        {
+            src:"/assets/img/fish/x_0009.png",
+        },
+    ],
+    fishbottom:[
+        {
+            src:"/assets/img/Bubble/x_0011.png",
+        },
+        {
+            src:"/assets/img/Bubble/x_0007.png",
+        },
+        {
+            src:"/assets/img/fish/x_0006.png",
+        },
+    ]
+}
+
+export default {
+    indexlist
+};
