@@ -22,8 +22,8 @@
         background-color: rgba(245, 245, 245, 0.431);
         transform:rotate(45deg);
         position: absolute;
-        left: 11px;
-        top:6px;
+        left: 22rpx;
+        top:12rpx;
     }
     .app.hide{
         transform:scale(0);

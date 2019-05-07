@@ -1,5 +1,5 @@
 <style>
-  @import "/styles/index.wxss";
+  @import "/styles/Home/index.wxss";
 </style>
 <template>
     <block>
@@ -7,13 +7,14 @@
         <repeat for="{{list.indexlist}}" index="index">
           <view class="{{index}}">
             <repeat for="{{list.indexlist[index]}}" index="n" item="child" key="child.src">
-              <image 
-                src="{{child.src}}"
-                class="{{child.class}}"
-                style="left:{{child.left}}px;top:{{child.top}}px"
-                @tap="Building({{child.name}})"
-                animation="{{aniamtionsecon[child.name]}}"
-              ></image>
+              <view
+                class="{{index}}-icon {{bgAnimationState?'animationStop':''}}"
+                @tap="Building({{child.name}})">
+                <view animation="{{aniamtionsecon[child.name]}}">
+                  <image src="{{child.src}}"></image>
+                  <text class="{{index}}-desc">{{child.name}}</text>
+                </view>
+              </view>
             </repeat>
           </view>
         </repeat>
@@ -28,20 +29,20 @@
         <view class="index-bottom-bg">
           <image
             src="/assets/img/seaweed/x_0003.png"
-            class="x_0003 {{backAnimationState?'animationStop':''}}"
+            class="x_0003 {{bgAnimationState?'animationStop':''}}"
           />
           <image
             src="/assets/img/seaweed/x_0002.png"
-            class="x_0002 {{backAnimationState?'animationStop':''}}"
+            class="x_0002 {{bgAnimationState?'animationStop':''}}"
           />
           <image src="/assets/img/seaweed/x_0001.png" class="x_0001"/>
-          <view class="leftSeaweed {{backAnimationState?'animationStop':''}}">
+          <view class="leftSeaweed {{bgAnimationState?'animationStop':''}}">
             <image src="/assets/img/seaweed/x_0014.png"/>
             <image src="/assets/img/seaweed/x_0015.png"/>
           </view>
           <image
             src="/assets/img/seaweed/x_0013.png"
-            class="rightSeaweed {{backAnimationState?'animationStop':''}}"
+            class="rightSeaweed {{bgAnimationState?'animationStop':''}}"
           />
         </view>
     </view>
@@ -96,7 +97,6 @@
     }
 
     data={
-      Beckposition:0,
       list:{...indexList},
       ismask : false,
       animationbeck : {},
@@ -104,7 +104,7 @@
       maskement : [],
       applist : [],
       beckzIndex : false,
-      backAnimationState : false
+      bgAnimationState : false
     }
 
     components={
@@ -117,18 +117,17 @@
         if(this.beckState==null){
           sign=-1;
         }
-        this.ismask=!this.ismask;
         this.beckMove(sign);
       },
       
       Building(name){//建筑物点击
         this.ismask = true;
         this.beckzIndex = true;
-        this.seconMove(3,name);
-        this.backAnimationState=true;
+        this.seconMove(0.9,name);
+        this.bgAnimationState=true;
         setTimeout(() => {
           this.maskElemShow();
-          this.seconMove(0,name);
+          this.seconMove(1,name);
         },200);
       },
 
@@ -136,19 +135,20 @@
       hideMask(ev){
         let {target}=ev;
         if(target.dataset.tap){
-          let animation=this.setAnimation({
-            duration : 0,
-            timingFunction : 'ease'
-          });
-          animation.scale(0).step();
-          this.maskelemt=this.maskement.fill(animation.export());
-          this.ismask=false;
-          if(!this.beckzIndex){
+          if(this.beckzIndex){
+            let animation=this.setAnimation({
+              duration : 0,
+              timingFunction : 'ease'
+            });
+            animation.scale(0).step();
+            this.maskelemt=this.maskement.fill(animation.export());
+            this.beckzIndex=false;
+            this.ismask=false;
+            this.bgAnimationState=false;
+          }else{
             this.beckMove(1);
           }
-          this.beckzIndex=false;
-          this.backAnimationState=false;
-          
+          this.$apply();
         }
       }
     }
@@ -158,6 +158,7 @@
       wepy.getSystemInfo({
         success(res){
           _this.windowiScale=750/res.windowWidth;
+          _this.windowiH=1336/res.windowHeight;
           _this.$apply();
         }
       })
@@ -166,42 +167,37 @@
     }
 
     onReady(){
-      let {windowiScale}=this;
-      console.log(windowiScale);
+      let {windowiScale,windowiH}=this;
       this.applist=["item1","item2","item3","item4"];
-      let seconpos=[{l : 109,t : 55},{l : 40,t : 125},{l : 239,t : 135},{l : 1,t : 208},{l : 125,t : 158},{l : 248,t : 244},{l : 125,t : 325}];
-      this.list.indexlist.indexnav.forEach((item,index)=>{
-        item.left=Math.round(seconpos[index].l*2/windowiScale);
-        item.top=Math.round(seconpos[index].t*2/windowiScale);
-      });
-
-      this.$apply();
     }
 
     async beckMove(sign){
       if(this.beckState) return;
       this.beckState=true;
-      let num=0;
       let {setAnimation,windowiScale,getWxmlInfo}=this;
       let animation=setAnimation({
         duration : 0,
         timingFunction : 'linear'
       });
+      
+      this.ismask=sign<0?true:false;
       //向子组件广播事件
       this.$broadcast('bubble-show',sign<0?1:-1);
       let beckInfo=await getWxmlInfo('.indexbg-Beck');
 
+      let num=0;
       let timer=setInterval(()=>{
-        sign<0?
-          animation.translate(0,-(168*num++)/windowiScale).step():
-          animation.translate(0,-(168*28)/windowiScale+(168*num++)/windowiScale).step();
+        let ty=sign<0?
+          -(168*num++)/windowiScale:
+          -(168*29)/windowiScale+(168*num++)/windowiScale;
+        animation.translate(0,ty).step();
         this.animationbeck=animation.export();
         if(num>=29){
           clearInterval(timer);
           this.beckState=sign<0?false:null;
         }
         this.$apply();
-      },1000/120);
+      },1000/60);
     }
 
     maskElemShow(){
@@ -224,7 +220,7 @@
         duration : 200,
         timingFunction : 'ease'
       });
-      aniamtion.translate(0,target).step();
+      aniamtion.scale(target).step();
       this.aniamtionsecon[name]=aniamtion.export();
     }
 
