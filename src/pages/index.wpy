@@ -9,7 +9,7 @@
             <repeat for="{{list.indexlist[index]}}" index="n" item="child" key="child.src">
               <view
                 class="{{index}}-icon {{bgAnimationState?'animationStop':''}}"
-                @tap="Building({{child.name}})">
+                @tap="Building({{child}})">
                 <view animation="{{aniamtionsecon[child.name]}}">
                   <image src="{{child.src}}"></image>
                   <text class="{{index}}-desc">{{child.name}}</text>
@@ -46,6 +46,7 @@
           />
         </view>
     </view>
+    <!--遮罩-->
     <view
       class="mask"
       style="display:{{ismask?'block':'none'}}"
@@ -54,19 +55,23 @@
       <view 
         class="mask-box"
         style="display:{{beckzIndex?'block':'none'}}"
-      >
+      > 
+        <repeat for="{{BuildingChild}}" key="item.name">
           <view 
             class="mask-element"
-            animation="{{maskement[0]}}"
-          >xxxx</view>
-          <view
-            class="mask-element"
-            animation="{{maskement[1]}}"
-          >xxx</view>
-          <view 
-            class="mask-element"
-            animation="{{maskement[2]}}"
-          >xxxx</view>
+            animation="{{maskement[index]}}"
+            @tap="GoPage({{item.url}}))"
+          >{{item.name}}</view> <!--需要动态渲染的-->
+        </repeat>
+         
+            <!-- <view
+              class="mask-element"
+              animation="{{maskement[1]}}"
+            >xxx</view>
+            <view 
+              class="mask-element"
+              animation="{{maskement[2]}}"
+            >xxxx</view> -->
       </view>
     </view>
     <view
@@ -104,13 +109,14 @@
       maskement : [],
       applist : [],
       beckzIndex : false,
-      bgAnimationState : false
+      bgAnimationState : false,
+      BuildingChild:[]
     }
 
     components={
       recentlyUsed : RecentlyUsed
     }
-
+  
     methods = {
       Beck(){ //贝壳背景切换
         let sign=1;
@@ -120,28 +126,32 @@
         this.beckMove(sign);
       },
       
-      Building(name){//建筑物点击
+      Building(obj){//建筑物点击
+        this.BuildingChild = obj.child
         this.ismask = true;
         this.beckzIndex = true;
-        this.seconMove(0.9,name);
+        this.seconMove(0.9,obj);
         this.bgAnimationState=true;
         setTimeout(() => {
           this.maskElemShow();
-          this.seconMove(1,name);
+          this.seconMove(1,obj);
         },200);
       },
-
+      GoPage(url){//点击跳转界面
+        wx.navigateTo({
+          url: `${url}`,
+          success:()=>{ //跳转成功关掉mask
+            this.ismask = false;
+            this.beckzIndex = false;
+          }
+        })
+      } ,
       //隐藏遮罩
       hideMask(ev){
         let {target}=ev;
         if(target.dataset.tap){
           if(this.beckzIndex){
-            let animation=this.setAnimation({
-              duration : 0,
-              timingFunction : 'ease'
-            });
-            animation.scale(0).step();
-            this.maskelemt=this.maskement.fill(animation.export());
+            this.maskElemHide();
             this.beckzIndex=false;
             this.ismask=false;
             this.bgAnimationState=false;
@@ -169,6 +179,10 @@
     onReady(){
       let {windowiScale,windowiH}=this;
       this.applist=["item1","item2","item3","item4"];
+    }
+
+    onHide(){
+      this.maskElemHide();
     }
 
     async beckMove(sign){
@@ -213,6 +227,15 @@
       this.$apply();
     }
 
+    maskElemHide(){
+      let animation=this.setAnimation({
+        duration : 0,
+        timingFunction : 'ease'
+      });
+      animation.scale(0).step();
+      this.maskelemt=this.maskement.fill(animation.export());
+      this.$apply();
+    }
     //建筑移动
     seconMove(target,name){
       let {setAnimation}=this;

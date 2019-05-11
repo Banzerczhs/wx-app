@@ -1,3 +1,4 @@
+
 <script>
 import wepy from 'wepy'
 import 'wepy-async-function'
@@ -5,10 +6,14 @@ import 'wepy-async-function'
 // import { setStore } from 'wepy-redux'
 // import configStore from './store'
 
-export default class extends wepy.app {
+export default class app extends wepy.app {
   config = {
     pages: [
-      'pages/index'
+      'pages/index',
+      'pages/library/librarypc',
+      'pages/library/libraryTarTab',
+      'pages/library/libraryhistory'
+
     ],
     window: {
       backgroundTextStyle: 'light',

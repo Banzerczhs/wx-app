@@ -6,7 +6,21 @@ let indexlist = {
         },
         {
             src:"https://www.quyun.online/assets/image/x_0038_%E5%9B%BE%E4%B9%A6%E9%A6%86.png",
-            name:'图书馆'
+            name:'图书馆',
+            child:[
+                {
+                    name:"借阅记录",
+                    url:"library/libraryTarTab"
+                },
+                {
+                    name:"书库",
+                    url:""
+                },
+                {
+                    name:"图书收藏",
+                    url:""
+                }
+            ]
         },
         {
             src:"https://www.quyun.online/assets/image/x_0037_%E6%95%99%E5%AD%A6%E6%A5%BC.png",

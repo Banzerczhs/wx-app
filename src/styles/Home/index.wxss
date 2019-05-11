@@ -314,13 +314,13 @@ page,.pagebg,.indexCon,.indexnav,.maskin,.mask{
 }
 .mask-element{
   text-align: center;
-  box-shadow: 2px 2px 5px #333;
+  box-shadow: 0 0 0 4rpx #0cf inset,0 0 32rpx 2rpx #0cf inset;
   margin: 15px 0;
   width:200rpx;
   height: 200rpx;
   line-height:200rpx;
   border-radius:50%;
-  background:rgb(250, 250, 250);
+  color:#fff;
   transform: scale(0,0);
   -webkit-transform: scale(0,0);
   /* will-change: transform; */
