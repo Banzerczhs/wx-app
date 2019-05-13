@@ -1,0 +1,109 @@
+<style scoped>
+.box{
+    background-image: linear-gradient(#1d5dea 50%,#1828ac);
+}
+.child{
+    display: inline-block;
+    vertical-align:top;
+    width:715rpx;
+    height:32vh;
+    margin:10rpx 20rpx;
+    overflow:hidden;
+    position: relative;
+    background-color:rgba(255, 255, 255,1);
+    border-radius:4px;
+    box-shadow:1px 1px 4px #270752;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.child-left{
+    width:40%;
+    height:100%;
+    float:left;
+    border:solid 1px transparent;
+    box-sizing: border-box;
+}
+.child-left image{
+    width: 100%;
+    height:100%;
+    border-radius: 4px;
+    position:relative;
+}
+.child-left image::before{
+    content:"";
+    display: block;
+    width: 100%;
+    height:100%;
+    position:absolute;
+    left:0;
+    top:0;
+}
+.child-right{
+    width: 54%;
+    height:100%;
+    margin-left: 15px;
+    float: left;
+}
+.child-right view{
+    font:16px/1.5 "微软雅黑";
+    color:rgb(99, 58, 12);
+    vertical-align: center;
+    text-align:left;
+}
+.child-right text{
+    color:rgb(70, 41, 7);
+}
+.box-title{
+    width: 100%;
+    color:#fff;
+    text-align:center;
+    font-size: 24px;
+    display:block;
+}
+</style>
+
+<template>
+    <view class="box">
+        <text class="box-title">书架</text>
+        <scroll-view
+            scroll-y="true"
+            style="height:100%">
+            <repeat for="{{datalist}}" key="index">
+                <view class="child">
+                    <view class="child-left">
+                        <image src="{{item.url}}"/>
+                    </view>
+                    <view class="child-right">
+                        <view>书    名：<text>{{item.name}}</text></view>
+                        <view>借阅时间：<text>{{item.oldTime}}</text></view>
+                        <view>待还时间: <text>{{item.nowTime}}</text></view>
+                        <view>
+                            <view class="action">
+                                <text class="text-df margin-right-sm">还期提醒</text>
+                                <switch class="sm"></switch>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </repeat>
+        </scroll-view>
+    </view>
+</template>
+
+<script>
+    import wepy from "wepy";
+    import librarydata from "@/structure/library/library.js"
+    export default class Collection extends wepy.page{
+        config={
+            navigationBarTitleText : '书架'
+        }
+
+        data = {
+            datalist:[]
+        }
+
+        onLoad(){
+            this.datalist = librarydata["libraryone"];
+        }
+    }
+</script>

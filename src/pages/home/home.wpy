@@ -1,5 +1,5 @@
 <style>
-  @import "/styles/Home/index.wxss";
+  @import "/styles/home/home.wxss";
 </style>
 <template>
     <block>
@@ -63,15 +63,6 @@
             @tap="GoPage({{item.url}}))"
           >{{item.name}}</view> <!--需要动态渲染的-->
         </repeat>
-         
-            <!-- <view
-              class="mask-element"
-              animation="{{maskement[1]}}"
-            >xxx</view>
-            <view 
-              class="mask-element"
-              animation="{{maskement[2]}}"
-            >xxxx</view> -->
       </view>
     </view>
     <view
@@ -92,9 +83,9 @@
 <script>
   import wepy from 'wepy';
   import { connect } from 'wepy-redux';
-  import indexList from "@/structure/index/indexList";
+  import indexList from "@/structure/home/indexList";
   import Tools from "@/util/tools";
-  import RecentlyUsed from "@/components/index/RecentlyUsed";
+  import RecentlyUsed from "@/components/home/RecentlyUsed";
 
   export default class Index extends wepy.page {
     config = {  //页面配置对象，对应于原生的page.json文件，类似于app.wpy中的config
@@ -127,7 +118,7 @@
       },
       
       Building(obj){//建筑物点击
-        this.BuildingChild = obj.child
+        this.BuildingChild = [...obj.child];
         this.ismask = true;
         this.beckzIndex = true;
         this.seconMove(0.9,obj);
@@ -137,6 +128,7 @@
           this.seconMove(1,obj);
         },200);
       },
+
       GoPage(url){//点击跳转界面
         wx.navigateTo({
           url: `${url}`,
@@ -145,7 +137,8 @@
             this.beckzIndex = false;
           }
         })
-      } ,
+      },
+
       //隐藏遮罩
       hideMask(ev){
         let {target}=ev;
@@ -179,6 +172,11 @@
     onReady(){
       let {windowiScale,windowiH}=this;
       this.applist=["item1","item2","item3","item4"];
+    }
+
+    onShow(){
+      this.bgAnimationState=false;
+      this.$apply();
     }
 
     onHide(){

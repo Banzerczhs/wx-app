@@ -5,113 +5,98 @@ page{
     width:100%;
     height: 100%;
 }
-.navbar{
-    height:7vh;
-    width:100%;
+.scroll{
+    position:absolute;
+    left:0;
+    right:0;
+    top:123rpx;
+    bottom:0;
     overflow:hidden;
-    position: relative;
-    z-index:100;
-    top:0;
-}
-.navbar button{
-    background:rgb(218, 176, 209);
-    color:#fff;
-    width:50%;
-    height:100%;
-    float:left;
-}
-.child{
-    display: inline-block;
-    vertical-align:top;
-    width:335rpx;
-    height:32vh;
-    margin:10rpx 20rpx;
-    text-align: center;
-    overflow:hidden;
-    position: relative;
-    background-color:rgb(247, 201, 103);
-    border-radius:8px;
-    box-shadow:1px 1px 4px #270752;
-}
-.child-top{
-    width:250rpx;
-    height:70%;
-    margin: 0 auto;
-    margin-top:10px;
-    position:relative;
-    border:solid 1px transparent;
-}
-.child-top image{
-    width: 100%;
-    height:100%;
-    border-radius: 4px;
-}
-
-.child .child-text text{
-    font:12px/1.5 "微软雅黑";
-    color:rgb(99, 58, 12);
-    margin: 0 10px;
-    padding:0 10px;
-    position: relative;
-}
-.child .child-text text:nth-child(1)::after{
-   content:'|';
-    margin-left:30px;
-}
-.child .child-name{
-    position:relative;
-    bottom:10px;
-    color:rgb(99, 58, 12);
-    font:12px/20px "微软雅黑";
 }
 </style>
-<template >
-  <block>
-      <view class="navbar">
-          <button >借阅信息</button>
-          <button >借阅历史</button>
-      </view>
-    <scroll-view class="" scroll-y="true" style="height:100%"
-        lower-threshold="200" bindscrolltolower="scrollNew">
-        <repeat for="{{datalist}}" key="index">
-            <view class="child">
-               <view class="child-top"> <image src="{{item.url}}"/> </view>
-               <view class="child-text">
-                    <text>123</text>
-                    <text>123</text>
-               </view>
-               <text class="child-name">{{item.name}}</text>
+
+<template>
+    <view>
+        <cu-search></cu-search>
+        <scroll-view scroll-y="true" class="scroll">
+            <view>
+                <cu-swiperx
+                    :swiperlist.sync="swiperList"
+                    swiperType='card-swiper'
+                    curColor='rgb(241, 241, 174)'
+                    curColoract='rgba(255,255,255,0.3)'
+                ></cu-swiperx>
+                <recommend-book
+                    title="推荐图书"
+                    :booklist.sync="swiperList"
+                ></recommend-book>
+                <new-book
+                    title="新书"
+                    :booklist.sync="newBooks"
+                ></new-book>
             </view>
-        </repeat>
-    </scroll-view>
-  </block>
+        </scroll-view>
+    </view>
 </template>
 
 <script>
 import wepy from 'wepy';
-import librarydata from "@/structure/library.js"
+import librarydata from "@/structure/library/library.js";
+import Search from "@/components/library/search";
+import Swiperx from "@/components/library/swiper";
+import Recommend from "@/components/library/recommend";
 
 export default class librarylist extends wepy.page {
     config = {
-         navigationBarTitleText: '借阅信息',
+        navigationBarTitleText: '书库'
     }
+
     components = {
-       
+       'cu-search' : Search,
+       'cu-swiperx' : Swiperx,
+       'recommend-book' : Recommend,
+       'new-book' : Recommend
     }
 
     data = {
-         datalist:[]
+        datalist : [],
+        swiperList: [{
+                id: 0,
+                type: 'image',
+                url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
+            }, {
+                id: 1,
+                type: 'image',
+                url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84001.jpg',
+            }, {
+                id: 2,
+                type: 'image',
+                url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg'
+            }, {
+                id: 3,
+                type: 'image',
+                url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg'
+            }, {
+                id: 4,
+                type: 'image',
+                url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big25011.jpg'
+            }, {
+                id: 5,
+                type: 'image',
+                url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21016.jpg'
+            }
+        ],
+        newBooks : [[],[],[]]
     }
 
     methods = {
         
     }
+
     events = {}
+
     onLoad() {
-      this.datalist = librarydata["libraryone"]
-    }
-   
+        this.datalist = librarydata["libraryone"];
+    }  
 }
 </script>
-
-

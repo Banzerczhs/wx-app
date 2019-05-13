@@ -1,6 +1,3 @@
-image{
-  vertical-align: top;
-}
 page,.pagebg,.indexCon,.indexnav,.maskin,.mask{
   width:100%;
   height:100%;
@@ -21,8 +18,8 @@ page,.pagebg,.indexCon,.indexnav,.maskin,.mask{
   position: absolute;
 }
 .addFilter{
-  filter:blur(2px);
-  -webkit-filter: blur(2px);
+  filter:blur(8px);
+  -webkit-filter: blur(8px);
 }
 .indexnav .indexnav-desc{
   text-align: center;
@@ -248,8 +245,8 @@ page,.pagebg,.indexCon,.indexnav,.maskin,.mask{
   position: absolute;
 }
 .indexbg-Beck.filter{
-  filter: blur(2px);
-  -webkit-filter: blur(2px);
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
 }
 .beckzIndex{
   position: absolute;
@@ -314,7 +311,7 @@ page,.pagebg,.indexCon,.indexnav,.maskin,.mask{
 }
 .mask-element{
   text-align: center;
-  box-shadow: 0 0 0 4rpx #0cf inset,0 0 32rpx 2rpx #0cf inset;
+  box-shadow: 0 0 0 4rpx #0cf inset,0 0 32rpx 5rpx #0cf inset;
   margin: 15px 0;
   width:200rpx;
   height: 200rpx;
@@ -323,6 +320,8 @@ page,.pagebg,.indexCon,.indexnav,.maskin,.mask{
   color:#fff;
   transform: scale(0,0);
   -webkit-transform: scale(0,0);
+  font-size: 32rpx;
+  font-weight: bold;
   /* will-change: transform; */
 }
 

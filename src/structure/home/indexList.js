@@ -10,15 +10,15 @@ let indexlist = {
             child:[
                 {
                     name:"借阅记录",
-                    url:"library/libraryTarTab"
+                    url:"/pages/library/borrowinfo"
                 },
                 {
                     name:"书库",
-                    url:""
+                    url:"/pages/library/library"
                 },
                 {
                     name:"图书收藏",
-                    url:""
+                    url:"/pages/library/collection"
                 }
             ]
         },

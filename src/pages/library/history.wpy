@@ -80,7 +80,7 @@ page{
 
 <script>
 import wepy from 'wepy';
-import librarydata from "@/structure/library.js"
+import librarydata from "@/structure/library/library.js"
 
 export default class librarylist extends wepy.page {
     config = {
