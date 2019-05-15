@@ -1,58 +1,39 @@
 <style>
-.library{
+page{
+    background-image: linear-gradient(#1d5dea 50%,#1828ac);
+    background-size: 100% 100%;
     width:100%;
-    height:100%;
+    height: 100%;
+}
+.scroll{
+    position:absolute;
+    left:0;
+    right:0;
+    top:123rpx;
+    bottom:0;
+    overflow:hidden;
 }
 </style>
 
 <template>
-    <view class="library">
-        <custom-nav bgColor="bg-custom-color" isCustom="{{true}}">
-            <view slot="content">书库</view>
-        </custom-nav>
+    <view>
         <cu-search></cu-search>
-        <scroll-view scroll-y="true" class="scroll" style="top:17vh;">
-            <view style="margin-top:10px;">
+        <scroll-view scroll-y="true" class="scroll">
+            <view>
                 <cu-swiperx
                     :swiperlist.sync="swiperList"
                     swiperType='card-swiper'
-                    curColor="rgba(255,255,255,0.5)"
+                    curColor='rgb(241, 241, 174)'
+                    curColoract='rgba(255,255,255,0.3)'
                 ></cu-swiperx>
                 <recommend-book
-                    title="新书上架"
-                    height="280"
-                    :booklist.sync="swiperList">
-                    <block slot="tag">
-                        <new-tag
-                            tagName="gray"
-                            tagTitle="更多新书"
-                            tagPos="right"
-                        ></new-tag>
-                    </block>
-                </recommend-book>
-                <e-book
-                    title="在线书籍"
-                    cols="3"
-                    height="280"
-                    :booklist.sync="eBooks">
-                    <block slot="tag">
-                        <e-tag
-                            tagName="gray"
-                            tagTitle="更多内容"
-                            tagPos="right"
-                        ></e-tag>
-                    </block>
-                </e-book>
-                <new-book
                     title="推荐图书"
-                    cols="2"
-                    height="480"
-                    :booklist.sync="newBooks">
-                    <view slot="tag" style="position:absolute;top:26rpx;right:28rpx;">
-                        <image src="/assets/img/reflsh.png" style="width:40rpx;height:40rpx;"></image>
-                        <text>获取新内容</text>
-                    </view>
-                </new-book>
+                    :booklist.sync="swiperList"
+                ></recommend-book>
+                <new-book
+                    title="新书"
+                    :booklist.sync="newBooks"
+                ></new-book>
             </view>
         </scroll-view>
     </view>
@@ -64,8 +45,6 @@ import librarydata from "@/structure/library/library.js";
 import Search from "@/components/library/search";
 import Swiperx from "@/components/library/swiper";
 import Recommend from "@/components/library/recommend";
-import Tag from "@/components/tag";
-import Customnav from "@/components/customnav";
 
 export default class librarylist extends wepy.page {
     config = {
@@ -76,11 +55,7 @@ export default class librarylist extends wepy.page {
        'cu-search' : Search,
        'cu-swiperx' : Swiperx,
        'recommend-book' : Recommend,
-       'new-book' : Recommend,
-       'e-book' : Recommend,
-       'new-tag' : Tag,
-       'e-tag' : Tag,
-       'custom-nav' : Customnav
+       'new-book' : Recommend
     }
 
     data = {
@@ -111,8 +86,7 @@ export default class librarylist extends wepy.page {
                 url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21016.jpg'
             }
         ],
-        newBooks : [[],[],[],[],[],[],[],[],[]],
-        eBooks : [[],[],[]]
+        newBooks : [[],[],[]]
     }
 
     methods = {

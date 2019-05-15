@@ -1,23 +1,14 @@
 <style>
-    .banner{
-        height: 360rpx;
-        margin-bottom: 20rpx;
-    }
-    .banner-item{
-        height:100%;
-    }
-    .banner-item image{
-        width:90%;
-        height:100%;
-        margin:0 auto;
-        display:block;
-        border-radius:16rpx;
-    }
+.tower-swiper .tower-item {
+    transform: scale(calc(0.5 + var(--index) / 10));
+    margin-left: calc(var(--left) * 100rpx - 150rpx);
+    z-index: var(--index);
+}
 </style>
 
 <template>
     <swiper 
-        class="{{Dotstyle}} banner"
+        class="{{swiperType}} {{Dotstyle}}"
         indicator-dots="true"
         circular="true"
         autoplay="true"
@@ -27,14 +18,9 @@
         indicator-active-color="{{curColoract}}"
         @change="cardSwiper">
         <repeat for="{{swiperList}}" key="item.url">
-            <swiper-item class="{{cardCur==index?'banner-cur':''}}">
-                <view class="banner-item">
-                    <image 
-                        src="{{item.url}}" 
-                        mode="aspectFill"
-                        wx:if="{{item.type=='image'}}"
-                        class="padding-xl radius shadow-warp bg-white margin-top"
-                    ></image>
+            <swiper-item class="{{cardCur==index?'cur':''}}">
+                <view class="swiper-item">
+                    <image src="{{item.url}}" mode="aspectFill" wx:if="{{item.type=='image'}}"></image>
                     <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
                 </view>
             </swiper-item>
@@ -51,6 +37,10 @@
                 default : 'round-dot'
             },
             swiperlist : Array,
+            swiperType : {
+                type : String,
+                default : 'screen-swiper'
+            },
             curColor : {
                 type : String,
                 default : '#8799a3'

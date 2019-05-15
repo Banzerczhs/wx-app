@@ -3,11 +3,7 @@
 </style>
 <template>
     <block>
-      <custom-nav>
-        <view slot="content" class="text-white">深海学院</view>
-      </custom-nav>
-      <view class="indexCon shadow-blur {{ismask ? 'addFilter':''}}">
-        <image src="https://www.quyun.online/assets/image/%E8%B7%AF.png" class="bg-com"></image>
+      <view class="indexCon {{ismask ? 'addFilter':''}}">
         <repeat for="{{list.indexlist}}" index="index">
           <view class="{{index}}">
             <repeat for="{{list.indexlist[index]}}" index="n" item="child" key="child.src">
@@ -90,7 +86,6 @@
   import indexList from "@/structure/home/indexList";
   import Tools from "@/util/tools";
   import RecentlyUsed from "@/components/home/RecentlyUsed";
-  import Customnav from "@/components/customnav";
 
   export default class Index extends wepy.page {
     config = {  //页面配置对象，对应于原生的page.json文件，类似于app.wpy中的config
@@ -98,8 +93,7 @@
     }
 
     data={
-      list : {...indexList},
-      seconList : [],
+      list:{...indexList},
       ismask : false,
       animationbeck : {},
       aniamtionsecon : {},
@@ -111,8 +105,7 @@
     }
 
     components={
-      recentlyUsed : RecentlyUsed,
-      'custom-nav' : Customnav
+      recentlyUsed : RecentlyUsed
     }
   
     methods = {
@@ -137,7 +130,7 @@
       },
 
       GoPage(url){//点击跳转界面
-        wepy.navigateTo({
+        wx.navigateTo({
           url: `${url}`,
           success:()=>{ //跳转成功关掉mask
             this.ismask = false;
@@ -170,20 +163,6 @@
           _this.windowiScale=750/res.windowWidth;
           _this.windowiH=1336/res.windowHeight;
           _this.$apply();
-        }
-      })
-
-      wepy.request({
-        url : 'https://www.quyun.online/api.php',
-        method : 'post',
-        success(result){
-          let {data}=result;
-          _this.seconList=[...Object.keys(data).map(key=>{
-            return {
-              title : key,
-              value : data[key]
-            };
-          })];
         }
       })
       //贝壳状态
