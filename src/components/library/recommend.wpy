@@ -1,0 +1,50 @@
+<style scoped>
+.wrap{
+    color:#fff;
+    margin-bottom: 10rpx;
+}
+.wrap-title{
+    position:relative;
+    padding:16rpx;
+}
+.wrap-title text{
+    display:block;
+    font-size: 18px;
+    text-indent:5px;
+    font-weight: 600;
+}
+</style>
+
+<template>
+    <view class="wrap">
+        <view class="wrap-title">
+            <text>{{title}}</text>
+            <slot name="tag"></slot>
+        </view>
+        <view class="grid col-{{cols}} text-center">
+            <repeat for="{{booklist}}" key="item.url">
+                <my-book :height.sync="height"></my-book>
+            </repeat>
+        </view>
+    </view>
+</template>
+
+<script>
+    import wepy from "wepy";
+    import Book from "@/components/library/book";
+    export default class Recommend extends wepy.component{
+        props = {
+            title : String,
+            cols : {
+                type : String,
+                default : '3'
+            },
+            booklist : Array,
+            height : String
+        }
+
+        components = {
+            'my-book' : Book
+        }
+    }
+</script>

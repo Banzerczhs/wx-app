@@ -1,0 +1,145 @@
+<style>
+@import "/styles/library/borrowinfo.wxss";
+</style>
+<template >
+    <block>
+        <custom-nav bgColor="bg-custom-color" isCustom="{{true}}">
+            <view slot="content">借阅信息</view>
+        </custom-nav>
+        <view class="navbar">
+            <text class="{{pageShow?'textActive':''}}" @tap="showone(1)">当前借阅</text>
+            <text  class="{{pageShow?'':'textActive'}}" @tap="showone(2)">借阅历史</text>
+        </view>
+        <!-- 借阅信息 -->
+        <view animation="{{animationPage}}" class="movebox">
+            <scroll-view
+                class="pagebox1"
+                scroll-y="true"
+                style="height:100%;"
+                lower-threshold="200"
+                @scrolltolower="scrollNew">
+                <view>
+                    <repeat for="{{datalist}}" key="index">
+                        <view class="child">
+                            <view class="child-left">
+                                <image src="{{item.url}}"/>
+                            </view>
+                            <view class="child-right">
+                                <view>书    名：<text>{{item.name}}</text></view>
+                                <view>借阅时间：<text>{{item.oldTime}}</text></view>
+                                <view>待还时间: <text>{{item.nowTime}}</text></view>
+                                <view>
+                                    <view class="action">
+                                        <text class="text-df margin-right-sm">还期提醒</text>
+                                        <switch class="sm"></switch>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </repeat>
+                </view>
+            </scroll-view>
+            <!-- 借阅历史 -->
+            <scroll-view 
+                class="pagebox2" 
+                scroll-y="true" 
+                style="height:100%;"
+                lower-threshold="200" 
+                @scrolltolower="scrollNew">
+                <view>
+                    <repeat for="{{datatwo}}" key="index" index="index" item="itemchild">
+                        <view class="TimeText">{{index}}</view>
+                        <repeat for="{{itemchild}}" key="item.name" >
+                            <view class="historybox">
+                                <view class="history-top"><image src="{{item.url}}"/></view>
+                                <text class="history-name">{{item.name}}</text>
+                            </view>
+                        </repeat>
+                    </repeat>
+                </view>
+            </scroll-view>
+        </view>
+    </block>
+</template>
+
+<script>
+import wepy from 'wepy';
+import librarydata from "@/structure/library/library.js"
+import Customnav from "@/components/customnav";
+
+export default class librarylist extends wepy.page {
+    config = {
+        navigationBarTitleText: '借阅信息',
+    }
+
+    components = {
+       'custom-nav' : Customnav
+    }
+
+    data = {
+        datalist:[],
+        datatwo:[],
+        animationBack : [],
+        animationBtn : [],
+        pageShow:true,  //控制切换效果
+        animationPage:{}
+    }
+    
+    methods = {
+        switchAnimate(num){
+            this.btnState=!this.btnState;
+            let {btnState}=this;
+            let animation1=wepy.createAnimation({
+                duration: 100,
+                timingFunction: 'linear'
+            });
+
+            let animation2=wepy.createAnimation({
+                duration: 100,
+                timingFunction: 'linear'
+            })
+            animation1.translate(btnState?'100%':0,0).step();
+            animation2.translate(btnState?0:'-100%',0).step();
+            this.animationBtn[num]=animation1.export();
+            this.animationBack[num]=animation2.export();
+        },
+        showone(n){
+           n=='1'?this.pageShow = true:this.pageShow=false; 
+           let animation=wepy.createAnimation({
+                duration: 200,
+                timingFunction: 'linear'
+            })
+            animation.translateX(this.pageShow?'0%':"-50%").step();
+            this.animationPage=animation.export();
+          
+        //   this.pageShow == true?this.showleft():this.showright();
+        },
+    }
+    
+    onReady(){
+        let animation=wepy.createAnimation({
+            duration: 0,
+            timingFunction: 'linear'
+        });
+
+        this.animationBtn.length=this.datalist.length;
+        this.animationBack.length=this.datalist.length;
+
+        animation.translate('-100%',0).step();
+        this.animationBack=this.animationBack.fill(animation.export());
+        
+        this.btnState=false;
+        this.$apply();
+    }
+
+    events = {}
+
+    onLoad(){
+      this.datalist = librarydata["libraryone"]
+      this.datatwo = librarydata["librarytwo"]
+    }
+   
+}
+</script>
+
+
