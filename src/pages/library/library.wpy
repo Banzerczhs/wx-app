@@ -67,7 +67,7 @@ import Recommend from "@/components/library/recommend";
 import Tag from "@/components/tag";
 import Customnav from "@/components/customnav";
 
-export default class librarylist extends wepy.page {
+export default class Library extends wepy.page {
     config = {
         navigationBarTitleText: '书库'
     }

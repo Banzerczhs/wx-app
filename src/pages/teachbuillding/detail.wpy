@@ -1,10 +1,4 @@
 <style>
-page {
-  background-image: var(--gradualBlue);
-  width: 100vw;
-  overflow: hidden;
-}
-
 .DrawerPage {
   position: fixed;
   width: 100vw;
@@ -182,12 +176,18 @@ page {
   background: linear-gradient(#0081ff,#1cbbb4);
 }
 </style>
+
 <template>
-    <block>
-      <scroll-view scroll-y class="DrawerPage {{modalName=='viewModal'?'show':''}} bg">	
-        <view class='padding margin text-center navbox'>
-          <image src="/assets/img/teachBuilding/导航.png" class="navimage" @tap="showModal" data-target="viewModal"/>
-        </view>
+  <block>
+    <scroll-view scroll-y class="DrawerPage {{modalName=='viewModal'?'show':''}} bg">	
+      <view class='padding margin text-center navbox'>
+        <image
+          src="/assets/img/teachbuillding/导航.png" 
+          class="navimage" 
+          @tap="showModal" 
+          data-target="viewModal"
+        ></image>
+      </view>
       <view class="contentBox">
         <view class="loucen">
           <repeat for="{{storeyone.length}}" key="index">
@@ -197,75 +197,79 @@ page {
         </view>
         <view class="content">
           <repeat for="{{storeyone}}" key="index" >
-              <view class="cententrow">
-
+            <view class="cententrow">
               <repeat for="{{item}}" key="item" item="itemchild">
-                    <view class="state">
-                        <image src="{{itemchild.state==true?'/assets/img/teachBuilding/上课中.png':'/assets/img/teachBuilding/未上课.png'}}">
-                    </view>
+                <view class="state">
+                  <image src="{{itemchild.state==true?'/assets/img/teachbuillding/上课中.png':'/assets/img/teachbuillding/未上课.png'}}"/>
+                </view>
               </repeat>
-              </view>
-          </repeat>
+            </view>
+          </repeat>  
         </view>
-       <view class="room">
-          <repeat for="{{13}}" key="index">
+        <view class="room">
+          <repeat for="{{12}}" key="index">
             <text>{{index+1}}</text>
           </repeat>
         </view>
         <view class="title">
-          <image src="/assets/img/teachBuilding/上课中.png"/><text> 使用中</text>
-          <image src="/assets/img/teachBuilding/未上课.png"/><text> 未使用</text>
+          <image src="/assets/img/teachbuillding/上课中.png" />
+          <text>使用中</text>
+          <image src="/assets/img/teachbuillding/未上课.png" />
+          <text>未使用</text>
         </view>
-			</view>
-		  </scroll-view>	
-        
-      <view class="DrawerClose {{modalName=='viewModal'?'show':''}}" @tap="hideModal">
-        <text class="cuIcon-pullright"></text>
       </view>
-
-      <scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
-        <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
-          <repeat for="{{storeyData}}" key="index">
-              <view class="cu-item arrow" @tap="toggle({{item}})">
-                <view class="content">
-                    <text class="cuIcon-github text-grey"></text>
-                    <text class="text-grey">{{index}}</text>
-                </view>
-              </view>
-          </repeat>
-        </view>
-      </scroll-view>
-    </block>
+	  </scroll-view>
+    <view class="DrawerClose {{modalName=='viewModal'?'show':''}}" @tap="hideModal">
+      <text class="cuIcon-pullright"></text>
+    </view>
+    <scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
+      <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
+        <repeat for="{{storeyData}}" key="index">
+          <view class="cu-item arrow" @tap="toggle({{item}})">
+            <view class="content">
+              <text class="cuIcon-github text-grey"></text>
+              <text class="text-grey">{{index}}</text>
+            </view>
+          </view>
+        </repeat>    
+      </view>    
+    </scroll-view>
+  </block>  
 </template>
 
 <script>
 import wepy from "wepy";
-import datateach from "@/structure/teachbuilding/teachbuilding.js"; //楼的使用信息
+import datateach from "@/structure/teachbuillding/teachbuillding.js";
+
 export default class Detail extends wepy.page{
+
     data = {
         modalName : null,
         storeyData:{}, //总楼
         storeyone:[]  //显示的楼栋
     }
-  onLoad(option) {
-    console.log(datateach.teach[option.id])
-    this.storeyData = datateach.teach[option.id];
-    let keys =Object.keys( this.storeyData);
-    this.storeyone = this.storeyData[keys[0]];
-    console.log(this.storeyone)
+
+    onLoad(option) {
+      console.log(datateach.teach[option.id])
+      this.storeyData = datateach.teach[option.id];
+      let keys =Object.keys( this.storeyData);
+      this.storeyone = this.storeyData[keys[0]];
+      console.log(this.storeyone)
     }
+
     methods={
         showModal(e) {
+          console.log('123');
           this.modalName=e.currentTarget.dataset.target;
-          this.$apply();
         },
+
         hideModal(e) {
           this.modalName=null;
-          this.$apply();
         },
+        
         toggle(obj){  //选择楼栋的
           this.modalName=null;
-         this.storeyone = obj
+          this.storeyone = obj
         }
     }
 }
