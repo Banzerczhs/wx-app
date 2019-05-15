@@ -1,0 +1,33 @@
+<style scoped>
+.book{
+    padding:10px;
+}
+.book .book-image{
+    border-radius:12rpx;
+    box-shadow:2px 2px 4px #270752;
+    overflow:hidden;
+}
+</style>
+
+<template>
+    <view class="book">
+        <view class="book-image">
+            <image
+                src="https://www.quyun.online/assets/image/looks1.jpg"
+                style="height:{{height}}rpx;"
+            />
+        </view>
+        <view class="book-name">
+            <text>123123</text>
+        </view>
+    </view>
+</template>
+
+<script>
+    import wepy from "wepy";
+    export default class Book extends wepy.component{
+        props = {
+            height : String
+        }
+    }
+</script>

@@ -1,18 +1,23 @@
-page,.pagebg,.indexCon,.indexnav,.maskin,.mask{
+.indexCon,.indexnav,.maskin,.mask{
   width:100%;
   height:100%;
   overflow: hidden;
 }
-.pagebg{
-  position:absolute;
+.indexCon{
+  position: absolute;
   left:0;
   top:0;
-  z-index:-1;
-}
-.indexCon{
-  position: relative;
-  background:url('https://www.quyun.online/assets/image/%E8%83%8C%E6%99%AF.png') no-repeat 0 0;
   background-size: 100% 100%;
+}
+.bg-gradual-blue{
+  background-image:linear-gradient(45deg, #0081ff, #1c7bbb);
+}
+.indexCon .bg-com{
+  width:100%;
+  height:100%;
+  position: absolute;
+  left: 0;
+  top:1vh;
 }
 .indexnav,.indexnav .indexnav-icon,.indexbg-Beck,.leftSeaweed{
   position: absolute;
@@ -78,7 +83,7 @@ page,.pagebg,.indexCon,.indexnav,.maskin,.mask{
   -webkit-transform: translate(-65%,-50%);
 }
 .indexnav>view:nth-of-type(4){
-  left:2vw;
+  left:1vw;
   top:37vh;
   animation: seconmove 3.5s linear 1s infinite alternate;
   -webkit-animation: seconmove 3.5s linear 1s infinite alternate;

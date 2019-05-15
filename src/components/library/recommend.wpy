@@ -1,40 +1,29 @@
-<style>
+<style scoped>
 .wrap{
-    padding: 0 10rpx;
     color:#fff;
+    margin-bottom: 10rpx;
 }
 .wrap-title{
+    position:relative;
+    padding:16rpx;
+}
+.wrap-title text{
     display:block;
     font-size: 18px;
     text-indent:5px;
     font-weight: 600;
 }
-.wrap-book{
-    padding:5px;
-}
-.wrap-book .book-image{
-    border-radius:12rpx;
-    box-shadow:2px 2px 4px #270752;
-    overflow:hidden;
-}
-.wrap-book image{
-    height:262rpx;
-}
 </style>
 
 <template>
     <view class="wrap">
-        <text class="wrap-title">{{title}}</text>
-        <view class="grid col-{{cols}} text-center ">
+        <view class="wrap-title">
+            <text>{{title}}</text>
+            <slot name="tag"></slot>
+        </view>
+        <view class="grid col-{{cols}} text-center">
             <repeat for="{{booklist}}" key="item.url">
-                <view class="wrap-book">
-                    <view class="book-image">
-                        <image src="https://www.quyun.online/assets/image/looks1.jpg"/>
-                    </view>
-                    <view class="book-name">
-                        <view>书名：<text>123123</text></view>
-                    </view>
-                </view>
+                <my-book :height.sync="height"></my-book>
             </repeat>
         </view>
     </view>
@@ -42,14 +31,20 @@
 
 <script>
     import wepy from "wepy";
+    import Book from "@/components/library/book";
     export default class Recommend extends wepy.component{
         props = {
             title : String,
             cols : {
-                type : Number,
-                default : 3
+                type : String,
+                default : '3'
             },
-            booklist : Array
+            booklist : Array,
+            height : String
+        }
+
+        components = {
+            'my-book' : Book
         }
     }
 </script>

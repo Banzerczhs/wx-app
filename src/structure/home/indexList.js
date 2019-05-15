@@ -17,25 +17,14 @@ let indexlist = {
                     url:"/pages/library/library"
                 },
                 {
-                    name:"图书收藏",
+                    name:"书架",
                     url:"/pages/library/collection"
                 }
             ]
         },
         {
             src:"https://www.quyun.online/assets/image/x_0037_%E6%95%99%E5%AD%A6%E6%A5%BC.png",
-            name:'教学楼',
-            child:[
-                {
-                    name:"教室使用情况",
-                    url:"/pages/teachingbuilding/employ"
-
-                },
-                {
-                    name:"教师办公室",
-                    url:"/pages/teachingbuilding/teacher"
-                }
-            ]
+            name:'教学楼'
         },
         {
             src:"https://www.quyun.online/assets/image/x_0039_%E7%A4%BE%E5%9B%A2.png",

@@ -1,12 +1,9 @@
 <style scoped>
-.box{
-    background-image: linear-gradient(#1d5dea 50%,#1828ac);
-}
 .child{
     display: inline-block;
     vertical-align:top;
     width:715rpx;
-    height:32vh;
+    height:20vh;
     margin:10rpx 20rpx;
     overflow:hidden;
     position: relative;
@@ -17,7 +14,7 @@
     box-sizing: border-box;
 }
 .child-left{
-    width:40%;
+    width:30%;
     height:100%;
     float:left;
     border:solid 1px transparent;
@@ -39,7 +36,7 @@
     top:0;
 }
 .child-right{
-    width: 54%;
+    width: 65%;
     height:100%;
     margin-left: 15px;
     float: left;
@@ -64,28 +61,27 @@
 
 <template>
     <view class="box">
-        <text class="box-title">书架</text>
+        <custom-nav bgColor="bg-custom-color" isCustom="{{true}}">
+            <view slot="content" class="text-white">书架</view>
+        </custom-nav>
         <scroll-view
             scroll-y="true"
-            style="height:100%">
-            <repeat for="{{datalist}}" key="index">
-                <view class="child">
-                    <view class="child-left">
-                        <image src="{{item.url}}"/>
-                    </view>
-                    <view class="child-right">
-                        <view>书    名：<text>{{item.name}}</text></view>
-                        <view>借阅时间：<text>{{item.oldTime}}</text></view>
-                        <view>待还时间: <text>{{item.nowTime}}</text></view>
-                        <view>
-                            <view class="action">
-                                <text class="text-df margin-right-sm">还期提醒</text>
-                                <switch class="sm"></switch>
-                            </view>
+            class="scroll"
+            style="top:10vh">
+            <view>
+                <repeat for="{{datalist}}" key="index">
+                    <view class="child">
+                        <view class="child-left">
+                            <image src="{{item.url}}"/>
+                        </view>
+                        <view class="child-right">
+                            <view>书名：<text>{{item.name}}</text></view>
+                            <view>作者：<text>{{item.author}}</text></view>
+                            <view>ISBN: <text>{{item.isbn}}</text></view>
                         </view>
                     </view>
-                </view>
-            </repeat>
+                </repeat>
+            </view>
         </scroll-view>
     </view>
 </template>
@@ -93,11 +89,17 @@
 <script>
     import wepy from "wepy";
     import librarydata from "@/structure/library/library.js"
+    import Customnav from "@/components/customnav";
+
     export default class Collection extends wepy.page{
         config={
             navigationBarTitleText : '书架'
         }
 
+        components = {
+            'custom-nav' : Customnav
+        }
+        
         data = {
             datalist:[]
         }
