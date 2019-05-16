@@ -1,0 +1,79 @@
+<style scoped>
+.child{
+    display: inline-block;
+    vertical-align:top;
+    width:715rpx;
+    margin:10rpx 20rpx;
+    overflow:hidden;
+    position: relative;
+    background-color:rgba(255, 255, 255,1);
+    border-radius:4px;
+    box-shadow:1px 1px 4px #270752;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.child-left{
+    height:100%;
+    float:left;
+    border:solid 1px transparent;
+    box-sizing: border-box;
+}
+.child-left image{
+    width: 100%;
+    height:100%;
+    border-radius: 4px;
+    position:relative;
+}
+.child-left image::before{
+    content:"";
+    display: block;
+    width: 100%;
+    height:100%;
+    position:absolute;
+    left:0;
+    top:0;
+}
+.child-right{
+    height:100%;
+    margin-left: 15px;
+    float: left;
+}
+.child-right view{
+    font:16px/1.5 "微软雅黑";
+    color:rgb(99, 58, 12);
+    vertical-align: center;
+    text-align:left;
+}
+.child-right text{
+    color:rgb(70, 41, 7);
+}
+</style>
+
+<template>
+    <view>
+        <repeat for="{{datalist}}" key="index">
+            <view class="child" style="height:{{toHeight}}">
+                <view class="child-left" style="width:{{leftWidth}}">
+                    <image src="{{item.url}}"/>
+                </view>
+                <view class="child-right" style="width:{{rightWidth}}">
+                    <view>书名：<text>{{item.name}}</text></view>
+                    <view>作者：<text>{{item.author}}</text></view>
+                    <view>ISBN: <text>{{item.isbn}}</text></view>
+                </view>
+            </view>
+        </repeat>
+    </view>
+</template>
+
+<script>
+    import wepy from "wepy";
+    export default class Booklist extends wepy.component{
+        props = {
+            datalist : Array,
+            leftWidth : String,
+            rightWidth : String,
+            toHeight : String
+        }
+    }
+</script>

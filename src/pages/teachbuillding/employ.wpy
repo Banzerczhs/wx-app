@@ -1,4 +1,4 @@
-<style>
+<style scoped>
 .listbox{
     margin: 0 auto;
     margin-top:20px;

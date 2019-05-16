@@ -1,4 +1,4 @@
-<style>
+<style scoped>
 .DrawerPage {
   position: fixed;
   width: 100vw;

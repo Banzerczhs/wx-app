@@ -1,3 +1,4 @@
+
 <template>
     <view class="cu-custom" style="height:{{CustomBar}}px">
         <view class="cu-bar fixed {{bgImage!=''?'none-bg text-white bg-img':''}} {{bgColor}}" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;{{bgImage?'background-image:url(' + bgImage+')':''}}">

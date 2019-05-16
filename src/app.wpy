@@ -42,6 +42,7 @@ export default class app extends wepy.app {
       'pages/library/borrowinfo',
       'pages/library/history',
       'pages/library/collection',
+      'pages/library/morenewbook',
       'pages/teachbuillding/detail',
       'pages/teachbuillding/employ',
       'pages/teachbuillding/teacher'

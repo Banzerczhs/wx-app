@@ -1,43 +1,29 @@
-<style>
+<style scoped>
 @import "/styles/library/borrowinfo.wxss";
 </style>
 <template >
     <block>
-        <custom-nav bgColor="bg-custom-color" isCustom="{{true}}">
+        <custom-nav bgColor="bg-custom-gradient text-custom-white" isCustom="{{true}}">
             <view slot="content">借阅信息</view>
         </custom-nav>
         <view class="navbar">
             <text class="{{pageShow?'textActive':''}}" @tap="showone(1)">当前借阅</text>
-            <text  class="{{pageShow?'':'textActive'}}" @tap="showone(2)">借阅历史</text>
+            <text class="{{pageShow?'':'textActive'}}" @tap="showone(2)">借阅历史</text>
         </view>
         <!-- 借阅信息 -->
-        <view animation="{{animationPage}}" class="movebox">
+        <view animation="{{animationPage}}" class="movebox" style="top:{{toTop}}">
             <scroll-view
                 class="pagebox1"
                 scroll-y="true"
                 style="height:100%;"
                 lower-threshold="200"
                 @scrolltolower="scrollNew">
-                <view>
-                    <repeat for="{{datalist}}" key="index">
-                        <view class="child">
-                            <view class="child-left">
-                                <image src="{{item.url}}"/>
-                            </view>
-                            <view class="child-right">
-                                <view>书    名：<text>{{item.name}}</text></view>
-                                <view>借阅时间：<text>{{item.oldTime}}</text></view>
-                                <view>待还时间: <text>{{item.nowTime}}</text></view>
-                                <view>
-                                    <view class="action">
-                                        <text class="text-df margin-right-sm">还期提醒</text>
-                                        <switch class="sm"></switch>
-                                    </view>
-                                </view>
-                            </view>
-                        </view>
-                    </repeat>
-                </view>
+                <booklist
+                    :datalist.sync="datalist"
+                    toHeight="32vh"
+                    leftWidth="40%"
+                    rightWidth="54%"
+                ></booklist>
             </scroll-view>
             <!-- 借阅历史 -->
             <scroll-view 
@@ -66,6 +52,7 @@
 import wepy from 'wepy';
 import librarydata from "@/structure/library/library.js"
 import Customnav from "@/components/customnav";
+import Booklist from "@/components/library/booklist";
 
 export default class Borrowinfo extends wepy.page {
     config = {
@@ -73,7 +60,8 @@ export default class Borrowinfo extends wepy.page {
     }
 
     components = {
-       'custom-nav' : Customnav
+       'custom-nav' : Customnav,
+       'booklist' : Booklist
     }
 
     data = {
@@ -82,7 +70,8 @@ export default class Borrowinfo extends wepy.page {
         animationBack : [],
         animationBtn : [],
         pageShow:true,  //控制切换效果
-        animationPage:{}
+        animationPage:{},
+        toTop : 0
     }
     
     methods = {
@@ -108,12 +97,12 @@ export default class Borrowinfo extends wepy.page {
            let animation=wepy.createAnimation({
                 duration: 200,
                 timingFunction: 'linear'
-            })
+            });
             animation.translateX(this.pageShow?'0%':"-50%").step();
             this.animationPage=animation.export();
           
         //   this.pageShow == true?this.showleft():this.showright();
-        },
+        }
     }
     
     onReady(){
@@ -135,8 +124,19 @@ export default class Borrowinfo extends wepy.page {
     events = {}
 
     onLoad(){
-      this.datalist = librarydata["libraryone"]
-      this.datatwo = librarydata["librarytwo"]
+        let _this=this;
+        _this.datalist = librarydata["libraryone"]
+        _this.datatwo = librarydata["librarytwo"]
+
+        let res=wepy.getSystemInfoSync();
+        let query=wepy.createSelectorQuery();
+        let custom=wepy.getMenuButtonBoundingClientRect();
+        query.select('.navbar').boundingClientRect(function(rect){
+            _this.toTop=rect.height+custom.bottom+custom.top-res.statusBarHeight;
+            _this.toTop+=5;
+            _this.toTop+='px';
+            _this.$apply();
+        }).exec();
     }
    
 }

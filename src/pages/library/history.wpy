@@ -1,4 +1,4 @@
-<style>
+<style scoped>
 .child{
     display: inline-block;
     vertical-align:top;
