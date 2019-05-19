@@ -9,7 +9,7 @@
     background-color:rgba(255, 255, 255,1);
     border-radius:4px;
     box-shadow:1px 1px 4px #270752;
-    padding: 10px;
+    padding: 10rpx;
     box-sizing: border-box;
 }
 .child-left{
@@ -37,9 +37,13 @@
     height:100%;
     margin-left: 15px;
     float: left;
+    display:flex;
+    display:-webkit-flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position:relative;
 }
 .child-right view{
-    font:16px/1.5 "微软雅黑";
     color:rgb(99, 58, 12);
     vertical-align: center;
     text-align:left;
@@ -47,12 +51,30 @@
 .child-right text{
     color:rgb(70, 41, 7);
 }
+.child-right .radioBtn{
+    position:absolute;
+    right:-30rpx;
+    top:5rpx;
+    width: 80rpx;
+    height:80rpx;
+    overflow:hidden;
+}
+.child-right .radioBtn image{
+    width: 50rpx;
+    height:50rpx;
+    margin-top: -4rpx;
+}
 </style>
 
 <template>
     <view>
         <repeat for="{{datalist}}" key="index">
-            <view class="child" style="height:{{toHeight}}">
+            <view 
+                class="child" 
+                style="height:{{toHeight}};display:{{item.show?'none':''}};"
+                animation="{{item.animation}}"
+                @transitionend="animend({{index}})"
+                @tap="clickBook">
                 <view class="child-left" style="width:{{leftWidth}}">
                     <image src="{{item.url}}"/>
                 </view>
@@ -60,6 +82,17 @@
                     <view>书名：<text>{{item.name}}</text></view>
                     <view>作者：<text>{{item.author}}</text></view>
                     <view>ISBN: <text>{{item.isbn}}</text></view>
+                    <view wx:if="{{item.startTime}}">
+                        <view>借书时间:{{item.startTime}}</view>
+                        <view>还书时间:{{item.endTime}}</view>
+                        <view class="action" style="float:right;margin-top:30rpx;">
+                            <text class="text-df margin-right-sm">还书提醒</text>
+                            <switch class="sm" style="top:-1px;"></switch>
+                        </view>
+                    </view>
+                    <view wx:if="{{item.radioBtn}}" class="radioBtn" @tap="Choice({{index}})">
+                        续<image src="/assets/img/{{item.radioBtn.radio}}.png"></image>
+                    </view>
                 </view>
             </view>
         </repeat>
@@ -73,7 +106,32 @@
             datalist : Array,
             leftWidth : String,
             rightWidth : String,
-            toHeight : String
+            toHeight : String,
+            noclick : {
+                type : [Boolean,String],
+                default : false
+            }
+        }
+        
+        methods = {
+            clickBook(e){
+                if(this.noclick){
+                    return;
+                };
+                wepy.navigateTo({
+                    url : '/pages/library/bookdetail'
+                })
+            },
+
+            Choice(id){
+                this.$emit('updateRadio',id);
+            },
+
+            animend(id){
+                setTimeout(() => {
+                    this.$emit('hideBook',id);
+                },50);
+            }
         }
     }
 </script>

@@ -1,0 +1,40 @@
+<style scoped>
+    .score{
+        float:left;
+        padding:0 5px;
+        padding-left: 0;
+    }
+    .score::after{
+        content:"";
+        display:block;
+        clear:both;
+    }
+    .score .score-icon{
+        display:block;
+        float:left;
+        width: 30rpx;
+        height:30rpx;
+        background-image:url('https://www.quyun.online/assets/image/%E8%AF%84%E5%88%86.png');
+        background-position: 0 0;
+        background-size:100% 100%;
+        background-repeat:no-repeat;
+        margin:2px;
+    }
+</style>
+
+<template>
+    <view class="score">
+        <repeat for="{{iconList}}" key="{{index}}">
+            <text class="score-icon" data-index="{{index}}"></text>
+        </repeat>
+    </view>
+</template>
+
+<script>
+    import wepy from "wepy";
+    export default class Scorecom extends wepy.component{
+        props = {
+            iconList : Array
+        }
+    }
+</script>

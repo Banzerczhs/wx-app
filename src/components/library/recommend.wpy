@@ -5,7 +5,7 @@
 }
 .wrap-title{
     position:relative;
-    padding:16rpx;
+    padding:20rpx 16rpx;
 }
 .wrap-title text{
     display:block;
@@ -50,7 +50,7 @@
         methods = {
             getData(e){
                 wepy.navigateTo({
-                    url:''
+                    url:'/pages/library/bookdetail'
                 })
             }
         }
