@@ -1,4 +1,4 @@
-<style scoped>
+<style>
 .DrawerPage {
   position: fixed;
   width: 100vw;
@@ -175,10 +175,16 @@
 .bg{
   background: linear-gradient(#0081ff,#1cbbb4);
 }
+.building{
+  margin-top:30%;
+}
 </style>
 
 <template>
   <block>
+    <custom-nav bgColor="bg-custom-color" isCustom="{{true}}">
+            <view slot="content">楼栋</view>
+    </custom-nav>
     <scroll-view scroll-y class="DrawerPage {{modalName=='viewModal'?'show':''}} bg">	
       <view class='padding margin text-center navbox'>
         <image
@@ -223,7 +229,7 @@
       <text class="cuIcon-pullright"></text>
     </view>
     <scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
-      <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
+      <view class="cu-list menu card-menu shadow-lg building">
         <repeat for="{{storeyData}}" key="index">
           <view class="cu-item arrow" @tap="toggle({{item}})">
             <view class="content">
@@ -239,9 +245,13 @@
 
 <script>
 import wepy from "wepy";
+import Customnav from "@/components/customnav";
 import datateach from "@/structure/teachbuillding/teachbuillding.js";
 
 export default class Detail extends wepy.page{
+    components = {
+       'custom-nav' : Customnav
+    }
 
     data = {
         modalName : null,
