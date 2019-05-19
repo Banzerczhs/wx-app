@@ -1,15 +1,15 @@
 {
 	"description": "school",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": false,
 		"postcss": false,
 		"minified": false,
 		"newFeature": true,
+		"coverView": true,
 		"autoAudits": false,
 		"uglifyFileName": true,
 		"checkInvalidKey": true,
-		"coverView": true,
 		"checkSiteMap": false,
 		"uploadWithSourceMap": true,
 		"babelSetting": {
@@ -19,7 +19,7 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"appid": "wxfc3df56a367cda00",
+	"appid": "wx8aa7e431faf6f162",
 	"projectname": "y",
 	"miniprogramRoot": "dist/",
 	"simulatorType": "wechat",
