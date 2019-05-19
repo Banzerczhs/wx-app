@@ -1,7 +1,7 @@
 {
 	"description": "school",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": false,
 		"postcss": false,
 		"minified": false,
@@ -19,7 +19,7 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"appid": "wxfc3df56a367cda00",
+	"appid": "wx8aa7e431faf6f162",
 	"projectname": "y",
 	"miniprogramRoot": "dist/",
 	"simulatorType": "wechat",

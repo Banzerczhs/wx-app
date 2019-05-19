@@ -5,7 +5,7 @@
 }
 .wrap-title{
     position:relative;
-    padding:16rpx;
+    padding:20rpx 16rpx;
 }
 .wrap-title text{
     display:block;
@@ -23,7 +23,7 @@
         </view>
         <view class="grid col-{{cols}} text-center">
             <repeat for="{{booklist}}" key="item.url">
-                <my-book :height.sync="height" @detailInfo.user="getData"></my-book>
+                <my-book :height.sync="height"></my-book>
             </repeat>
         </view>
     </view>
@@ -46,13 +46,16 @@
         components = {
             'my-book' : Book
         }
+<<<<<<< HEAD
 
         methods = {
             getData(e){
                 wepy.navigateTo({
-                    url:''
+                    url:'/pages/library/bookdetail'
                 })
             }
         }
+=======
+>>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
     }
 </script>

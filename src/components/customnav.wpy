@@ -1,7 +1,8 @@
-
 <template>
-    <view class="cu-custom" style="height:{{CustomBar}}px">
-        <view class="cu-bar fixed {{bgImage!=''?'none-bg text-white bg-img':''}} {{bgColor}}" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;{{bgImage?'background-image:url(' + bgImage+')':''}}">
+    <view class="cu-custom" style="height:{{CustomBar}}px;">
+        <view 
+            class="cu-bar fixed {{bgImage!=''?'none-bg text-white bg-img':''}} {{bgColor}}" 
+            style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;{{bgImage?'background-image:url(' + bgImage+')':''}};{{filter}};{{bgPos}}">
             <view class="action" @tap="BackPage" wx:if="{{isBack}}">
                 <text class="cuIcon-back"></text>
                 <slot name="backText"></slot>
@@ -37,6 +38,18 @@
             bgImage: {
                 type: String,
                 default: ''
+            },
+            filter: {
+                type: String,
+                default: ''
+            },
+            bgPos: {
+                type : String,
+                default : ''
+            },
+            backIndex : {
+                type : String,
+                default : '1'
             }
         }
 
@@ -58,7 +71,7 @@
         methods = {
             BackPage() {
                 wepy.navigateBack({
-                    delta: 1
+                    delta: Number(this.backIndex)
                 });
             },
             toHome(){
