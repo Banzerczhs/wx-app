@@ -25,7 +25,21 @@
 .pickerTitle >view:nth-child(2){
   text-indent: 40px;
 }
-
+.timeafter::after{
+	font-family: "cuIcon";
+	display: block;
+	content: "\e6a3";
+	position: absolute;
+	font-size: 34rpx;
+	color: #8799a3;
+	line-height: 100rpx;
+	width: 60rpx;
+	text-align: center;
+	top: 0;
+	bottom: 0;
+	right: -20rpx;
+	margin: auto;
+}
 </style>
 <template >
   <block>
@@ -55,14 +69,14 @@
                 <view class="cu-form-group">
                      <view class="title">*活动时间</view>
                         <view class="cu-bar bg-white margin-top">
-                          <view class="action">
-                            <button class="cu-btn bg-blue shadow" @tap="showbottom('bottomModal')" >选择时间</button>
+                          <view class="action" @tap="showbottom('bottomModal')">
+                            <view class="shadow timeafter" >{{TimeOkText}}</view>
                           </view>
                       </view>
                       <view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}">
                         <view class="cu-dialog">
                           <view class="cu-bar bg-white">
-                            <view class="action text-green">确定</view>
+                            <view class="action text-green" @tap="TimeOk" >确定</view>
                             <view class="action text-blue" @tap="hideModal">取消</view>
                           </view>
                           <view class="padding-xl">
@@ -72,19 +86,19 @@
                                 </view>
                                 <picker-view indicator-class="pickerview" style="width: 100%; height: 300px;" value="{{value}}" @change="bindChange">
                                     <picker-view-column >
-                                      <view wx:for="{{datelistone}}" style="line-height: 60rpx">{{item}}月</view>
+                                      <view wx:for="{{datelistone}}" wx:key="item" style="line-height: 60rpx">{{item}}月</view>
                                     </picker-view-column>
                                     <picker-view-column>
-                                      <view wx:for="{{dateChildone}}" style="line-height: 60rpx">{{item}}日</view>
+                                      <view wx:for="{{dateChildone}}" wx:key="item" style="line-height: 60rpx">{{item}}日</view>
                                     </picker-view-column>
                                     <picker-view-column>
                                       <view style="height:100%; line-height:60rpx">---</view>
                                     </picker-view-column>
                                      <picker-view-column >
-                                      <view wx:for="{{datelisttwo}}" style="line-height: 60rpx">{{item}}月</view>
+                                      <view wx:for="{{datelisttwo}}" wx:key="item" style="line-height: 60rpx">{{item}}月</view>
                                     </picker-view-column>
                                     <picker-view-column>
-                                      <view wx:for="{{dateChildtwo}}" style="line-height: 60rpx">{{item}}日</view>
+                                      <view wx:for="{{dateChildtwo}}" wx:key="item" style="line-height: 60rpx">{{item}}日</view>
                                     </picker-view-column>
                                 </picker-view>
                           </view>
@@ -173,7 +187,10 @@ export default class associationform extends wepy.page {
       dateChildone:[],
       datelisttwo:[],
       dateChildtwo:[],
-      TimeActivities:{},  //记录活动时间
+      TimeActivities:{
+        change:false
+      },  //记录活动时间
+      TimeOkText:'请选择时间',
       modalName:"",
       yeas:T.getFullYear()
     }
@@ -181,18 +198,40 @@ export default class associationform extends wepy.page {
         bindChange(e){
           let val = e.detail.value;
           this.dateChildone = datalist[1][val[0]]
-          this.dateChildtwo = datalist[1][val[3]]
-          this.TimeActivities = {
-              start:this.yeas+`年${val[0]+1}月${val[1]+1}日`,
-              end:this.yeas+`年${val[3]+1}月${val[4]+1}日`
-          }
+          let startDay = new Date(this.yeas,val[0],val[1]+1).getTime();
+          let endDay = new Date(startDay+(60*60*24*6*1000))
+          console.log(endDay)
+          // this.TimeActivities = {
+          //     start:this.yeas+`-${val[0]+1}-${val[1]+1}`,
+          //     end:this.yeas+`-${val[3]+1}-${val[4]+1}`
+          // }
           console.log(this.TimeActivities)
         },
         showbottom(val) {
           this.modalName = val
         },
         hideModal(e) {
-          this.modalName = null
+          this.modalName = null;
+        },
+        TimeOk(){
+          let standard = 60*60*24*7*1000;
+          let {start,end} = this.TimeActivities;
+          let one = new Date(start).getTime();
+          let two = new Date(end).getTime();
+          if(two-one < standard){
+              this.TimeOkText = start +" 至 " + end;
+              this.TimeActivities.change = true; 
+              this.modalName = null;
+          }else{
+            wx.showToast({
+              icon:"none",
+              mask:"true",
+              title:"日期 请不要超过7天",
+              success:()=>{
+                this.TimeOkText="请选择时间"
+              }
+            })
+          }
         }
     }
     events = {
@@ -201,8 +240,6 @@ export default class associationform extends wepy.page {
     onLoad() {
     this.datelistone=[...datalist[0]]
     this.dateChildone=[...datalist[1][0]] 
-    this.datelisttwo=[...datalist[0]]
-    this.dateChildtwo=[...datalist[1][0]] 
     }
   
 
