@@ -1,4 +1,4 @@
-<style scoped>
+<style>
 .library{
     width:100%;
     height:100%;
@@ -7,53 +7,56 @@
 
 <template>
     <view class="library">
-        <custom-nav bgColor="bg-custom-gradient text-custom-white" isCustom="{{true}}">
+        <custom-nav bgColor="bg-custom-color" isCustom="{{true}}">
             <view slot="content">书库</view>
         </custom-nav>
+<<<<<<< HEAD
         <view class="search" @tap="gotoSearch">
             <cu-search disabled="{{true}}"></cu-search>
         </view>
         <scroll-view scroll-y="true" class="scroll" style="top:{{toTop}};">
             <view style="margin-top:10rpx;">
+=======
+        <cu-search></cu-search>
+        <scroll-view scroll-y="true" class="scroll" style="top:17vh;">
+            <view style="margin-top:10px;">
+>>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
                 <cu-swiperx
                     :swiperlist.sync="swiperList"
                     swiperType='card-swiper'
                     curColor="rgba(255,255,255,0.5)"
                 ></cu-swiperx>
                 <recommend-book
-                    title="新书推荐"
+                    title="新书上架"
                     height="280"
                     :booklist.sync="swiperList">
-                    <view slot="tag" @tap="gotoMore">
+                    <block slot="tag">
                         <new-tag
                             tagName="gray"
                             tagTitle="更多新书"
                             tagPos="right"
                         ></new-tag>
-                    </view>
+                    </block>
                 </recommend-book>
                 <e-book
                     title="在线书籍"
                     cols="3"
                     height="280"
                     :booklist.sync="eBooks">
-                    <view slot="tag" @tap="gotoMore">
+                    <block slot="tag">
                         <e-tag
                             tagName="gray"
                             tagTitle="更多内容"
                             tagPos="right"
                         ></e-tag>
-                    </view>
+                    </block>
                 </e-book>
                 <new-book
                     title="推荐图书"
                     cols="2"
                     height="480"
                     :booklist.sync="newBooks">
-                    <view 
-                        slot="tag" 
-                        style="position:absolute;top:26rpx;right:28rpx;"
-                        @tap="refresh">
+                    <view slot="tag" style="position:absolute;top:26rpx;right:28rpx;">
                         <image src="/assets/img/reflsh.png" style="width:40rpx;height:40rpx;"></image>
                         <text>获取新内容</text>
                     </view>
@@ -122,6 +125,7 @@ export default class Library extends wepy.page {
     }
 
     methods = {
+<<<<<<< HEAD
         gotoMore(){
             wepy.navigateTo({
                 url: '/pages/library/morenewbook'
@@ -135,6 +139,9 @@ export default class Library extends wepy.page {
                 url: '/pages/library/search'
             });
         }
+=======
+        
+>>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
     }
 
     events = {}

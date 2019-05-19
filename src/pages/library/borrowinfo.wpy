@@ -1,12 +1,13 @@
-<style scoped>
+<style>
 @import "/styles/library/borrowinfo.wxss";
 </style>
 <template >
     <block>
-        <custom-nav bgColor="bg-custom-gradient text-custom-white" isCustom="{{true}}">
+        <custom-nav bgColor="bg-custom-color" isCustom="{{true}}">
             <view slot="content">借阅信息</view>
         </custom-nav>
         <view class="navbar">
+<<<<<<< HEAD
             <text class="{{pageShow==0?'textActive':''}}" @tap="showone(0)">当前借阅</text>
             <text class="{{pageShow==1?'textActive':''}}" @tap="showone(1)">还书列表</text>
             <text class="{{pageShow==2?'textActive':''}}" @tap="showone(2)">借阅历史</text>
@@ -44,6 +45,40 @@
                     ></returnlist>
                 </scroll-view>
             </view>
+=======
+            <text class="{{pageShow?'textActive':''}}" @tap="showone(1)">当前借阅</text>
+            <text  class="{{pageShow?'':'textActive'}}" @tap="showone(2)">借阅历史</text>
+        </view>
+        <!-- 借阅信息 -->
+        <view animation="{{animationPage}}" class="movebox">
+            <scroll-view
+                class="pagebox1"
+                scroll-y="true"
+                style="height:100%;"
+                lower-threshold="200"
+                @scrolltolower="scrollNew">
+                <view>
+                    <repeat for="{{datalist}}" key="index">
+                        <view class="child">
+                            <view class="child-left">
+                                <image src="{{item.url}}"/>
+                            </view>
+                            <view class="child-right">
+                                <view>书    名：<text>{{item.name}}</text></view>
+                                <view>借阅时间：<text>{{item.oldTime}}</text></view>
+                                <view>待还时间: <text>{{item.nowTime}}</text></view>
+                                <view>
+                                    <view class="action">
+                                        <text class="text-df margin-right-sm">还期提醒</text>
+                                        <switch class="sm"></switch>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </repeat>
+                </view>
+            </scroll-view>
+>>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
             <!-- 借阅历史 -->
             <view style="width:{{viewWidth}}px;">
                 <scroll-view
@@ -72,7 +107,6 @@
 import wepy from 'wepy';
 import librarydata from "@/structure/library/library.js"
 import Customnav from "@/components/customnav";
-import Booklist from "@/components/library/booklist";
 
 export default class Borrowinfo extends wepy.page {
     config = {
@@ -80,9 +114,13 @@ export default class Borrowinfo extends wepy.page {
     }
 
     components = {
+<<<<<<< HEAD
        'custom-nav' : Customnav,
        'curlist' : Booklist,
        'returnlist' : Booklist
+=======
+       'custom-nav' : Customnav
+>>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
     }
 
     data = {
@@ -90,15 +128,21 @@ export default class Borrowinfo extends wepy.page {
         returnList : [],
         datatwo:[],
         animationBtn : [],
+<<<<<<< HEAD
         pageShow:0,  //控制切换效果
         animationPage:{},
         toTop : 0,
         boxwidth : 0,
         viewWidth : 0
+=======
+        pageShow:true,  //控制切换效果
+        animationPage:{}
+>>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
     }
     
     methods = {
         showone(n){
+<<<<<<< HEAD
             let {screenWidth}=this.system;
             this.pageShow=n;
             let animation=wepy.createAnimation({
@@ -129,11 +173,24 @@ export default class Borrowinfo extends wepy.page {
             })
             this.returnList=[...returnList];
         }
+=======
+           n=='1'?this.pageShow = true:this.pageShow=false; 
+           let animation=wepy.createAnimation({
+                duration: 200,
+                timingFunction: 'linear'
+            })
+            animation.translateX(this.pageShow?'0%':"-50%").step();
+            this.animationPage=animation.export();
+          
+        //   this.pageShow == true?this.showleft():this.showright();
+        },
+>>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
     }
 
     events = {}
 
     onLoad(){
+<<<<<<< HEAD
         let _this=this;
         _this.datalist = librarydata["borrowInfos"];
         _this.datatwo = librarydata["librarytwo"];
@@ -170,6 +227,10 @@ export default class Borrowinfo extends wepy.page {
             _this.toTop+='px';
             _this.$apply();
         }).exec();
+=======
+      this.datalist = librarydata["libraryone"]
+      this.datatwo = librarydata["librarytwo"]
+>>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
     }
 }
 </script>

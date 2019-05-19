@@ -1,4 +1,3 @@
-
 <template>
     <view class="cu-custom" style="height:{{CustomBar}}px;">
         <view 
