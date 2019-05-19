@@ -40,13 +40,15 @@ export default class app extends wepy.app {
       'pages/home/home',
       'pages/library/library',
       'pages/library/borrowinfo',
-      'pages/library/history',
       'pages/library/collection',
+      'pages/library/morenewbook',
+      'pages/library/bookdetail',
+      'pages/library/borrowing',
+      'pages/library/result',
+      'pages/library/search',
       'pages/teachbuillding/detail',
       'pages/teachbuillding/employ',
-      'pages/teachbuillding/teacher',
-      'pages/association/associationform',
-      'pages/association/issue'
+      'pages/teachbuillding/teacher'
     ],
     window: {
       backgroundTextStyle: 'light',
