@@ -1,0 +1,60 @@
+<style>
+  @import '/styles/main.wxss';
+  @import '/styles/icon.wxss';
+  @import '/styles/animation.wxss';
+  @import '/styles/common.wxss';
+</style>
+
+<script>
+import wepy from 'wepy'
+import 'wepy-async-function'
+// import { setStore } from 'wepy-redux'
+// import configStore from './store'
+
+export default class app extends wepy.app {
+  constructor(){
+    super();
+
+    this.intercept('request',{
+      config(reqData){
+        reqData.name='czhs';
+        console.log(reqData);
+        return reqData;
+      },
+      success(resData){
+        console.log('成功');
+        console.log(resData);
+        return resData;
+      },
+      fail(err){
+        console.log('请求失败');
+        return err;
+      },
+      complete(data){
+        console.log('请求完成');
+      }
+    })
+  }
+  config = {
+    pages: [
+      'pages/home/home',
+      'pages/library/library',
+      'pages/library/borrowinfo',
+      'pages/library/history',
+      'pages/library/collection',
+      'pages/teachbuillding/detail',
+      'pages/teachbuillding/employ',
+      'pages/teachbuillding/teacher',
+      'pages/association/associationform',
+      'pages/association/issue'
+    ],
+    window: {
+      backgroundTextStyle: 'light',
+      navigationBarBackgroundColor: '#1b62f1',
+      navigationBarTitleText: 'WeChat',
+      navigationBarTextStyle: 'white',
+      navigationStyle: 'custom'
+    }
+  }
+}
+</script>

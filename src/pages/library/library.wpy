@@ -1,0 +1,164 @@
+<style>
+.library{
+    width:100%;
+    height:100%;
+}
+</style>
+
+<template>
+    <view class="library">
+        <custom-nav bgColor="bg-custom-color" isCustom="{{true}}">
+            <view slot="content">书库</view>
+        </custom-nav>
+<<<<<<< HEAD
+        <view class="search" @tap="gotoSearch">
+            <cu-search disabled="{{true}}"></cu-search>
+        </view>
+        <scroll-view scroll-y="true" class="scroll" style="top:{{toTop}};">
+            <view style="margin-top:10rpx;">
+=======
+        <cu-search></cu-search>
+        <scroll-view scroll-y="true" class="scroll" style="top:17vh;">
+            <view style="margin-top:10px;">
+>>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
+                <cu-swiperx
+                    :swiperlist.sync="swiperList"
+                    swiperType='card-swiper'
+                    curColor="rgba(255,255,255,0.5)"
+                ></cu-swiperx>
+                <recommend-book
+                    title="新书上架"
+                    height="280"
+                    :booklist.sync="swiperList">
+                    <block slot="tag">
+                        <new-tag
+                            tagName="gray"
+                            tagTitle="更多新书"
+                            tagPos="right"
+                        ></new-tag>
+                    </block>
+                </recommend-book>
+                <e-book
+                    title="在线书籍"
+                    cols="3"
+                    height="280"
+                    :booklist.sync="eBooks">
+                    <block slot="tag">
+                        <e-tag
+                            tagName="gray"
+                            tagTitle="更多内容"
+                            tagPos="right"
+                        ></e-tag>
+                    </block>
+                </e-book>
+                <new-book
+                    title="推荐图书"
+                    cols="2"
+                    height="480"
+                    :booklist.sync="newBooks">
+                    <view slot="tag" style="position:absolute;top:26rpx;right:28rpx;">
+                        <image src="/assets/img/reflsh.png" style="width:40rpx;height:40rpx;"></image>
+                        <text>获取新内容</text>
+                    </view>
+                </new-book>
+            </view>
+        </scroll-view>
+    </view>
+</template>
+
+<script>
+import wepy from 'wepy';
+import librarydata from "@/structure/library/library.js";
+import Search from "@/components/search";
+import Swiperx from "@/components/swiper";
+import Recommend from "@/components/library/recommend";
+import Tag from "@/components/tag";
+import Customnav from "@/components/customnav";
+
+export default class Library extends wepy.page {
+    config = {
+        navigationBarTitleText: '书库'
+    }
+
+    components = {
+       'cu-search' : Search,
+       'cu-swiperx' : Swiperx,
+       'recommend-book' : Recommend,
+       'new-book' : Recommend,
+       'e-book' : Recommend,
+       'new-tag' : Tag,
+       'e-tag' : Tag,
+       'custom-nav' : Customnav
+    }
+
+    data = {
+        datalist : [],
+        swiperList: [{
+                id: 0,
+                type: 'image',
+                url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84000.jpg'
+            }, {
+                id: 1,
+                type: 'image',
+                url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big84001.jpg',
+            }, {
+                id: 2,
+                type: 'image',
+                url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big39000.jpg'
+            }, {
+                id: 3,
+                type: 'image',
+                url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg'
+            }, {
+                id: 4,
+                type: 'image',
+                url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big25011.jpg'
+            }, {
+                id: 5,
+                type: 'image',
+                url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big21016.jpg'
+            }
+        ],
+        newBooks : [[],[],[],[],[],[],[],[],[]],
+        eBooks : [[],[],[]],
+        toTop : 0
+    }
+
+    methods = {
+<<<<<<< HEAD
+        gotoMore(){
+            wepy.navigateTo({
+                url: '/pages/library/morenewbook'
+            });
+        },
+        refresh(){
+            console.log('刷新内容');
+        },
+        gotoSearch(){
+            wepy.navigateTo({
+                url: '/pages/library/search'
+            });
+        }
+=======
+        
+>>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
+    }
+
+    events = {}
+
+    onLoad() {
+        this.datalist = librarydata["libraryone"];
+
+        let res=wepy.getSystemInfoSync();
+        let query=wepy.createSelectorQuery();
+        let custom=wepy.getMenuButtonBoundingClientRect();
+
+        let _this=this;
+        query.select('.search').boundingClientRect((result)=>{
+            _this.toTop=result.height+custom.bottom+custom.top-res.statusBarHeight;
+            _this.toTop+='px';
+            _this.$apply();
+        }).exec(); 
+    }
+}
+</script>
