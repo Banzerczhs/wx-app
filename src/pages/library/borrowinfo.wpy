@@ -7,6 +7,8 @@
             <view slot="content">借阅信息</view>
         </custom-nav>
         <view class="navbar">
+<<<<<<< HEAD
+<<<<<<< HEAD
             <text class="{{pageShow==0?'textActive':''}}" @tap="showone(0)">当前借阅</text>
             <text class="{{pageShow==1?'textActive':''}}" @tap="showone(1)">还书列表</text>
             <text class="{{pageShow==2?'textActive':''}}" @tap="showone(2)">借阅历史</text>
@@ -44,6 +46,79 @@
                     ></returnlist>
                 </scroll-view>
             </view>
+=======
+            <text class="{{pageShow?'textActive':''}}" @tap="showone(1)">当前借阅</text>
+            <text  class="{{pageShow?'':'textActive'}}" @tap="showone(2)">借阅历史</text>
+        </view>
+        <!-- 借阅信息 -->
+        <view animation="{{animationPage}}" class="movebox">
+            <scroll-view
+                class="pagebox1"
+                scroll-y="true"
+                style="height:100%;"
+                lower-threshold="200"
+                @scrolltolower="scrollNew">
+                <view>
+                    <repeat for="{{datalist}}" key="index">
+                        <view class="child">
+                            <view class="child-left">
+                                <image src="{{item.url}}"/>
+                            </view>
+                            <view class="child-right">
+                                <view>书    名：<text>{{item.name}}</text></view>
+                                <view>借阅时间：<text>{{item.oldTime}}</text></view>
+                                <view>待还时间: <text>{{item.nowTime}}</text></view>
+                                <view>
+                                    <view class="action">
+                                        <text class="text-df margin-right-sm">还期提醒</text>
+                                        <switch class="sm"></switch>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                    </repeat>
+                </view>
+            </scroll-view>
+>>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
+=======
+            <text class="{{pageShow==0?'textActive':''}}" @tap="showone(0)">当前借阅</text>
+            <text class="{{pageShow==1?'textActive':''}}" @tap="showone(1)">还书列表</text>
+            <text class="{{pageShow==2?'textActive':''}}" @tap="showone(2)">借阅历史</text>
+        </view>
+        <view animation="{{animationPage}}" class="movebox" style="width:{{boxwidth}}%;top:{{toTop}};">
+            <!-- 当前借阅 -->
+            <view style="width:{{viewWidth}}px;">
+                <scroll-view
+                    style="height:100%;"
+                    scroll-y="true"
+                    lower-threshold="200"
+                    @scrolltolower="scrollNew">
+                    <curlist
+                        :datalist.sync="datalist"
+                        toHeight="24vh"
+                        leftWidth="35%"
+                        rightWidth="59%"
+                    ></curlist>
+                </scroll-view>
+            </view>
+            <!-- 还书列表 -->
+            <view style="width:{{viewWidth}}px;position:relative;">
+                <view class="tipText">Ps:续借一次最多续借两次，每次续借期限为一个月</view>
+                <scroll-view
+                    scroll-y="true"
+                    style="height:100%;">
+                    <returnlist
+                        :datalist.sync="returnList"
+                        toHeight="14vh"
+                        leftWidth="20%"
+                        rightWidth="70%"
+                        noclick="{{true}}"
+                        @updateRadio.user="radio"
+                        @hideBook.user="hide"
+                    ></returnlist>
+                </scroll-view>
+            </view>
+>>>>>>> czhs
             <!-- 借阅历史 -->
             <view style="width:{{viewWidth}}px;">
                 <scroll-view
@@ -80,9 +155,19 @@ export default class Borrowinfo extends wepy.page {
     }
 
     components = {
+<<<<<<< HEAD
+<<<<<<< HEAD
        'custom-nav' : Customnav,
        'curlist' : Booklist,
        'returnlist' : Booklist
+=======
+       'custom-nav' : Customnav
+>>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
+=======
+       'custom-nav' : Customnav,
+       'curlist' : Booklist,
+       'returnlist' : Booklist
+>>>>>>> czhs
     }
 
     data = {
@@ -90,15 +175,30 @@ export default class Borrowinfo extends wepy.page {
         returnList : [],
         datatwo:[],
         animationBtn : [],
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> czhs
         pageShow:0,  //控制切换效果
         animationPage:{},
         toTop : 0,
         boxwidth : 0,
         viewWidth : 0
+<<<<<<< HEAD
+=======
+        pageShow:true,  //控制切换效果
+        animationPage:{}
+>>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
+=======
+>>>>>>> czhs
     }
     
     methods = {
         showone(n){
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> czhs
             let {screenWidth}=this.system;
             this.pageShow=n;
             let animation=wepy.createAnimation({
@@ -106,6 +206,7 @@ export default class Borrowinfo extends wepy.page {
             });
             animation.translate(-screenWidth*n).step();
             this.animationPage=animation.export();
+<<<<<<< HEAD
         },
         radio(id){
             let {returnList}=this;
@@ -129,11 +230,49 @@ export default class Borrowinfo extends wepy.page {
             })
             this.returnList=[...returnList];
         }
+=======
+           n=='1'?this.pageShow = true:this.pageShow=false; 
+           let animation=wepy.createAnimation({
+                duration: 200,
+                timingFunction: 'linear'
+=======
+        },
+        radio(id){
+            let {returnList}=this;
+            let animation=wepy.createAnimation({
+                duration: 300
+            });
+            returnList.forEach((item,index)=>{
+                if(index==id){
+                    animation.translate('110%',0).step();
+                    item.animation=animation.export();
+                }
+>>>>>>> czhs
+            })
+            this.returnList=[...returnList];
+        },
+<<<<<<< HEAD
+>>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
+=======
+        hide(id){
+            let {returnList}=this;
+            returnList.forEach((item,index)=>{
+                if(index==id){
+                    item.show=true;
+                }
+            })
+            this.returnList=[...returnList];
+        }
+>>>>>>> czhs
     }
 
     events = {}
 
     onLoad(){
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> czhs
         let _this=this;
         _this.datalist = librarydata["borrowInfos"];
         _this.datatwo = librarydata["librarytwo"];
@@ -170,6 +309,13 @@ export default class Borrowinfo extends wepy.page {
             _this.toTop+='px';
             _this.$apply();
         }).exec();
+<<<<<<< HEAD
+=======
+      this.datalist = librarydata["libraryone"]
+      this.datatwo = librarydata["librarytwo"]
+>>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
+=======
+>>>>>>> czhs
     }
 }
 </script>

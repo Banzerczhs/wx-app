@@ -10,11 +10,23 @@
         <custom-nav bgColor="bg-custom-color text-custom-white" isCustom="{{true}}">
             <view slot="content">书库</view>
         </custom-nav>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> czhs
         <view class="search" @tap="gotoSearch">
             <cu-search disabled="{{true}}"></cu-search>
         </view>
         <scroll-view scroll-y="true" class="scroll" style="top:{{toTop}};">
             <view style="margin-top:10rpx;">
+<<<<<<< HEAD
+=======
+        <cu-search></cu-search>
+        <scroll-view scroll-y="true" class="scroll" style="top:17vh;">
+            <view style="margin-top:10px;">
+>>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
+=======
+>>>>>>> czhs
                 <cu-swiperx
                     :swiperlist.sync="swiperList"
                     swiperType='card-swiper'
@@ -122,6 +134,10 @@ export default class Library extends wepy.page {
     }
 
     methods = {
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> czhs
         gotoMore(){
             wepy.navigateTo({
                 url: '/pages/library/morenewbook'
@@ -135,6 +151,12 @@ export default class Library extends wepy.page {
                 url: '/pages/library/search'
             });
         }
+<<<<<<< HEAD
+=======
+        
+>>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
+=======
+>>>>>>> czhs
     }
 
     events = {}

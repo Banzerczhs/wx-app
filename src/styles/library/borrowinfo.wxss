@@ -1,19 +1,47 @@
 .navbar{
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> czhs
     width:80%;
     display: flex;
     display: -webkit-flex;
     position: relative;
+<<<<<<< HEAD
     z-index:100;
     justify-content: space-around;
     margin: 0 auto;
+=======
+    line-height:7vh;
+    width:100%;
+    overflow:hidden;
+    position: absolute;
+    z-index:100;
+    left:0;
+    border-bottom: 1px solid transparent;
+>>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
+=======
+    z-index:100;
+    justify-content: space-around;
+    margin: 0 auto;
+>>>>>>> czhs
 }
 .navbar text{
     color:rgb(216, 216, 216);
     font-size:30rpx;
     text-align: center;
+<<<<<<< HEAD
+<<<<<<< HEAD
     padding:10px 0;
     flex-grow:1;
     position: relative;
+=======
+>>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
+=======
+    padding:10px 0;
+    flex-grow:1;
+    position: relative;
+>>>>>>> czhs
 }
 .navbar .textActive{
     font-size:30rpx;
@@ -121,9 +149,34 @@
 }
 /*整页效果*/
 .movebox{
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> czhs
     display: flex;
     display: -webkit-flex;
     justify-content: space-around;
     position:absolute;
+<<<<<<< HEAD
     bottom:0;
+=======
+    width:200%;
+    position: absolute;
+    top:216rpx;
+    bottom:0;
+    overflow: hidden;
+}
+.pagebox1{
+    width:50%;
+    position: absolute;
+}
+.pagebox2{
+    width:50%;
+    position: absolute;
+    transform:translateX(100%);
+    /* display:none; */
+>>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
+=======
+    bottom:0;
+>>>>>>> czhs
 }

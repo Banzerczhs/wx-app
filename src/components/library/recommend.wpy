@@ -46,6 +46,10 @@
         components = {
             'my-book' : Book
         }
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> czhs
 
         methods = {
             getData(e){
@@ -54,5 +58,10 @@
                 })
             }
         }
+<<<<<<< HEAD
+=======
+>>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
+=======
+>>>>>>> czhs
     }
 </script>

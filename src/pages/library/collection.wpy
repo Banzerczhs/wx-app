@@ -23,6 +23,21 @@
                 leftWidth="20%"
                 rightWidth="70%"
             ></book-list>
+            style="top:10vh">
+            <view>
+                <repeat for="{{datalist}}" key="index">
+                    <view class="child">
+                        <view class="child-left">
+                            <image src="{{item.url}}"/>
+                        </view>
+                        <view class="child-right">
+                            <view>书名：<text>{{item.name}}</text></view>
+                            <view>作者：<text>{{item.author}}</text></view>
+                            <view>ISBN: <text>{{item.isbn}}</text></view>
+                        </view>
+                    </view>
+                </repeat>
+            </view>
         </scroll-view>
     </view>
 </template>
