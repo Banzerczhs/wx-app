@@ -97,7 +97,7 @@ movable-view.indexBar-item::before {
             <view class="cu-list menu-avatar no-padding">
                 <repeat for="{{datateacher[list[index]]}}" key="sub" index="sub">
                   <view class="cu-item">
-                    <view class="cu-avatar round lg imagehead"><image src="/assets/img/teachBuilding/头像02.png"/></view>
+                    <view class="cu-avatar round lg imagehead"><image src="/assets/img/teachBuillding/头像02.png"/></view>
                       <view class="content">
                       <view class="text-grey">
                        <view >{{item.name}}</view>
@@ -131,7 +131,7 @@ movable-view.indexBar-item::before {
 
 <script>
 import wepy from "wepy";
-import datateacher from "@/structure/teachbuilding/teacher.js"
+import datateacher from "@/structure/teachbuillding/teacher.js"
 export default  class Teacher extends wepy.page {
     config = {
          navigationBarTitleText: '办公室信息'
