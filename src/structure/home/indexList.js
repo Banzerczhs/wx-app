@@ -48,6 +48,7 @@ let indexlist = {
                     name:"发布活动",
                     url:"/pages/association/associationform"
                 }
+                
             ]
         },
         {

@@ -125,22 +125,17 @@ import wepy from 'wepy';
 import Customnav from "@/components/customnav";
 
 export default class associationform extends wepy.page {
-    config = {
-         
-    }
     components = {
        "custom-nav":Customnav
     }
 
-   
-
     methods = {
         
     }
+
     events = {}
     onLoad() {
-console.log('xxx')
-
+        console.log('xxx')
     }
   
  data = {
