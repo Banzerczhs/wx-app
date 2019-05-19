@@ -1,0 +1,78 @@
+<style scoped>
+    .history,.hot{
+        padding:20rpx;
+    }
+    .history text{
+        display:inline-block;
+        border-radius:30rpx;
+        padding:15rpx 30rpx;
+        margin:20rpx;
+        background-color:rgba(255,255,255,0.3);
+        color:#fff;
+    }
+    .hot text{
+        display:inline-block;
+        border-radius:30rpx;
+        padding:15rpx 30rpx;
+        margin:20rpx;
+        background-color:rgba(255,255,255,0.3);
+        color:#fff;
+    }
+    .history-title,.hot-title{
+        color:#fff;
+        font-size: 32rpx;
+        font-weight: 600;
+        margin-bottom: 20rpx;
+    }
+</style>
+
+<template>
+    <view>
+        <custom-nav isBack="{{true}}" class="text-custom-white"></custom-nav>
+        <cu-search placeholder="请输入“ISBN/书名/作者名”查询书目" :value="inputText">
+            <view class="action" slot="btn" @tap="searchBook">
+                <button class="cu-btn bg-green shadow-blur round">搜索</button>
+            </view>
+        </cu-search>
+        <view class="history">
+            <view class="history-title">历史搜索</view>
+            <text>最终幻想零式</text>
+            <text>鬼泣5</text>
+            <text>芦荟胶</text>
+            <text>你好世界</text>
+            <text>未来简史2019</text>
+        </view>
+        <view class="hot">
+            <view class="hot-title">热门搜索</view>
+            <text>最终幻想15</text>
+            <text>黑色沙漠</text>
+            <text>只狼</text>
+            <text>夏季男装</text>
+            <text>监狱</text>
+        </view>
+    </view>
+</template>
+
+<script>
+    import wepy from "wepy";
+    import Searchcom from "@/components/search";
+    import Customnav from "@/components/customnav";
+    export default class Search extends wepy.page{
+        components = {
+            'cu-search' : Searchcom,
+            'custom-nav' : Customnav
+        }
+
+        data = {
+            inputText : ''
+        }
+
+        methods = {
+            searchBook(){
+                wepy.navigateTo({
+                    url: '/pages/library/result?searchId='+this.inputText
+                });
+            }
+        }
+    }
+</script>
