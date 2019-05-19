@@ -1,0 +1,76 @@
+<style scoped>
+.box-title{
+    width: 100%;
+    color:#fff;
+    text-align:center;
+    font-size: 24px;
+    display:block;
+}
+</style>
+
+<template>
+    <view class="box">
+        <custom-nav bgColor="bg-custom-gradient text-custom-white" isCustom="{{true}}">
+            <view slot="content" class="text-white">书架</view>
+        </custom-nav>
+        <scroll-view
+            scroll-y="true"
+            class="scroll"
+            style="top:{{toTop}}">
+            <book-list
+                :datalist.sync="datalist"
+                toHeight="14vh"
+                leftWidth="20%"
+                rightWidth="70%"
+            ></book-list>
+            style="top:10vh">
+            <view>
+                <repeat for="{{datalist}}" key="index">
+                    <view class="child">
+                        <view class="child-left">
+                            <image src="{{item.url}}"/>
+                        </view>
+                        <view class="child-right">
+                            <view>书名：<text>{{item.name}}</text></view>
+                            <view>作者：<text>{{item.author}}</text></view>
+                            <view>ISBN: <text>{{item.isbn}}</text></view>
+                        </view>
+                    </view>
+                </repeat>
+            </view>
+        </scroll-view>
+    </view>
+</template>
+
+<script>
+    import wepy from "wepy";
+    import librarydata from "@/structure/library/library.js";
+    import Customnav from "@/components/customnav";
+    import Booklist from "@/components/library/booklist";
+
+    export default class Collection extends wepy.page{
+        config={
+            navigationBarTitleText : '书架'
+        }
+
+        components = {
+            'custom-nav' : Customnav,
+            'book-list' : Booklist
+        }
+        
+        data = {
+            datalist:[],
+            toTop : 0
+        }
+
+        onLoad(){
+            this.datalist = librarydata["libraryone"];
+
+            let res=wepy.getSystemInfoSync();
+            let custom=wepy.getMenuButtonBoundingClientRect();
+            this.toTop=custom.bottom+custom.top-res.statusBarHeight;
+            this.toTop+=5;
+            this.toTop+='px';
+        }
+    }
+</script>

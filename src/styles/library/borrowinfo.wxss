@@ -1,0 +1,182 @@
+.navbar{
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> czhs
+    width:80%;
+    display: flex;
+    display: -webkit-flex;
+    position: relative;
+<<<<<<< HEAD
+    z-index:100;
+    justify-content: space-around;
+    margin: 0 auto;
+=======
+    line-height:7vh;
+    width:100%;
+    overflow:hidden;
+    position: absolute;
+    z-index:100;
+    left:0;
+    border-bottom: 1px solid transparent;
+>>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
+=======
+    z-index:100;
+    justify-content: space-around;
+    margin: 0 auto;
+>>>>>>> czhs
+}
+.navbar text{
+    color:rgb(216, 216, 216);
+    font-size:30rpx;
+    text-align: center;
+<<<<<<< HEAD
+<<<<<<< HEAD
+    padding:10px 0;
+    flex-grow:1;
+    position: relative;
+=======
+>>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
+=======
+    padding:10px 0;
+    flex-grow:1;
+    position: relative;
+>>>>>>> czhs
+}
+.navbar .textActive{
+    font-size:30rpx;
+    color:#fff;
+    font-weight: 600;
+}
+.navbar .textActive::before{
+    content: "";
+    display: block;
+    width: 80px;
+    height: 2px;
+    background-color: #fff;
+    position: absolute;
+    left:50%;
+    bottom: 0px;
+    transform: translateX(-50%);
+}
+/* 还书列表 */
+.tipText{
+    text-align: center;
+    color: #fff;
+    line-height: 2;
+}
+.continue-btn{
+    position: absolute;
+    right:20rpx;
+    bottom:30rpx;
+    width: 100rpx;
+    height:100rpx;
+    border-radius:50%;
+    background-color:#0081ff;
+    color:#fff;
+    text-align: center;
+    line-height:100rpx;
+    box-shadow:1px 1px 4px #270752;
+}
+.button-hover{
+    bottom:28rpx;
+}
+/* 还书列表 */
+.tipText{
+    text-align: center;
+    color: #fff;
+    line-height: 2;
+}
+.continue-btn{
+    position: absolute;
+    right:20rpx;
+    bottom:30rpx;
+    width: 100rpx;
+    height:100rpx;
+    border-radius:50%;
+    background-color:#0081ff;
+    color:#fff;
+    text-align: center;
+    line-height:100rpx;
+    box-shadow:1px 1px 4px #270752;
+}
+.button-hover{
+    bottom:28rpx;
+}
+/* 借阅历史 */
+.historybox{
+    display: inline-block;
+    vertical-align:top;
+    width:335rpx;
+    height:32vh;
+    margin:10rpx 20rpx;
+    text-align: center;
+    overflow:hidden;
+    position: relative;
+    background-color:rgba(255, 255, 255,1);
+    border-radius:4px;
+    box-shadow:1px 1px 4px #270752;
+}
+.TimeText{
+    width:100%;
+    height:7vh;
+    line-height:7vh;
+    padding-left:30px;
+    color:rgb(158, 52, 25);
+    background: #e2e6ad;
+}
+.TimeText:not(:nth-child(1)){
+    margin-top:15px;
+}
+.history-top{
+    width:250rpx;
+    height:70%;
+    margin: 0 auto;
+    margin-top:10px;
+    position:relative;
+    border:solid 1px transparent;
+}
+.history-top image{
+    width: 100%;
+    height:100%;
+    border-radius: 4px;
+}
+ .history-name{
+    position:relative;
+    top:10px;
+    color:rgb(99, 58, 12);
+    font:16px/20px "微软雅黑";
+}
+/*整页效果*/
+.movebox{
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> czhs
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-around;
+    position:absolute;
+<<<<<<< HEAD
+    bottom:0;
+=======
+    width:200%;
+    position: absolute;
+    top:216rpx;
+    bottom:0;
+    overflow: hidden;
+}
+.pagebox1{
+    width:50%;
+    position: absolute;
+}
+.pagebox2{
+    width:50%;
+    position: absolute;
+    transform:translateX(100%);
+    /* display:none; */
+>>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
+=======
+    bottom:0;
+>>>>>>> czhs
+}
