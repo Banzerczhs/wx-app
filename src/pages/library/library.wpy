@@ -7,7 +7,7 @@
 
 <template>
     <view class="library">
-        <custom-nav bgColor="bg-custom-color" isCustom="{{true}}">
+        <custom-nav bgColor="bg-custom-color text-custom-white" isCustom="{{true}}">
             <view slot="content">书库</view>
         </custom-nav>
         <view class="search" @tap="gotoSearch">

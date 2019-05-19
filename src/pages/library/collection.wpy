@@ -68,12 +68,12 @@
             scroll-y="true"
             class="scroll"
             style="top:{{toTop}}">
-            <booklist
+            <book-list
                 :datalist.sync="datalist"
                 toHeight="14vh"
                 leftWidth="20%"
                 rightWidth="70%"
-            ></booklist>
+            ></book-list>
         </scroll-view>
     </view>
 </template>
@@ -82,6 +82,7 @@
     import wepy from "wepy";
     import librarydata from "@/structure/library/library.js"
     import Customnav from "@/components/customnav";
+    import Booklist from "@/components/library/booklist";
 
     export default class Collection extends wepy.page{
         config={
@@ -89,7 +90,8 @@
         }
 
         components = {
-            'custom-nav' : Customnav
+            'custom-nav' : Customnav,
+            'book-list' : Booklist
         }
         
         data = {

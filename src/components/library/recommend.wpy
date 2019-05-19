@@ -46,7 +46,6 @@
         components = {
             'my-book' : Book
         }
-<<<<<<< HEAD
 
         methods = {
             getData(e){
@@ -55,7 +54,5 @@
                 })
             }
         }
-=======
->>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
     }
 </script>

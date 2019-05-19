@@ -72,10 +72,11 @@
 import wepy from 'wepy';
 import librarydata from "@/structure/library/library.js"
 import Customnav from "@/components/customnav";
+import Booklist from "@/components/library/booklist";
 
 export default class Borrowinfo extends wepy.page {
     config = {
-        navigationBarTitleText: '借阅信息'
+        navigationBarTitleText : '借阅信息'
     }
 
     components = {
