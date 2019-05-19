@@ -23,7 +23,7 @@
         </view>
         <view class="grid col-{{cols}} text-center">
             <repeat for="{{booklist}}" key="item.url">
-                <my-book :height.sync="height"></my-book>
+                <my-book :height.sync="height" @detailInfo.user="getData"></my-book>
             </repeat>
         </view>
     </view>
@@ -47,6 +47,9 @@
             'my-book' : Book
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> czhs
 
         methods = {
             getData(e){
@@ -55,7 +58,10 @@
                 })
             }
         }
+<<<<<<< HEAD
 =======
 >>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
+=======
+>>>>>>> czhs
     }
 </script>

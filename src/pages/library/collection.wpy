@@ -1,55 +1,4 @@
 <style scoped>
-.child{
-    display: inline-block;
-    vertical-align:top;
-    width:715rpx;
-    height:20vh;
-    margin:10rpx 20rpx;
-    overflow:hidden;
-    position: relative;
-    background-color:rgba(255, 255, 255,1);
-    border-radius:4px;
-    box-shadow:1px 1px 4px #270752;
-    padding: 10px;
-    box-sizing: border-box;
-}
-.child-left{
-    width:30%;
-    height:100%;
-    float:left;
-    border:solid 1px transparent;
-    box-sizing: border-box;
-}
-.child-left image{
-    width: 100%;
-    height:100%;
-    border-radius: 4px;
-    position:relative;
-}
-.child-left image::before{
-    content:"";
-    display: block;
-    width: 100%;
-    height:100%;
-    position:absolute;
-    left:0;
-    top:0;
-}
-.child-right{
-    width: 65%;
-    height:100%;
-    margin-left: 15px;
-    float: left;
-}
-.child-right view{
-    font:16px/1.5 "微软雅黑";
-    color:rgb(99, 58, 12);
-    vertical-align: center;
-    text-align:left;
-}
-.child-right text{
-    color:rgb(70, 41, 7);
-}
 .box-title{
     width: 100%;
     color:#fff;
@@ -61,13 +10,16 @@
 
 <template>
     <view class="box">
-        <custom-nav bgColor="bg-custom-color" isCustom="{{true}}">
+        <custom-nav bgColor="bg-custom-gradient text-custom-white" isCustom="{{true}}">
             <view slot="content" class="text-white">书架</view>
         </custom-nav>
         <scroll-view
             scroll-y="true"
             class="scroll"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> czhs
             style="top:{{toTop}}">
             <booklist
                 :datalist.sync="datalist"
@@ -75,6 +27,7 @@
                 leftWidth="20%"
                 rightWidth="70%"
             ></booklist>
+<<<<<<< HEAD
 =======
             style="top:10vh">
             <view>
@@ -92,14 +45,17 @@
                 </repeat>
             </view>
 >>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
+=======
+>>>>>>> czhs
         </scroll-view>
     </view>
 </template>
 
 <script>
     import wepy from "wepy";
-    import librarydata from "@/structure/library/library.js"
+    import librarydata from "@/structure/library/library.js";
     import Customnav from "@/components/customnav";
+    import Booklist from "@/components/library/booklist";
 
     export default class Collection extends wepy.page{
         config={
@@ -107,7 +63,8 @@
         }
 
         components = {
-            'custom-nav' : Customnav
+            'custom-nav' : Customnav,
+            'booklist' : Booklist
         }
         
         data = {
