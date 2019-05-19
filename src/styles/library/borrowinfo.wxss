@@ -1,22 +1,19 @@
 .navbar{
-    width:60%;
+    width:80%;
+    display: flex;
+    display: -webkit-flex;
     position: relative;
     z-index:100;
+    justify-content: space-around;
     margin: 0 auto;
-}
-.navbar::after{
-    content:"";
-    display: block;
-    clear: both;
 }
 .navbar text{
     color:rgb(216, 216, 216);
     font-size:30rpx;
-    width:50%;
-    float:left;
     text-align: center;
-    position: relative;
     padding:10px 0;
+    flex-grow:1;
+    position: relative;
 }
 .navbar .textActive{
     font-size:30rpx;
@@ -33,6 +30,28 @@
     left:50%;
     bottom: 0px;
     transform: translateX(-50%);
+}
+/* 还书列表 */
+.tipText{
+    text-align: center;
+    color: #fff;
+    line-height: 2;
+}
+.continue-btn{
+    position: absolute;
+    right:20rpx;
+    bottom:30rpx;
+    width: 100rpx;
+    height:100rpx;
+    border-radius:50%;
+    background-color:#0081ff;
+    color:#fff;
+    text-align: center;
+    line-height:100rpx;
+    box-shadow:1px 1px 4px #270752;
+}
+.button-hover{
+    bottom:28rpx;
 }
 /* 借阅历史 */
 .historybox{
@@ -80,19 +99,9 @@
 }
 /*整页效果*/
 .movebox{
-    width:200%;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    overflow: hidden;
-}
-.pagebox1{
-    width:50%;
-    position: absolute;
-}
-.pagebox2{
-    width:50%;
-    position: absolute;
-    transform:translateX(100%);
-    /* display:none; */
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-around;
+    position:absolute;
+    bottom:0;
 }

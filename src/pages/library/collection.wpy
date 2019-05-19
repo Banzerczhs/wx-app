@@ -16,12 +16,12 @@
         <scroll-view
             scroll-y="true"
             class="scroll"
-            style="top:10vh">
+            style="top:{{toTop}}">
             <booklist
                 :datalist.sync="datalist"
-                toHeight="20vh"
-                leftWidth="30%"
-                rightWidth="65%"
+                toHeight="14vh"
+                leftWidth="20%"
+                rightWidth="70%"
             ></booklist>
         </scroll-view>
     </view>
@@ -44,11 +44,18 @@
         }
         
         data = {
-            datalist:[]
+            datalist:[],
+            toTop : 0
         }
 
         onLoad(){
             this.datalist = librarydata["libraryone"];
+
+            let res=wepy.getSystemInfoSync();
+            let custom=wepy.getMenuButtonBoundingClientRect();
+            this.toTop=custom.bottom+custom.top-res.statusBarHeight;
+            this.toTop+=5;
+            this.toTop+='px';
         }
     }
 </script>

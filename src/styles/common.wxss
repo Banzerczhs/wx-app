@@ -14,6 +14,11 @@ page{
 .text-custom-white{
     color:#fff;
 }
+.absolute{
+    position: absolute;
+    left:0;
+    top:0;
+}
 .scroll{
     position:absolute;
     left:0;
