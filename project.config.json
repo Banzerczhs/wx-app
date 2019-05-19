@@ -6,10 +6,10 @@
 		"postcss": false,
 		"minified": false,
 		"newFeature": true,
-		"coverView": true,
 		"autoAudits": false,
 		"uglifyFileName": true,
 		"checkInvalidKey": true,
+		"coverView": true,
 		"checkSiteMap": false,
 		"uploadWithSourceMap": true,
 		"babelSetting": {

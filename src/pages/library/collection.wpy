@@ -16,19 +16,13 @@
         <scroll-view
             scroll-y="true"
             class="scroll"
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> czhs
             style="top:{{toTop}}">
-            <booklist
+            <book-list
                 :datalist.sync="datalist"
                 toHeight="14vh"
                 leftWidth="20%"
                 rightWidth="70%"
-            ></booklist>
-<<<<<<< HEAD
-=======
+            ></book-list>
             style="top:10vh">
             <view>
                 <repeat for="{{datalist}}" key="index">
@@ -44,9 +38,6 @@
                     </view>
                 </repeat>
             </view>
->>>>>>> ee81820d9bdce574a1ddd75ade65a2c64cdc15af
-=======
->>>>>>> czhs
         </scroll-view>
     </view>
 </template>
@@ -64,7 +55,7 @@
 
         components = {
             'custom-nav' : Customnav,
-            'booklist' : Booklist
+            'book-list' : Booklist
         }
         
         data = {
