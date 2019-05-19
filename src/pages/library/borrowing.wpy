@@ -35,49 +35,51 @@
 </style>
 
 <template>
-    <view class="borrowing">
+    <block>
         <custom-nav isBack="{{true}}" class="text-custom-white">
             <view slot="backText">在线借阅</view>
         </custom-nav>
-        <view class="borrowing-box">
-            <view class="bookInfo">
-                <view class="bookInfo-left">
-                    <image src="https://www.quyun.online/assets/image/looks1.jpg"/>
+        <view class="borrowing">
+            <view class="borrowing-box">
+                <view class="bookInfo">
+                    <view class="bookInfo-left">
+                        <image src="https://www.quyun.online/assets/image/looks1.jpg"/>
+                    </view>
+                    <view class="bookInfo-right">
+                        <view>书名：克罗斯的遗产</view>
+                        <view>作者：陈子惠生</view>
+                        <view>ISBN: 1273-7891-2378-9789-1723</view>
+                    </view>
                 </view>
-                <view class="bookInfo-right">
-                    <view>书名：克罗斯的遗产</view>
-                    <view>作者：陈子惠生</view>
-                    <view>ISBN: 1273-7891-2378-9789-1723</view>
-                </view>
+                <form>
+                    <view class="cu-form-group">
+                        <view class="title">学号：</view>
+                        <input placeholder="输入学号" type="number"></input>
+                    </view>
+                    <view class="cu-form-group">
+                        <view class="title">姓名：</view>
+                        <input placeholder="输入姓名"></input>
+                    </view>
+                    <view class="cu-form-group">
+                        <view class="title">还书日期：</view>
+                        <picker 
+                            mode="date" 
+                            value="{{date}}" 
+                            start="2015-09-01" 
+                            end="2020-09-01" 
+                            @change="DateChange">
+                            <view class="picker">
+                                {{date}}
+                            </view>
+                        </picker>
+                    </view>
+                    <view class="cu-form-group">
+                        <button class="cu-btn bg-blue shadow-blur round" style="width:50%;margin:0 auto;">提交</button>
+                    </view>
+                </form>
             </view>
-            <form>
-                <view class="cu-form-group">
-                    <view class="title">学号：</view>
-                    <input placeholder="输入学号" type="number"></input>
-                </view>
-                <view class="cu-form-group">
-                    <view class="title">姓名：</view>
-                    <input placeholder="输入姓名"></input>
-                </view>
-                <view class="cu-form-group">
-                    <view class="title">还书日期：</view>
-                    <picker 
-                        mode="date" 
-                        value="{{date}}" 
-                        start="2015-09-01" 
-                        end="2020-09-01" 
-                        @change="DateChange">
-                        <view class="picker">
-                            {{date}}
-                        </view>
-                    </picker>
-                </view>
-                <view class="cu-form-group">
-                    <button class="cu-btn bg-blue shadow-blur round" style="width:50%;margin:0 auto;">提交</button>
-                </view>
-            </form>
         </view>
-    </view>
+    </block>
 </template>
 
 <script>
