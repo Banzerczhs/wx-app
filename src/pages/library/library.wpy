@@ -1,4 +1,4 @@
-<style>
+<style scoped>
 .library{
     width:100%;
     height:100%;
@@ -21,36 +21,39 @@
                     curColor="rgba(255,255,255,0.5)"
                 ></cu-swiperx>
                 <recommend-book
-                    title="新书上架"
+                    title="新书推荐"
                     height="280"
                     :booklist.sync="swiperList">
-                    <block slot="tag">
+                    <view slot="tag" @tap="gotoMore">
                         <new-tag
                             tagName="gray"
                             tagTitle="更多新书"
                             tagPos="right"
                         ></new-tag>
-                    </block>
+                    </view>
                 </recommend-book>
                 <e-book
                     title="在线书籍"
                     cols="3"
                     height="280"
                     :booklist.sync="eBooks">
-                    <block slot="tag">
+                    <view slot="tag" @tap="gotoMore">
                         <e-tag
                             tagName="gray"
                             tagTitle="更多内容"
                             tagPos="right"
                         ></e-tag>
-                    </block>
+                    </view>
                 </e-book>
                 <new-book
                     title="推荐图书"
                     cols="2"
                     height="480"
                     :booklist.sync="newBooks">
-                    <view slot="tag" style="position:absolute;top:26rpx;right:28rpx;">
+                    <view 
+                        slot="tag" 
+                        style="position:absolute;top:26rpx;right:28rpx;"
+                        @tap="refresh">
                         <image src="/assets/img/reflsh.png" style="width:40rpx;height:40rpx;"></image>
                         <text>获取新内容</text>
                     </view>

@@ -48,9 +48,7 @@ export default class app extends wepy.app {
       'pages/library/search',
       'pages/teachbuillding/detail',
       'pages/teachbuillding/employ',
-      'pages/teachbuillding/teacher',
-      'pages/association/associationform',
-      'pages/association/issue'
+      'pages/teachbuillding/teacher'
     ],
     window: {
       backgroundTextStyle: 'light',

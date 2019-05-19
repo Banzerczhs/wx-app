@@ -23,7 +23,7 @@
         </view>
         <view class="grid col-{{cols}} text-center">
             <repeat for="{{booklist}}" key="item.url">
-                <my-book :height.sync="height"></my-book>
+                <my-book :height.sync="height" @detailInfo.user="getData"></my-book>
             </repeat>
         </view>
     </view>

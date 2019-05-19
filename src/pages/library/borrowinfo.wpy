@@ -1,9 +1,9 @@
-<style>
+<style scoped>
 @import "/styles/library/borrowinfo.wxss";
 </style>
 <template >
     <block>
-        <custom-nav bgColor="bg-custom-color" isCustom="{{true}}">
+        <custom-nav bgColor="bg-custom-gradient text-custom-white" isCustom="{{true}}">
             <view slot="content">借阅信息</view>
         </custom-nav>
         <view class="navbar">
