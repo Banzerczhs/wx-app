@@ -1,0 +1,96 @@
+<style>
+    .banner{
+        height: 360rpx;
+        margin-bottom: 20rpx;
+    }
+    .banner-item{
+        height:100%;
+    }
+    .banner-item image{
+        width:90%;
+        height:100%;
+        margin:0 auto;
+        display:block;
+        border-radius:16rpx;
+    }
+</style>
+
+<template>
+    <swiper 
+        class="{{Dotstyle}} banner"
+        indicator-dots="true"
+        circular="true"
+        autoplay="true"
+        interval="3000"
+        duration="500"
+        indicator-color="{{curColor}}"
+        indicator-active-color="{{curColoract}}"
+        @change="cardSwiper">
+        <repeat for="{{swiperList}}" key="item.url">
+            <swiper-item class="{{cardCur==index?'banner-cur':''}}">
+                <view class="banner-item">
+                    <image 
+                        src="{{item.url}}" 
+                        mode="aspectFill"
+                        wx:if="{{item.type=='image'}}"
+                        class="padding-xl radius shadow-warp bg-white margin-top"
+                    ></image>
+                    <video src="{{item.url}}" autoplay loop muted show-play-btn="{{false}}" controls="{{false}}" objectFit="cover" wx:if="{{item.type=='video'}}"></video>
+                </view>
+            </swiper-item>
+        </repeat>
+    </swiper>
+</template>
+
+<script>
+    import wepy from "wepy";
+    export default class Swiperx extends wepy.component{
+        props = {
+            dotstyle : {
+                type : String,
+                default : 'round-dot'
+            },
+            swiperlist : Array,
+            curColor : {
+                type : String,
+                default : '#8799a3'
+            },
+            curColoract : {
+                type : String,
+                default : '#0081ff'
+            }
+        }
+
+        data = {
+            cardCur: 0,
+            swiperList : [],
+            Dotstyle : null
+        }
+
+        onLoad() {
+            // 初始化towerSwiper 传已有的数组名即可
+            this.towerSwiper();
+        }
+
+        methods = {
+            // cardSwiper
+            cardSwiper(e) {
+                this.cardCur=e.detail.current;
+                this.$apply();
+            }
+        }
+
+        // towerSwiper
+        // 初始化towerSwiper
+        towerSwiper() {
+            let list = [...this.swiperlist];
+            this.Dotstyle=this.dotstyle;
+            for (let i = 0; i < list.length; i++) {
+                list[i].zIndex = parseInt(list.length / 2) + 1 - Math.abs(i - parseInt(list.length / 2))
+                list[i].mLeft = i - parseInt(list.length / 2)
+            }
+            this.swiperList=[...list];
+            this.$apply();
+        }
+    }
+</script>

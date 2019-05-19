@@ -1,0 +1,41 @@
+<style scoped>
+    .tag{
+        position:absolute;
+        padding:5px 15px;
+        border:solid 1px #b3b3b3;
+        border-radius:28rpx;
+        top:10rpx;
+    }
+    .right{
+        right:22rpx;
+    }
+    .tag-white{
+        color:#fff;
+    }
+</style>
+
+<template>
+    <view class="tag {{tagPos}}">
+        <view class="co-tag tag-{{tagName}}">{{tagTitle}}</view>
+    </view>
+</template>
+
+<script>
+    import wepy from "wepy";
+    export default class Tag extends wepy.component{
+        props = {
+            tagTitle : {
+                type : String,
+                default : '更多'
+            },
+            tagName : {
+                type : String,
+                default : 'red'
+            },
+            tagPos : {
+                type : String,
+                default : 'left'
+            }
+        }
+    }
+</script>

@@ -1,0 +1,122 @@
+<style scoped>
+    .app{
+        width: 105rpx;
+        height: 105rpx;
+        position: absolute;
+        border-radius: 50%;
+        box-shadow: 0 0 0 4rpx #0cf inset,0 0 32rpx 2rpx #0cf inset;
+        color:#fff;
+        z-index:10;
+        text-align:center;
+        font-size: 28rpx;
+        line-height:105rpx;
+        left:calc(50% - 26%);
+        top:calc(50% - 24%);
+    }
+    .app::before{
+        content:"";
+        display: block;
+        border-radius: 50%;
+        width: 18rpx;
+        height: 30rpx;
+        background-color: rgba(245, 245, 245, 0.431);
+        transform:rotate(45deg);
+        position: absolute;
+        left: 22rpx;
+        top:12rpx;
+    }
+    .app.hide{
+        transform:scale(0);
+        -webkit-transform:scale(0);
+    }
+    .app.active{
+        box-shadow: 0 0 0 4rpx yellow inset,0 0 32rpx 2rpx yellow inset;
+        color:yellow;
+    }
+</style>
+
+<template>
+    <repeat for="{{appList}}" key="item">
+        <view
+            class="app {{hide?'hide':''}} {{activeNum==index?'active':''}}"
+            animation="{{appmove[index]}}"
+            @tap.stop="clickapp({{index}})"
+        >{{item}}</view>
+    </repeat>
+</template>
+
+<script>
+    import wepy from "wepy";
+    export default class RecentlyUsed extends wepy.component{
+        props = {
+            appList : {
+                type : Array,
+                required : true
+            }
+        }
+
+        data = {
+            appshow : false,
+            appmove : [],
+            hide : false,
+            activeNum : -1
+        }
+
+        onLoad(){
+            this.getappInfo();
+        }
+        
+        events={
+            'bubble-show':(sign,event)=>{
+                this.bubbleMove(sign);
+            }
+        }
+        
+        methods={
+            clickapp(num){
+                this.activeNum=num;
+                this.$apply();
+            }
+        }
+        
+        getappInfo(){
+            let {getWxmlInfo}=this.$root;
+            
+            let animation=wepy.createAnimation({
+                duration: 0,
+                timingFunction: 'ease'
+            });
+            setTimeout(async () => {
+                let {appList}=this;
+                this.appItem=await getWxmlInfo('.app');
+                this.hide=true;
+                animation.translate(0,0).scale(0).step();
+                this.appmove.length=appList.length;
+                this.appmove=this.appmove.fill(animation.export());
+                this.$apply();
+            },300);
+        }
+
+        bubbleMove(sign){
+            let {appList,appItem}=this;
+            let {windowiScale}=this.$root;
+            let animation=wepy.createAnimation({
+                duration: 500,
+                timingFunction: 'ease'
+            });
+
+            let animateArr=[];
+            let ir=160/windowiScale;
+            appList.forEach((app,index)=>{
+                let deg=!index?30:(40*index+30);
+                let tx=sign<0?0:-Math.round(Math.cos(Math.PI/180*deg)*ir);
+                let ty=sign<0?0:-Math.round(Math.sin(Math.PI/180*deg)*ir);
+                animation.translate(tx*windowiScale/windowiScale,ty*windowiScale/windowiScale).scale(sign<0?0:1).opacity(sign<0?0:1).step();
+                animateArr.push(animation.export());
+            })
+            this.appmove=[...animateArr];
+            
+            this.$apply();
+        }
+    }
+</script>

@@ -1,0 +1,87 @@
+<style scoped>
+.listbox{
+    margin: 0 auto;
+    margin-top:20px;
+    border-radius:5px; 
+    height:150rpx;  
+    width:85%;
+    position: relative;
+}
+.listbox view{
+    width:100%;
+    position:absolute;
+    left:10px;
+    bottom:10px;
+    font:bold 20px/1.5 "微软雅黑";
+}
+
+</style>
+<template>
+    <block>
+        <repeat for="{{datalist}}" key="index">
+            <view class="listbox bg-blue light" @tap="goTO({{item}})">
+               <view>{{item.title}}</view>
+            </view>
+        </repeat>
+    </block>
+</template>
+
+<script>
+ import wepy from "wepy";
+ let datalist = [
+     {
+         title:"楼一",
+         url:"/pages/teachbuillding/detail",
+         id:'001'
+     },
+     {
+         title:"楼二",
+         url:"/pages/teachbuillding/detail",
+         id:'002'
+     },
+     {
+         title:"楼三",
+         url:"/pages/teachbuillding/detail",
+         id:'003'
+     },
+     {
+         title:"楼四",
+         url:"/pages/teachbuillding/detail",
+         id:'004'
+     },
+     {
+         title:"楼五",
+         url:"/pages/teachbuillding/detail",
+         id:'005'
+     }
+    ]
+ 
+export default class Employ extends wepy.page{
+    config = {
+         navigationBarTitleText: '教学楼使用情况'
+    }
+    components = {
+       
+    }
+
+    data = {
+        datalist
+    }
+
+    methods = {
+        goTO(item){
+            wx.navigateTo({
+                 url: `${item.url}?id=${item.id}`,
+                 success:()=>{
+
+                 }
+            })
+        }
+    }
+    events = {}
+    onLoad() {
+     
+    }
+}
+</script>
+
