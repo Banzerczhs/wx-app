@@ -43,7 +43,7 @@
 </style>
 <template >
   <block>
-      <custom-nav bgColor="bg-custom-gradient text-custom-white" isCustom="{{true}}">
+      <custom-nav bgColor="text-custom-white" isCustom="{{true}}">
           <view slot="content">发布活动</view>
       </custom-nav>
       <form @submit="formSubmit" >
