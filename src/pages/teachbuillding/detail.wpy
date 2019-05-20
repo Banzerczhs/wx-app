@@ -171,9 +171,6 @@
 .title text{
   color:#fff;
 }
-.bg{
-  background: linear-gradient(#0081ff,#1cbbb4);
-}
 </style>
 
 <template>
