@@ -1,0 +1,30 @@
+<style>
+
+</style>
+<template>
+    <block>
+        <custom-nav isCustom="{{true}}"></custom-nav>
+        <view>我是播放列表</view>
+    </block>
+</template>
+<script>
+import wepy from "wepy";
+import Customnav from "@/components/customnav";
+export default class Music extends wepy.page{
+    data = {
+
+    }
+
+    components = {
+        'custom-nav' : Customnav
+    }
+
+    methods = {
+        
+    }
+
+
+}
+</script>
+
+

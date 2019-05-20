@@ -50,7 +50,10 @@ export default class app extends wepy.app {
       'pages/teachbuillding/employ',
       'pages/teachbuillding/teacher',
       'pages/association/associationform',
-      'pages/association/issue'
+      'pages/association/issue',
+      'pages/music/music',
+      'pages/music/playlist',
+      'pages/music/uploadmusic'
     ],
     window: {
       backgroundTextStyle: 'light',

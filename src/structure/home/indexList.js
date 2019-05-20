@@ -56,7 +56,22 @@ let indexlist = {
         },
         {
             src:"https://www.quyun.online/assets/image/x_0041_%E7%82%B9%E6%AD%8C%E5%8F%B0.png",
-            name:'点歌台'
+            name:'点歌台',
+            child:[
+                {
+                    name:"歌库",
+                    url:"/pages/music/music"
+                },
+                {
+                    name:"播放列表",
+                    url:"/pages/music/playlist"
+                },
+                {
+                    name:"上传音乐",
+                    url:"/pages/music/uploadmusic"
+                }
+            ]
+            
         },
         {
             src:"https://www.quyun.online/assets/image/x_0036_%E7%BD%91%E7%BB%9C%E4%B8%AD%E5%BF%83.png",
