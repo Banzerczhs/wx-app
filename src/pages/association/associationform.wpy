@@ -46,7 +46,7 @@
       <custom-nav bgColor="text-custom-white" isCustom="{{true}}">
           <view slot="content">发布活动</view>
       </custom-nav>
-      <form @submit="formSubmit" >
+      <form @submit="formSubmit">
               <view class="cu-form-group">
                   <view class="title">*活动标题：</view>
                   <input placeholder="活动标题" name="title" />
