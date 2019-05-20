@@ -3,7 +3,7 @@
 </style>
 <template >
     <block>
-        <custom-nav bgColor="bg-custom-gradient text-custom-white" isCustom="{{true}}">
+        <custom-nav bgColor="text-custom-white" isBack="{{true}}">
             <view slot="content">借阅信息</view>
         </custom-nav>
         <view class="navbar">
@@ -11,7 +11,7 @@
             <text class="{{pageShow==1?'textActive':''}}" @tap="showone(1)">还书列表</text>
             <text class="{{pageShow==2?'textActive':''}}" @tap="showone(2)">借阅历史</text>
         </view>
-        <view animation="{{animationPage}}" class="movebox" style="width:{{boxwidth}}%;top:{{toTop}};">
+        <view animation="{{animationPage}}" class="movebox scroll" style="width:{{boxwidth}}%;top:{{toTop}};">
             <!-- 当前借阅 -->
             <view style="width:{{viewWidth}}px;">
                 <scroll-view

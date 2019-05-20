@@ -136,7 +136,7 @@ export default class associationform extends wepy.page {
     events = {}
     
     onLoad() {
-        console.log('xxx')
+        console.log('xxx');
     }
   
     data = {

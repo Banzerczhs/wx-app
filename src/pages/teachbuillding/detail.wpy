@@ -44,7 +44,6 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.6));
   letter-spacing: 5px;
   font-size: 50rpx;
   opacity: 0;
@@ -179,6 +178,9 @@
 
 <template>
   <block>
+    <custom-nav isCustom="{{true}}" bgColor="text-custom-white">
+      <view slot="content">{{title}}</view>
+    </custom-nav>
     <scroll-view scroll-y class="DrawerPage {{modalName=='viewModal'?'show':''}} bg">	
       <view class='padding margin text-center navbox'>
         <image
@@ -240,13 +242,14 @@
 <script>
 import wepy from "wepy";
 import datateach from "@/structure/teachbuillding/teachbuillding.js";
+import Customnav from "@/components/customnav";
 
 export default class Detail extends wepy.page{
-
     data = {
-        modalName : null,
-        storeyData:{}, //总楼
-        storeyone:[]  //显示的楼栋
+      modalName : null,
+      storeyData:{}, //总楼
+      storeyone:[],  //显示的楼栋
+      title : ''
     }
 
     onLoad(option) {
@@ -254,23 +257,28 @@ export default class Detail extends wepy.page{
       this.storeyData = datateach.teach[option.id];
       let keys =Object.keys( this.storeyData);
       this.storeyone = this.storeyData[keys[0]];
-      console.log(this.storeyone)
+      console.log(this.storeyone);
+      this.title=option.title;
     }
 
     methods={
-        showModal(e) {
-          console.log('123');
-          this.modalName=e.currentTarget.dataset.target;
-        },
+      showModal(e) {
+        console.log('123');
+        this.modalName=e.currentTarget.dataset.target;
+      },
 
-        hideModal(e) {
-          this.modalName=null;
-        },
-        
-        toggle(obj){  //选择楼栋的
-          this.modalName=null;
-          this.storeyone = obj
-        }
+      hideModal(e) {
+        this.modalName=null;
+      },
+      
+      toggle(obj){  //选择楼栋的
+        this.modalName=null;
+        this.storeyone = obj
+      }
+    }
+
+    components = {
+      'custom-nav' : Customnav
     }
 }
 </script>

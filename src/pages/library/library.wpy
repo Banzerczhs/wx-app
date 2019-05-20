@@ -7,7 +7,7 @@
 
 <template>
     <view class="library">
-        <custom-nav bgColor="bg-custom-gradient text-custom-white" isCustom="{{true}}">
+        <custom-nav bgColor="text-custom-white" isBack="{{true}}">
             <view slot="content">书库</view>
         </custom-nav>
         <view class="search" @tap="gotoSearch">
@@ -24,7 +24,7 @@
                     title="新书推荐"
                     height="280"
                     :booklist.sync="swiperList">
-                    <view slot="tag" @tap="gotoMore">
+                    <view slot="tag" @tap="gotoMore('新书上架')">
                         <new-tag
                             tagName="gray"
                             tagTitle="更多新书"
@@ -37,7 +37,7 @@
                     cols="3"
                     height="280"
                     :booklist.sync="eBooks">
-                    <view slot="tag" @tap="gotoMore">
+                    <view slot="tag" @tap="gotoMore('电子书库')">
                         <e-tag
                             tagName="gray"
                             tagTitle="更多内容"
@@ -122,9 +122,9 @@ export default class Library extends wepy.page {
     }
 
     methods = {
-        gotoMore(){
+        gotoMore(title){
             wepy.navigateTo({
-                url: '/pages/library/morenewbook'
+                url: '/pages/library/morenewbook?title='+title
             });
         },
         refresh(){

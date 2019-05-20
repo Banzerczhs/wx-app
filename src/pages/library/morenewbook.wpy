@@ -51,8 +51,8 @@
 </style>
 
 <template>
-    <custom-nav bgColor="text-custom-white" isBack="{{true}}">
-        <view slot="backText">新书上架</view>
+    <custom-nav bgColor="text-custom-white" isCustom="{{true}}">
+        <view slot="content">{{title}}</view>
     </custom-nav>
     <scroll-view scroll-y class="scroll" style="top:{{toTop}}px;">
         <view class="book">
@@ -80,7 +80,8 @@
     export default class Morenewbook extends wepy.page{
         data = {
             bookList : [],
-            toTop : 0
+            toTop : 0,
+            title : ''
         }
 
         methods = {
@@ -91,7 +92,7 @@
             }
         }
 
-        onLoad(){
+        onLoad(option){
             this.bookList.length=15;
             this.bookList=this.bookList.fill({
                 url : 'https://www.quyun.online/assets/image/looks1.jpg',
@@ -103,6 +104,7 @@
             let res=wepy.getSystemInfoSync();
             let custom=wepy.getMenuButtonBoundingClientRect();
             this.toTop=custom.bottom+custom.top-res.statusBarHeight+2;
+            this.title=option.title;
         }
 
         components = {
