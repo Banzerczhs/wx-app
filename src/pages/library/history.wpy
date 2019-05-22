@@ -91,7 +91,9 @@ export default class History extends wepy.page {
     methods = {
         
     }
-    events = {}
+    events = {
+        
+    }
     onLoad() {
       this.datalist = librarydata["librarytwo"]
     }

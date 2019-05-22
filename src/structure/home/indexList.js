@@ -52,7 +52,17 @@ let indexlist = {
         },
         {
             src:"https://www.quyun.online/assets/image/x_0040_%E5%AE%BF%E8%88%8D.png",
-            name:'宿舍'
+            name:'服务中心',
+            child:[
+                {
+                    name:"费用缴纳",
+                    url:"/pages/dorm/pay"
+                },
+                {
+                    name:"保修列表",
+                    url:"/pages/dorm/repair"
+                }
+            ]
         },
         {
             src:"https://www.quyun.online/assets/image/x_0041_%E7%82%B9%E6%AD%8C%E5%8F%B0.png",
