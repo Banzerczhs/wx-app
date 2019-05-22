@@ -1,6 +1,11 @@
-<style scoped>
+<style>
 .indexes {
   position: relative;
+
+}
+.color{
+ color:#fff;
+
 }
 
 .indexBar {
@@ -75,12 +80,25 @@ movable-view.indexBar-item::before {
   width:96rpx;
   height:96rpx;
 }
+.cu-list.menu-avatar> .childbox{
+  background-color:rgba(236, 233, 233, 0.3);
+}
+ .childname{
+  color:#fff;
+}
+ .childurl{
+  color:#fff;
+}
+
 </style>
 
 <template>
 <block>
+    <custom-nav bgColor="bg-custom-color" isCustom="{{true}}">
+            <view slot="content">办公室信息</view>
+    </custom-nav>
     <!-- 搜索 -->
-    <view class="cu-bar bg-white search fixed">
+    <view class="cu-bar bg-white search  sousuo">
         <view class="search-form round">
             <text class="cuIcon-search"></text>
             <input type="text" placeholder="输入搜索的关键词" confirm-type="search" />
@@ -90,19 +108,19 @@ movable-view.indexBar-item::before {
         </view>
     </view>
     <!-- 展示 -->
-    <scroll-view scroll-y class="indexes" scroll-into-view="indexes-{{listCurID}}" style="height:calc(100vh - 50px);top:100rpx;" scroll-with-animation="true" enable-back-to-top="true">
+    <scroll-view scroll-y class="indexes" scroll-into-view="indexes-{{listCurID}}" style="height:calc(100vh - 50px);" scroll-with-animation="true" enable-back-to-top="true">
         <repeat for="{{list}}" key="index">
           <block>
-            <view class="padding " id="indexes-{{list[index]}}" data-index="{{list[index]}}">{{list[index]}}</view>
+            <view class="padding color" id="indexes-{{list[index]}}" data-index="{{list[index]}}">{{list[index]}}</view>
             <view class="cu-list menu-avatar no-padding">
                 <repeat for="{{datateacher[list[index]]}}" key="sub" index="sub">
-                  <view class="cu-item" style="background-color:rgba(255,255,255,0.5);">
+                  <view class="cu-item  childbox">
                     <view class="cu-avatar round lg imagehead"><image src="/assets/img/teachBuillding/头像02.png"/></view>
                       <view class="content">
                       <view class="text-grey">
-                       <view >{{item.name}}</view>
+                       <view class="childname">{{item.name}}</view>
                       </view>
-                      <view class="text-gray text-sm">
+                      <view class="text-gray text-sm childurl">
                          {{item.url}}
                       </view>
                     </view>
@@ -124,28 +142,30 @@ movable-view.indexBar-item::before {
     <view hidden="{{hidden}}" class="indexToast">
       {{listCur}}
     </view>
+
 </block>
 
 </template>
 
 <script>
 import wepy from "wepy";
+import Customnav from "@/components/customnav";
 import datateacher from "@/structure/teachbuillding/teacher.js"
 export default  class Teacher extends wepy.page {
-  config = {
-    navigationBarTitleText: '办公室信息'
-  }
-
-  data = {
-    StatusBar: '',
-    CustomBar: '',
-    hidden: true,
-    list : [],
-    listCur : 0,
-    listCurID : 0,
-    datateacher:datateacher.teacher
-  }
-
+    config = {
+    }
+    components = {
+       'custom-nav' : Customnav
+    }
+    data = {
+      StatusBar: '',
+      CustomBar: '',
+      hidden: true,
+      list : [],
+      listCur : 0,
+      listCurID : 0,
+      datateacher:datateacher.teacher
+    }
   onLoad() {
     let list = [];
     for (let i = 0; i < 26; i++){
@@ -157,9 +177,9 @@ export default  class Teacher extends wepy.page {
     this.StatusBar=res.statusBarHeight;
     let custom=wepy.getMenuButtonBoundingClientRect();
     this.CustomBar=custom.bottom+custom.top-res.statusBarHeight;
-    this.$apply(); 
+    this.$apply();
+    
   }
-
   onReady() {
     let that = this;
     wx.createSelectorQuery().select('.indexBar-box').boundingClientRect(function(res) {
@@ -171,28 +191,28 @@ export default  class Teacher extends wepy.page {
       that.$apply();
     }).exec()
   }
-
   //获取文字信息
   methods={
-    getCur(e) {
-      this.hidden=false;
-      this.listCur=this.list[e.target.id];
-    },
+      getCur(e) {
+        this.hidden=false;
+        this.listCur=this.list[e.target.id];
+      },
 
-    setCur(e){
-      this.hidden=true;
-      this.listCur=this.listCur;
-    },
+      setCur(e){
+        this.hidden=true;
+        this.listCur=this.listCur;
+      },
     //滑动选择Item
     tMove(e) {
       let y = e.touches[0].clientY,
         offsettop = this.boxTop,
         that = this;
+        console.log(y,offsettop)
       //判断选择区域,只有在选择区才会生效
       if (y > offsettop) {
         let num = parseInt((y - offsettop) / 20);
         this.listCur=that.list[num];  //最多到字母z，所以选择只需要判断大于即可
-      }
+      };
     },
     //触发全部开始选择
     tStart() {
@@ -204,7 +224,6 @@ export default  class Teacher extends wepy.page {
       this.hidden=true;
       this.listCurID=this.listCur;
     },
-    
     indexSelect(e) {
       let that = this;
       let barHeight = this.barHeight;
