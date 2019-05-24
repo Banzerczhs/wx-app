@@ -1,35 +1,49 @@
 <style>
+page{
+    width:100%;
+    height:100%;
+    overflow: hidden;
+}
 .nav{
     width:100%;
     height:8vh;
     overflow: hidden;    
     text-align: center;
-    
+    background: rgb(38, 99, 231);
 }
 .nav-ul{
-    width:200%;
+    width:233%;
     height:100%;
-    background:#fff;
     position: relative;
-     left:0rpx;
-     display: flex;
-    align-items: center;
+    transform: translateX(-28%);
+    display: flex;
    justify-content:space-around; 
 }
 .navbox{
     width:230rpx;
     height:95%;
-    padding-top:2%;
+    padding-top:1%;
     float:left;
     color:#fff;
-    background: rgba(117, 40, 104, 0.856);
 }
-.content{
-    width:100%;
+.navbox > view:nth-child(2){
+    width:50rpx;
+    height:50rpx;
+    line-height:50rpx;
+    margin:0 auto;
+    border-radius: 50%;
+}
+.navbox  .active{
+    border:1px solid #fff;
+}
+.contentpage{
+    width:700%;
     position: relative;
+    transform: translateX(-42.8%);
 }
 .contentbox{
-    position:relative
+    position:relative;
+    width:100%;
 }
 .box-item{
     width:90%;
@@ -38,7 +52,7 @@
     background:rgba(255, 255, 255, 0.726);
     border-radius:5px;
     margin-top:20px;
-    padding:10px 5px;
+    padding:10rpx 10rpx;
 }
 .item-image{
     width:160rpx;
@@ -48,11 +62,11 @@
 .item-right{
     float:right;
     width:480rpx;
-    margin-left:10px;
 }
 .title{
     width:480rpx;
     height:43rpx;
+    line-height:50rpx;
     overflow: hidden;
     color:chocolate;
     margin-bottom:10px;
@@ -63,81 +77,127 @@
     font-size:22rpx;
     color:brown;
 }
+.scroll-box{
+    position: relative;
+    height:100%;
+    width:100%;
+    overflow: hidden;
+}
+.scroll-item{
+    width:14.28%;
+    height:1336rpx;
+    float:left;
+}
+
 </style>
 <template>
     <block>
+<<<<<<< HEAD
         <custom-nav bgColor="text-custom-white" isCustom="{{true}}">
+=======
+        <custom-nav bgColor="bg-custom-color" isCustom="{{true}}">
+>>>>>>> zzk
             <view slot="content">活动时间表</view>
         </custom-nav>
         <view class="nav">
-            <view class="nav-ul">
-                    <view class="navbox">
-                        <view>2019</view>
-                        <view>5-18</view>
-                    </view>
-                    <view class="navbox">
-                        <view>2019</view>
-                        <view>5-18</view>
-                    </view>
-                    <view class="navbox">
-                        <view>2019</view>
-                        <view>5-18</view>
-                    </view>
-                    <view class="navbox">
-                        <view>2019</view>
-                        <view>5-18</view>
-                    </view>
-                    <view class="navbox">
-                        <view>2019</view>
-                        <view>5-18</view>
-                    </view>
-                    <view class="navbox">
-                        <view>2019</view>
-                        <view>5-18</view>
-                    </view>
+            <view class="nav-ul" animation="{{TopAnimation}}">
+                  <repeat for="{{TimeData.date}}" key="item" index="index" item="item">
+                       <view class="navbox"  @tap="clickTop({{index}})">
+                            <view>{{item.date}}</view>
+                            <view class="{{TimeNow==index ? 'active' :''}}">{{item.week}}</view>
+                        </view>
+                  </repeat>
             </view>
         </view>
-        <view class="content">
-            <view class="contentbox">
-                <view class="box-item">
-                    <image src="/assets/img/logo.png" class="item-image"/>
-                    <view class="item-right">
-                        <view class="title">标题：青春如我，踏步时光飞逝</view>
-                        <text>报名时间：2019-5-15 14:30 - 2019-5-16 14:30</text>
-                        <text>活动时间：2019-5-15 14:30 - 2019-5-16 14:30</text>
+        <view  class="scroll-box">
+            <view class="contentpage" animation="{{cenAnimation}}">
+                <repeat for="{{TimeData.date}}" key="item" index="index" item="item">
+                     <scroll-view
+                class="scroll-item"
+                scroll-y="true"
+                lower-threshold="200"
+                @scrolltolower="scrollNew">
+                    <view class="contentbox">
+                            <repeat for="{{item.list}}" key="item" index="index" item="itemchild">
+                                <view class="box-item">
+                                    <image src="/assets/img/logo.png" class="item-image"/>
+                                    <view class="item-right">
+                                        <view class="title">标题：{{itemchild.title}}</view>
+                                        <text>报名时间：{{itemchild.start}}</text>
+                                        <text>活动时间：{{itemchild.end}}</text>
+                                    </view>
+                                </view>
+                            </repeat>
                     </view>
-                </view>
-                <view class="box-item">
-                    <image src="/assets/img/logo.png" class="item-image"/>
-                    <view class="item-right">
-                        <view class="title">标题：青春如我，踏步时光飞逝此次v查询vcxvcvx星辰广告费共和党的共和国的就</view>
-                        <text>报名时间：2019-5-15 14:30 - 2019-5-16 14:30</text>
-                        <text>活动时间：2019-5-15 14:30 - 2019-5-16 14:30</text>
-                    </view>
-                </view>
+                     </scroll-view>
+                </repeat>
             </view>
         </view>
+         
     </block>
 </template>
 
 <script>
 import wepy from 'wepy';
 import Customnav from "@/components/customnav";
-
+import TimeData from "@/structure/association/issue.js"
+console.log(TimeData)
 export default class associationform extends wepy.page {
+    config = {
+         
+    }
     components = {
        "custom-nav":Customnav
     }
-
-    methods = {
+    onLoad(){
         
     }
+<<<<<<< HEAD
 
     events = {}
   
     data = {
         statusBarHeight : 0
+=======
+    data = {
+        TimeData,
+        TimeNow:3,
+        TopAnimation:{},
+        cenAnimation:{}
     }
+    methods = {
+        clickTop(num){
+            console.log(num)
+            this.TimeNow = num;
+            let numberT = num;
+            if(numberT <= this.TimeData.date.length-2 && 1 <= numberT){
+                 let animation1=wepy.createAnimation({
+                    duration: 200,
+                    timingFunction: 'linear'
+                });
+                 animation1.translateX(`-${(numberT-1)*14}%`).step();
+                 this.TopAnimation=animation1.export();
+            }
+           
+            let animation2=wepy.createAnimation({
+                duration: 100,
+                timingFunction: 'linear'
+            })
+           
+            animation2.translateX(`-${num*14.28}%`).step();
+            this.cenAnimation=animation2.export();
+        },
+        scrollNew(){//滑动到底后的触发
+            console.log('滑动到底触发')
+        }
+    }
+    events = {
+
+>>>>>>> zzk
+    }
+    
+  
+ 
    
 }
 </script>

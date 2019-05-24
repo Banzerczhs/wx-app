@@ -1,9 +1,193 @@
+<<<<<<< HEAD
 <style scoped>
   @import "/styles/teachbuillding/detail.wxss";
+=======
+<style>
+.DrawerPage {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  left: 0vw;
+  background-color: #f1f1f1;
+  transition: all 0.4s;
+}
+
+.DrawerPage.show {
+  transform: scale(0.9, 0.9);
+  left: 85vw;
+  box-shadow: 0 0 60rpx rgba(0, 0, 0, 0.2);
+  transform-origin: 0;
+}
+
+.DrawerWindow {
+  position: absolute;
+  width: 85vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  transform: scale(0.9, 0.9) translateX(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s;
+}
+
+.DrawerWindow.show {
+  transform: scale(1, 1) translateX(0%);
+  opacity: 1;
+  pointer-events: all;
+}
+
+.DrawerClose {
+  position: absolute;
+  width: 40vw;
+  height: 100vh;
+  right: 0;
+  top: 0;
+  color: transparent;
+  padding-bottom: 30rpx;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.6));
+  letter-spacing: 5px;
+  font-size: 50rpx;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s;
+}
+
+.DrawerClose.show {
+  opacity: 1;
+  pointer-events: all;
+  width: 15vw;
+  color: #fff;
+}
+
+.DrawerPage .cu-bar.tabbar .action button.icon {
+  width: 64rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  margin: 0;
+  display: inline-block;
+}
+
+.DrawerPage .cu-bar.tabbar .action .cu-avatar {
+  margin: 0;
+}
+
+.DrawerPage .nav {
+  flex: 1;
+}
+
+.DrawerPage .nav .cu-item.cur {
+  border-bottom: 0;
+  position: relative;
+}
+
+.DrawerPage .nav .cu-item.cur::after {
+  content: "";
+  width: 10rpx;
+  height: 10rpx;
+  background-color: currentColor;
+  position: absolute;
+  bottom: 10rpx;
+  border-radius: 10rpx;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.DrawerPage .cu-bar.tabbar .action {
+  flex: initial;
+}
+/* 自己添加 */
+.navbox{
+  position:relative;
+}
+.navimage{
+  position:absolute;
+  width:50rpx;
+  height:50rpx;
+  left:10rpx;
+}
+.state image{
+  width:30rpx;
+  height:50rpx;
+  float:left;
+  margin:10rpx;
+}
+.contentBox{
+  position:relative;
+  width:85%;
+  height:800rpx;
+  left:54rpx;
+  top:93rpx;
+  font-size:18px/1.5rpx;
+}
+.loucen{
+  width:20rpx;
+  height:80%;
+  position: absolute;
+  left:0;
+  top:56rpx;
+}
+.loucen text{
+  float:left;
+  width:100%;
+  height:75rpx;
+  margin-top:10rpx;
+  font-size:18px/1.5rpx;
+}
+.content{
+  position:absolute;
+  top:44rpx;
+  left:32rpx;
+  width:100%;
+}
+.cententrow{
+  width:100%;
+  height:80rpx;
+  display: block;
+}
+.room{
+  width:100%;
+  height:30rpx;
+  position:absolute;
+  right:-41rpx;
+  top:5rpx;
+}
+.room text{
+  float:left;
+  width:20rpx;
+  height:100%;
+  margin-right:30rpx;
+}
+.title{
+  width: 60%;
+  position:absolute;
+  bottom: 103rpx;
+  right:-93rpx;
+}
+.title image{
+  width:30rpx;
+  height:50rpx;
+  margin-left:20rpx;
+}
+.title text{
+  color:#fff;
+}
+.bg{
+  background: linear-gradient(#0081ff,#1cbbb4);
+}
+.building{
+  margin-top:30%;
+}
+>>>>>>> zzk
 </style>
 
 <template>
   <block>
+<<<<<<< HEAD
     <custom-nav isCustom="{{true}}" bgColor="text-custom-white">
       <view slot="content">{{title}}</view>
     </custom-nav>
@@ -22,6 +206,26 @@
             <image src="https://www.quyun.online/assets/image/false.png"/>
             <text>未使用</text>
           </view>
+=======
+    <custom-nav bgColor="bg-custom-color" isCustom="{{true}}">
+            <view slot="content">楼栋</view>
+    </custom-nav>
+    <scroll-view scroll-y class="DrawerPage {{modalName=='viewModal'?'show':''}} bg">	
+      <view class='padding margin text-center navbox'>
+        <image
+          src="/assets/img/teachbuillding/导航.png" 
+          class="navimage" 
+          @tap="showModal" 
+          data-target="viewModal"
+        ></image>
+      </view>
+      <view class="contentBox">
+        <view class="loucen">
+          <repeat for="{{storeyone.length}}" key="index">
+            <text>{{index+1}}</text>
+          </repeat>
+          <text>F</text>
+>>>>>>> zzk
         </view>
         <view class="roomState-model">
           <view class="text model-title">教室使用率</view>
@@ -62,9 +266,14 @@
         </view>
       </scroll-view>
     </view>
+<<<<<<< HEAD
     <view class="DrawerClose {{modalName=='viewModal'?'show':''}}" @tap="hideModal"></view>
     <view class="DrawerWindow {{modalName=='viewModal'?'show':''}}" style="top:{{boxTop}}px;">
       <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
+=======
+    <scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
+      <view class="cu-list menu card-menu shadow-lg building">
+>>>>>>> zzk
         <repeat for="{{storeyData}}" key="index">
           <view class="cu-item arrow" id="{{index}}" @tap="toggle({{item}})">
             <view class="content">
@@ -80,10 +289,18 @@
 
 <script>
 import wepy from "wepy";
+import Customnav from "@/components/customnav";
 import datateach from "@/structure/teachbuillding/teachbuillding.js";
 import Customnav from "@/components/customnav";
 
 export default class Detail extends wepy.page{
+<<<<<<< HEAD
+=======
+    components = {
+       'custom-nav' : Customnav
+    }
+
+>>>>>>> zzk
     data = {
       modalName : null,
       storeyData:{}, //总楼

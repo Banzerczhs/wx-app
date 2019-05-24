@@ -1,0 +1,37 @@
+<style>
+
+</style>
+<template>
+     <block>
+        <custom-nav bgColor="bg-custom-color" isCustom="{{true}}">
+            <view slot="content">维修上报</view>
+        </custom-nav>xxx
+        
+
+    </block>
+</template>
+<script>
+    import wepy from "wepy";
+    import Customnav from "@/components/customnav";
+    export default class repair extends wepy.page{
+        config={
+            
+        }
+        components = {
+            'custom-nav' : Customnav
+        }
+         
+        data = {
+           
+        }
+        methods = {
+        
+        }
+        events = {
+        
+        }
+        onLoad(){
+         
+        }
+    }
+</script>
