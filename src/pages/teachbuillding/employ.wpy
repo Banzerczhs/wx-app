@@ -1,4 +1,4 @@
-<style>
+<style scoped>
 .listbox{
     margin: 0 auto;
     margin-top:20px;
@@ -17,7 +17,6 @@
 </style>
 <template>
     <block>
-<<<<<<< HEAD
         <custom-nav isBack="{{true}}" bgColor="text-custom-white">
             <view slot="content">教室状态</view>
         </custom-nav>
@@ -28,16 +27,6 @@
                 </view>
             </repeat>
         </scroll-view>
-=======
-        <custom-nav bgColor="bg-custom-color" isCustom="{{true}}">
-            <view slot="content">教学楼使用情况</view>
-        </custom-nav>   
-        <repeat for="{{datalist}}" key="index">
-            <view class="listbox bg-blue light" @tap="goTO({{item}})">
-               <view>{{item.title}}</view>
-            </view>
-        </repeat>
->>>>>>> zzk
     </block>
 </template>
 
@@ -79,7 +68,7 @@
  
 export default class Employ extends wepy.page{
     config = {
-         
+         navigationBarTitleText: '教学楼使用情况'
     }
     components = {
        'custom-nav' : Customnav

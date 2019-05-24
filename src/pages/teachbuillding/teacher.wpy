@@ -1,11 +1,6 @@
-<style>
+<style scoped>
 .indexes {
   position: relative;
-
-}
-.color{
- color:#fff;
-
 }
 
 .indexes-title{
@@ -78,20 +73,9 @@
   transform:scale(1);
   -webkit-transform:scale(1);
 }
-.cu-list.menu-avatar> .childbox{
-  background-color:rgba(236, 233, 233, 0.3);
-}
- .childname{
-  color:#fff;
-}
- .childurl{
-  color:#fff;
-}
-
 </style>
 
 <template>
-<<<<<<< HEAD
   <block>
     <custom-nav isBack="{{true}}" bgColor="text-custom-white">
       <view slot="backText">教师办公室</view>
@@ -119,49 +103,8 @@
         <repeat for="{{list}}" key="index">
           <block>
             <view class="padding indexes-title" id="indexes-{{index+1}}" data-index="{{index+1}}">{{list[index]}}<text style="font-size:28rpx;margin-left:10rpx;">({{datateacher[list[index]][0].subtitle}})</text></view>
-=======
-<block>
-    <custom-nav bgColor="bg-custom-color" isCustom="{{true}}">
-            <view slot="content">办公室信息</view>
-    </custom-nav>
-    <!-- 搜索 -->
-    <view class="cu-bar bg-white search  sousuo">
-        <view class="search-form round">
-            <text class="cuIcon-search"></text>
-            <input type="text" placeholder="输入搜索的关键词" confirm-type="search" />
-        </view>
-        <view class="action">
-            <button class="cu-btn bg-gradual-green shadow-blur round">搜索</button>
-        </view>
-    </view>
-    <!-- 展示 -->
-    <scroll-view scroll-y class="indexes" scroll-into-view="indexes-{{listCurID}}" style="height:calc(100vh - 50px);" scroll-with-animation="true" enable-back-to-top="true">
-        <repeat for="{{list}}" key="index">
-          <block>
-            <view class="padding color" id="indexes-{{list[index]}}" data-index="{{list[index]}}">{{list[index]}}</view>
->>>>>>> zzk
             <view class="cu-list menu-avatar no-padding">
-<<<<<<< HEAD
-                <repeat for="{{datateacher[list[index]]}}" key="sub" index="sub">
-<<<<<<< HEAD
-                  <view class="cu-item">
-=======
-                  <view class="cu-item  childbox">
->>>>>>> zzk
-                    <view class="cu-avatar round lg imagehead"><image src="/assets/img/teachBuillding/头像02.png"/></view>
-                      <view class="content">
-                      <view class="text-grey">
-                       <view class="childname">{{item.name}}</view>
-                      </view>
-                      <view class="text-gray text-sm childurl">
-                         {{item.url}}
-                      </view>
-                    </view>
-                  </view>
-                </repeat>
-=======
               <my-list :datalist.sync="datateacher[list[index]]"></my-list>
->>>>>>> a20e4759dad4a9d9704c062fdac8171d98122c6c
             </view>
           </block>
         </repeat>
@@ -179,7 +122,6 @@
         {{listCur}}
       </view>
     </view>
-<<<<<<< HEAD
     <scroll-view 
       scroll-y
       class="scroll resultList {{listState?'active':''}}"
@@ -189,30 +131,16 @@
       </view>
     </scroll-view>
   </block>
-=======
-    <!--选择显示-->
-    <view hidden="{{hidden}}" class="indexToast">
-      {{listCur}}
-    </view>
-
-</block>
-
->>>>>>> zzk
 </template>
 
 <script>
 import wepy from "wepy";
-import Customnav from "@/components/customnav";
 import datateacher from "@/structure/teachbuillding/teacher.js"
-<<<<<<< HEAD
-=======
 import Customnav from "@/components/customnav";
 import Search from "@/components/search";
 import Teacherlist from "@/components/teachbuillding/teacherlist";
 
->>>>>>> a20e4759dad4a9d9704c062fdac8171d98122c6c
 export default  class Teacher extends wepy.page {
-<<<<<<< HEAD
   config = {
     navigationBarTitleText: '办公室信息'
   }
@@ -237,22 +165,6 @@ export default  class Teacher extends wepy.page {
     'result-list' : Teacherlist
   }
 
-=======
-    config = {
-    }
-    components = {
-       'custom-nav' : Customnav
-    }
-    data = {
-      StatusBar: '',
-      CustomBar: '',
-      hidden: true,
-      list : [],
-      listCur : 0,
-      listCurID : 0,
-      datateacher:datateacher.teacher
-    }
->>>>>>> zzk
   onLoad() {
     this.list=[...Object.keys(this.datateacher)];
     this.listCur='1F';
@@ -260,11 +172,8 @@ export default  class Teacher extends wepy.page {
     let custom=wepy.getMenuButtonBoundingClientRect();
     this.CustomBar=custom.bottom+custom.top-res.statusBarHeight;
     this.$apply();
-<<<<<<< HEAD
-=======
-    
->>>>>>> zzk
   }
+
   onReady() {
     let that = this;
     wx.createSelectorQuery().select('.indexBar-box').boundingClientRect(function(res) {
@@ -276,36 +185,29 @@ export default  class Teacher extends wepy.page {
       that.$apply();
     }).exec();
   }
+
   //获取文字信息
   methods={
-<<<<<<< HEAD
     getCur(e) {
       this.hidden=false;
       this.listCur=e.target.id;
     },
-=======
-      getCur(e) {
-        this.hidden=false;
-        this.listCur=this.list[e.target.id];
-      },
->>>>>>> zzk
 
-      setCur(e){
-        this.hidden=true;
-        this.listCur=this.listCur;
-      },
+    setCur(e){
+      this.hidden=true;
+      this.listCur=this.listCur;
+    },
     //滑动选择Item
     tMove(e) {
       let y = e.touches[0].clientY,
         offsetTop = this.boxTop,
         that = this;
-        console.log(y,offsettop)
       //判断选择区域,只有在选择区才会生效
       if (y > offsetTop) {
         let num = parseInt((y - offsetTop) / 23);
         num=num>=5?5:num;
         this.listCur=that.list[num];  //最多到字母z，所以选择只需要判断大于即可
-      };
+      }
     },
     //触发全部开始选择
     tStart() {
@@ -317,7 +219,6 @@ export default  class Teacher extends wepy.page {
       this.hidden=true;
       this.listCurID=parseInt(this.listCur);
     },
-<<<<<<< HEAD
 
     showlist(){
       this.state=true;
@@ -353,21 +254,6 @@ export default  class Teacher extends wepy.page {
         }));
       });
       return resultArr;
-=======
-    indexSelect(e) {
-      let that = this;
-      let barHeight = this.barHeight;
-      let list = this.list;
-      let scrollY = Math.ceil(list.length * e.detail.y / barHeight);
-      for (let i = 0; i < list.length; i++) {
-        if (scrollY < i + 1) {
-          that.listCur=list[i];
-          that.movableY=i * 20;
-          that.$apply();
-          return false
-        }
-      }
->>>>>>> zzk
     }
   }
 }

@@ -90,13 +90,9 @@ page{
 }
 
 </style>
-<template>
+<template >
     <block>
-<<<<<<< HEAD
-        <custom-nav bgColor="text-custom-white" isCustom="{{true}}">
-=======
         <custom-nav bgColor="bg-custom-color" isCustom="{{true}}">
->>>>>>> zzk
             <view slot="content">活动时间表</view>
         </custom-nav>
         <view class="nav">
@@ -152,13 +148,6 @@ export default class associationform extends wepy.page {
     onLoad(){
         
     }
-<<<<<<< HEAD
-
-    events = {}
-  
-    data = {
-        statusBarHeight : 0
-=======
     data = {
         TimeData,
         TimeNow:3,
@@ -193,7 +182,6 @@ export default class associationform extends wepy.page {
     }
     events = {
 
->>>>>>> zzk
     }
     
   

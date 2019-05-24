@@ -1,4 +1,4 @@
-<style>
+<style scoped>
     .tag{
         position:absolute;
         padding:5px 15px;
@@ -36,10 +36,6 @@
                 type : String,
                 default : 'left'
             }
-        }
-
-        onLoad(){
-            console.log(this.tagPos);
         }
     }
 </script>

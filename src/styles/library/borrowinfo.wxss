@@ -1,75 +1,57 @@
 .navbar{
-    line-height:7vh;
-    width:100%;
-    overflow:hidden;
-    position: absolute;
+    width:80%;
+    display: flex;
+    display: -webkit-flex;
+    position: relative;
     z-index:100;
-    left:0;
-    border-bottom: 1px solid transparent;
+    justify-content: space-around;
+    margin: 0 auto;
 }
 .navbar text{
     color:rgb(216, 216, 216);
     font-size:30rpx;
-    width:50%;
-    float:left;
     text-align: center;
+    padding:10px 0;
+    flex-grow:1;
+    position: relative;
 }
 .navbar .textActive{
     font-size:30rpx;
     color:#fff;
     font-weight: 600;
-    border-bottom: 1px solid #fff;
 }
-.child{
-    display: inline-block;
-    vertical-align:top;
-    width:715rpx;
-    height:32vh;
-    margin:10rpx 20rpx;
-    overflow:hidden;
-    position: relative;
-    background-color:rgba(255, 255, 255,1);
-    border-radius:4px;
-    box-shadow:1px 1px 4px #270752;
-    padding: 10px;
-    box-sizing: border-box;
-}
-.child-left{
-    width:40%;
-    height:100%;
-    float:left;
-    border:solid 1px transparent;
-    box-sizing: border-box;
-}
-.child-left image{
-    width: 100%;
-    height:100%;
-    border-radius: 4px;
-    position:relative;
-}
-.child-left image::before{
-    content:"";
+.navbar .textActive::before{
+    content: "";
     display: block;
-    width: 100%;
-    height:100%;
-    position:absolute;
-    left:0;
-    top:0;
+    width: 80px;
+    height: 2px;
+    background-color: #fff;
+    position: absolute;
+    left:50%;
+    bottom: 0px;
+    transform: translateX(-50%);
 }
-.child-right{
-    width: 54%;
-    height:100%;
-    margin-left: 15px;
-    float: left;
+/* 还书列表 */
+.tipText{
+    text-align: center;
+    color: #fff;
+    line-height: 2;
 }
-.child-right view{
-    font:16px/1.5 "微软雅黑";
-    color:rgb(99, 58, 12);
-    vertical-align: center;
-    text-align:left;
+.continue-btn{
+    position: absolute;
+    right:20rpx;
+    bottom:30rpx;
+    width: 100rpx;
+    height:100rpx;
+    border-radius:50%;
+    background-color:#0081ff;
+    color:#fff;
+    text-align: center;
+    line-height:100rpx;
+    box-shadow:1px 1px 4px #270752;
 }
-.child-right text{
-    color:rgb(70, 41, 7);
+.button-hover{
+    bottom:28rpx;
 }
 /* 借阅历史 */
 .historybox{
@@ -117,25 +99,7 @@
 }
 /*整页效果*/
 .movebox{
-<<<<<<< HEAD
     display: flex;
     display: -webkit-flex;
     justify-content: space-around;
-=======
-    width:200%;
-    position: absolute;
-    top:216rpx;
-    bottom:0;
-    overflow: hidden;
-}
-.pagebox1{
-    width:50%;
-    position: absolute;
-}
-.pagebox2{
-    width:50%;
-    position: absolute;
-    transform:translateX(100%);
-    /* display:none; */
->>>>>>> zzk
 }

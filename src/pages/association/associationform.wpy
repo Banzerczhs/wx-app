@@ -44,34 +44,11 @@
   display: none;
 }
 </style>
-<template>
+<template >
   <block>
-<<<<<<< HEAD
-      <custom-nav bgColor="text-custom-white" isCustom="{{true}}">
-          <view slot="content">发布活动</view>
-      </custom-nav>
-      <form @submit="formSubmit">
-              <view class="cu-form-group">
-                  <view class="title">*活动标题：</view>
-                  <input placeholder="活动标题" name="title" />
-              </view>
-              <view class="cu-form-group">
-                  <view class="title">*活动组织：</view>
-                  <input placeholder="填写社团组织名称"  name="association"/>
-              </view>
-              <view class="cu-form-group">
-                  <view class="title">*负责人：</view>
-                  <input placeholder="活动负责人" name="duty"/>
-              </view>
-              <view class="cu-form-group">
-                  <view class="title">*电话：</view>
-                  <input placeholder="手机即可"  name="Tel"/>
-              </view>
-=======
         <custom-nav bgColor="bg-custom-color" isCustom="{{true}}">
             <view slot="content">发布活动</view>
         </custom-nav>
->>>>>>> zzk
 
 
         <form @submit="formSubmit" >
@@ -269,7 +246,6 @@ export default class associationform extends wepy.page {
         this.TimeTwo.datelistone=[...datalist[0]]
         this.TimeTwo.dateChildone=[...datalist[1][0]] 
     }
-
     methods = {
         bindChange(obj,num,e){
             let val = e.detail.value;
@@ -411,61 +387,6 @@ export default class associationform extends wepy.page {
     events = {
 
     }
-<<<<<<< HEAD
-    onLoad() {
-      this.datelistone=[...datalist[0]]
-      this.dateChildone=[...datalist[1][0]]
-    }
-  
-    formSubmit(e){  //提交处理
-      console.log(e)
-    }
-
-    TimeChange(e) {
-      console.log(e)
-      this.time = e.detail.value;
-    }
-
-    ChooseImage(){
-      wx.chooseImage({
-        count: 4, //默认9
-        sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-        sourceType: ['album'], //从相册选择
-        success: (res) => {
-          console.log(res)
-          if (this.imgList.length != 0) {
-            this.imgList = this.data.imgList.concat(res.tempFilePaths);
-          } else {
-            this.imgList = res.tempFilePaths;
-          }
-        }
-      });
-    }
-
-    ViewImage(e) {
-      wx.previewImage({
-        urls: this.imgList,
-        current: e.currentTarget.dataset.url
-      });
-    }
-
-    DelImg(e) {
-      wx.showModal({
-        title: '是否删除',
-        content: '确定要删除这张吗？',
-        cancelText: '再看看',
-        confirmText: '删除',
-        success: res => {
-          if (res.confirm){
-            this.data.imgList.splice(e.currentTarget.dataset.index, 1);
-            this.setData({
-              imgList: this.data.imgList
-            })
-          }
-        }
-      })
-    }
-=======
 
     hideTextarea(obj){
         this[obj].modalName = null;
@@ -512,7 +433,6 @@ export default class associationform extends wepy.page {
     
   
    
->>>>>>> zzk
 }
 </script>
 
