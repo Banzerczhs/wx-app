@@ -50,7 +50,6 @@
 
         onLoad(){
             this.datalist = librarydata["libraryone"];
-
             let res=wepy.getSystemInfoSync();
             let custom=wepy.getMenuButtonBoundingClientRect();
             this.toTop=custom.bottom+custom.top-res.statusBarHeight;

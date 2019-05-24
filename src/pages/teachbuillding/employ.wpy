@@ -14,18 +14,19 @@
     bottom:10px;
     font:bold 20px/1.5 "微软雅黑";
 }
-
 </style>
 <template>
     <block>
         <custom-nav isBack="{{true}}" bgColor="text-custom-white">
             <view slot="content">教室状态</view>
         </custom-nav>
-        <repeat for="{{datalist}}" key="index">
-            <view class="listbox bg-blue light" @tap="goTo({{item}})">
-               <view>{{item.title}}</view>
-            </view>
-        </repeat>
+        <scroll-view scroll-y style="top:{{toTop}};" class="scroll">
+            <repeat for="{{datalist}}" key="index">
+                <view class="listbox bg-blue light" @tap="goTo({{item}})">
+                <view>{{item.title}}</view>
+                </view>
+            </repeat>
+        </scroll-view>
     </block>
 </template>
 
@@ -74,13 +75,14 @@ export default class Employ extends wepy.page{
     }
 
     data = {
-        datalist
+        datalist,
+        toTop : 0
     }
 
     methods = {
         goTo(item){
             wx.navigateTo({
-                url: `${item.url}?id=${item.id}&title=${item.title}`
+                url: `${item.url}?id=${item.id}`
             })
         }
     }
@@ -88,7 +90,9 @@ export default class Employ extends wepy.page{
     events = {}
     
     onLoad() {
-     
+        let res=wepy.getSystemInfoSync();
+        let custom=wx.getMenuButtonBoundingClientRect();
+        this.toTop=custom.bottom+custom.top-res.statusBarHeight+'px';
     }
 }
 </script>

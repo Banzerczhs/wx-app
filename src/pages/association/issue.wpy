@@ -64,7 +64,7 @@
     color:brown;
 }
 </style>
-<template >
+<template>
     <block>
         <custom-nav bgColor="text-custom-white" isCustom="{{true}}">
             <view slot="content">活动时间表</view>
@@ -134,13 +134,9 @@ export default class associationform extends wepy.page {
     }
 
     events = {}
-    
-    onLoad() {
-        console.log('xxx');
-    }
   
     data = {
-
+        statusBarHeight : 0
     }
    
 }

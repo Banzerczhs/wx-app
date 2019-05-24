@@ -29,7 +29,7 @@
 <template>
     <view>
         <custom-nav isBack="{{true}}" class="text-custom-white"></custom-nav>
-        <cu-search placeholder="请输入“ISBN/书名/作者名”查询书目" :value="inputText">
+        <cu-search placeholder="请输入“ISBN/书名/作者名”查询书目" :twoWayValue="inputText">
             <view class="action" slot="btn" @tap="searchBook">
                 <button class="cu-btn bg-green shadow-blur round">搜索</button>
             </view>
