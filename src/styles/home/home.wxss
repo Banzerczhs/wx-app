@@ -9,9 +9,6 @@
   top:0;
   background-size: 100% 100%;
 }
-.bg-gradual-blue{
-  background-image:linear-gradient(45deg, #0081ff, #1c7bbb);
-}
 .indexCon .bg-com{
   width:100%;
   height:100%;
