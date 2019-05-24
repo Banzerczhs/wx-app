@@ -6,14 +6,19 @@
 </style>
 
 <template>
-    <view class="cu-bar radius padding-sm text-center shadow-blur search" style="min-height:80rpx">
-        <view class="search-form round">
-            <text class="cuIcon-search"></text>
-            <input 
+    <view class="{{styles}}">
+        <view class="search-form {{searchType}}" style="{{bgColor}}">
+            <slot name="icon">
+                <text class="cuIcon-search" slot="icon"></text>
+            </slot>
+            <input
                 type="text" 
-                placeholder="{{placeholder}}" 
+                placeholder="{{placeholder}}"
+                placeholder-style="{{tipcss}}"
                 disabled="{{disabled}}" 
                 confirm-type="search"
+                style="{{inputcss}}"
+                value="{{twoWayValue}}"
                 @input="changeVal"
             />
         </view>
@@ -27,22 +32,33 @@
         props = {
             placeholder : {
                 type : String,
-                default : '请输入关键字，查询内容'
+                default : '请输入关键字'
             },
             disabled : {
                 type : [Boolean,String],
                 default : false
             },
-            value : {
+            twoWayValue : {
                 type : String,
                 default : '',
                 twoWay : true
-            }
+            },
+            styles : {
+                type : String,
+                default : 'cu-bar padding-sm text-center search shadow-blur'
+            },
+            searchType : {
+                type : String,
+                default : 'round'
+            },
+            bgColor : String,
+            tipcss : String,
+            inputcss : String
         }
 
         methods = {
             changeVal(e){
-                this.value=e.detail.value;
+                this.twoWayValue=e.detail.value;
             }
         }
     }

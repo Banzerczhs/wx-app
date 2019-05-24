@@ -52,14 +52,14 @@ let indexlist = {
         },
         {
             src:"https://www.quyun.online/assets/image/x_0040_%E5%AE%BF%E8%88%8D.png",
-            name:'服务中心',
+            name:'宿舍',
             child:[
                 {
                     name:"费用缴纳",
                     url:"/pages/dorm/pay"
                 },
                 {
-                    name:"保修列表",
+                    name:"维修列表",
                     url:"/pages/dorm/repair"
                 }
             ]
@@ -114,4 +114,3 @@ let fish ={
 export default {
     indexlist
 };
-

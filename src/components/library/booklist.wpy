@@ -45,7 +45,6 @@
 }
 .child-right view{
     color:rgb(99, 58, 12);
-    vertical-align: center;
     text-align:left;
 }
 .child-right text{
@@ -53,16 +52,15 @@
 }
 .child-right .radioBtn{
     position:absolute;
-    right:-30rpx;
+    right:-36rpx;
     top:5rpx;
-    width: 80rpx;
-    height:80rpx;
-    overflow:hidden;
 }
 .child-right .radioBtn image{
     width: 50rpx;
     height:50rpx;
-    margin-top: -4rpx;
+    margin-top: -10%;
+    vertical-align:middle;
+    display:inline-block;
 }
 </style>
 
@@ -91,7 +89,8 @@
                         </view>
                     </view>
                     <view wx:if="{{item.radioBtn}}" class="radioBtn" @tap="Choice({{index}})">
-                        续<image src="/assets/img/{{item.radioBtn.radio}}.png"></image>
+                        <text>续</text>
+                        <image src="/assets/img/{{item.radioBtn.radio}}.png"></image>
                     </view>
                 </view>
             </view>
