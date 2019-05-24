@@ -11,21 +11,16 @@ page{
 }
 .content-room{
     background:#66ccff;
-    position: relative;
     width:100%;
     height:7vh;
     margin-top:50rpx;
 }
 .content-pay{
     width:100%;
-    height:200rpx;
+    height:300rpx;
+    background: rgba(255, 255, 255, 0.568);
     text-align: center;
-    background:rgba(250, 248, 248, 0.712);
     margin-top:100rpx;
-}
-.content-pay .TextShow{
-    position: relative;
-    top:10px;
 }
 .content-select{
     width:100%;
@@ -34,22 +29,22 @@ page{
     background:100rpx;
     text-align: center;
 }
-.content-select button{
+.content-select text{
      background:#66ccff;
      border-radius:3px;
      width:120rpx;
      height:50rpx;
      line-height: 50rpx;
      display: inline-block;
-     color:rgb(139, 27, 27);
+     color:#4b4a4a;
      font-size:18/1.5px;
      cursor:pointer;
 }
-.content-select button:nth-child(1){
+.content-select text:nth-child(1){
     float:left;
     margin-left:30px;
 }
-.content-select button:nth-child(2){
+.content-select text:nth-child(2){
     float:right;
     margin-right:30px;
 }
@@ -60,358 +55,34 @@ page{
     color:#fff;
     text-align: center; 
 }
-.nav{
-    width:100%;
-    height:8vh;
-    overflow: hidden;    
-    text-align: center;
-    background: rgb(58, 88, 153);
-}
-.nav-ul{
-    height:100%;
-    position: relative;
-    display: flex;
-   justify-content:space-around; 
-}
-.navbox{
-    width:230rpx;
-    height:95%;
-    display: flex;
-    align-items: center;
-    justify-content:space-around; 
-    float:left;
-    color:#fff;
-}
-.navbox  .active{
-    color:lightcoral;
-    font-size:16px;
-    transition: all 0.5s;
-}
-.overflow-box{
-    position: relative;
-    height:100%;
-    width:100%;
-    overflow: hidden;
-}
-.contentpage{
-    width:300%;
-    height:100%;
-    position: relative;
-    transform: translateX(0%);
-}
-.contentbox{
-    width:750rpx;
-    height:100%;
-    float: left;
-}
-.model-width{
-    width:750rpx;
-}
-.model-position{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-}
-.inputUser{
-    width:220rpx;
-    height:80rpx;
-    margin-top:10rpx;
-    margin-left:10rpx;
-    line-height: 80rpx;
-}
-.inputUser::before{
-    content:'元';
-    position: absolute;
-    right:40rpx;
-}
-.xuehao{
-    height:7vh;
-    line-height: 7vh;
-    padding-left:5px;
-}
-.xuehao input {
-    width:80%;
-    float:right;
-    margin-top:20rpx;
-    color:#fff;
-}
+
 </style>
 <template>
      <block>
         <custom-nav bgColor="bg-custom-color" isCustom="{{true}}">
-            <view slot="content" class="{{payNow==index ? 'active' :''}}">{{payType[payNow]}}</view>
+            <view slot="content">电费充值</view>
         </custom-nav>
-    
-        <view class="nav">
-            <view class="nav-ul">
-                  <repeat for="{{payType}}" key="item" index="index" item="item">
-                       <view class="navbox"  @tap="clickTop({{index}})">
-                            <view class="{{payNow==index ? 'active' :''}}">{{item}}</view>
-                        </view>
-                  </repeat>
+        <view class="box-content">
+            <view class="content-room">
+
+            </view>
+            <view class="content-pay">
+
+            </view>
+            <view class="content-select">
+                <text class="">查询</text>
+                <text class="">充值</text>
+            </view>
+            <view class="show-electricity">
+
             </view>
         </view>
-        <view  class="overflow-box">
-            <view class="contentpage" animation="{{cenAnimation}}">
-                <!-- 电费充值 -->
-                    <view class="contentbox">
-                        <form action="" @submit="formSubmitOne(dromOne)">
-                            <view class="box-content">
-                                <view class="content-room">
-                                     <view class="cu-form-group">
-                                        <view class="title">宿舍选择</view>
-                                            <view class="cu-bar bg-white margin-top">
-                                            <view class="action" @tap="showModel(dromOne,1)">
-                                                <view class="shadow timeafter" >{{dromOne.dromOkText}}</view>
-                                            </view>
-                                            </view>
-                                        <view class="cu-modal bottom-modal {{dromOne.showName==true?'show':''}} model-width">
-                                            <view class="cu-dialog">
-                                            <view class="cu-bar bg-white">
-                                                <view class="action text-green" @tap="dromOk(dromOne)" >确定</view>
-                                                <view class="action text-blue" @tap="showModel(dromOne,1)">取消</view>
-                                            </view>
-                                            <view class="padding-xl">
-                                                    <picker-view indicator-class="pickerview" style="width: 100%; height: 300px;"  @change="bindChange(dromOne)">
-                                                        <picker-view-column>
-                                                        <view wx:for="{{dromOne.drom}}" wx:key="item" style="line-height: 60rpx">{{item}}</view>
-                                                        </picker-view-column>
-                                                        <picker-view-column>
-                                                            <view style="height:100%; line-height:60rpx">---</view>
-                                                        </picker-view-column>
-                                                        <picker-view-column>
-                                                        <view wx:for="{{dromOne.dromitem}}" wx:key="item" style="line-height: 60rpx">{{item}}</view>
-                                                        </picker-view-column>
-                                                    </picker-view>
-                                            </view>
-                                            </view>
-                                        </view>
-                                    </view>
-                                </view> 
-                                <view class="content-pay">
-                                    <view class="cu-bar bg-white margin-top">
-                                        <view class="action">
-                                            金额选择:
-                                        </view>
-                                        <view class="action">
-                                            <button class="cu-btn bg-green shadow" @tap="showModel(dromOne,2)">{{dromOne.payNum}}</button>
-                                        </view>
-                                    </view>
-                                     <text class="TextShow">1元 = 1.5度电</text>
-                                    <view class="cu-modal bottom-modal {{dromOne.modalName==true?'show':''}} model-width " @tap="showModel(dromOne,2)">
-                                        <view class="cu-dialog model-position" catchtap >
-                                            <view class="cu-bar bg-white">
-                                                <view class="action text-green" @tap="hidepayOk(dromOne)">确定</view>
-                                                <view class="action text-blue" @tap="showModel(dromOne,2)">取消</view>
-                                              
-                                            </view>
-                                            <view class="grid col-3 padding-sm">
-                                                <view wx:for="{{checkbox}}" class="padding-xs" wx:key="{{index}}">
-                                                    <button class="cu-btn orange lg block {{dromOne.checkNow==index?'bg-orange':'line-orange'}}" @tap="ChooseCheckbox(dromOne)" data-value="{{item.value}}"> {{item.name}}
-                                                    </button>
-                                                </view>
-                                                    <input class="cu-btn orange  block inputUser {{dromOne.checkNow==null?'bg-orange':'line-orange'}}" 
-                                                    placeholder="自定义" type="number" 
-                                                    @tap="CheckInput(dromOne)" @input="ChangeText(dromOne)" 
-                                                    name="dromOneNum"/>
-                                            </view>
-                                        </view>
-                                    </view>
-                                </view>
-                                <view class="content-select">
-                                   <button type="button" @tap="lookdata(dromOne)">查询</button>
-                                   <button form-type="submit" >充值</button>
-                                </view>
-                                <view class="show-electricity">
-                                    剩余电量：{{dromOne.remaining}}
-                                </view>
-                            </view>
-                        </form>
-                    </view>
-                <!-- 水费充值 -->
-                    <view class="contentbox">
-                        <form action="" @submit="formSubmitOne(dromTwo)">
-                            <view class="box-content">
-                                <view class="content-room">
-                                     <view class="cu-form-group">
-                                        <view class="title">宿舍选择</view>
-                                            <view class="cu-bar bg-white margin-top">
-                                            <view class="action" @tap="showModel(dromTwo,1)">
-                                                <view class="shadow timeafter" >{{dromTwo.dromOkText}}</view>
-                                            </view>
-                                            </view>
-                                        <view class="cu-modal bottom-modal {{dromTwo.showName==true?'show':''}} model-width " style="left:750rpx;">
-                                            <view class="cu-dialog">
-                                            <view class="cu-bar bg-white">
-                                                <view class="action text-green" @tap="dromOk(dromTwo)" >确xx定</view>
-                                                <view class="action text-blue" @tap="showModel(dromTwo,1)">取xx消</view>
-                                            </view>
-                                            <view class="padding-xl">
-                                                    <picker-view indicator-class="pickerview" style="width: 100%; height: 300px;"  @change="bindChange(dromTwo)">
-                                                        <picker-view-column>
-                                                        <view wx:for="{{dromTwo.drom}}" wx:key="item" style="line-height: 60rpx">{{item}}</view>
-                                                        </picker-view-column>
-                                                        <picker-view-column>
-                                                            <view style="height:100%; line-height:60rpx">---</view>
-                                                        </picker-view-column>
-                                                        <picker-view-column>
-                                                        <view wx:for="{{dromTwo.dromitem}}" wx:key="item" style="line-height: 60rpx">{{item}}</view>
-                                                        </picker-view-column>
-                                                    </picker-view>
-                                            </view>
-                                            </view>
-                                        </view>
-                                    </view>
-                                </view> 
-                                <view class="content-pay">
-                                    <view class="cu-bar bg-white margin-top">
-                                        <view class="action">
-                                            金额选择:
-                                        </view>
-                                        <view class="action">
-                                            <button class="cu-btn bg-green shadow" @tap="showModel(dromTwo,2)">{{dromTwo.payNum}}</button>
-                                        </view>
-                                    </view>
-                                    <text class="TextShow">水卡充值金额即可</text>
-                                    <view class="cu-modal bottom-modal {{dromTwo.modalName==true?'show':''}} model-width " style="left:750rpx;"  @tap="showModel(dromTwo,2)">
-                                        <view class="cu-dialog model-position" catchtap >
-                                            <view class="cu-bar bg-white">
-                                                <view class="action text-green"  @tap="hidepayOk(dromTwo)">确x定</view>
-                                                <view class="action text-blue"  @tap="showModel(dromTwo,2)">取x消</view>
-                                            </view>
-                                            <view class="grid col-3 padding-sm">
-                                                <view wx:for="{{checkbox}}" class="padding-xs" wx:key="{{index}}">
-                                                    <button class="cu-btn orange lg block {{dromTwo.checkNow==index?'bg-orange':'line-orange'}}" @tap="ChooseCheckbox(dromTwo)" data-value="{{item.value}}"> {{item.name}}
-                                                    </button>
-                                                </view>
-                                                  <input class="cu-btn orange  block inputUser {{dromTwo.checkNow==null?'bg-orange':'line-orange'}}" 
-                                                    placeholder="自定义" type="number" 
-                                                    @tap="CheckInput(dromTwo)" @input="ChangeText(dromTwo)" 
-                                                    name="dromOneNum"/>
-                                            </view>
-                                        </view>
-                                    </view>
-                                </view>
-                                <view class="content-select">
-                                    <button type="button"  @tap="lookdata(dromTwo)">查询</button>
-                                    <button form-type="submit">充值</button>
-                                </view>
-                                <view class="show-electricity">
-                                    剩余金额：{{dromTwo.remaining}}
-                                </view>
-                            </view>
-                        </form>
-                    </view>
-                <!-- 网费充值 -->
-                    <view class="contentbox">
-                        <form action="" @submit="formSubmitOne(dromThree)">
-                            <view class="box-content">
-                                <view class="content-room">
-                                    <view class="xuehao">学号:
-                                        <input type="number" name="xuehao"
-                                               maxlength="11"
-                                               @blur="focusDromThree"
-                                               @focus="focusDromThree"
-                                               @input="checkNumber"  
-                                               value="{{dromThree.dromOkText}}"/></view>
-                                </view> 
-                                <view class="content-pay">
-                                    <view class="cu-bar bg-white margin-top">
-                                        <view class="action">金额选择:</view>
-                                        <view class="action">
-                                            <button class="cu-btn bg-green shadow" @tap="showModel(dromThree,2)">{{dromThree.payNum}}</button>
-                                        </view>
-                                    </view>
-                                    <text class="TextShow">选择金额充值即可</text>
-                                    <view class="cu-modal bottom-modal {{dromThree.modalName==true?'show':''}} model-width " 
-                                          style="left:1500rpx;" 
-                                          @tap="showModel(dromThree,2)">
-                                        <view class="cu-dialog model-position" catchtap >
-                                            <view class="cu-bar bg-white">
-                                                <view class="action text-green" @tap="hidepayOk(dromThree)">确3定</view>
-                                                <view class="action text-blue" @tap="showModel(dromThree,2)">取3消</view>
-                                            </view>
-                                            <view class="grid col-3 padding-sm">
-                                                <view wx:for="{{checkbox}}" class="padding-xs" wx:key="{{index}}">
-                                                    <button class="cu-btn orange lg block {{dromThree.checkNow==index?'bg-orange':'line-orange'}}" 
-                                                            @tap="ChooseCheckbox(dromThree)" data-value="{{item.value}}"> 
-                                                                {{item.name}}
-                                                    </button>
-                                                </view>
-                                                <input class="cu-btn orange  block inputUser {{dromThree.checkNow==null?'bg-orange':'line-orange'}}" 
-                                                placeholder="自定义" type="number" 
-                                                @tap="CheckInput(dromThree)" @input="ChangeText(dromThree)" 
-                                                name="dromOneNum"/>
-                                            </view>
-                                        </view>
-                                    </view>
-                                </view>
-                                <view class="content-select">
-                                   <button type="button" @tap="lookdata(dromThree)">查询</button>
-                                   <button form-type="submit" >充值</button>
-                                </view>
-                                <view class="show-electricity">
-                                    剩余电量：{{dromThree.remaining}}
-                                </view>
-                            </view>
-                        </form>
-                    </view>
-            </view>
-        </view>
+
     </block>
 </template>
 <script>
-     
     import wepy from "wepy";
     import Customnav from "@/components/customnav";
-
-    let model = [
-        {
-            value: 0,
-            name: '10元',
-        },{
-            value: 1,
-            name: '20元',
-        }, {
-            value: 2,
-            name: '30元',
-        }, {
-            value: 3,
-            name: '60元',
-        }, {
-            value: 4,
-            name: '80元',
-        }]
-    let datalist = [['东三','东四','东六','东七','东八','东九','东十C'],[]];
-    for(let i=0;i<datalist[0].length;i++){
-         let list = [];
-         for(let h=0;h<6;h++){
-            let random = Math.ceil(Math.random()*40);
-            for(let j=0; j< random;j++){
-                let a = null;
-                if(j<= 9 ){
-                    a= '0' +j
-                }else{
-                    a = j
-                }
-                list.push(`${datalist[0][i]}${h+1}${a}`);
-            }
-         }
-          datalist[1].push(list);
-    }
-    let obj = {
-            dromOkText:'还未选择',
-            remaining:'',
-            showName:false,
-            drom:[],
-            dromitem:[],
-            dromOk:{},
-            modalName:false,
-            checkNow:0,
-            payNum:'输入'
-           }
-    let payType = ["电费充值","水费充值","网络缴费"]
     export default class pay extends wepy.page{
         config={
             
@@ -419,167 +90,18 @@ page{
         components = {
             'custom-nav' : Customnav
         }
-        onLoad(){
-            this.dromOne.drom =  datalist[0];  
-            this.dromOne.dromitem =  datalist[1][0];   
-            this.dromTwo.drom =  datalist[0];  
-            this.dromTwo.dromitem =  datalist[1][0];  
-        }
+        
         data = {
-            payType,
-            payNow:0,
-            cenAnimation:{},
-            dromOne:{...obj},
-            dromTwo:{...obj},
-            dromThree:{...obj},
-            checkbox:model
+           
         }
         methods = {
-            clickTop(val){ //点击切换界面
-                this.payNow = val;
-                console.log(val)
-                let animation2=wepy.createAnimation({
-                    duration: 100,
-                    timingFunction: 'linear'
-                })
-                animation2.translateX(`-${val*33.33}%`).step();
-                this.cenAnimation=animation2.export();
-                },
-            showModel(obj,a){ //切换显示
-                switch (a){
-                    case '1':{
-                        this[obj].showName = !this[obj].showName;
-                        break;
-                    }
-                    case '2':{
-                        this[obj].modalName = !this[obj].modalName;
-                        break;
-                    }
-                    case '3':{
-                        break;
-                    }
-                }
-            },
-            dromOk(obj){ //宿舍确认时
-                if(JSON.stringify(this[obj].dromOk)=='{}'){
-                    this.showAlert("你还啥都没干");
-                    return;
-                }
-                this[obj].dromOkText = this[obj].dromOk.dromitemObj;
-                this[obj].showName = '';
-            },
-            bindChange(obj,e){  //宿舍选择时
-                let {value} = e.detail;
-                this[obj].dromitem = datalist[1][value[0]];
-                let dromObj = this[obj].drom[value[0]];
-                let dromitemObj = this[obj].dromitem[value[2]];
-                this[obj].dromOk = {
-                    dromObj,
-                    dromitemObj
-                }
-            },
-            //中间支付处理
-            ChooseCheckbox(obj,e) { //点击预定金额时
-                let {value} = e.currentTarget.dataset;
-                let {anchorTargetText} = e._relatedInfo;
-                this[obj].checkNow = value;
-                this[obj].dromOk['pay'] = anchorTargetText;
-            },
-            CheckInput(obj,e){  //点击input
-                this[obj].checkNow = null;
-                if(this[obj].dromOk['payold'] ){
-                    this[obj].dromOk['pay']= this[obj].dromOk['payold'];
-                }
-            },
-            ChangeText(obj,e){  //input输入时
-                let {value} = e.detail;
-                this[obj].dromOk['pay'] = value+"元";
-                this[obj].dromOk['payold'] = value+"元";
-            },
-            hidepayOk(obj){ //充值确认时
-                if(this[obj].dromOk['pay']==undefined){
-                    this.showAlert("你还啥都没干");
-                    return;
-                }else{
-                    this[obj].payNum = this[obj].dromOk['pay'];
-                    this[obj].modalName = false;
-                }
-            },
-            lookdata(obj){  //查询处理
-                let a = null;
-                let c = this.judge(obj)
-                if(c){
-                    obj == 'dromOne' ? a = "度" : a = "元"
-                    this[obj].remaining =  Math.ceil(Math.random()*50) + a ;
-                }
-            },
-            formSubmitOne(obj){ //提交处理
-                let c = this.judge(obj)
-                if(c){
-                    if(this[obj].payNum=='输入'){
-                    this.showAlert('还未选择金额！');
-                    return;
-                    }
-                    wx.showLoading({
-                        title:'充值中...',
-                        mask:true,
-                        success:()=>{
-                            setTimeout(()=>{
-                                this.showAlert(`${this[obj].dromOkText}充值${this[obj].payNum} 成功`);
-                            },1500)
-                        }
-                    })
-                }
-            },
-            checkNumber(e){ //网费输入时
-                console.log(e)
-                let {value,cursor} = e.detail;
-                if(cursor > 11){
-                    cursor = 11
-                }
-                value = value.slice(0,cursor);
-                this.dromThree.dromOkText = value;
-                console.log(this.dromThree.dromOkText)
-            },
-            focusDromThree(){   //聚焦与失焦时
-                let a = this.dromThree.dromOkText == "还未选择";
-                let b = this.dromThree.dromOkText == "";
-                if(a){
-                    this.dromThree.dromOkText = "";
-                    return
-                }
-                if(b){
-                    this.dromThree.dromOkText = "还未选择";
-                }
-            }
+        
         }
         events = {
         
         }
-        showAlert(val){ //弹窗复用
-             wx.showToast({
-                icon:"none",
-                mask:"true",
-                title:val                 
-            })
-        }
-        judge(obj){ //判断抽离
-            if(obj!='dromThree'){
-                    if(this[obj].dromOkText=='还未选择'){
-                        this.showAlert("宿舍还没有选择");
-                        return false;
-                    }
-            }else{
-                   if(this[obj].dromOkText=='还未选择' ){
-                        this.showAlert("学号还未选择");
-                        return false;
-                    }
-                    if(this[obj].dromOkText.length < 11){
-                        this.showAlert("学号格式不正确(11位)");
-                        return false;
-                    }
-            }
-            return true;
+        onLoad(){
+         
         }
     }
 </script>

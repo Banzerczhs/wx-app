@@ -59,7 +59,7 @@ let indexlist = {
                     url:"/pages/dorm/pay"
                 },
                 {
-                    name:"维修列表",
+                    name:"保修列表",
                     url:"/pages/dorm/repair"
                 }
             ]
