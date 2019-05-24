@@ -6,7 +6,7 @@
     }
     .borrowing-box{
         box-shadow:1px 1px 4px #270752;
-        margin:180rpx auto;
+        margin:120rpx auto;
     }
     .bookInfo{
         background-color:#fff;

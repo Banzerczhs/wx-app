@@ -1,4 +1,4 @@
-<style>
+<style scoped>
 .listbox{
     margin: 0 auto;
     margin-top:20px;
@@ -14,18 +14,19 @@
     bottom:10px;
     font:bold 20px/1.5 "微软雅黑";
 }
-
 </style>
 <template>
     <block>
-        <custom-nav bgColor="bg-custom-color" isCustom="{{true}}">
-            <view slot="content">教学楼使用情况</view>
-        </custom-nav>   
-        <repeat for="{{datalist}}" key="index">
-            <view class="listbox bg-blue light" @tap="goTO({{item}})">
-               <view>{{item.title}}</view>
-            </view>
-        </repeat>
+        <custom-nav isBack="{{true}}" bgColor="text-custom-white">
+            <view slot="content">教室状态</view>
+        </custom-nav>
+        <scroll-view scroll-y style="top:{{toTop}};" class="scroll">
+            <repeat for="{{datalist}}" key="index">
+                <view class="listbox bg-blue light" @tap="goTo({{item}})">
+                <view>{{item.title}}</view>
+                </view>
+            </repeat>
+        </scroll-view>
     </block>
 </template>
 
@@ -34,57 +35,64 @@
  import Customnav from "@/components/customnav";
  let datalist = [
      {
-         title:"楼一",
-         url:"/pages/teachbuillding/detail",
-         id:'001'
+        title:"凌峰楼",
+        url:"/pages/teachbuillding/detail",
+        id:'001'
      },
      {
-         title:"楼二",
-         url:"/pages/teachbuillding/detail",
-         id:'002'
+        title:"凌曦楼",
+        url:"/pages/teachbuillding/detail",
+        id:'002'
      },
      {
-         title:"楼三",
-         url:"/pages/teachbuillding/detail",
-         id:'003'
+        title:"凌波楼",
+        url:"/pages/teachbuillding/detail",
+        id:'003'
      },
      {
-         title:"楼四",
-         url:"/pages/teachbuillding/detail",
-         id:'004'
+        title:"逸云楼",
+        url:"/pages/teachbuillding/detail",
+        id:'004'
      },
      {
-         title:"楼五",
-         url:"/pages/teachbuillding/detail",
-         id:'005'
+        title:"逸思楼",
+        url:"/pages/teachbuillding/detail",
+        id:'005'
+     },
+     {
+        title:"机电大楼",
+        url:"/pages/teachbuillding/detail",
+        id:'006'
      }
-    ]
+]
  
 export default class Employ extends wepy.page{
     config = {
-         
+         navigationBarTitleText: '教学楼使用情况'
     }
     components = {
        'custom-nav' : Customnav
     }
 
     data = {
-        datalist
+        datalist,
+        toTop : 0
     }
 
     methods = {
-        goTO(item){
+        goTo(item){
             wx.navigateTo({
-                 url: `${item.url}?id=${item.id}`,
-                 success:()=>{
-
-                 }
+                url: `${item.url}?id=${item.id}`
             })
         }
     }
+
     events = {}
+    
     onLoad() {
-     
+        let res=wepy.getSystemInfoSync();
+        let custom=wx.getMenuButtonBoundingClientRect();
+        this.toTop=custom.bottom+custom.top-res.statusBarHeight+'px';
     }
 }
 </script>
