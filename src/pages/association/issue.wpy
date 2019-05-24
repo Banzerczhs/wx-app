@@ -9,7 +9,7 @@ page{
     height:8vh;
     overflow: hidden;    
     text-align: center;
-    background: rgb(20, 49, 110);
+    background: rgb(38, 99, 231);
 }
 .nav-ul{
     width:233%;
@@ -106,7 +106,6 @@ page{
             </view>
         </view>
         <view  class="scroll-box">
-           
             <view class="contentpage" animation="{{cenAnimation}}">
                 <repeat for="{{TimeData.date}}" key="item" index="index" item="item">
                      <scroll-view
