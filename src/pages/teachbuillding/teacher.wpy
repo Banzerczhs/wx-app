@@ -1,12 +1,20 @@
-<style>
+<style scoped>
 .indexes {
   position: relative;
 }
 
+.indexes-title{
+  color:#fff;
+  font-size: 36rpx;
+  background-color:rgba(0,0,0,0.3);
+}
+
 .indexBar {
   position: fixed;
+  top:50%;
   right: 0px;
-  bottom: 0px;
+  transform:translateY(-40%);
+  -webkit-transform:translateY(-40%);
   padding: 20rpx 20rpx 20rpx 60rpx;
   display: flex;
   align-items: center;
@@ -15,7 +23,7 @@
 .indexBar .indexBar-box {
   width: 40rpx;
   height: auto;
-  background: #fff;
+  background-color: rgba(255,255,255,0.3);
   display: flex;
   flex-direction: column;
   box-shadow: 0 0 20rpx rgba(0, 0, 0, 0.1);
@@ -30,25 +38,7 @@
   align-items: center;
   justify-content: center;
   font-size: 24rpx;
-  color: #888;
-}
-
-movable-view.indexBar-item {
-  width: 40rpx;
-  height: 40rpx;
-  z-index: 9;
-  position: relative;
-}
-
-movable-view.indexBar-item::before {
-  content: "";
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 10rpx;
-  height: 20rpx;
-  width: 4rpx;
-  background-color: #f37b1d;
+  color: #fff;
 }
 
 .indexToast {
@@ -67,34 +57,54 @@ movable-view.indexBar-item::before {
   font-size: 48rpx;
 }
 /* 自己添加 */
-.imagehead{
-  overflow: hidden;
-  background:#fff;
+.resultList{
+  transform:scale(0);
+  -webkit-transform:scale(0);
+  transition:transform .3s;
+  -webkit-transition:transform .3s;
+  transform-origin:center center;
+  -webkit-transform-origin:center center;
+  background: url('https://www.quyun.online/assets/image/bg1.png') no-repeat 0 0;
+  background-size:cover;
+  z-index:99;
 }
-.imagehead image{
-  width:96rpx;
-  height:96rpx;
+
+.resultList.active{
+  transform:scale(1);
+  -webkit-transform:scale(1);
 }
 </style>
 
 <template>
-<block>
-    <!-- 搜索 -->
-    <view class="cu-bar bg-white search fixed">
-        <view class="search-form round">
-            <text class="cuIcon-search"></text>
-            <input type="text" placeholder="输入搜索的关键词" confirm-type="search" />
-        </view>
-        <view class="action">
-            <button class="cu-btn bg-gradual-green shadow-blur round">搜索</button>
-        </view>
-    </view>
-    <!-- 展示 -->
-    <scroll-view scroll-y class="indexes" scroll-into-view="indexes-{{listCurID}}" style="height:calc(100vh - 50px);top:64px;" scroll-with-animation="true" enable-back-to-top="true">
+  <block>
+    <custom-nav isBack="{{true}}" bgColor="text-custom-white">
+      <view slot="backText">教师办公室</view>
+    </custom-nav>
+    <view class="scroll" style="top:{{CustomBar}}px;">
+      <!-- 搜索 -->
+      <view @tap="showlist">
+        <cu-search 
+          :twoWayValue="inputText"
+          :twoWayValue.sync="inputText"
+          styles="cu-bar search text-white" 
+          searchType="radius"
+          bgColor="background-color:rgba(255,255,255,0.3);"
+          tipcss="color:#fff;"
+          inputcss="color:#fff;">
+          <text class="cuIcon-search text-white" slot="icon"></text>
+          <view class="action" slot="btn" @tap.stop="closelist" style="display:{{state?'block':'none'}};">
+            <text class="cuIcon-close"></text>
+            <text>取消</text>
+          </view>
+        </cu-search>
+      </view>
+      <!-- 展示 -->
+      <scroll-view scroll-y class="indexes" scroll-into-view="indexes-{{listCurID}}" style="height:calc(100vh - 50px);" scroll-with-animation="true" enable-back-to-top="true">
         <repeat for="{{list}}" key="index">
           <block>
-            <view class="padding " id="indexes-{{list[index]}}" data-index="{{list[index]}}">{{list[index]}}</view>
+            <view class="padding indexes-title" id="indexes-{{index+1}}" data-index="{{index+1}}">{{list[index]}}<text style="font-size:28rpx;margin-left:10rpx;">({{datateacher[list[index]][0].subtitle}})</text></view>
             <view class="cu-list menu-avatar no-padding">
+<<<<<<< HEAD
                 <repeat for="{{datateacher[list[index]]}}" key="sub" index="sub">
                   <view class="cu-item">
                     <view class="cu-avatar round lg imagehead"><image src="/assets/img/teachBuillding/头像02.png"/></view>
@@ -108,91 +118,115 @@ movable-view.indexBar-item::before {
                     </view>
                   </view>
                 </repeat>
+=======
+              <my-list :datalist.sync="datateacher[list[index]]"></my-list>
+>>>>>>> a20e4759dad4a9d9704c062fdac8171d98122c6c
             </view>
           </block>
         </repeat>
-    </scroll-view>
-    <!-- 纵条 -->
-    <view class="indexBar" style="height:calc(100vh - 50px)">
-        <view class="indexBar-box" @touchstart="tStart" @touchend="tEnd" catchtouchmove="tMove">
+      </scroll-view>
+      <!-- 纵条 -->
+      <view class="indexBar">
+        <view class="indexBar-box" @touchstart="tStart" @touchend="tEnd" @touchmove.stop="tMove">
           <repeat for="{{list}}" key="index">
-            <view class="indexBar-item" @touchstart="getCur" @touchend="setCur">{{list[index]}}</view>
+            <view class="indexBar-item" id="{{list[index]}}" @touchstart="getCur" @touchend="setCur">{{index+1}}</view>
           </repeat>
         </view>
+      </view>
+      <!--选择显示-->
+      <view hidden="{{hidden}}" class="indexToast">
+        {{listCur}}
+      </view>
     </view>
-    <!--选择显示-->
-    <view hidden="{{hidden}}" class="indexToast">
-      {{listCur}}
-    </view>
-
-</block>
-
+    <scroll-view 
+      scroll-y
+      class="scroll resultList {{listState?'active':''}}"
+      style="top:{{toTop}}px;display:{{state?'block':'none'}};background-position:0 -{{toTop}}px;">
+      <view class="cu-list menu-avatar no-padding">
+        <result-list :datalist.sync="result"></result-list>
+      </view>
+    </scroll-view>
+  </block>
 </template>
 
 <script>
 import wepy from "wepy";
 import datateacher from "@/structure/teachbuillding/teacher.js"
-export default  class Teacher extends wepy.page {
-    config = {
-         navigationBarTitleText: '办公室信息'
-    }
+<<<<<<< HEAD
+=======
+import Customnav from "@/components/customnav";
+import Search from "@/components/search";
+import Teacherlist from "@/components/teachbuillding/teacherlist";
 
-    data = {
-      StatusBar: '',
-      CustomBar: '',
-      hidden: true,
-      list : [],
-      listCur : 0,
-      listCurID : 0,
-      datateacher:datateacher.teacher
-    }
+>>>>>>> a20e4759dad4a9d9704c062fdac8171d98122c6c
+export default  class Teacher extends wepy.page {
+  config = {
+    navigationBarTitleText: '办公室信息'
+  }
+
+  data = {
+    CustomBar: '',
+    hidden: true,
+    list : [],
+    listCur : '',
+    listCurID : 0,
+    datateacher:datateacher.teacher,
+    toTop : 0,
+    inputText : '',
+    state : false,
+    listState : false
+  }
+
+  components = {
+    'custom-nav' : Customnav,
+    'cu-search' : Search,
+    'my-list' : Teacherlist,
+    'result-list' : Teacherlist
+  }
+
   onLoad() {
-    let list = [];
-    for (let i = 0; i < 26; i++){
-      list[i] = String.fromCharCode(65 + i)
-    }
-    this.list=[...list];
-    this.listCur=list[0];
+    this.list=[...Object.keys(this.datateacher)];
+    this.listCur='1F';
     let res=wepy.getSystemInfoSync();
-    this.StatusBar=res.statusBarHeight;
     let custom=wepy.getMenuButtonBoundingClientRect();
     this.CustomBar=custom.bottom+custom.top-res.statusBarHeight;
     this.$apply();
-    
   }
+
   onReady() {
     let that = this;
     wx.createSelectorQuery().select('.indexBar-box').boundingClientRect(function(res) {
       that.boxTop=res.top;
       that.$apply();
     }).exec();
-    wx.createSelectorQuery().select('.indexes').boundingClientRect(function(res) {
-      that.barTop=res.top;
+    wx.createSelectorQuery().select('.search').boundingClientRect(function(res) {
+      that.toTop=that.CustomBar+res.height;
       that.$apply();
-    }).exec()
+    }).exec();
   }
+
   //获取文字信息
   methods={
-      getCur(e) {
-        this.hidden=false;
-        this.listCur=this.list[e.target.id];
-      },
+    getCur(e) {
+      this.hidden=false;
+      this.listCur=e.target.id;
+    },
 
-      setCur(e){
-        this.hidden=true;
-        this.listCur=this.listCur;
-      },
+    setCur(e){
+      this.hidden=true;
+      this.listCur=this.listCur;
+    },
     //滑动选择Item
     tMove(e) {
       let y = e.touches[0].clientY,
-        offsettop = this.boxTop,
+        offsetTop = this.boxTop,
         that = this;
-        console.log(y,offsettop)
       //判断选择区域,只有在选择区才会生效
-      if (y > offsettop) {
-        let num = parseInt((y - offsettop) / 20);
+      if (y > offsetTop) {
+        let num = parseInt((y - offsetTop) / 23);
+        num=num>=5?5:num;
         this.listCur=that.list[num];  //最多到字母z，所以选择只需要判断大于即可
-      };
+      }
     },
     //触发全部开始选择
     tStart() {
@@ -202,21 +236,43 @@ export default  class Teacher extends wepy.page {
     //触发结束选择
     tEnd() {
       this.hidden=true;
-      this.listCurID=this.listCur;
+      this.listCurID=parseInt(this.listCur);
     },
-    indexSelect(e) {
-      let that = this;
-      let barHeight = this.barHeight;
-      let list = this.list;
-      let scrollY = Math.ceil(list.length * e.detail.y / barHeight);
-      for (let i = 0; i < list.length; i++) {
-        if (scrollY < i + 1) {
-          that.listCur=list[i];
-          that.movableY=i * 20;
-          that.$apply();
-          return false
-        }
-      }
+
+    showlist(){
+      this.state=true;
+      this.$nextTick().then(()=>{
+        this.listState=true;
+        this.$apply();
+      })
+    },
+
+    closelist(){
+      this.listState=false;
+      this.$nextTick().then(()=>{
+        this.state=false;
+        this.inputText='';
+        this.$apply();
+      })
+    }
+  }
+
+  computed = {
+    result(){
+      let {inputText,datateacher}=this;
+      let resultArr=[];
+      Object.keys(datateacher).forEach(itemArr=>{
+        resultArr.push(...datateacher[itemArr].filter(item=>{
+          let res=false;
+          if(item&&inputText){
+            res=item.name.includes(inputText)||
+              item.url.includes(inputText)||
+              item.subtitle.includes(inputText);
+          }
+          return res;
+        }));
+      });
+      return resultArr;
     }
   }
 }

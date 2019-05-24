@@ -1,0 +1,177 @@
+<style scoped>
+    @import "/styles/library/bookdetail";
+</style>
+
+<template>
+    <view class="detail">
+        <custom-nav
+            class="text-custom-white absolute"
+            filter="-webkit-filter: brightness(30%);filter: brightness(30%)"
+            :bgPos.sync="bgPos"
+            :bgImage.sync="bgUrl"
+        ></custom-nav>
+        <view class="backText text-white" style="height:{{toHeight}}px;">
+            <image src="/assets/img/left.png" @tap="toBack" style="top:{{backTextTop}}px;"></image>
+            <view class="text {{backText?'active':''}}" style="top:{{backTextTop}}px;">
+                <text>哈利波特之学霸传奇</text>
+            </view>
+        </view>
+        <view class="cover" style="background-image:url({{bgUrl}})">
+            <view class="cover-box" style="padding-top:{{toHeight+5}}px;">
+                <view class="cover-image" style="height:{{imgHeight}}">
+                    <image src="https://www.quyun.online/assets/image/looks1.jpg"></image>
+                </view>
+                <view class="cover-desc">
+                    <view class="desc-h2">哈利波特之学霸传奇</view>
+                    <view class="desc-author">黑色炼金师</view>
+                    <view class="desc-score">
+                        <cu-scorecom :iconList.sync="score"></cu-scorecom>
+                        <text>888万人读过</text>
+                    </view>
+                    <view class="desc-type">奇幻/现代魔法</view>
+                    <text class="desc-word">58万字</text>
+                </view>
+            </view>
+        </view>
+        <view class="bookInfo">
+            <view class="like bookInfo-item">
+                <text class="num">2350</text>
+                <text class="text">收藏</text>
+            </view>
+            <view class="Read bookInfo-item">
+                <text class="num">12w+</text>
+                <text class="text">借阅</text>
+            </view>
+            <view class="Rec bookInfo-item">
+                <text class="num">8904</text>
+                <text class="text">推荐</text>
+            </view>
+        </view>
+        <view class="bookSynopsis">
+            <view class="synopsis">
+                <text>简介</text>
+                <view>
+                    夏洛克是一名新晋的地下城城主，
+                    立志成为伟大的魔王，直到他召唤出了一批会给自己起一些奇怪的名字，
+                    会拉帮结派，会互相之间进行交易买卖，
+                    甚至会发生斗殴打群架的哥布林，他们自称--玩家！
+                </view>
+            </view>
+            <view class="Catalog">
+                <text>目录</text>
+                <text>总共19章</text>
+                <image src="/assets/img/right.png"></image>
+            </view>
+        </view>
+        <view class="comment">
+            <view class="comment-title">
+                <text>用户评论</text>
+                <text>1220人评论</text>
+                <image src="/assets/img/right.png"></image>
+            </view>
+            <repeat for="{{10}}" key="{{index}}">
+                <view class="comment-item">
+                    <image src="/assets/img/teachBuillding/head.png"></image>
+                    <view class="item-text">
+                        <text class="item-author">review</text>
+                        <view class="item-content">
+                            <view style="margin:10rpx 0;">
+                                如果玩家在盔甲上做了些特殊标记不就被发现了吗？写下名字的简写CXK之类的
+                            </view>
+                            <text>0回复 11分钟前 来自ios客户端</text>
+                        </view>
+                    </view>
+                </view>
+            </repeat>
+        </view>
+        <view class="option">
+            <view 
+                class="Borrowing {{toActive?'active':''}}" 
+                @tap="Borrowing">
+                <image src="/assets/img/zu.png"></image>
+                <text>借阅</text>
+            </view>
+            <view 
+                class="Bookshelf {{toActive?'active':''}} {{likestate?'activebg':''}}" 
+                @tap="likeBook">
+                <image src="{{likestate?'/assets/img/likeing.png':'/assets/img/like.png'}}"></image>
+                <text>收藏</text>
+            </view>
+            <view class="btn" @tap="operation">
+                <image src="/assets/img/add.png"></image>
+            </view>
+        </view>
+    </view>
+</template>
+
+<script>
+    import wepy from 'wepy';
+    import Scorecom from "@/components/scorecom";
+    import Customnav from "@/components/customnav";
+    export default class Bookdetail extends wepy.page{
+        data = {
+            bgUrl : 'https://www.quyun.online/assets/image/bookcover.jpg',
+            score : [[],[],[],[],[]],
+            toActive : false,
+            likestate : false,
+            bgPos : '',
+            backText : false,
+            toHeight : 0,
+            backTextTop : 0,
+            imgHeight : 0
+        }
+
+        components = {
+            'cu-scorecom' : Scorecom,
+            'custom-nav' : Customnav
+        }
+        
+        methods = {
+            operation(e){
+                this.toActive=!this.toActive;
+            },
+
+            likeBook(){
+                this.likestate=!this.likestate;
+            },
+
+            Borrowing(){
+                wepy.navigateTo({
+                    url: '/pages/library/borrowing'
+                });
+            },
+
+            toBack(){
+                wepy.navigateBack({
+                    delta: 1
+                });
+            }
+        }
+        
+        onLoad(){
+            let res=wepy.getSystemInfoSync();
+            let custom=wepy.getMenuButtonBoundingClientRect();
+            let query=wepy.createSelectorQuery();
+            this.bgPos='background-position:0 0';
+            this.toHeight=custom.bottom+custom.top-res.statusBarHeight;
+            this.backTextTop=custom.top+6;
+            let _this=this;
+            query.select('.cover-desc').boundingClientRect((result)=>{
+                _this.imgHeight=result.height;
+                _this.$apply();
+            }).exec();
+        }
+
+        onPageScroll(top){
+            let {scrollTop}=top;
+            if(scrollTop>120){
+                this.backText=true;
+            }else{
+                this.backText=false;
+                this.bgPos=`background-position:0 -${scrollTop}px`;
+            }
+
+            this.$apply();
+        }
+    }
+</script>

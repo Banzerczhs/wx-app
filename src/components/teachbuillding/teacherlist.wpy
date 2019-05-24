@@ -1,0 +1,39 @@
+<style scoped>
+.imagehead{
+  overflow: hidden;
+  background:#fff;
+}
+
+.imagehead image{
+  width:96rpx;
+  height:96rpx;
+}
+</style>
+
+<template>
+    <repeat for="{{datalist}}" key="index">
+        <view class="cu-item" style="background-color:rgba(255,255,255,0);">
+            <view class="cu-avatar round lg imagehead">
+                <image src="/assets/img/teachBuillding/head02.png"/>
+            </view>
+            <view class="content">
+                <view class="text-white">
+                    <view>{{item.name}}</view>
+                </view>
+                <view class="text-white text-sm">{{item.url}}</view>
+            </view>
+        </view>    
+    </repeat>
+</template>
+
+<script>
+    import wepy from "wepy";
+    export default class Teacherlist extends wepy.component{
+        props = {
+            datalist : {
+                type : Array,
+                default : []
+            }
+        }
+    }
+</script>

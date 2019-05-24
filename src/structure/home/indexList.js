@@ -38,7 +38,17 @@ let indexlist = {
         },
         {
             src:"https://www.quyun.online/assets/image/x_0039_%E7%A4%BE%E5%9B%A2.png",
-            name:'社团'
+            name:'社团',
+            child:[
+                {
+                    name:"活动时间表",
+                    url:"/pages/association/issue"
+                },
+                {
+                    name:"发布活动",
+                    url:"/pages/association/associationform"
+                }
+            ]
         },
         {
             src:"https://www.quyun.online/assets/image/x_0040_%E5%AE%BF%E8%88%8D.png",

@@ -15,15 +15,16 @@ export default class app extends wepy.app {
   constructor(){
     super();
 
+    //小程序请求拦截器
     this.intercept('request',{
       config(reqData){
         reqData.name='czhs';
-        console.log(reqData);
+        // console.log(reqData);
         return reqData;
       },
       success(resData){
         console.log('成功');
-        console.log(resData);
+        // console.log(resData);
         return resData;
       },
       fail(err){
@@ -33,18 +34,29 @@ export default class app extends wepy.app {
       complete(data){
         console.log('请求完成');
       }
-    })
+    });
+
+    //解除小程序并发请求限制
+    //this.use()使用中间件
+    this.use('requestfix');
   }
+
   config = {
     pages: [
       'pages/home/home',
       'pages/library/library',
       'pages/library/borrowinfo',
-      'pages/library/history',
       'pages/library/collection',
+      'pages/library/morenewbook',
+      'pages/library/bookdetail',
+      'pages/library/borrowing',
+      'pages/library/result',
+      'pages/library/search',
       'pages/teachbuillding/detail',
       'pages/teachbuillding/employ',
-      'pages/teachbuillding/teacher'
+      'pages/teachbuillding/teacher',
+      'pages/association/associationform',
+      'pages/association/issue'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -53,6 +65,15 @@ export default class app extends wepy.app {
       navigationBarTextStyle: 'white',
       navigationStyle: 'custom'
     }
+  }
+
+  onLaunch(){
+    let res=wepy.getSystemInfoSync();
+    this.globalData.statusBarHeight=res.statusBarHeight;
+  }
+
+  globalData = {
+    statusBarHeight : 0
   }
 }
 </script>
