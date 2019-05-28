@@ -1,276 +1,161 @@
 <style scoped>
-.DrawerPage {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  left: 0vw;
-  background-color: #f1f1f1;
-  transition: all 0.4s;
-}
-
-.DrawerPage.show {
-  transform: scale(0.9, 0.9);
-  left: 85vw;
-  box-shadow: 0 0 60rpx rgba(0, 0, 0, 0.2);
-  transform-origin: 0;
-}
-
-.DrawerWindow {
-  position: absolute;
-  width: 85vw;
-  height: 100vh;
-  left: 0;
-  top: 0;
-  transform: scale(0.9, 0.9) translateX(-100%);
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.4s;
-}
-
-.DrawerWindow.show {
-  transform: scale(1, 1) translateX(0%);
-  opacity: 1;
-  pointer-events: all;
-}
-
-.DrawerClose {
-  position: absolute;
-  width: 40vw;
-  height: 100vh;
-  right: 0;
-  top: 0;
-  color: transparent;
-  padding-bottom: 30rpx;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0.6));
-  letter-spacing: 5px;
-  font-size: 50rpx;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.4s;
-}
-
-.DrawerClose.show {
-  opacity: 1;
-  pointer-events: all;
-  width: 15vw;
-  color: #fff;
-}
-
-.DrawerPage .cu-bar.tabbar .action button.icon {
-  width: 64rpx;
-  height: 64rpx;
-  line-height: 64rpx;
-  margin: 0;
-  display: inline-block;
-}
-
-.DrawerPage .cu-bar.tabbar .action .cu-avatar {
-  margin: 0;
-}
-
-.DrawerPage .nav {
-  flex: 1;
-}
-
-.DrawerPage .nav .cu-item.cur {
-  border-bottom: 0;
-  position: relative;
-}
-
-.DrawerPage .nav .cu-item.cur::after {
-  content: "";
-  width: 10rpx;
-  height: 10rpx;
-  background-color: currentColor;
-  position: absolute;
-  bottom: 10rpx;
-  border-radius: 10rpx;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-
-.DrawerPage .cu-bar.tabbar .action {
-  flex: initial;
-}
-/* 自己添加 */
-.navbox{
-  position:relative;
-}
-.navimage{
-  position:absolute;
-  width:50rpx;
-  height:50rpx;
-  left:10rpx;
-}
-.state image{
-  width:30rpx;
-  height:50rpx;
-  float:left;
-  margin:10rpx;
-}
-.contentBox{
-  position:relative;
-  width:85%;
-  height:800rpx;
-  left:54rpx;
-  top:93rpx;
-  font-size:18px/1.5rpx;
-}
-.loucen{
-  width:20rpx;
-  height:80%;
-  position: absolute;
-  left:0;
-  top:56rpx;
-}
-.loucen text{
-  float:left;
-  width:100%;
-  height:75rpx;
-  margin-top:10rpx;
-  font-size:18px/1.5rpx;
-}
-.content{
-  position:absolute;
-  top:44rpx;
-  left:32rpx;
-  width:100%;
-}
-.cententrow{
-  width:100%;
-  height:80rpx;
-  display: block;
-}
-.room{
-  width:100%;
-  height:30rpx;
-  position:absolute;
-  right:-41rpx;
-  top:5rpx;
-}
-.room text{
-  float:left;
-  width:20rpx;
-  height:100%;
-  margin-right:30rpx;
-}
-.title{
-  width: 60%;
-  position:absolute;
-  bottom: 103rpx;
-  right:-93rpx;
-}
-.title image{
-  width:30rpx;
-  height:50rpx;
-  margin-left:20rpx;
-}
-.title text{
-  color:#fff;
-}
-.bg{
-  background: linear-gradient(#0081ff,#1cbbb4);
-}
+  @import "/styles/teachbuillding/detail.wxss";
 </style>
 
 <template>
   <block>
-    <scroll-view scroll-y class="DrawerPage {{modalName=='viewModal'?'show':''}} bg">	
-      <view class='padding margin text-center navbox'>
-        <image
-          src="/assets/img/teachbuillding/导航.png" 
-          class="navimage" 
-          @tap="showModal" 
-          data-target="viewModal"
-        ></image>
-      </view>
-      <view class="contentBox">
-        <view class="loucen">
-          <repeat for="{{storeyone.length}}" key="index">
-            <text>{{index+1}}</text>
-          </repeat>
-          <text>F</text>
+    <custom-nav isCustom="{{true}}" bgColor="text-custom-white">
+      <view slot="content">{{title}}</view>
+    </custom-nav>
+    <view class="DrawerPage {{modalName=='viewModal'?'show':''}}" style="top:{{boxTop}}px;">
+      <view
+        class="roomState"
+        data-target="viewModal"
+        @touchstart.stop="start"
+        @touchmove.stop="move">
+        <view class="roomState-Icon">
+          <view>
+            <image src="https://www.quyun.online/assets/image/true.png"/>
+            <text>使用中</text>
+          </view>
+          <view>
+            <image src="https://www.quyun.online/assets/image/false.png"/>
+            <text>未使用</text>
+          </view>
         </view>
-        <view class="content">
-          <repeat for="{{storeyone}}" key="index" >
-            <view class="cententrow">
-              <repeat for="{{item}}" key="item" item="itemchild">
-                <view class="state">
-                  <image src="{{itemchild.state==true?'/assets/img/teachbuillding/上课中.png':'/assets/img/teachbuillding/未上课.png'}}"/>
-                </view>
-              </repeat>
+        <view class="roomState-model">
+          <view class="text model-title">教室使用率</view>
+          <view class="text model-desc">{{useing}}/{{total}}</view>
+          <view class="circle">
+            <view class="small-circle">
+              <text>{{per}}%</text>
             </view>
-          </repeat>  
-        </view>
-        <view class="room">
-          <repeat for="{{12}}" key="index">
-            <text>{{index+1}}</text>
-          </repeat>
-        </view>
-        <view class="title">
-          <image src="/assets/img/teachbuillding/上课中.png" />
-          <text>使用中</text>
-          <image src="/assets/img/teachbuillding/未上课.png" />
-          <text>未使用</text>
+            <view class="rect left-rect">
+              <view 
+                style="transform:rotate({{rotate.l}}deg);"
+              ></view>
+            </view>
+            <view class="rect right-rect">
+              <view
+                style="transform:rotate({{rotate.r}}deg);"
+                @transitionend="transend"
+              ></view>
+            </view>
+          </view>
         </view>
       </view>
-	  </scroll-view>
-    <view class="DrawerClose {{modalName=='viewModal'?'show':''}}" @tap="hideModal">
-      <text class="cuIcon-pullright"></text>
+      <scroll-view scroll-y class="scroll" style="top:{{toTop}}px;">
+        <view class="contentBox">
+          <repeat for="{{storeyone}}" key="index">
+            <view class="row">
+              <view class="row-title">{{index+1}}F</view>
+              <scroll-view class="row-list" scroll-x>
+                <repeat for="{{item}}" key="item" item="itemchild" index="rid">
+                  <view class="state">
+                    <image src="https://www.quyun.online/assets/image/{{itemchild}}.png"/>
+                    <text>{{index+1}}{{rid+1>=10?rid+1:'0'+(rid+1)}}</text>
+                  </view>
+                </repeat>
+              </scroll-view>
+            </view>
+          </repeat>
+        </view>
+      </scroll-view>
     </view>
-    <scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
+    <view class="DrawerClose {{modalName=='viewModal'?'show':''}}" @tap="hideModal"></view>
+    <view class="DrawerWindow {{modalName=='viewModal'?'show':''}}" style="top:{{boxTop}}px;">
       <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
         <repeat for="{{storeyData}}" key="index">
-          <view class="cu-item arrow" @tap="toggle({{item}})">
+          <view class="cu-item arrow" id="{{index}}" @tap="toggle({{item}})">
             <view class="content">
               <text class="cuIcon-github text-grey"></text>
               <text class="text-grey">{{index}}</text>
             </view>
           </view>
-        </repeat>    
-      </view>    
-    </scroll-view>
+        </repeat>
+      </view>
+    </view>
   </block>  
 </template>
 
 <script>
 import wepy from "wepy";
 import datateach from "@/structure/teachbuillding/teachbuillding.js";
+import Customnav from "@/components/customnav";
 
 export default class Detail extends wepy.page{
-
     data = {
-        modalName : null,
-        storeyData:{}, //总楼
-        storeyone:[]  //显示的楼栋
+      modalName : null,
+      storeyData:{}, //总楼
+      storeyone:[],  //显示的楼栋
+      title : '',
+      toTop : 0,
+      boxTop : 0,
+      useing : 80,
+      total : 113,
+      per : 0,
+      rotate : {l : 0,r : 0}
     }
 
     onLoad(option) {
-      console.log(datateach.teach[option.id])
-      this.storeyData = datateach.teach[option.id];
-      let keys =Object.keys( this.storeyData);
-      this.storeyone = this.storeyData[keys[0]];
-      console.log(this.storeyone)
+      let _this=this;
+      _this.storeyData=datateach.teach[option.id];
+      let keys=Object.keys(_this.storeyData);
+      _this.storeyone=_this.storeyData[keys[0]];
+      _this.title=keys[0];
+
+      _this.per=Math.round(_this.useing/_this.total*100);
+      if(_this.per>50){
+        _this.rotate.r=180;
+      }else{
+        _this.rotate.r=Math.round(_this.per/100*360);
+      }
+
+      let res=wepy.getSystemInfoSync();
+      let query=wepy.createSelectorQuery();
+      let custom=wepy.getMenuButtonBoundingClientRect();
+      query.select('.roomState').boundingClientRect((result)=>{
+        _this.toTop=result.height;
+        _this.boxTop=custom.bottom+custom.top-res.statusBarHeight;
+        _this.$apply();
+      }).exec();
     }
 
     methods={
-        showModal(e) {
-          console.log('123');
-          this.modalName=e.currentTarget.dataset.target;
-        },
+      hideModal(e) {
+        this.modalName=null;
+      },
+      
+      toggle(obj,$event){  //选择楼栋的
+        let {id}=$event.currentTarget;
+        this.modalName=null;
+        this.storeyone=obj;
+        this.title=id;
+      },
 
-        hideModal(e) {
-          this.modalName=null;
-        },
-        
-        toggle(obj){  //选择楼栋的
-          this.modalName=null;
-          this.storeyone = obj
+      start(e){
+        let {clientX,clientY}=e.changedTouches[0];
+        this.startPos={
+          x : clientX,
+          y : clientY
+        };
+      },
+
+      move(e){
+        let {clientX,clientY}=e.changedTouches[0];
+        let {x,y}=this.startPos;
+        if(clientX-x>clientY-y&&clientX-x>70){
+          this.modalName=e.currentTarget.dataset.target;
         }
+      },
+
+      transend(){
+        this.rotate.l=Math.round(this.per/100*360-180);
+      }
+    }
+
+    components = {
+      'custom-nav' : Customnav
     }
 }
 </script>

@@ -1,121 +1,183 @@
-<style>
+<style scoped>
+.release{
+    width: 100rpx;
+    height:100rpx;
+    position:fixed;
+    bottom:40rpx;
+    right:40rpx;
+    border-radius:50%;
+    background-color:#fff;
+    box-shadow:2px 2px 4px #000;
+}
+.release image{
+    width: 85%;
+    height:85%;
+    position:absolute;
+    left:50%;
+    top:1%;
+    transform:translateX(-50%);
+    -webkit-transform:translateX(-50%);
+}
+.release .release-text{
+    color:#0081ff;
+    font-size: 22rpx;
+    position:absolute;
+    bottom:4rpx;
+    left:0;
+    right:0;
+    text-align:center;
+}
 .nav{
     width:100%;
     height:8vh;
     overflow: hidden;    
     text-align: center;
-    
+    /* background: rgb(38, 99, 231); */
+    box-shadow:2px 3px 3px #28075273;
 }
 .nav-ul{
-    width:200%;
+    width:233%;
     height:100%;
-    background:#fff;
     position: relative;
-     left:0rpx;
-     display: flex;
-    align-items: center;
-   justify-content:space-around; 
+    transform: translateX(0);
+    display: flex;
+    justify-content:space-around;
 }
 .navbox{
     width:230rpx;
     height:95%;
-    padding-top:2%;
+    padding-top:10rpx;
     float:left;
     color:#fff;
-    background: rgba(117, 40, 104, 0.856);
 }
-.content{
-    width:100%;
-    position: relative;
+.navbox .navbox-circle{
+    width:50rpx;
+    height:50rpx;
+    line-height:50rpx;
+    margin:10rpx auto;
+    border-radius: 50%;
+    font-size: 24rpx;
+}
+.navbox.active{
+    color:#f1649a;
+    font-weight: bold;
+}
+.navbox.active .navbox-circle{
+    background-color:#fff;
+}
+.scroll-box{
+    width:700%;
+    transform: translateX(0);
+}
+.scroll-box::after{
+    content:"";
+    display:block;
+    clear:both;
+}
+.scroll-item{
+    width:14.28%;
+    float:left;
 }
 .contentbox{
-    position:relative
+    width:100%;
+    border-top: 2px solid transparent;
 }
 .box-item{
     width:90%;
-    height:200rpx;
-    margin:0 auto;
-    background:rgba(255, 255, 255, 0.726);
+    margin:20rpx auto;
+    background:rgba(255, 255, 255, 0.5);
     border-radius:5px;
-    margin-top:20px;
-    padding:10px 5px;
+    padding:10rpx 10rpx;
+    position:relative;
+}
+.box-item .tag{
+    position:absolute;
+    color:#fff;
+    top:8rpx;
+    left:25rpx;
+    z-index:10;
+    font-size: 24rpx;
+    padding:8rpx 15rpx;
+    box-shadow:2px -2px 4px rgba(0,0,0,0.7);
+    border-radius:6rpx;
+}
+.box-item::after{
+    content:"";
+    display:block;
+    clear:both;
 }
 .item-image{
     width:160rpx;
     height:160rpx;
     float:left;
+    margin:auto 0;
 }
 .item-right{
-    float:right;
-    width:480rpx;
-    margin-left:10px;
+    float:left;
+    width:70%;
+    color:#fff;
+    margin-left: 20rpx;
 }
-.title{
-    width:480rpx;
+.item-right .title{
     height:43rpx;
+    line-height:50rpx;
     overflow: hidden;
-    color:chocolate;
-    margin-bottom:10px;
+    margin: 7px 0;
+    text-overflow:ellipsis;
 }
 .item-right text{
-    margin-top:5px;
+    margin: 5px 0;
     display: block;
     font-size:22rpx;
-    color:brown;
 }
 </style>
-<template >
+<template>
     <block>
-        <custom-nav bgColor="bg-custom-gradient text-custom-white" isCustom="{{true}}">
-            <view slot="content">活动时间表</view>
+        <custom-nav bgColor="text-custom-white" isBack="{{true}}">
+            <view slot="backText">活动时间表</view>
         </custom-nav>
         <view class="nav">
-            <view class="nav-ul">
-                    <view class="navbox">
-                        <view>2019</view>
-                        <view>5-18</view>
+            <view class="nav-ul" animation="{{TopAnimation}}">
+                <repeat for="{{TimeData.date}}" key="item" index="index">
+                    <view class="navbox {{TimeNow==index ? 'active' :''}}"  @tap="clickTop({{index}})">
+                        <view>{{item.date}}</view>
+                        <view class="navbox-circle">{{item.week}}</view>
                     </view>
-                    <view class="navbox">
-                        <view>2019</view>
-                        <view>5-18</view>
-                    </view>
-                    <view class="navbox">
-                        <view>2019</view>
-                        <view>5-18</view>
-                    </view>
-                    <view class="navbox">
-                        <view>2019</view>
-                        <view>5-18</view>
-                    </view>
-                    <view class="navbox">
-                        <view>2019</view>
-                        <view>5-18</view>
-                    </view>
-                    <view class="navbox">
-                        <view>2019</view>
-                        <view>5-18</view>
-                    </view>
+                </repeat>
             </view>
         </view>
-        <view class="content">
-            <view class="contentbox">
-                <view class="box-item">
-                    <image src="/assets/img/logo.png" class="item-image"/>
-                    <view class="item-right">
-                        <view class="title">标题：青春如我，踏步时光飞逝</view>
-                        <text>报名时间：2019-5-15 14:30 - 2019-5-16 14:30</text>
-                        <text>活动时间：2019-5-15 14:30 - 2019-5-16 14:30</text>
+        <view 
+            class="scroll-box scroll" 
+            animation="{{cenAnimation}}"
+            style="top:{{toTop+2}}px;"
+            @touchstart="start"
+            @touchend="end">
+            <repeat for="{{TimeData.date}}" key="item" index="index" item="item">
+                <scroll-view
+                    class="scroll-item"
+                    scroll-y="true"
+                    lower-threshold="200"
+                    style="height:100%;"
+                    @scrolltolower="scrollNew">
+                    <view class="contentbox">
+                        <repeat for="{{item.list}}" key="item" index="index" item="itemchild">
+                            <view class="box-item" @tap="goTo">
+                                <view class="bg-custom-orange tag">进行中</view>
+                                <image src="/assets/img/logo.png" class="item-image"/>
+                                <view class="item-right">
+                                    <view class="title">{{itemchild.title}}</view>
+                                    <text>报名时间：{{itemchild.start}}</text>
+                                    <text>活动时间：{{itemchild.end}}</text>
+                                </view>
+                            </view>
+                        </repeat>
                     </view>
-                </view>
-                <view class="box-item">
-                    <image src="/assets/img/logo.png" class="item-image"/>
-                    <view class="item-right">
-                        <view class="title">标题：青春如我，踏步时光飞逝此次v查询vcxvcvx星辰广告费共和党的共和国的就</view>
-                        <text>报名时间：2019-5-15 14:30 - 2019-5-16 14:30</text>
-                        <text>活动时间：2019-5-15 14:30 - 2019-5-16 14:30</text>
-                    </view>
-                </view>
-            </view>
+                </scroll-view>
+            </repeat>
+        </view>
+        <view class="release" @tap="release">
+            <image src="/assets/img/release.png"></image>
+            <text class="release-text">发布</text>
         </view>
     </block>
 </template>
@@ -123,26 +185,105 @@
 <script>
 import wepy from 'wepy';
 import Customnav from "@/components/customnav";
-
+import TimeData from "@/structure/association/issue.js"
 export default class associationform extends wepy.page {
     components = {
        "custom-nav":Customnav
     }
 
-    methods = {
-        
+    onLoad(){
+        let {customBar}=this.$parent.globalData;
+        this.animation1=wepy.createAnimation({
+            duration: 200,
+            timingFunction: 'linear'
+        });
+
+        this.animation2=wepy.createAnimation({
+            duration: 200,
+            timingFunction: 'linear'
+        })
+        this.query=wepy.createSelectorQuery();
+        this.query.select('.nav').boundingClientRect((res)=>{
+            this.toTop=customBar+res.height;
+            this.$apply();
+        }).exec();
     }
 
-    events = {}
-    
-    onLoad() {
-        console.log('xxx')
-    }
-  
     data = {
-
+        TimeData,
+        TimeNow:0,
+        TopAnimation:{},
+        cenAnimation:{},
+        animation1: {},
+        animation2: {},
+        toTop:0,
+        lateX:0,
+        disX:0
     }
-   
+
+    methods = {
+        clickTop(num){
+            this.TimeNow = num;
+            let numberT = num;
+            if(numberT <= this.TimeData.date.length-2 && 1 <= numberT){
+                this.animation1.translateX(`-${(numberT-1)*14}%`).step();
+                this.TopAnimation=this.animation1.export();
+            }
+
+            this.animation2.translateX(`-${numberT*14.28}%`).step();
+            this.cenAnimation=this.animation2.export();
+        },
+
+        scrollNew(){//滑动到底后的触发
+            console.log('滑动到底触发')
+        },
+
+        goTo(){
+            wepy.navigateTo({
+                url: '/pages/association/detail'
+            });
+        },
+
+        start(e){
+            this.startX=e.changedTouches[0].clientX;
+        },
+
+        end(e){
+            let {startX,TimeNow}=this;
+            let {clientX}=e.changedTouches[0];
+            let scriw=this.$parent.globalData.screenWidth;
+            
+            if(Math.abs(clientX-startX)<30){
+                return;
+            }
+
+            if(clientX-startX<0){
+                TimeNow++;
+            }else{
+                TimeNow--;
+            }
+
+            if(TimeNow<0||TimeNow>this.TimeData.date.length-1){
+                return;
+            }
+
+            this.TimeNow=TimeNow;
+            
+            if(this.TimeNow <= this.TimeData.date.length-2 && 1 <= this.TimeNow){
+                this.animation1.translateX(`-${(this.TimeNow-1)*14}%`).step();
+                this.TopAnimation=this.animation1.export();
+            }
+
+            this.animation2.translateX(`-${this.TimeNow*14.28}%`).step();
+            this.cenAnimation=this.animation2.export();
+        },
+
+        release(){
+            wepy.navigateTo({
+                url : '/pages/association/associationform'
+            })
+        }
+    }
 }
 </script>
 

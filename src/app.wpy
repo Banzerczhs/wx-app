@@ -15,6 +15,7 @@ export default class app extends wepy.app {
   constructor(){
     super();
 
+    //小程序请求拦截器
     this.intercept('request',{
       config(reqData){
         reqData.name='czhs';
@@ -33,8 +34,13 @@ export default class app extends wepy.app {
       complete(data){
         console.log('请求完成');
       }
-    })
+    });
+
+    //解除小程序并发请求限制
+    //this.use()使用中间件
+    this.use('requestfix');
   }
+
   config = {
     pages: [
       'pages/home/home',
@@ -51,6 +57,7 @@ export default class app extends wepy.app {
       'pages/teachbuillding/teacher',
       'pages/association/associationform',
       'pages/association/issue',
+<<<<<<< HEAD
       'pages/music/music',
       'pages/music/playlist',
       'pages/music/uploadmusic',
@@ -60,6 +67,13 @@ export default class app extends wepy.app {
       'pages/lostandfound/searchfornotices',
       'pages/lostandfound/fabu',
       'pages/lostandfound/wode',
+=======
+      'pages/association/detail',
+      'pages/association/myactive',
+      'pages/association/comment',
+      'pages/dorm/pay',
+      'pages/dorm/repair'
+>>>>>>> d6e2210dff96080d45727683ef0adec76087703a
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -68,6 +82,20 @@ export default class app extends wepy.app {
       navigationBarTextStyle: 'white',
       navigationStyle: 'custom'
     }
+  }
+
+  onLaunch(){
+    let res=wepy.getSystemInfoSync();
+    let custom=wepy.getMenuButtonBoundingClientRect();
+    this.globalData.statusBarHeight=res.statusBarHeight;
+    this.globalData.screenWidth=res.screenWidth;
+    this.globalData.customBar=custom.bottom+custom.top-res.statusBarHeight;
+  }
+
+  globalData = {
+    statusBarHeight : 0,
+    customBar : 0,
+    screenWidth : 0
   }
 }
 </script>

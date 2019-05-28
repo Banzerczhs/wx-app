@@ -10,7 +10,7 @@
 
 <template>
     <view class="box">
-        <custom-nav bgColor="bg-custom-gradient text-custom-white" isCustom="{{true}}">
+        <custom-nav bgColor="text-custom-white" isBack="{{true}}">
             <view slot="content" class="text-white">书架</view>
         </custom-nav>
         <scroll-view
@@ -50,7 +50,6 @@
 
         onLoad(){
             this.datalist = librarydata["libraryone"];
-
             let res=wepy.getSystemInfoSync();
             let custom=wepy.getMenuButtonBoundingClientRect();
             this.toTop=custom.bottom+custom.top-res.statusBarHeight;

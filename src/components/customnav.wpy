@@ -62,10 +62,13 @@
         onLoad(){
             let res=wepy.getSystemInfoSync();
             this.StatusBar=res.statusBarHeight;
-            let custom=wepy.getMenuButtonBoundingClientRect();
-            this.CustomBar=custom.bottom+custom.top-res.statusBarHeight;
-            this.Custom=custom;
-            this.$apply();
+            let custom=null;
+            setTimeout(() => {
+                custom=wepy.getMenuButtonBoundingClientRect();
+                this.CustomBar=custom.bottom+custom.top-res.statusBarHeight;
+                this.Custom=custom;
+                this.$apply();
+            },500);
         }
 
         methods = {
