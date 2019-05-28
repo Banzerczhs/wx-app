@@ -63,7 +63,7 @@
 <template>
     <block>
         <custom-nav isBack="{{true}}" bgColor="text-custom-white">
-                <view slot="content">祝福语</view>
+            <view slot="content">祝福语</view>
         </custom-nav>
         <view class="container">
             <view class="box">

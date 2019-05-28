@@ -1,128 +1,92 @@
 <style scoped>
-    .container{
-        margin-left:50rpx;
-        position:relative;
-    }
-    .box{
-        position:relative;
-        width:702rpx;
-        height:284rpx;
-    }
-    .ls{
-        position:absolute;
-        left:0rpx;
-        top:30rpx;
-        width:405rpx;
-        height:170rpx;
-        background-color:#9cb6f7;
-        border-radius:5%;
-    }
+
     .music{
-        position:absolute;
-        left:434rpx;
-        top:0rpx;
-        width:260rpx;
-        height:260rpx;
-    }
-    .search{
-        position:absolute;
-        left:0rpx;
-        top:226rpx;
-        width:476rpx;
-        height:58rpx;
-        background-color:#9cb6f7;
-        border-radius:58rpx;
-    }
-    .sousuo{
-        position:absolute;
-        left:36rpx;
-        top:232rpx;
-        width:354rpx;
-        height:45rpx;
-        background-color:#ffffff;
-        border-radius:45rpx;
-    }
-    input{
-        position:absolute;
-        left:40rpx;
-        top:225rpx;
-        width:354rpx;
-        height:45rpx;
-    }
-    .btn{
-        position:absolute;
-        left:375rpx;
-        top:230rpx;
-        border:none;
-    }
-    .img{
-        width:55rpx;
-        height:55rpx;
-    }
-    .box1{
         position:relative;
-        left:0rpx;
-        top:50rpx;
-        width:656rpx;
-        height:800rpx;
-        border-radius:5%;
-        background-color:#9cb6f7;
+        margin-top: 20rpx;
     }
-    text{
-        position: absolute;
-        left:60rpx;
-        top:32rpx;
-        font-size:36rpx;
-        word-spacing:38rpx;
+    .music-info{
+        width: 90%;
+        position:relative;
+        margin:0 auto;
     }
-    .one{
+    .music-info::after{
+        content:"";
+        display:block;
+        clear:both;
+    }
+    .music-info .visualization{
+        width: 60%;
+        height: 220rpx;
+        float:left;
+        margin:auto 0;
+        background-color:rgba(255,255,255,0.3);
+        border-radius:10rpx;
+    }
+    .music-info .info-image{
+        width: 215rpx;
+        height:215rpx;
+        float:right;
+        margin-left: 20rpx;
+    }
+    .music-info .info-image image{
+        width: 100%;
+        height:100%;
+    }
+    .music-search{
+        width: 92%;
+        height:60rpx;
+        border-radius:30rpx;
+        position:relative;
+        margin:30rpx auto;
+        background-color:rgba(255,255,255,0.3);
+    }
+    .music-search .search{
+        height:100%;
+        color:#fff;
+        line-height:60rpx;
+        text-indent:1em;
+    }
+    .music-search .img{
+        width: 50rpx;
+        height:50rpx;
         position:absolute;
-        left:60rpx;
-        top:10rpx;
-        font-size:26rpx;
-        line-height:70rpx;
+        right:20rpx;
+        top:50%;
+        transform:translateY(-50%);
+        -webkit-transform:translateY(-50%);
     }
-    .two{
-        position:absolute;
-        left:200rpx;
-        top:10rpx;
-        font-size:26rpx;
-        line-height:70rpx;
-        width:100rpx;
-        white-space: nowrap;
-        overflow: hidden;
+    .music-search .img image{
+        width: 100%;
+        height: 100%;
     }
-    .three{
-        position:absolute;
-        left:335rpx;
-        top:10rpx;
-        font-size:26rpx;
-        line-height:70rpx;
-    }
-    .four{
-        position:absolute;
-        left:450rpx;
-        top:15rpx;
-        line-height:70rpx;
-    }
-    .five{
-        position:absolute;
-        left:520rpx;
-        top:15rpx;
-        line-height:70rpx;
-    }
-    .six{
-        position:absolute;
-        left:590rpx;
-        top:15rpx;
-        line-height:70rpx;
-    }
-    .content{
-        height:700rpx;
-        position:absolute;
-        left:0rpx;
-        top:80rpx;
-    }
+.music-list{
+    width:90%;
+    margin:0 auto;
+    color:#fff;
+}
+.list-nav,.music-scroll{
+    display:flex;
+    display:-webkit-flex;
+    justify-content: center;
+    text-align:center;
+}
+.list-nav view,.music-scroll view{
+    width:15%;
+    float:left;
+    height:60rpx;
+    line-height:60rpx;
+}
+.music-scroll view:nth-child(1),.list-nav view:nth-child(1),.music-scroll view:nth-child(2),.list-nav view:nth-child(2){
+    width:25%;
+    text-align:left;
+}
+.music-scroll image{
+    margin-top:14rpx;
+}
+
+
+
+
 </style>
 
 <template>
@@ -130,55 +94,41 @@
         <custom-nav isCustom="{{true}}" bgColor="text-custom-white">
             <view slot="content">歌库</view>
         </custom-nav>
-        <view class="container">
-            <view class="box">
-                <view class="ls">历史点歌记录</view>
-                <image src="/assets/img/music.png" class="music"></image>
-                <view class="search"></view>
-                <view class="sousuo"></view>
-                <form action="#">
-                <input type="text" value="请输入搜索的歌曲" focus="{{true}}"/>
-                <navigator url="/pages/music/searchresult" hover-class="navigator-hover">
-                    <button form-type="submit" plain="{{true}}" class="btn">
-                        <image src="/assets/img/button.png"   class="img"/>
-                    </button>
-                </navigator>
-                </form>
+        <view class="music">
+            <view class="music-info">
+                <view class="visualization"></view>
+                <image src="/assets/img/music.png" class="info-image"></image>
             </view>
-            <view class="box1">
-                <text>歌曲</text><text style="position:absolute;left:200rpx;">歌手 时长 热度 点歌</text>
-                    <scroll-view scroll-y class="content">
-                        <view class="one">
-                            <view wx:for="{{music}}">
-                                <view>{{item.name}}</view>
-                            </view>
-                        </view>
-                        <view class="two">
-                            <view wx:for="{{music}}">
-                                <view>{{item.geshou}}</view>
-                            </view>
-                        </view>
-                        <view class="three">
-                            <view wx:for="{{music}}">
-                                <view>{{item.shichang}}</view>
-                            </view>
-                        </view>
-                        <view class="four">
-                            <view wx:for="{{music}}">
+            <view class="music-search">
+                <view class="search">请输入要搜索的歌曲</view>
+                <navigator class="img" url="/pages/music/searchresult" hover-class="navigator-hover">
+                    <image src="/assets/img/button.png"/>
+                </navigator>
+            </view>
+            <view class="music-list">
+                <view class="list-nav">
+                    <view>歌曲</view>
+                    <view>歌手</view>
+                    <view>时长</view>
+                    <view>热度</view>
+                    <view>点歌</view>
+                </view>
+                <scroll-view scroll-y class="musics">
+                    <repeat for="{{music}}" key="id">
+                        <view class="music-scroll">
+                            <view class="musics-name">{{item.name}}</view>
+                            <view>{{item.geshou}}</view>
+                            <view>{{item.shichang}}</view>
+                            <view>
                                 <image src="{{item.icon1}}" style="width:35rpx;height:35rpx;"></image>
-                            </view>
-                        </view>
-                        <view class="five">
-                            <view wx:for="{{music}}">
                                 <image src="{{item.icon2}}" style="width:35rpx;height:35rpx;"></image>
                             </view>
-                        </view>
-                        <view class="six">
-                            <view wx:for="{{music}}">
-                                <navigator url="/pages/music/blessings" hover-class="navigator-hover"><image src="{{item.icon3}}" style="width:35rpx;height:35rpx;"></image></navigator>
+                            <view>
+                                <navigator url="/pages/music/blessings" hover-class="navigator-hover"><image src="{{item.icon3}}" style="width:35rpx;height:35rpx;"></image></navigator>    
                             </view>
                         </view>
-                    </scroll-view>
+                    </repeat>
+                </scroll-view>
             </view>
         </view>
     </block>

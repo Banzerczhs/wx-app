@@ -1,0 +1,16 @@
+<style>
+
+</style>
+
+<template>
+    <view>
+        123
+    </view>
+</template>
+
+<script>
+import wepy from "wepy";
+export default class Wode extends wepy.page{
+    
+}
+</script>
