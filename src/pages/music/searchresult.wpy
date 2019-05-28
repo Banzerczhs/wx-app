@@ -1,153 +1,119 @@
 <style scoped>
     .container{
-        margin-left:50rpx;
-        position:relative;
+        width:578rpx;
+        height:1100rpx;
+        margin-left:90rpx;
+        margin-top:0rpx;
     }
     .box{
+        width:578rpx;
+        height:100rpx;
         position:relative;
-        width:702rpx;
-        height:284rpx;
     }
-    .ls{
-        position:absolute;
-        left:0rpx;
-        top:30rpx;
-        width:405rpx;
-        height:170rpx;
-        background-color:#9cb6f7;
-        border-radius:5%;
-    }
-    .music{
-        position:absolute;
-        left:434rpx;
-        top:0rpx;
-        width:260rpx;
-        height:260rpx;
+    .box1{
+        width:578rpx;
+        height:1000rpx;
+        position:relative;
     }
     .search{
         position:absolute;
         left:0rpx;
-        top:226rpx;
-        width:476rpx;
-        height:58rpx;
+        top:0rpx;
+        width:578rpx;
+        height:60rpx;
         background-color:#9cb6f7;
-        border-radius:58rpx;
     }
     .sousuo{
         position:absolute;
-        left:36rpx;
-        top:232rpx;
-        width:354rpx;
+        left:10rpx;
+        top:8rpx;
+        width:476rpx;
         height:45rpx;
         background-color:#ffffff;
-        border-radius:45rpx;
     }
     input{
         position:absolute;
         left:40rpx;
-        top:225rpx;
+        top:5rpx;
         width:354rpx;
         height:45rpx;
     }
     .btn{
         position:absolute;
-        left:375rpx;
-        top:230rpx;
+        left:470rpx;
+        top:7rpx;
         border:none;
     }
     .img{
         width:55rpx;
         height:55rpx;
     }
-    .box1{
-        position:relative;
+    .content{
+        height:1000rpx;
+        position:absolute;
         left:0rpx;
-        top:50rpx;
-        width:656rpx;
-        height:800rpx;
-        border-radius:5%;
-        background-color:#9cb6f7;
-    }
-    text{
-        position: absolute;
-        left:60rpx;
-        top:32rpx;
-        font-size:36rpx;
-        word-spacing:38rpx;
-    }
-    .one{
-        position:absolute;
-        left:60rpx;
-        top:10rpx;
-        font-size:26rpx;
-        line-height:70rpx;
-    }
-    .two{
-        position:absolute;
-        left:200rpx;
-        top:10rpx;
-        font-size:26rpx;
-        line-height:70rpx;
-        width:100rpx;
-        white-space: nowrap;
-        overflow: hidden;
-    }
-    .three{
-        position:absolute;
-        left:335rpx;
-        top:10rpx;
-        font-size:26rpx;
-        line-height:70rpx;
-    }
-    .four{
-        position:absolute;
-        left:450rpx;
-        top:15rpx;
-        line-height:70rpx;
-    }
-    .five{
-        position:absolute;
-        left:520rpx;
-        top:15rpx;
-        line-height:70rpx;
+        top:0rpx;
+        background-color:white;
     }
     .six{
         position:absolute;
-        left:590rpx;
-        top:15rpx;
-        line-height:70rpx;
+        left:20rpx;
+        top:30rpx;
+        font-size:30rpx;
+        line-height:100rpx;
     }
-    .content{
-        height:700rpx;
+    .one{
         position:absolute;
-        left:0rpx;
-        top:80rpx;
+        left:100rpx;
+        top:0rpx;
+        font-size:30rpx;
+        line-height:100rpx;
+    }
+    .two{
+        position:absolute;
+        left:250rpx;
+        top:0rpx;
+        font-size:30rpx;
+        line-height:100rpx;
+    }
+    .three{
+        position:absolute;
+        left:450rpx;
+        top:0rpx;
+        font-size:30rpx;
+        line-height:100rpx;
+    }
+    .four{
+        position:absolute;
+        left:100rpx;
+        top:50rpx;
+        color:darkgrey;
+        line-height:100rpx;
     }
 </style>
-
 <template>
     <block>
-        <custom-nav isCustom="{{true}}" bgColor="text-custom-white">
-            <view slot="content">歌库</view>
+        <custom-nav isBack="{{true}}" bgColor="text-custom-white">
+                <view slot="content">搜索结果</view>
         </custom-nav>
         <view class="container">
             <view class="box">
-                <view class="ls">历史点歌记录</view>
-                <image src="/assets/img/music.png" class="music"></image>
                 <view class="search"></view>
                 <view class="sousuo"></view>
                 <form action="#">
-                <input type="text" value="请输入搜索的歌曲" focus="{{true}}"/>
-                <navigator url="/pages/music/searchresult" hover-class="navigator-hover">
+                <input type="text" value="搜索的内容" focus="{{true}}"/>
                     <button form-type="submit" plain="{{true}}" class="btn">
                         <image src="/assets/img/button.png"   class="img"/>
                     </button>
-                </navigator>
                 </form>
             </view>
             <view class="box1">
-                <text>歌曲</text><text style="position:absolute;left:200rpx;">歌手 时长 热度 点歌</text>
-                    <scroll-view scroll-y class="content">
+                <scroll-view scroll-y class="content">
+                        <view class="six">
+                            <view wx:for="{{music}}">
+                                <navigator url="/pages/music/blessings" hover-class="navigator-hover"><image src="{{item.icon3}}" style="width:35rpx;height:35rpx;"></image></navigator>
+                            </view>
+                        </view>
                         <view class="one">
                             <view wx:for="{{music}}">
                                 <view>{{item.name}}</view>
@@ -165,17 +131,7 @@
                         </view>
                         <view class="four">
                             <view wx:for="{{music}}">
-                                <image src="{{item.icon1}}" style="width:35rpx;height:35rpx;"></image>
-                            </view>
-                        </view>
-                        <view class="five">
-                            <view wx:for="{{music}}">
-                                <image src="{{item.icon2}}" style="width:35rpx;height:35rpx;"></image>
-                            </view>
-                        </view>
-                        <view class="six">
-                            <view wx:for="{{music}}">
-                                <navigator url="/pages/music/blessings" hover-class="navigator-hover"><image src="{{item.icon3}}" style="width:35rpx;height:35rpx;"></image></navigator>
+                                <view>{{item.xian}}</view>
                             </view>
                         </view>
                     </scroll-view>
@@ -183,20 +139,20 @@
         </view>
     </block>
 </template>
-
 <script>
 import wepy from "wepy";
 import Customnav from "@/components/customnav";
 export default class Music extends wepy.page{
     data = {
-        music:[
+         music:[
             {
                 name:"出山",
                 geshou:"王胜男",
                 shichang:"3:38",
                 icon1:"/assets/img/redu.png",
                 icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
+                icon3:"/assets/img/diange.png",
+                xian:"——————————————————————————————————————————"
             },
             {
                 name:"往后余生",
@@ -204,7 +160,8 @@ export default class Music extends wepy.page{
                 shichang:"3:58",
                 icon1:"/assets/img/redu.png",
                 icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
+                icon3:"/assets/img/diange.png",
+                xian:"——————————————————————————————————————————"
             },
             {
                 name:"沙漠骆驼",
@@ -212,7 +169,8 @@ export default class Music extends wepy.page{
                 shichang:"5:38",
                 icon1:"/assets/img/redu.png",
                 icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
+                icon3:"/assets/img/diange.png",
+                xian:"——————————————————————————————————————————"
             },
             {
                 name:"沙漠骆驼",
@@ -220,7 +178,8 @@ export default class Music extends wepy.page{
                 shichang:"5:38",
                 icon1:"/assets/img/redu.png",
                 icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
+                icon3:"/assets/img/diange.png",
+                xian:"——————————————————————————————————————————"
             },
             {
                 name:"乞丐",
@@ -228,7 +187,8 @@ export default class Music extends wepy.page{
                 shichang:"4:07",
                 icon1:"/assets/img/redu.png",
                 icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
+                icon3:"/assets/img/diange.png",
+                xian:"——————————————————————————————————————————"
             },
             {
                 name:"乞丐",
@@ -236,7 +196,8 @@ export default class Music extends wepy.page{
                 shichang:"4:07",
                 icon1:"/assets/img/redu.png",
                 icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
+                icon3:"/assets/img/diange.png",
+                xian:"——————————————————————————————————————————"
             },
             {
                 name:"学猫叫",
@@ -244,7 +205,8 @@ export default class Music extends wepy.page{
                 shichang:"3:15",
                 icon1:"/assets/img/redu.png",
                 icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
+                icon3:"/assets/img/diange.png",
+                xian:"——————————————————————————————————————————"
             },
             {
                 name:"学猫叫",
@@ -252,7 +214,8 @@ export default class Music extends wepy.page{
                 shichang:"3:15",
                 icon1:"/assets/img/redu.png",
                  icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
+                icon3:"/assets/img/diange.png",
+                xian:"——————————————————————————————————————————"
 
             },
             {
@@ -262,7 +225,7 @@ export default class Music extends wepy.page{
                 icon1:"/assets/img/redu.png",
                 icon2:"/assets/img/bofang.png",
                 icon3:"/assets/img/diange.png",
-               
+               xian:"——————————————————————————————————————————"
             },
             {
                 name:"学猫叫",
@@ -270,7 +233,8 @@ export default class Music extends wepy.page{
                 shichang:"3:15",
                 icon1:"/assets/img/redu"+".png",
                 icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
+                icon3:"/assets/img/diange.png",
+                xian:"——————————————————————————————————————————"
             },
              {
                 name:"出山",
@@ -278,7 +242,8 @@ export default class Music extends wepy.page{
                 shichang:"3:38",
                 icon1:"/assets/img/redu.png",
                 icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
+                icon3:"/assets/img/diange.png",
+                xian:"——————————————————————————————————————————"
             },
             {
                 name:"往后余生",
@@ -286,7 +251,8 @@ export default class Music extends wepy.page{
                 shichang:"3:58",
                 icon1:"/assets/img/redu.png",
                 icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
+                icon3:"/assets/img/diange.png",
+                xian:"——————————————————————————————————————————"
             },
             {
                 name:"沙漠骆驼",
@@ -294,7 +260,8 @@ export default class Music extends wepy.page{
                 shichang:"5:38",
                 icon1:"/assets/img/redu.png",
                 icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
+                icon3:"/assets/img/diange.png",
+                xian:"——————————————————————————————————————————"
             },
             {
                 name:"沙漠骆驼",
@@ -302,7 +269,8 @@ export default class Music extends wepy.page{
                 shichang:"5:38",
                 icon1:"/assets/img/redu.png",
                 icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
+                icon3:"/assets/img/diange.png",
+                xian:"——————————————————————————————————————————"
             },
             {
                 name:"乞丐",
@@ -310,7 +278,8 @@ export default class Music extends wepy.page{
                 shichang:"4:07",
                 icon1:"/assets/img/redu.png",
                 icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
+                icon3:"/assets/img/diange.png",
+                xian:"——————————————————————————————————————————"
             },
             {
                 name:"乞丐",
@@ -318,7 +287,8 @@ export default class Music extends wepy.page{
                 shichang:"4:07",
                 icon1:"/assets/img/redu.png",
                 icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
+                icon3:"/assets/img/diange.png",
+                xian:"——————————————————————————————————————————"
             },
             {
                 name:"学猫叫",
@@ -326,7 +296,8 @@ export default class Music extends wepy.page{
                 shichang:"3:15",
                 icon1:"/assets/img/redu.png",
                 icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
+                icon3:"/assets/img/diange.png",
+                xian:"——————————————————————————————————————————"
             },
             {
                 name:"学猫叫",
@@ -334,7 +305,8 @@ export default class Music extends wepy.page{
                 shichang:"3:15",
                 icon1:"/assets/img/redu.png",
                  icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
+                icon3:"/assets/img/diange.png",
+                xian:"——————————————————————————————————————————"
 
             },
             {
@@ -344,7 +316,7 @@ export default class Music extends wepy.page{
                 icon1:"/assets/img/redu.png",
                 icon2:"/assets/img/bofang.png",
                 icon3:"/assets/img/diange.png",
-               
+               xian:"——————————————————————————————————————————"
             },
             {
                 name:"学猫叫",
@@ -352,7 +324,8 @@ export default class Music extends wepy.page{
                 shichang:"3:15",
                 icon1:"/assets/img/redu"+".png",
                 icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
+                icon3:"/assets/img/diange.png",
+                xian:"——————————————————————————————————————————"
             }
         ]
     }
@@ -366,4 +339,3 @@ export default class Music extends wepy.page{
     }
 }
 </script>
-

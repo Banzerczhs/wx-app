@@ -1,0 +1,102 @@
+<style scoped>
+    .container {
+        width:550rpx;
+        height:1000rpx;
+        margin-left:100rpx;
+        margin-top:50rpx;
+    }
+    .box{
+        width:550rpx;
+        height:290rpx;
+        position:relative;
+    }
+    .img{
+        position:absolute;
+        left:190rpx;
+        top:0rpx;
+        width:160rpx;
+        height:160rpx;
+    }
+    .info{
+        position:absolute;
+        left:30rpx;
+        top:200rpx;
+        font-size:36rpx;
+        color:white;
+        word-spacing:110rpx;
+    }
+    .box1{
+        width:550rpx;
+        height:580rpx;
+        position:relative;
+        left:0rpx;
+        top:50rpx;
+    }
+    .box2{
+        width:550rpx;
+        height:280rpx;
+        position:absolute;
+        left:0rpx;
+        top:50rpx;
+        background-color:white;
+    }
+    .btn{
+        position:absolute;
+        left:90rpx;
+        top:420rpx;
+        width:370rpx;
+        height:110rpx;
+        background:white;
+        text-align:center;
+        font-size:50rpx;
+        line-height:110rpx;
+    }
+    .text{
+        position:absolute;
+        left:0rpx;
+        top:0rpx;
+        width:550rpx;
+        height:280rpx;
+        font-size:32rpx;
+    }
+</style>
+<template>
+    <block>
+        <custom-nav isBack="{{true}}" bgColor="text-custom-white">
+                <view slot="content">祝福语</view>
+        </custom-nav>
+        <view class="container">
+            <view class="box">
+                <image src="/assets/img/music.png" class="img"></image>
+                <view class="info">出山 王胜男 3:38</view>
+            </view>
+            <view class="box1">
+                <view style="font-size:36rpx;position:absolute;left:0rpx;top:0rpx;color:white;">祝福语</view>
+                <view class="box2">
+                    <form action="#">
+                        <textarea placeholder="请输入祝福语" maxlength="-1" class="text"/>
+                        <button form-type="submit" class="btn">提交</button>
+                    </form>
+                </view>
+            </view>
+        </view>
+    </block>
+</template>
+<script>
+import wepy from "wepy";
+import Customnav from "@/components/customnav";
+export default class Music extends wepy.page{
+    data = {
+
+    }
+
+    components = {
+        'custom-nav' : Customnav
+    }
+
+    methods = {
+
+    }
+
+}
+</script>

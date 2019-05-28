@@ -53,7 +53,13 @@ export default class app extends wepy.app {
       'pages/association/issue',
       'pages/music/music',
       'pages/music/playlist',
-      'pages/music/uploadmusic'
+      'pages/music/uploadmusic',
+      'pages/music/blessings',
+      'pages/music/searchresult',
+      'pages/lostandfound/lostandfound',
+      'pages/lostandfound/searchfornotices',
+      'pages/lostandfound/fabu',
+      'pages/lostandfound/wode',
     ],
     window: {
       backgroundTextStyle: 'light',

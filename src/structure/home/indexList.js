@@ -2,7 +2,17 @@ let indexlist = {
     indexnav:[
         {
             src:"https://www.quyun.online/assets/image/x_0042_%E5%A4%B1%E7%89%A9%E6%8B%9B%E9%A2%861.png",
-            name:'失物招领'
+            name:'失物招领',
+            child:[
+                {
+                    name:"失物招领",
+                    url:"/pages/lostandfound/lostandfound"
+                },
+                {
+                    name:"寻物启事",
+                    url:"/pages/lostandfound/searchfornotices"
+                }
+            ]
         },
         {
             src:"https://www.quyun.online/assets/image/x_0038_%E5%9B%BE%E4%B9%A6%E9%A6%86.png",

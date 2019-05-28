@@ -1,0 +1,194 @@
+<style scoped>
+    .container{
+        width:750rpx;
+        height:1180rpx;
+    }
+    .box{
+        width:670rpx;
+        height:1000rpx;
+        position:relative;
+        left:40rpx;
+        top:0rpx;
+    }
+    .box1{
+        width:100%;
+        height:200rpx;
+        margin:20rpx 0;
+        background-color: #a4bdf7;
+        position:relative;
+    }
+    .box2 image{
+        width:100%;
+        height:100%;
+    }
+    .box2{
+        width:145rpx;
+        height:145rpx;
+        position:absolute;
+        left:30rpx;
+        top:30rpx;
+    }
+    .box3{
+        width:450rpx;
+        height:120rpx;
+        font-size:32rpx;
+        color:black;
+        position:absolute;
+        left:175rpx;
+        top:30rpx;
+    }
+    .box4{
+        width:200rpx;
+        height:60rpx;
+        font-size:28rpx;
+        color:black;
+        position:absolute;
+        left:530rpx;
+        top:150rpx;
+    }
+    .one{
+        width:640rpx;
+    }
+    .tab{
+        width:100%;
+        height:138rpx;
+        background-color:white;
+        position:relative;
+        left:0rpx;
+        top:45rpx;
+    }
+    image{
+        width:80rpx;
+        height:80rpx;
+    }
+    .tab view view{
+        margin-left:15rpx;
+    }
+    .souye{
+        width:135rpx;
+        height:135rpx;
+        position:absolute;
+        left:100rpx;
+        top:0rpx;
+    }
+    .fabu{
+        width:135rpx;
+        height:135rpx;
+        position:absolute;
+        left:340rpx;
+        top:0rpx;
+    }
+    .wode{
+        width:135rpx;
+        height:135rpx;
+        position:absolute;
+        left:580rpx;
+        top:0rpx;
+    }
+</style>
+
+<template>
+    <block>
+        <custom-nav isCustom="{{true}}" bgColor="text-custom-white">
+            <view slot="content">失物招领</view>
+        </custom-nav>
+        <view class="container">
+            <scroll-view  scroll-y class="box">
+                <repeat for="{{info}}" key="id">
+                    <view class="box1">
+                        <view class="box2">
+                            <image src="{{item.imgurl}}"></image>
+                        </view>
+                        <view class="box3">
+                            {{item.name}}
+                        </view>
+                        <view class="box4">
+                            {{item.date}}
+                        </view>
+                    </view>
+                </repeat>
+                    
+            </scroll-view>
+            <view class="tab">
+                <navigator url="/pages/lostandfound/lostandfound" hover-class="navigator-hover">
+                    <view class="souye">
+                        <image src="/assets/img/guangchang1.png"></image>
+                        <view style="color:#1296db;font-size:30rpx;">广场</view> 
+                    </view>
+                </navigator>
+                <navigator url="/pages/lostandfound/fabu" hover-class="navigator-hover">
+                    <view class="fabu">
+                        <image src="/assets/img/fabu.png"></image>
+                        <view style="color:#515151;font-size:30rpx;">发布</view> 
+                    </view>
+                </navigator>
+                <navigator url="/pages/lostandfound/wode" hover-class="navigator-hover">
+                    <view class="wode">
+                        <image src="/assets/img/wode.png"></image>
+                        <view style="color:#515151;font-size:30rpx;">我的</view> 
+                    </view>
+                </navigator>
+            </view>
+        </view>
+    </block>
+</template>
+
+<script>
+import wepy from "wepy";
+import Customnav from "@/components/customnav";
+export default class lostandfound extends wepy.page{
+    data = {
+        info:[
+            {
+                imgurl:"/assets/img/yangtu.png",
+                name:"**食堂捡到**同学校园一卡通",
+                date:"2019-5-28"
+            },
+            {
+                imgurl:"/assets/img/yangtu.png",
+                name:"**食堂捡到**同学校园一卡通",
+                date:"2019-5-28"
+            },
+            {
+                imgurl:"/assets/img/yangtu.png",
+                name:"**食堂捡到**同学校园一卡通",
+                date:"2019-5-28"
+            },
+            {
+                imgurl:"/assets/img/yangtu.png",
+                name:"**食堂捡到**同学校园一卡通",
+                date:"2019-5-28"
+            },
+            {
+                imgurl:"/assets/img/yangtu.png",
+                name:"**食堂捡到**同学校园一卡通",
+                date:"2019-5-28"
+            },
+            {
+                imgurl:"/assets/img/yangtu.png",
+                name:"**食堂捡到**同学校园一卡通",
+                date:"2019-5-28"
+            },
+            {
+                imgurl:"/assets/img/yangtu.png",
+                name:"**食堂捡到**同学校园一卡通",
+                date:"2019-5-28"
+            },
+            {
+                imgurl:"/assets/img/yangtu.png",
+                name:"**食堂捡到**同学校园一卡通",
+                date:"2019-5-28"
+            }
+        ]
+    }
+
+    components = {
+        'custom-nav' : Customnav
+    }
+
+    methods = {
+
+    }
+}
+</script>
+

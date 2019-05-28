@@ -1,0 +1,193 @@
+<style scoped>
+    .container{
+        width:750rpx;
+        height:1180rpx;
+    }
+    .box{
+        width:100%rpx;
+        height:1000rpx;
+        position:relative;
+        left:0rpx;
+        top:0rpx;
+    }
+    .box1{
+        width:100%;
+        height:160rpx;
+        position:relative;
+        top:0rpx;
+        left:0rpx;
+        background-color:#a4bdf6;
+    }
+    .name{
+        width:100%;
+        height:70rpx;
+        background-color: white;
+        position:absolute;
+        left:0rpx;
+        top:0rpx;
+        border-top:1rpx solid #787879;
+        border-bottom:1rpx solid #787879;
+    }
+    .name1{
+        width:100%;
+        height:70rpx;
+        background-color: white;
+        position:absolute;
+        left:0rpx;
+        top:90rpx;
+        border-top:1rpx solid #787879;
+        border-bottom:1rpx solid #787879;
+    }
+    .box2{
+        width:100%;
+        height:800rpx;
+        position:relative;
+        left:0rpx;
+        top:20rpx;
+    }
+    .xq{
+        width:100%;
+        height:400rpx;
+        position:absolute;
+        left:0rpx;
+        top:0rpx;
+        background-color:white;
+    }
+    .tjtp{
+        width:100%;
+        height:200rpx;
+    }
+    .btn{
+        width:250rpx;
+        height:180rpx;
+        position: absolute;
+        left:-30rpx;
+        top:200rpx;
+        border:none;
+    }
+    .btn image{
+        width:250rpx;
+        height:180rpx;
+    }
+    .text{
+        width:100%;
+        height:150rpx;
+        font-size:30rpx;
+    }
+    .lx{
+        width:100%;
+        height:400rpx;
+        position:absolute;
+        left:0rpx;
+        top:420rpx;
+        background-color:#a4bdf6;
+    }
+    .tab{
+        width:100%;
+        height:138rpx;
+        background-color:white;
+        position:relative;
+        left:0rpx;
+        top:45rpx;
+    }
+    .img{
+        width:80rpx;
+        height:80rpx;
+    }
+    .tab view view{
+        margin-left:15rpx;
+    }
+    .souye{
+        width:135rpx;
+        height:135rpx;
+        position:absolute;
+        left:100rpx;
+        top:0rpx;
+    }
+    .fabu{
+        width:135rpx;
+        height:135rpx;
+        position:absolute;
+        left:340rpx;
+        top:0rpx;
+    }
+    .wode{
+        width:135rpx;
+        height:135rpx;
+        position:absolute;
+        left:580rpx;
+        top:0rpx;
+    }
+</style>
+
+<template>
+    <block>
+        <custom-nav isCustom="{{true}}" bgColor="text-custom-white">
+            <view slot="content">发布</view>
+        </custom-nav>
+        <view class="container">
+            <view class="box">
+                <form action="#">
+                    <view class="box1">
+                        <view class="name">
+                            <input type="text" placeholder="请输入物品名称或描述" style="font-size:34rpx;margin-top:10rpx;"/>
+                        </view>
+                        <view class="name1">
+                            <input type="text" placeholder="请输入您的姓氏(方便失主称呼您)" style="font-size:34rpx;margin-top:10rpx;"/>
+                        </view>
+                    </view>
+                    <view class="box2">
+                        <view class="xq">
+                            <textarea placeholder="物品详情描述" maxlength="-1" class="text"/>
+                            <view class="tjtp">
+                            <button type="button" class="btn" plain="{{true}}"><image src="/assets/img/tianjia.png"></image></button>
+                            </view>
+                        </view>
+                        <view class="lx">
+
+                        </view>
+                    </view>
+                </form>
+            </view>
+            <view class="tab">
+                <navigator url="/pages/lostandfound/lostandfound" hover-class="navigator-hover">
+                    <view class="souye">
+                        <image src="/assets/img/guangchang.png" class="img"></image>
+                        <view style="color:#515151;font-size:30rpx;">广场</view> 
+                    </view>
+                </navigator>
+                <navigator url="/pages/lostandfound/fabu" hover-class="navigator-hover">
+                    <view class="fabu">
+                        <image src="/assets/img/fabu1.png" class="img"></image>
+                        <view style="color:#1296db;font-size:30rpx;">发布</view> 
+                    </view>
+                </navigator>
+                <navigator url="/pages/lostandfound/wode" hover-class="navigator-hover">
+                    <view class="wode">
+                        <image src="/assets/img/wode.png" class="img"></image>
+                        <view style="color:#515151;font-size:30rpx;">我的</view> 
+                    </view>
+                </navigator>
+            </view>
+        </view>
+    </block>
+</template>
+
+<script>
+import wepy from "wepy";
+import Customnav from "@/components/customnav";
+export default class Lostandfound extends wepy.page{
+    data = {
+    
+    }
+
+    components = {
+        'custom-nav' : Customnav
+    }
+
+    methods = {
+
+    }
+}
+</script>
+

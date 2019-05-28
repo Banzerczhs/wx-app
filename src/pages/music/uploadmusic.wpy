@@ -1,10 +1,55 @@
 <style>
-
+    .container{
+        width:100%;
+    }
+    .box{
+        width:550rpx;
+        height:430rpx;
+        margin-top:250rpx;
+        margin-left:100rpx;
+        position:relative;
+    }
+    .filename{
+        color:white;
+        text-align: center;
+    }
+    .btn{
+        position:absolute;
+        left:0rpx;
+        top:160rpx;
+        background-color:white;
+        width:550rpx;
+        height:84rpx;
+        border-radius:20rpx;
+    }
+    .btn2{
+        position:absolute;
+        left:90rpx;
+        top:320rpx;
+        background-color:white;
+        width:372rpx;
+        height:104rpx;
+    }
 </style>
 <template>
     <block>
-        <custom-nav isCustom="{{true}}"></custom-nav>
-        <view>我是播放列表</view>
+        <custom-nav isCustom="{{true}}" bgColor="text-custom-white">
+            <view slot="content">上传音乐</view>
+        </custom-nav>
+        <view class="container">
+            <view class="box">
+                <view class="filename">
+                    <view style="display:none;">文件名称</view>
+                    <view class="bg-blue" style="width:100%;">100%</view>
+                </view>
+                <view class="btn">
+                    <input type="button" value="上传音乐" style="width:100%;height:100%;color:black;text-align:center;font-size:30rpx;"/>
+                </view>
+                <view class="btn2">
+                    <input type="button" value="提交" style="width:100%;height:100%;color:black;text-align:center;font-size:50rpx;"/>
+                </view>
+            </view>
+        </view>
     </block>
 </template>
 <script>
