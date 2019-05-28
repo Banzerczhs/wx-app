@@ -144,7 +144,18 @@
                             </view>
                         </view>
                         <view class="lx">
-
+                            <view class="qq">
+                            <input type="text" placeholder="请输入QQ" style="font-size:34rpx;margin-top:10rpx;"/>
+                        </view>
+                        <view class="dh">
+                            <input type="text" placeholder="请输入您的姓氏(方便失主称呼您)" style="font-size:34rpx;margin-top:10rpx;"/>
+                        </view>
+                        <view class="dd">
+                            <input type="text" placeholder="请输入物品名称或描述" style="font-size:34rpx;margin-top:10rpx;"/>
+                        </view>
+                        <view class="tj">
+                            <input type="text" placeholder="请输入您的姓氏(方便失主称呼您)" style="font-size:34rpx;margin-top:10rpx;"/>
+                        </view>
                         </view>
                     </view>
                 </form>
