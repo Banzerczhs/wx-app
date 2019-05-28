@@ -1,0 +1,304 @@
+<style scoped>
+    @import '/styles/association/detail.wxss';
+</style>
+
+<template>
+    <block>
+        <custom-nav isBack="{{true}}" class="text-custom-white" bgColor="bg-custom-gradient">
+            <view slot="content">活动详情</view>
+        </custom-nav>
+        <view
+            class="detail"
+            style="height:{{detailIh}}px;">
+            <view class="detail-head">
+                <view class="head-img">
+                    <image src="/assets/img/logo.png"></image>
+                </view>
+                <view class="head-desc">
+                    <view class="title">弹指之间&DN舞协联合专场</view>
+                    <view class="tags">
+                        <text class="tag bg-orange custom-shadow">进行中</text>
+                        <text class="tag bg-red custom-shadow">0.5实践学分</text>
+                    </view>
+                    <view class="time">{{countDown}}<text style="font-size:24rpx;margin:0 10rpx;">后活动开始</text></view>
+                </view>
+            </view>
+            <view class="EventsState scroll" style="top:{{boxTop}}px;">
+                <view class="peopleInfo">
+                    <text>人数:{{total}}人</text>
+                    <text>已报名:{{apply}}人</text>
+                    <text>已签到:{{signIn}}人</text>
+                </view>
+                <view class="flow">
+                    <view class="flow-text text-custom-white">活动流程</view>
+                    <view class="cu-steps">
+                        <repeat for="{{basicsList}}" key="index">
+                            <view class="cu-item {{index>basics?'text-custom-white':'text-custom-blue'}}">
+                                <text class="cuIcon-{{item.icon}}"></text> {{item.name}}
+                            </view>
+                        </repeat>
+                    </view>
+                    <view 
+                        class="closeSigin" 
+                        style="display:{{isSign?'block':'none'}}"
+                        @tap="closeSigin"
+                    >结束报名</view>
+                </view>
+                <view class="eventsInfo scroll" style="top:{{toTop}}px">
+                    <scroll-view scroll-x class="nav text-center">
+                        <repeat for="{{navlist}}" key="id">
+                            <view class="cu-item {{TabCur==index?'text-custom-blue cur':'text-white'}}" @tap="tabSelect" data-id="{{index}}">
+                                {{item.title}}
+                            </view>
+                        </repeat>
+                    </scroll-view>
+                    <view class="info-content movebox scroll" animation="{{animationPage}}" style="width:{{boxwidth}}%;top:{{conTop}}px">
+                        <!-- 详情 -->
+                        <scroll-view
+                            scroll-y="true"
+                            style="height:100%;width:{{viewWidth}}px;"
+                            class="content-detail">
+                            <repeat for="{{detailArr}}" key="index">
+                                <view>
+                                    <text>{{item.title}}:</text>
+                                    <text>{{item.content}}</text>
+                                </view>
+                            </repeat>
+                        </scroll-view>
+                        <!-- 简介 -->
+                        <scroll-view style="width:{{viewWidth}}px;" class="content-brief">
+                            本次活动为纺服学院承接包里社区六一活动，组织志愿者帮他们举办活动
+                        </scroll-view>
+                        <!-- 签到人员 -->
+                        <scroll-view
+                            scroll-y="true"
+                            class="content-people"
+                            style="width:{{viewWidth}}px;height:100%;"
+                            lower-threshold="200"
+                            @scrolltolower="scrollNew">
+                            <view>
+                                <repeat for="{{20}}" key="index">
+                                    <view class="student">
+                                        <image src="/assets/img/Logo.png"></image>
+                                        <view>
+                                            <text class="tag bg-orange radius">管理员</text>
+                                            <text class="tag bg-grey radius">已签到</text>
+                                            <text>纺服学院分团委</text>
+                                        </view>
+                                    </view>
+                                </repeat>
+                            </view>
+                        </scroll-view>
+                        <!-- 评价 -->
+                        <scroll-view
+                            scroll-y="true"
+                            lower-threshold="200"
+                            style="width:{{viewWidth}}px;height:100%"
+                            class="content-evaluate"
+                            @scrolltolower="scrollNew">
+                            <view>
+                                <repeat for="{{20}}" key="index">
+                                    <view class="evaluate">
+                                        <image src="/assets/img/Logo.png"></image>
+                                        <view class="evaluate-box">
+                                            <view class="evaluate-name">纺服学院分团委</view>
+                                            <view class="evaluate-val">这次的活动很好，很不错</view>
+                                            <view class="evaluate-time">2019-12-20</view>
+                                        </view>
+                                    </view>
+                                </repeat>
+                                <text class="evaluate-btn" @tap="evaluate">发表评论</text>
+                            </view>
+                        </scroll-view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="area">
+            <view class="area-btn" @tap="switchState">
+                <image src="/assets/img/{{btnUrl}}.png"></image>
+                <text class="area-tip">{{btnUrl=='apply'?'报名':'签到'}}</text>
+            </view>
+        </view>
+    </block>
+</template>
+
+<script>
+import wepy from "wepy";
+import Customnav from "@/components/customnav";
+import {formatNumber} from "@/util/tools";
+
+export default class Detail extends wepy.page{
+    components = {
+        'custom-nav' : Customnav
+    }
+
+    data = {
+        activeTime : 0,
+        boxwidth : 0,
+        basicsList: [{
+                icon: 'usefullfill',
+                name: '报名'
+            },{
+                icon: 'radioboxfill',
+                name: '签到'
+            },{
+                icon: 'radioboxfill',
+                name: '开始'
+            },{
+                icon: 'roundcheckfill',
+                name: '结束'
+            }
+        ],
+        navlist : [{
+            id : 'abcg',
+            title : '详情'
+        },{
+            id : 'jkhjk',
+            title : '简介'
+        },{
+            id : 'uioo',
+            title : '成员'
+        },{
+            id : 'tyui',
+            title : '评价'
+        }],
+        basics: -1,
+        total: 20,
+        apply: 1,
+        signIn: 1,
+        TabCur: 0,
+        boxTop: 0,
+        conTop: 0,
+        toTop: 0,
+        viewWidth : 0,
+        animationPage : {},
+        detailArr : [{
+            title : '活动分类',
+            content : '学习创新素质拓展'
+        },{
+            title : '活动联系人',
+            content : '黄瑞173***0652'
+        },{
+            title : '报名时间',
+            content : '2019/05/23 08:04-2019/05/30 23:04'
+        },{
+            title : '活动时间',
+            content : '2019/05/23 19:04-2019/05/30 23:04'
+        },{
+            title : '活动地点',
+            content : '凌曦楼A3001'
+        },{
+            title : '活动院系',
+            content : '全部'
+        },{
+            title : '活动年级',
+            content : '全部'
+        },{
+            title : '活动标签',
+            content : '全部'
+        }],
+        isSign : true,
+        btnUrl : '',
+        beginTime : '2019-5-30 15:30',
+        nowTime : new Date(),
+        detailIh : 0
+    }
+
+    methods = {
+        tabSelect(e) {
+            let {screenWidth}=this.system;
+            this.TabCur=e.currentTarget.dataset.id;
+            this.scrollLeft=(e.currentTarget.dataset.id-1)*60;
+            let animation=wepy.createAnimation({
+                duration: 200
+            });
+            animation.translate(-screenWidth*e.currentTarget.dataset.id).step();
+            this.animationPage=animation.export();
+            this.$apply();
+        },
+        
+        switchState(){
+            //切换社团报名状态
+            this.isSign=true;
+            this.btnUrl='signIn';
+            this.progress();
+        },
+
+        closeSigin(){
+            this.isSign=false;
+            this.btnUrl='apply';
+            this.progress();
+        },
+
+        scrollNew(){
+            //页面触底
+        },
+
+        evaluate(){
+            wepy.navigateTo({
+                url: '/pages/association/comment'
+            });
+        }
+    }
+
+    onLoad(){
+        this.activeTime='2天19:25:30';
+        this.boxwidth=this.navlist.length*100;
+        this.btnUrl='signIn';
+
+        setInterval(() => {
+            this.nowTime=new Date();
+            this.$apply();
+        },1000);
+        
+        this.initLayout();
+        this.progress();
+    }
+
+    progress(){
+        let {btnUrl}=this;
+        switch(btnUrl){
+            case 'signIn' : this.basics=0;break;
+            default : this.basics=-1;
+        }
+
+        this.$apply();
+    }
+
+    initLayout(){
+        this.system=wepy.getSystemInfoSync();
+        this.viewWidth=this.system.screenWidth;
+
+        let query=wepy.createSelectorQuery();
+        query.select('.detail-head').boundingClientRect();
+        query.select('.peopleInfo').boundingClientRect();
+        query.select('.flow').boundingClientRect();
+        query.select('.nav').boundingClientRect();
+        query.exec((res)=>{
+            setTimeout(() => {
+                this.boxTop=res[0].height;
+                this.conTop=res[3].height;
+                this.toTop=res[1].height+res[2].height+60;
+                this.detailIh=res[0].height+res[1].height+res[2].height+this.system.screenHeight;
+                this.$apply();
+            },200);
+        })
+    }
+
+    computed = {
+        countDown(){
+            let {beginTime}=this;
+            var startTime=new Date(beginTime);
+
+            var disTime=startTime.getTime()-this.nowTime.getTime();
+            var day=formatNumber(Math.floor(disTime/1000/60/60/24));
+            var hour=formatNumber(Math.floor(disTime/1000/60/60%24));
+            var minute=formatNumber(Math.floor(disTime/1000/60/60%60));
+            var second=formatNumber(Math.floor((disTime%(1000*60))/1000));
+
+            return day+'天'+hour+':'+minute+':'+second;
+        }
+    }
+}
+</script>

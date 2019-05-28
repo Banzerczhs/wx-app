@@ -43,7 +43,7 @@
     position: relative;
 }
 .child .child-text text:nth-child(1)::after{
-   content:'|';
+    content:'|';
     margin-left:30px;
 }
 .child .child-name{
@@ -59,8 +59,9 @@
         <custom-nav 
             bgColor="text-custom-white" 
             isCustom="{{true}}"
-            backIndex="2"
-        ></custom-nav>
+            backIndex="2">
+            <view slot="content">搜索结果</view>
+        </custom-nav>
         <scroll-view 
             class="scroll"
             scroll-y="true" 

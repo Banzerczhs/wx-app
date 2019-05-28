@@ -111,7 +111,22 @@
     export default class Bookdetail extends wepy.page{
         data = {
             bgUrl : 'https://www.quyun.online/assets/image/bookcover.jpg',
-            score : [[],[],[],[],[]],
+            score : [{
+                id : 1,
+                state:true
+            },{
+                id : 2,
+                state:true
+            },{
+                id : 3,
+                state:true
+            },{
+                id : 4,
+                state:true
+            },{
+                id : 5,
+                state:false
+            }],
             toActive : false,
             likestate : false,
             bgPos : '',

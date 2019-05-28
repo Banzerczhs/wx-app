@@ -1,0 +1,223 @@
+.steps-bottom.cu-steps .cu-item .num::before {
+    content: "\e668";
+    font-family: 'iconfont';
+}
+.detail{
+    background: url('https://www.quyun.online/assets/image/bg1.png') no-repeat 0 0;
+    background-size:cover;
+    position: relative;
+}
+.custom-shadow{
+    box-shadow:1px 1px 4px rgba(0,0,0,0.5);
+}
+.detail-head{
+    width: 95%;
+    display:flex;
+    display:-webkit-flex;
+    justify-content: space-around;
+    padding:20rpx 35rpx;
+    margin:0 auto;
+}
+.detail-head .head-img{
+    flex-grow:1;
+    position:relative;
+    width: 180rpx;
+    height:180rpx;
+}
+.tag{
+    font-size: 20rpx;
+    padding:6rpx 8rpx;
+    color:#fff;
+    z-index:10;
+    margin-right: 20rpx;
+}
+.detail-head .head-img image{
+    width: 100%;
+    height: 100%;
+    position:absolute;
+    left:0;
+    top:0;
+    border-radius:50%;
+    box-shadow:1px 1px 4px rgba(0,0,0,0.5);
+}
+.detail-head .head-desc{
+    flex-grow:4;
+    margin-left: 40rpx;
+    color:#fff;
+}
+.detail-head .head-desc>view{
+    margin: 15rpx 0;
+}
+.detail-head .head-desc .time{
+    font-size: 26px;
+}
+.EventsState{
+    width: 100%;
+    padding:20rpx 0;
+}
+.peopleInfo{
+    color:#fff;
+    padding:0 35rpx;
+    margin:40rpx 0;
+}
+.peopleInfo text{
+    margin-right: 15rpx;
+}
+.flow{
+    padding:20rpx 0;
+    background-color:rgba(0,0,0,0.1);
+    position: relative;
+}
+.flow-text{
+    text-align:center;
+    position:relative;
+}
+.flow-text::after{
+    position:absolute;
+    content:"";
+    display:block;
+    height: 1px;
+    width: 120rpx;
+    background-color: rgb(216, 216, 216);
+    right:20%;
+    top:50%;
+    transform:translateY(-50%);
+    -webkit-transform:translateY(-50%);
+}
+.flow-text::before{
+    position:absolute;
+    content:"";
+    display:block;
+    height: 1px;
+    width: 120rpx;
+    background-color: rgb(216, 216, 216);
+    left:20%;
+    top:50%;
+    transform:translateY(-50%);
+    -webkit-transform:translateY(-50%);
+}
+.flow .closeSigin{
+    padding:8rpx 20rpx;
+    position: absolute;
+    right:10rpx;
+    top:10rpx;
+    color:#fff;
+    font-size: 20rpx;
+    border-radius:20rpx;
+    border:solid 1px #fff;
+}
+.flow .closeSigin text{
+    position: absolute;
+    right:0;
+    top:0;
+}
+.movebox{
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-around;
+}
+.info-content scroll-view{
+    color:#fff;
+    padding:20rpx;
+}
+.content-detail view{
+    margin:20rpx 0;  
+}
+.content-detail view text{
+    margin:0 20rpx;
+}
+.content-brief{
+    text-indent:2em;
+}
+.content-people .student{
+    display:flex;
+    display:-webkit-flex;
+    padding:0 30rpx;
+    margin:20rpx 0;
+}
+.content-people .student image{
+    width: 100rpx;
+    height: 100rpx;
+    border-radius:50%;
+}
+.content-people .student view{
+    line-height:100rpx;
+    margin-left: 20rpx;
+}
+.content-evaluate{
+    position: relative;
+}
+.content-evaluate .evaluate-btn{
+    position: absolute;
+    right:10rpx;
+    top:0rpx;
+    padding:8rpx 12rpx;
+    background-color:#fff;
+    border-radius:10rpx;
+    border:solid 1px #fff;
+    color:#1296db;
+}
+.content-evaluate .evaluate{
+    display:flex;
+    display:-webkit-flex;
+    margin:20rpx 0;
+}
+.content-evaluate .evaluate image{
+    width: 100rpx;
+    height:100rpx;
+    border-radius:50%;
+}
+.content-evaluate .evaluate .evaluate-box{
+    width:88%;
+    margin-left: 20rpx;
+    display:flex;
+    display:-webkit-flex;
+    flex-direction:column;
+    position:relative;
+    padding:10rpx 0;
+}
+.evaluate .evaluate-box .evaluate-time{
+    position:absolute;
+    bottom:10rpx;
+    right:20rpx;
+    font-size: 24rpx;
+}
+.area{
+    height:80rpx;
+    position: fixed;
+    bottom:-15rpx;
+    left:0;
+    right:0;
+    background:url('https://www.quyun.online/assets/image/accessbtn.png') no-repeat 0 0;
+    background-size:cover;
+}
+.area .area-btn{
+    width: 90rpx;
+    height:90rpx;
+    background-color:#fff;
+    border-radius:50%;
+    position: absolute;
+    left:50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    top:-35rpx;
+    box-shadow:-1px -1px 4px #000;
+}
+.area .area-btn image{
+    width: 75%;
+    height:75%;
+    position: absolute;
+    top:38%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+}
+.area .area-tip{
+    color: #1296db;
+    font-size: 20rpx;
+    position: absolute;
+    left:50%;
+    bottom:5rpx;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+}

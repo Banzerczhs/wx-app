@@ -1,0 +1,207 @@
+<style scoped>
+.navbar{
+    width:80%;
+    display: flex;
+    display: -webkit-flex;
+    position: relative;
+    z-index:100;
+    justify-content: space-around;
+    margin: 0 auto;
+}
+.navbar text{
+    color:rgb(216, 216, 216);
+    font-size:30rpx;
+    text-align: center;
+    padding:10px 0;
+    flex-grow:1;
+    position: relative;
+}
+.navbar .textActive{
+    font-size:30rpx;
+    color:#fff;
+    font-weight: 600;
+}
+.navbar .textActive::before{
+    content: "";
+    display: block;
+    width: 80px;
+    height: 2px;
+    background-color: #fff;
+    position: absolute;
+    left:50%;
+    bottom: 0px;
+    transform: translateX(-50%);
+}
+.scroll-box{
+    width:700%;
+    transform: translateX(0);
+}
+.scroll-box::after{
+    content:"";
+    display:block;
+    clear:both;
+}
+.scroll-item{
+    width:14.28%;
+    float:left;
+}
+.contentbox{
+    width:100%;
+    border-top: 2px solid transparent;
+}
+.box-item{
+    width:90%;
+    margin:20rpx auto;
+    background:rgba(255, 255, 255, 0.5);
+    border-radius:5px;
+    padding:10rpx 10rpx;
+    position:relative;
+    
+}
+.box-item .tag{
+    position:absolute;
+    color:#fff;
+    top:8rpx;
+    left:25rpx;
+    z-index:10;
+    font-size: 24rpx;
+    padding:8rpx 15rpx;
+    box-shadow:2px -2px 4px rgba(0,0,0,0.7);
+    border-radius:6rpx;
+}
+.box-item::after{
+    content:"";
+    display:block;
+    clear:both;
+}
+.item-image{
+    width:160rpx;
+    height:160rpx;
+    float:left;
+    margin:auto 0;
+}
+.item-right{
+    float:left;
+    width:70%;
+    color:#fff;
+    margin-left: 20rpx;
+}
+.item-right .title{
+    height:43rpx;
+    line-height:50rpx;
+    overflow: hidden;
+    margin: 7px 0;
+    text-overflow:ellipsis;
+}
+.item-right text{
+    margin: 5px 0;
+    display: block;
+    font-size:22rpx;
+}
+</style>
+
+<template>
+    <block>
+        <custom-nav bgColor="text-custom-white" isBack="{{true}}">
+            <view slot="backText">我的活动</view>
+        </custom-nav>
+        <scroll-view scroll-x class="nav">
+            <view class="navbar">
+                <repeat for="{{navlist}}" key="id">
+                    <text class="{{TabCur==index?'textActive':''}}" @tap="tabSelect" data-id="{{index}}">{{item.title}}</text>
+                </repeat>
+            </view>
+        </scroll-view>
+        <view
+            class="scroll-box scroll" 
+            animation="{{animationPage}}"
+            style="top:{{toTop+2}}px;"
+            @touchstart="start"
+            @touchend="end">
+            <repeat for="{{TimeData.date}}" key="item" index="index" item="item">
+                <scroll-view
+                    class="scroll-item"
+                    scroll-y="true"
+                    lower-threshold="200"
+                    style="height:100%;"
+                    @scrolltolower="scrollNew">
+                    <view class="contentbox">
+                        <repeat for="{{item.list}}" key="item" index="index" item="itemchild">
+                            <view class="box-item" @tap="goTo">
+                                <view class="bg-custom-orange tag">进行中</view>
+                                <image src="/assets/img/logo.png" class="item-image"/>
+                                <view class="item-right">
+                                    <view class="title">{{itemchild.title}}</view>
+                                    <text>报名时间：{{itemchild.start}}</text>
+                                    <text>活动时间：{{itemchild.end}}</text>
+                                </view>
+                            </view>
+                        </repeat>
+                    </view>
+                </scroll-view>
+            </repeat>
+        </view>
+    </block>
+</template>
+
+<script>
+import wepy from "wepy";
+import Customnav from "@/components/customnav";
+import TimeData from "@/structure/association/issue.js";
+
+export default class Myactive extends wepy.page{
+    components = {
+        'custom-nav' : Customnav
+    }
+
+    data = {
+        TimeData,
+        toTop : 0,
+        TabCur : 0,
+        animationPage : {}, 
+        navlist : [{
+            id : 'job',
+            title : '我加入的'
+        },{
+            id : 'create',
+            title : '我创建的'
+        }]
+    }
+
+    onLoad(){
+        let query=wepy.createSelectorQuery();
+        this.system=wepy.getSystemInfoSync();
+        query.select('.nav').boundingClientRect((res)=>{
+            setTimeout(() => {
+                this.toTop=res.height+this.$parent.globalData.customBar;
+                this.$apply();
+            },100);
+        }).exec();   
+    }
+
+    methods = {
+        tabSelect(e){
+            let {screenWidth}=this.system;
+            this.TabCur=e.currentTarget.dataset.id;
+            this.scrollLeft=(e.currentTarget.dataset.id-1)*60;
+            let animation=wepy.createAnimation({
+                duration: 200
+            });
+            animation.translate(-screenWidth*e.currentTarget.dataset.id).step();
+            this.animationPage=animation.export();
+            this.$apply();
+        },
+
+        goTo(){
+            wepy.navigateTo({
+                url: '/pages/association/detail'
+            });
+        },
+
+        scrollNew(){
+
+        }
+    }
+    
+}
+</script>

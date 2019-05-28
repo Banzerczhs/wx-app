@@ -45,8 +45,8 @@ let indexlist = {
                     url:"/pages/association/issue"
                 },
                 {
-                    name:"发布活动",
-                    url:"/pages/association/associationform"
+                    name:"我的活动",
+                    url:"/pages/association/myactive"
                 }
             ]
         },

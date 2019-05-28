@@ -1,29 +1,38 @@
-<style>
+<style scoped>
 .cu-form-group .title {
-  min-width: calc(4em + 30rpx);
+    min-width: calc(4em + 30rpx);
 }
 /* 自己添加 */
 .wb{
-  width:80%;
+    width:80%;
+}
+form .title{
+    position:relative;
+}
+form .title .tipSign{
+    position:absolute;
+    left:-16rpx;
+    top:12%;
+    color:red;
 }
 .pickerview{
-  height:60rpx;
-  line-height:60rpx;
+    height:60rpx;
+    line-height:60rpx;
 }
 .pickerTitle{
-  width:100%;
-  height:50rpx;
-  font-size:15px;
+    width:100%;
+    height:50rpx;
+    font-size:15px;
 }
 .pickerTitle >view{
-  width:50%;
-  float: left;
+    width:50%;
+    float: left;
 }
 .pickerTitle >view:nth-child(1){
-  text-indent: -40px;
+    text-indent: -40px;
 }
 .pickerTitle >view:nth-child(2){
-  text-indent: 40px;
+    text-indent: 40px;
 }
 .timeafter::after{
 	font-family: "cuIcon";
@@ -41,121 +50,156 @@
 	margin: auto;
 }
 .textNone{
-  display: none;
+    display: none;
 }
 </style>
-<template >
-  <block>
-        <custom-nav bgColor="bg-custom-color" isCustom="{{true}}">
-            <view slot="content">发布活动</view>
+
+<template>
+    <block>
+        <custom-nav bgColor="text-custom-white" isBack="{{true}}">
+            <view slot="backText">发布活动</view>
         </custom-nav>
-
-
-        <form @submit="formSubmit" >
+        <scroll-view scroll-y class="scroll" style="top:{{toTop}}px;">
+            <form @submit="formSubmit" >
                 <view class="cu-form-group">
-                    <view class="title">*活动标题：</view>
+                    <view class="title"><text class="tipSign">*</text>活动标题:</view>
                     <input placeholder="活动标题" name="title" />
                 </view>
                 <view class="cu-form-group">
-                    <view class="title">*活动组织：</view>
+                    <view class="title"><text class="tipSign">*</text>活动组织:</view>
                     <input placeholder="填写社团组织名称"  name="association"/>
                 </view>
                 <view class="cu-form-group">
-                    <view class="title">*负责人：</view>
+                    <view class="title"><text class="tipSign">*</text>活动院系:</view>
+                    <input placeholder="活动院系" name="college" />
+                </view>
+                <view class="cu-form-group">
+                    <view class="title"><text class="tipSign">*</text>活动地点:</view>
+                    <input placeholder="活动地点" name="place" />
+                </view>
+                <view class="cu-form-group">
+                    <view class="title"><text class="tipSign">*</text>活动年级:</view>
+                    <input placeholder="活动年级" name="place" />
+                </view>
+                <view class="cu-form-group">
+                    <view class="title"><text class="tipSign">*</text>负责人:</view>
                     <input placeholder="活动负责人" name="duty"/>
                 </view>
                 <view class="cu-form-group">
-                    <view class="title">*电话：</view>
+                    <view class="title"><text class="tipSign">*</text>电话:</view>
                     <input placeholder="手机即可" type="number" name="Tel"/>
                 </view>
-    
                 <view class="cu-form-group">
-                     <view class="title">*活动时间</view>
-                        <view class="cu-bar bg-white margin-top">
-                          <view class="action" @tap="showbottom(TimeOne)">
+                    <view class="title"><text class="tipSign">*</text>活动时间:</view>
+                    <view class="cu-bar bg-white">
+                        <view class="action" @tap="showbottom(TimeOne)">
                             <view class="shadow timeafter" >{{TimeOne.TimeOkText}}</view>
-                          </view>
                         </view>
-                      <view class="cu-modal bottom-modal {{TimeOne.modalName=='TimeOne'?'show':''}} ">
+                    </view>
+                    <view class="cu-modal bottom-modal {{TimeOne.modalName=='TimeOne'?'show':''}} ">
                         <view class="cu-dialog">
-                          <view class="cu-bar bg-white">
-                            <view class="action text-green" @tap="TimeOk(TimeOne,30)" >确定</view>
-                            <view class="action text-blue" @tap="hideModal(TimeOne)">取消</view>
-                          </view>
-                          <view class="padding-xl">
+                            <view class="cu-bar bg-white">
+                                <view class="action text-green" @tap="TimeOk(TimeOne,30)" >确定</view>
+                                <view class="action text-blue" @tap="hideModal(TimeOne)">取消</view>
+                            </view>
+                            <view class="padding-xl">
                                 <view class="pickerTitle">
                                     <view>开始时间</view>
                                     <view>结束时间</view>
                                 </view>
-                                <picker-view indicator-class="pickerview" style="width: 100%; height: 300px;"  @change="bindChange(TimeOne,7)">
+                                <picker-view 
+                                    value="{{initTime}}" 
+                                    style="width: 100%; height: 300px;"  
+                                    @change="bindChange(TimeOne,{{flowDeadline}})">
+                                    <picker-view-column>
+                                        <repeat for="{{TimeOne.datelistone}}" key="index" >
+                                            <view style="line-height: 60rpx">{{item}}月</view>
+                                        </repeat>
+                                    </picker-view-column>
+                                    <picker-view-column>
+                                        <repeat for="{{TimeOne.dateChildone}}" key="index" >
+                                            <view style="line-height: 60rpx">{{item}}日</view>
+                                        </repeat>
+                                    </picker-view-column>
+                                    <picker-view-column>
+                                        <view style="height:100%; line-height:60rpx">---</view>
+                                    </picker-view-column>
                                     <picker-view-column >
-                                      <view wx:for="{{TimeOne.datelistone}}" wx:key="item" style="line-height: 60rpx">{{item}}月</view>
+                                        <repeat for="{{TimeOne.datelisttwo}}" key="index" >
+                                            <view style="line-height: 60rpx">{{item}}月</view>
+                                        </repeat>
                                     </picker-view-column>
                                     <picker-view-column>
-                                      <view wx:for="{{TimeOne.dateChildone}}" wx:key="item" style="line-height: 60rpx">{{item}}日</view>
-                                    </picker-view-column>
-                                    <picker-view-column>
-                                      <view style="height:100%; line-height:60rpx">---</view>
-                                    </picker-view-column>
-                                     <picker-view-column >
-                                      <view wx:for="{{TimeOne.datelisttwo}}" wx:key="item" style="line-height: 60rpx">{{item}}月</view>
-                                    </picker-view-column>
-                                    <picker-view-column>
-                                      <view wx:for="{{TimeOne.dateChildtwo}}" wx:key="item" style="line-height: 60rpx">{{item}}日</view>
+                                        <repeat for="{{TimeOne.dateChildtwo}}" key="index" >
+                                            <view style="line-height: 60rpx">{{item}}日</view>
+                                        </repeat>
                                     </picker-view-column>
                                 </picker-view>
-                          </view>
+                            </view>
                         </view>
-                      </view>
-                </view>
-                  <view class="cu-form-group">
-                     <view class="title">报名时间</view>
-                        <view class="cu-bar bg-white margin-top">
-                          <view class="action" @tap="showbottom(TimeTwo,event)">
-                            <view class="shadow timeafter" >{{TimeTwo.TimeOkText}}</view>
-                          </view>
-                      </view>
-                      <view class="cu-modal bottom-modal {{TimeTwo.modalName=='TimeTwo'?'show':''}} ">
-                        <view class="cu-dialog">
-                          <view class="cu-bar bg-white">
-                            <view class="action text-green" @tap="TimeOk(TimeTwo,3)" >确定</view>
-                            <view class="action text-blue" @tap="hideModal(TimeTwo)">取消</view>
-                          </view>
-                          <view class="padding-xl">
-                                <view class="pickerTitle">
-                                    <view>开始时间</view>
-                                    <view>结束时间</view>
-                                </view>
-                                <picker-view indicator-class="pickerview" style="width: 100%; height: 300px;" name="Time" @change="bindChange(TimeTwo,3)">
-                                    <picker-view-column >
-                                      <view wx:for="{{TimeTwo.datelistone}}" wx:key="item" style="line-height: 60rpx">{{item}}月</view>
-                                    </picker-view-column>
-                                    <picker-view-column>
-                                      <view wx:for="{{TimeTwo.dateChildone}}" wx:key="item" style="line-height: 60rpx">{{item}}日</view>
-                                    </picker-view-column>
-                                    <picker-view-column>
-                                      <view style="height:100%; line-height:60rpx">---</view>
-                                    </picker-view-column>
-                                     <picker-view-column >
-                                      <view wx:for="{{TimeTwo.datelisttwo}}" wx:key="item" style="line-height: 60rpx">{{item}}月</view>
-                                    </picker-view-column>
-                                    <picker-view-column>
-                                      <view wx:for="{{TimeTwo.dateChildtwo}}" wx:key="item" style="line-height: 60rpx">{{item}}日</view>
-                                    </picker-view-column>
-                                </picker-view>
-                          </view>
-                        </view>
-                      </view>
+                    </view>
                 </view>
                 <view class="cu-form-group">
-                    <view class="title">*当天时间</view>
+                    <view class="title">报名时间:</view>
+                    <view class="cu-bar bg-white">
+                        <view class="action" @tap="showbottom(TimeTwo,event)">
+                            <view class="shadow timeafter" >{{TimeTwo.TimeOkText}}</view>
+                        </view>
+                    </view>
+                    <view class="cu-modal bottom-modal {{TimeTwo.modalName=='TimeTwo'?'show':''}} ">
+                        <view class="cu-dialog">
+                            <view class="cu-bar bg-white">
+                                <view class="action text-green" @tap="TimeOk(TimeTwo,3)" >确定</view>
+                                <view class="action text-blue" @tap="hideModal(TimeTwo)">取消</view>
+                            </view>
+                            <view class="padding-xl">
+                                <view class="pickerTitle">
+                                    <view>开始时间</view>
+                                    <view>结束时间</view>
+                                </view>
+                                <picker-view 
+                                    value="{{initTime}}" 
+                                    indicator-class="pickerview" 
+                                    style="width: 100%; height: 300px;" 
+                                    name="Time" 
+                                    @change="bindChange(TimeTwo,{{apllyDeadline}})">
+                                    <picker-view-column >
+                                        <repeat for="{{TimeTwo.datelistone}}" key="index" >
+                                            <view style="line-height: 60rpx">{{item}}月</view>
+                                        </repeat>
+                                    </picker-view-column>
+                                    <picker-view-column>
+                                        <repeat for="{{TimeTwo.dateChildone}}" key="index" >
+                                            <view style="line-height: 60rpx">{{item}}日</view>
+                                        </repeat>
+                                    </picker-view-column>
+                                    <picker-view-column>
+                                        <view style="height:100%; line-height:60rpx">---</view>
+                                    </picker-view-column>
+                                    <picker-view-column >
+                                        <repeat for="{{TimeTwo.datelisttwo}}" key="index" >
+                                            <view style="line-height: 60rpx">{{item}}月</view>
+                                        </repeat>
+                                    </picker-view-column>
+                                    <picker-view-column>
+                                        <repeat for="{{TimeTwo.dateChildtwo}}" key="index" >
+                                            <view style="line-height: 60rpx">{{item}}日</view>
+                                        </repeat>
+                                    </picker-view-column>
+                                </picker-view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="cu-form-group">
+                    <view class="title"><text class="tipSign">*</text>当天时间:</view>
                     <picker mode="time" value="{{time}}" start="09:01" end="21:01" name="dayTime" @change="TimeChange">
                         <view class="picker">
                             {{time}}
                         </view>
                     </picker>
                 </view>
-                <view class="cu-bar bg-white">
+                <view class="cu-bar bg-white" style="border-top:1rpx solid #eee;">
                     <view class="action">
                         图片上传
                     </view>
@@ -180,114 +224,105 @@
                 </view>
                 <!-- !!!!! placeholder 在ios表现有偏移 建议使用 第一种样式 -->
                 <view class="cu-form-group align-start {{textShow==true ?'': 'textNone'}}">
-                    <view class="title">*活动介绍</view>
+                    <view class="title"><text class="tipSign">*</text>活动介绍:</view>
                     <textarea maxlength="-1" placeholder="介绍一下活动详情" name="textDetail"></textarea>
                 </view>
                 <view class="padding flex-direction cu-form-group ">
                     <button form-type="submit" class="cu-btn bg-blue margin-tb-sm lg wb">提交</button>
                 </view>
             </form>
-  </block>
+        </scroll-view>
+    </block>
 </template>
 
 <script>
 import wepy from 'wepy';
 import Customnav from "@/components/customnav";
 
-    var datalist = [[],[]];
-    let T = new Date();
-    let day = [];
-    for(let i=0;i<12;i++){
-        day = [];
-        let dayNum = new Date(T.getFullYear(),i+1,0).getDate();
-        for(let j=1;j<=dayNum;j++){
-          day.push(j);
-        }
-        datalist[0].push(i+1);
-        datalist[1].push(day);
+var datalist = [[],[]];
+let T = new Date();
+let day = [];
+for(let i=0;i<12;i++){
+    day = [];
+    let dayNum = new Date(T.getFullYear(),i+1,0).getDate();
+    for(let j=1;j<=dayNum;j++){
+        day.push(j);
     }
+    datalist[0].push(i+1);
+    datalist[1].push(day);
+}
 
-export default class associationform extends wepy.page {
-    config = {
-         
-    }
+export default class Associationform extends wepy.page {
     components = {
         "custom-nav":Customnav
     }
     data = {
         time: '12:01',
         imgList: [],
+        toTop : 0,
+        initTime : [], 
         TimeOne:{ //活动开始信息
             datelistone:[],
             dateChildone:[],
             datelisttwo:[],
             dateChildtwo:[],
-            TimeActivities:{
-            },  //记录活动时间
+            TimeActivities:{},  //记录活动时间
             TimeOkText:'请选择时间',
             modalName:"",
         },
-        TimeTwo:{ //报名信息
+        TimeTwo:{ //活动开始信息
             datelistone:[],
             dateChildone:[],
             datelisttwo:[],
             dateChildtwo:[],
-            TimeActivities:{
-            },  //记录活动时间
+            TimeActivities:{},  //记录活动时间
             TimeOkText:'请选择时间',
             modalName:"",
         },
-        yeas:T.getFullYear(),
-        textShow:true //用于解决层级问题
+        year:T.getFullYear(),
+        textShow:true, //用于解决层级问题
+        flowDeadline : 7,
+        apllyDeadline : 3
     }
     onLoad() {
-        this.TimeOne.datelistone=[...datalist[0]]
-        this.TimeOne.dateChildone=[...datalist[1][0]] 
-        this.TimeTwo.datelistone=[...datalist[0]]
-        this.TimeTwo.dateChildone=[...datalist[1][0]] 
+        let {year,flowDeadline,apllyDeadline}=this;
+        this.toTop=this.$parent.globalData.customBar;
+        this.TimeOne.datelistone=[...datalist[0]];
+        this.TimeOne.dateChildone=[...datalist[1][0]];
+        this.TimeTwo.datelistone=[...datalist[0]];
+        this.TimeTwo.dateChildone=[...datalist[1][0]];
+        this.$apply();
+        this.initTime=[T.getMonth(),T.getDate()-1,0,0,0];
+        let sevenobj=this.computTime(year,T.getMonth(),T.getDate(),flowDeadline);
+        let t=Object.keys(sevenobj);
+        this.TimeOne.datelisttwo=t;
+        this.TimeOne.dateChildtwo=sevenobj[T.getMonth()+1];
+        sevenobj=this.computTime(year,T.getMonth(),T.getDate(),apllyDeadline);
+        t=Object.keys(sevenobj);
+        this.TimeTwo.datelisttwo=t;
+        this.TimeTwo.dateChildtwo=sevenobj[T.getMonth()+1];
     }
     methods = {
         bindChange(obj,num,e){
             let val = e.detail.value;
-            this[obj].dateChildone = datalist[1][val[0]]
-            let startDay = new Date(this.yeas,val[0],val[1]+1);
-            let startDayTime = startDay.getTime();
-            let oneday = 60*60*24*1000;
-            let a = []; let b = [];
-            let sevenobj = {};
-            for(let i=0;i<num;i++){
-                let endDay = new Date( startDayTime+oneday*i)
-                let dayNum = endDay.getDate();
-                let c = endDay.getMonth()+1;
-                if(c == val[0]+1){
-                  a.push(dayNum);
-                  sevenobj[c] = a;
-                }else{
-                  b.push(dayNum);
-                  sevenobj[c] = b;
-                }
-            }
-            let t = Object.keys(sevenobj);
+            this[obj].dateChildone = datalist[1][val[0]];
+            let sevenobj=this.computTime(this.year,val[0],val[1]+1,num);
+            let t=Object.keys(sevenobj);
             this[obj].datelisttwo  = t;
-            this[obj].dateChildtwo = sevenobj[t[val[3]]]; 
-            let start = this.yeas+`-${val[0]+1}-${val[1]+1}`;
-            let end   = this.yeas+`-${t[val[3]]}-${this[obj].dateChildtwo[val[4]]}`;
-            this[obj].TimeActivities = {
-                start,
-                end
-            }
-            console.log(this[obj].TimeActivities)
+            this[obj].dateChildtwo = sevenobj[t[val[3]]];
+            let start = this.year+`-${val[0]+1}-${val[1]+1}`;
+            let end = this.year+`-${t[val[3]]}-${this[obj].dateChildtwo[val[4]]}`;
+            this[obj].TimeActivities = {start,end};
         },
         showbottom(obj) {
             this[obj].modalName = obj;
             this.textShow = false;
-            console.log(this[obj].TimeActivities)
         },
         hideModal(obj) {
             this.hideTextarea(obj);
         },
         ChooseImage(e){
-            wx.chooseImage({
+            wepy.chooseImage({
                 count: 4, //默认9
                 sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
                 sourceType: ['album'], //从相册选择
@@ -306,7 +341,7 @@ export default class associationform extends wepy.page {
             });
         },
         DelImg(e) {
-            wx.showModal({
+            wepy.showModal({
                 title: '是否删除',
                 content: '确定要删除这张吗？',
                 cancelText: '再看看',
@@ -326,7 +361,7 @@ export default class associationform extends wepy.page {
             let objStart = new Date(start).getTime();
             let nowTime = T.getTime();
             if(objStart - nowTime <=0){
-                wx.showToast({
+                wepy.showToast({
                     icon:"none",
                     mask:"true",
                     title:"时间可不能倒流",
@@ -334,10 +369,10 @@ export default class associationform extends wepy.page {
                       this[obj].TimeOkText="请选择时间"
                     }
                 })
-                return ;
+                return;
             }
             if(JSON.stringify(this[obj].TimeActivities)=='{}'){
-                wx.showToast({
+                wepy.showToast({
                     icon:"none",
                     mask:"true",
                     title:"你还啥都没干了"                 
@@ -353,7 +388,7 @@ export default class associationform extends wepy.page {
                     let c = b.getFullYear()+'-'+(b.getMonth()+1)+'-'+b.getDate();
                     this.TimeTwo.TimeOkText = c +"至" + start;
                 }else{
-                    wx.showToast({
+                    wepy.showToast({
                         icon:"none",
                         mask:"true",
                         title:"开始时间请不要超过一个月",
@@ -365,13 +400,13 @@ export default class associationform extends wepy.page {
             }else{  //点击报名时间确认【报名】
                 let oneTime = new Date(this.TimeOne.TimeActivities.start).getTime();  //活动开始的时间
                 if(objStart - oneTime > 0){
-                    wx.showToast({
+                    wepy.showToast({
                         icon:"none",
                         mask:"true",
                         title:"报名时间不能在活动时间之后"                 
                     })
                 }else if( objStart - nowTime >=0 && objStart + standard < oneTime){
-                    wx.showToast({
+                    wepy.showToast({
                         icon:"none",
                         mask:"true",
                         title:"报名时间在活动前3天"                 
@@ -381,11 +416,29 @@ export default class associationform extends wepy.page {
                     this.hideTextarea(obj);
                 }
             }
-      }
-
+        }
     }
-    events = {
 
+    computTime(year,month,day,num){
+        let startDay = new Date(year,month,day);
+        let startDayTime = startDay.getTime();
+        let oneday = 1000*60*60*24;
+        let a = []; let b = [];
+        let sevenobj = {};
+        for(let i=0;i<num;i++){
+            let endDay = new Date(startDayTime+oneday*i)
+            let dayNum = endDay.getDate();
+            let c = endDay.getMonth()+1;
+            if(c == month+1){
+                a.push(dayNum);
+                sevenobj[c] = a;
+            }else{
+                b.push(dayNum);
+                sevenobj[c] = b;
+            }
+        }
+
+        return sevenobj;
     }
 
     hideTextarea(obj){
@@ -397,7 +450,7 @@ export default class associationform extends wepy.page {
     }
 
     formSubmit(e){  //提交处理
-        console.log(e)
+        console.log(e);
         let {title,association,duty,Tel,textDetail,dayTime} = e.detail.value;
         if(title=='' 
           || association == '' 
@@ -428,12 +481,5 @@ export default class associationform extends wepy.page {
     TimeChange(e) {
         this.time = e.detail.value;
     }
-    
-
-    
-  
-   
 }
 </script>
-
-

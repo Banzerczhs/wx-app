@@ -86,6 +86,7 @@
                 duration: 0,
                 timingFunction: 'ease'
             });
+            
             setTimeout(async () => {
                 let {appList}=this;
                 this.appItem=await getWxmlInfo('.app');

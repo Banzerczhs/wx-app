@@ -19,12 +19,12 @@ export default class app extends wepy.app {
     this.intercept('request',{
       config(reqData){
         reqData.name='czhs';
-        // console.log(reqData);
+        console.log(reqData);
         return reqData;
       },
       success(resData){
         console.log('成功');
-        // console.log(resData);
+        console.log(resData);
         return resData;
       },
       fail(err){
@@ -57,6 +57,9 @@ export default class app extends wepy.app {
       'pages/teachbuillding/teacher',
       'pages/association/associationform',
       'pages/association/issue',
+      'pages/association/detail',
+      'pages/association/myactive',
+      'pages/association/comment',
       'pages/dorm/pay',
       'pages/dorm/repair'
     ],
@@ -71,11 +74,16 @@ export default class app extends wepy.app {
 
   onLaunch(){
     let res=wepy.getSystemInfoSync();
+    let custom=wepy.getMenuButtonBoundingClientRect();
     this.globalData.statusBarHeight=res.statusBarHeight;
+    this.globalData.screenWidth=res.screenWidth;
+    this.globalData.customBar=custom.bottom+custom.top-res.statusBarHeight;
   }
 
   globalData = {
-    statusBarHeight : 0
+    statusBarHeight : 0,
+    customBar : 0,
+    screenWidth : 0
   }
 }
 </script>
