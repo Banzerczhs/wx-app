@@ -1,0 +1,124 @@
+<style scoped>
+    .author-info{
+        display:flex;
+        display:-webkit-flex;
+        position:relative;
+        padding:0 40rpx;
+        height:200rpx;
+    }
+    .author-info .info-img{
+        width: 120rpx;
+        height: 120rpx;
+        border-radius:50%;
+        position:absolute;
+        top:0;
+        bottom:0;
+        left:60rpx;
+        margin:auto 0;
+    }
+    .author-info .info-name{
+        width:70%;
+        margin-left: 180rpx;
+        display:flex;
+        display:-webkit-flex;
+        align-items:center;
+        color:#fff;
+    }
+    .result-list .list-item{
+        display:flex;
+        display:-webkit-flex;
+        flex-direction:column;
+        color:rgba(255,255,255,0.5);
+        padding:0 60rpx;
+        position:relative;
+    }
+    .list-item .item-info view{
+        margin:10rpx 0;
+    }
+    .list-item .item-info .music-name{
+        font-size: 28rpx;
+    }
+    .list-item .item-info .music-author{
+        font-size: 20rpx;
+    }
+    .result-list .list-item .item-image{
+        width: 120rpx;
+        height:100%;
+        position:absolute;
+        right:10%;
+        top:0;
+    }
+    .list-item .item-image image{
+        width: 30rpx;
+        height:40rpx;
+        position:absolute;
+        left:0;
+        top:0;
+        right:0;
+        bottom:0;
+        margin:auto;
+    }
+    .tapclass{
+        background-color:rgba(0,0,0,0.1);
+    }
+</style>
+
+<template>
+    <block>
+        <custom-nav isBack="{{true}}" backIndex="2" class="text-custom-white">
+            <view slot="content">大碗宽面</view>
+        </custom-nav>
+        <view class="author-info">
+            <image src="https://www.quyun.online/assets/image/looks.jpg" class="info-img"></image>
+            <view class="info-name">原唱:赵钊坤</view>
+        </view>
+        <view class="result-list scroll" style="top:{{toTop}}px;bottom:30rpx;">
+            <scroll-view scroll-y style="height:100%;">
+                <repeat for="{{10}}" key="index">
+                    <view class="list-item" hover-class="tapclass" @tap="playerMusic">
+                        <view class="item-info">
+                            <view class="music-name">大碗宽面(吴亦凡rap集)</view>
+                            <view class="music-author">赵钊坤</view>
+                        </view>
+                        <view class="item-image" @tap="uploadMusic">
+                            <image src="/assets/img/diange.png"></image>
+                        </view>
+                    </view>
+                </repeat>
+            </scroll-view>
+        </view>
+    </block>
+</template>
+
+<script>
+import wepy from "wepy";
+import Customnav from "@/components/customnav";
+export default class Result extends wepy.page{
+    components = {
+        'custom-nav' : Customnav
+    }
+
+    data = {
+        toTop : 0
+    }
+
+    methods = {
+        uploadMusic(){
+            wepy.navigateTo({
+                url: '/pages/music/blessings'
+            });
+        },
+        playerMusic(){
+            console.log('播放歌曲');
+        }
+    }
+
+    onLoad(){
+        let query=wepy.createSelectorQuery();
+        query.select('.author-info').boundingClientRect((res)=>{
+            this.toTop=this.$parent.globalData.customBar+res.height+10;
+            this.$apply();
+        }).exec();
+    }
+}
+</script>

@@ -2,22 +2,6 @@
     .history,.hot{
         padding:20rpx;
     }
-    .history text{
-        display:inline-block;
-        border-radius:30rpx;
-        padding:15rpx 30rpx;
-        margin:20rpx;
-        background-color:rgba(255,255,255,0.3);
-        color:#fff;
-    }
-    .hot text{
-        display:inline-block;
-        border-radius:30rpx;
-        padding:15rpx 30rpx;
-        margin:20rpx;
-        background-color:rgba(255,255,255,0.3);
-        color:#fff;
-    }
     .history-title,.hot-title{
         color:#fff;
         font-size: 32rpx;
@@ -36,19 +20,19 @@
         </cu-search>
         <view class="history">
             <view class="history-title">历史搜索</view>
-            <text>最终幻想零式</text>
-            <text>鬼泣5</text>
-            <text>芦荟胶</text>
-            <text>你好世界</text>
-            <text>未来简史2019</text>
+            <text class="search-text">最终幻想零式</text>
+            <text class="search-text">鬼泣5</text>
+            <text class="search-text">芦荟胶</text>
+            <text class="search-text">你好世界</text>
+            <text class="search-text">未来简史2019</text>
         </view>
         <view class="hot">
             <view class="hot-title">热门搜索</view>
-            <text>最终幻想15</text>
-            <text>黑色沙漠</text>
-            <text>只狼</text>
-            <text>夏季男装</text>
-            <text>监狱</text>
+            <text class="search-text">最终幻想15</text>
+            <text class="search-text">黑色沙漠</text>
+            <text class="search-text">只狼</text>
+            <text class="search-text">夏季男装</text>
+            <text class="search-text">监狱</text>
         </view>
     </view>
 </template>

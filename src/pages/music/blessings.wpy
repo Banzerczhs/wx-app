@@ -58,6 +58,7 @@
         width:550rpx;
         height:280rpx;
         font-size:32rpx;
+        padding:20rpx;
     }
 </style>
 <template>
@@ -85,7 +86,7 @@
 <script>
 import wepy from "wepy";
 import Customnav from "@/components/customnav";
-export default class Music extends wepy.page{
+export default class Blessings extends wepy.page{
     data = {
 
     }

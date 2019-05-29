@@ -125,6 +125,7 @@
       },
       
       Building(obj){//建筑物点击
+        if(!obj.child[0]) return;
         this.BuildingChild = [...obj.child];
         this.ismask = true;
         this.beckzIndex = true;
@@ -192,7 +193,19 @@
 
     onReady(){
       let {windowiScale,windowiH}=this;
-      this.applist=["item1","item2","item3","item4"];
+      this.applist=[{
+        url : '',
+        name : ''
+      },{
+        url : 'userInfo',
+        name : '个人信息'
+      },{
+        url : 'table',
+        name : '个人课表'
+      },{
+        url : '',
+        name : ''
+      }];
     }
 
     onShow(){
