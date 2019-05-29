@@ -12,35 +12,25 @@
     }
     .box1{
         width:100%;
-        height:160rpx;
+        height:130rpx;
         position:relative;
         top:0rpx;
         left:0rpx;
-        background-color:#a4bdf6;
+        background-color:white;
     }
-    .name{
+    .name1{
         width:100%;
-        height:70rpx;
+        height:128rpx;
+        font-size:32rpx;
         background-color: white;
         position:absolute;
         left:0rpx;
         top:0rpx;
-        border-top:1rpx solid #787879;
-        border-bottom:1rpx solid #787879;
-    }
-    .name1{
-        width:100%;
-        height:70rpx;
-        background-color: white;
-        position:absolute;
-        left:0rpx;
-        top:90rpx;
-        border-top:1rpx solid #787879;
-        border-bottom:1rpx solid #787879;
+        border-bottom:3rpx solid #787879;
     }
     .box2{
         width:100%;
-        height:800rpx;
+        height:950rpx;
         position:relative;
         left:0rpx;
         top:20rpx;
@@ -76,47 +66,54 @@
     }
     .lx{
         width:100%;
-        height:400rpx;
+        height:615rpx;
         position:absolute;
         left:0rpx;
         top:420rpx;
-        background-color:#a4bdf6;
-    }
-    .tab{
-        width:100%;
-        height:138rpx;
         background-color:white;
-        position:relative;
+    }
+    .qq{
+        font-size:32rpx;
+        width:100%;
+        height:100rpx;
+        position:absolute;
         left:0rpx;
-        top:45rpx;
-    }
-    .img{
-        width:80rpx;
-        height:80rpx;
-    }
-    .tab view view{
-        margin-left:15rpx;
-    }
-    .souye{
-        width:135rpx;
-        height:135rpx;
-        position:absolute;
-        left:100rpx;
         top:0rpx;
+       
+        border-bottom:1rpx solid #787879;
     }
-    .fabu{
-        width:135rpx;
-        height:135rpx;
+    .dh{
+        font-size:32rpx;
+        width:100%;
+        height:100rpx;
         position:absolute;
-        left:340rpx;
-        top:0rpx;
+        left:0rpx;
+        top:130rpx;
+      
+        border-bottom:1rpx solid #787879;
     }
-    .wode{
-        width:135rpx;
-        height:135rpx;
+    .dd{
+        font-size:32rpx;
+        width:100%;
+        height:100rpx;
         position:absolute;
-        left:580rpx;
-        top:0rpx;
+        left:0rpx;
+        top:260rpx;
+        border-bottom:1rpx solid #787879;
+    }
+    .tj{
+        width:700rpx;
+        height:100rpx;
+        position:absolute;
+        left:25rpx;
+        top:400rpx;
+    }
+    .tj button{
+        width:100%;
+        height:100%;
+        line-height:100rpx;
+        background-color:red;
+        color:white;
     }
 </style>
 
@@ -129,11 +126,8 @@
             <view class="box">
                 <form action="#">
                     <view class="box1">
-                        <view class="name">
-                            <input type="text" placeholder="请输入物品名称或描述" style="font-size:34rpx;margin-top:10rpx;"/>
-                        </view>
                         <view class="name1">
-                            <input type="text" placeholder="请输入您的姓氏(方便失主称呼您)" style="font-size:34rpx;margin-top:10rpx;"/>
+                            姓名<input type="text" placeholder="请输入您的姓氏(方便失主，得主称呼您)" style="font-size:34rpx;margin-top:10rpx;"/>
                         </view>
                     </view>
                     <view class="box2">
@@ -145,40 +139,20 @@
                         </view>
                         <view class="lx">
                             <view class="qq">
-                            <input type="text" placeholder="请输入QQ" style="font-size:34rpx;margin-top:10rpx;"/>
-                        </view>
-                        <view class="dh">
-                            <input type="text" placeholder="请输入您的姓氏(方便失主称呼您)" style="font-size:34rpx;margin-top:10rpx;"/>
-                        </view>
-                        <view class="dd">
-                            <input type="text" placeholder="请输入物品名称或描述" style="font-size:34rpx;margin-top:10rpx;"/>
-                        </view>
-                        <view class="tj">
-                            <input type="text" placeholder="请输入您的姓氏(方便失主称呼您)" style="font-size:34rpx;margin-top:10rpx;"/>
-                        </view>
+                            您的QQ<input type="text" placeholder="请输入QQ" style="font-size:34rpx;margin-top:10rpx;"/>
+                            </view>
+                            <view class="dh">
+                                您的手机<input type="text" placeholder="请输入手机号码" style="font-size:34rpx;margin-top:10rpx;"/>
+                            </view>
+                            <view class="dd">
+                                取物地点<input type="text" placeholder="请输入领取地点" style="font-size:34rpx;margin-top:10rpx;"/>
+                            </view>
+                            <view class="tj">
+                                <navigator url="/pages/lostandfound/lostandfound" hover-class="navigator-hover"><button form-type="button">发布</button></navigator>
+                            </view>
                         </view>
                     </view>
                 </form>
-            </view>
-            <view class="tab">
-                <navigator url="/pages/lostandfound/lostandfound" hover-class="navigator-hover">
-                    <view class="souye">
-                        <image src="/assets/img/guangchang.png" class="img"></image>
-                        <view style="color:#515151;font-size:30rpx;">广场</view> 
-                    </view>
-                </navigator>
-                <navigator url="/pages/lostandfound/fabu" hover-class="navigator-hover">
-                    <view class="fabu">
-                        <image src="/assets/img/fabu1.png" class="img"></image>
-                        <view style="color:#1296db;font-size:30rpx;">发布</view> 
-                    </view>
-                </navigator>
-                <navigator url="/pages/lostandfound/wode" hover-class="navigator-hover">
-                    <view class="wode">
-                        <image src="/assets/img/wode.png" class="img"></image>
-                        <view style="color:#515151;font-size:30rpx;">我的</view> 
-                    </view>
-                </navigator>
             </view>
         </view>
     </block>
@@ -187,7 +161,7 @@
 <script>
 import wepy from "wepy";
 import Customnav from "@/components/customnav";
-export default class Lostandfound extends wepy.page{
+export default class fabu extends wepy.page{
     data = {
     
     }

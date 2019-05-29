@@ -1,0 +1,173 @@
+<style scoped>
+    .container{
+        width:100%;
+        height:1182rpx;
+        background-color:white;
+    }
+    .box1{
+        width:650rpx;
+        height:100rpx;
+        position:relative;
+        left:0rpx;
+        top:20rpx;
+        margin-left:50rpx;
+    }
+    .tx{
+        width:100rpx;
+        height:100rpx;
+        position:absolute;
+        left:0rpx;
+        top:0rpx;
+    }
+    .tx image{
+        width:100%;
+        height:100%;
+    }
+    .yhm{
+        width:100rpx;
+        height:100rpx;
+        line-height:100rpx;
+        font-size:32rpx;
+        color:black;
+        position:absolute;
+        left:140rpx;
+    }
+    .sj{
+        width:130rpx;
+        height:100rpx;
+        line-height: 100rpx;
+        font-size:28rpx;
+        color:black;
+        position:absolute;
+        right:20rpx;
+    }
+    .box2{
+        width:650rpx;
+        height:900rpx;
+        position:relative;
+        left:0rpx;
+        top:40rpx;
+        margin-left:50rpx;
+    }
+    .bt{
+        width:650rpx;
+        position: relative;
+        left:0rpx;
+        top:0rpx;
+    }
+    .bt text{
+        width:100%;
+        height:100%;
+        font-size:36rpx;
+        display:block;
+    }
+    .content{
+        width:650rpx;
+        position: relative;
+        left:0rpx;
+        top:10rpx;
+    }
+    .content image{
+        margin-top:10rpx;
+    }
+    .box3{
+        width:650rpx;
+        height:100rpx;
+        position: relative;
+        left:0rpx;
+        top:60rpx;
+        margin-left:50rpx;
+    }
+    .dh{
+        width:400rpx;
+        height:100%;
+        line-height:100rpx;
+        position:absolute;
+        left:0rpx;
+        font-size:32rpx;
+        color:black;
+    }
+    .zx{
+        width:200rpx;
+        height:100%;
+        line-height:100rpx;
+        position:absolute;
+        left:400rpx;
+        font-size:32rpx;
+        color:black;
+    }
+    .xx{
+        width:150rpx;
+        height:80rpx;
+        position:absolute;
+        top:10rpx;
+        right:-30rpx;
+    }
+    .xx button{
+        width:100%;
+        height:100%;
+        border:none;
+    }
+    .xx image{
+        width:90rpx;
+        height:80rpx;
+    }
+</style>
+
+<template>
+    <block>
+        <custom-nav isCustom="{{true}}" bgColor="text-custom-white">
+            <view slot="content">详情</view>
+        </custom-nav>
+        <view class="container">
+                <view class="box1">
+                    <view class="tx"><image src="/assets/img/tx.png"></image></view>
+                    <view class="yhm">用户名</view>
+                    <view class="sj">2019-5-29</view>
+                </view>
+                <view class="box2">
+                    <scroll-view scroll-y style="height:900rpx;position:absolute;left:0rpx;top:0rpx;">
+                        <view class="bt">
+                            <text>我是标题，略略00000000。。。。。。。。。。。</text>
+                        </view>
+                        <view class="content">
+                            <text>我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容</text>
+                            <image src="/assets/img/yt.jpg"></image>
+                            <image src="/assets/img/yt.jpg"></image>
+                            <image src="/assets/img/yt.jpg"></image>
+                            <image src="/assets/img/yt.jpg"></image>
+                        </view>
+                    </scroll-view>
+                </view>
+                <view class="box3">
+                    <view class="dh">联系电话：18*********</view>
+                    <view class="zx">
+                        在线联系：
+                    </view>
+                    <view class="xx">
+                        <navigator url="/pages/lostandfound/liaotian">
+                        <button type="button" plain="{{true}}"><image src="/assets/img/xx.png"></image></button>
+                        </navigator>
+                    </view>
+                </view>
+        </view>
+    </block>
+</template>
+
+<script>
+import wepy from "wepy";
+import Customnav from "@/components/customnav";
+export default class xiangqing extends wepy.page{
+    data = {
+        
+    }
+
+    components = {
+        'custom-nav' : Customnav
+    }
+
+    methods = {
+
+    }
+}
+</script>

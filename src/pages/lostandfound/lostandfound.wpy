@@ -1,19 +1,56 @@
 <style scoped>
-    .container{
-        width:750rpx;
-        height:1180rpx;
+    .navbar{
+        width:80%;
+        display: flex;
+        display: -webkit-flex;
+        position: relative;
+        z-index:100;
+        justify-content: space-around;
+        margin: 0 auto;
+    }
+    .navbar text{
+        color:rgb(216, 216, 216);
+        font-size:30rpx;
+        text-align: center;
+        padding:10px 0;
+        flex-grow:1;
+        position: relative;
+    }
+    .navbar .textActive{
+        font-size:30rpx;
+        color:#fff;
+        font-weight: 600;
+    }
+    .navbar .textActive::before{
+        content: "";
+        display: block;
+        width: 80px;
+        height: 2px;
+        background-color: #fff;
+        position: absolute;
+        left:50%;
+        bottom: 0px;
+        transform: translateX(-50%);
+    }
+    .scroll-wrap::after{
+        content: "";
+        display: block;
+        clear:both;
+    }
+    .scroll-wrap scroll-view{
+        float:left;
     }
     .box{
-        width:670rpx;
-        height:1000rpx;
-        position:relative;
-        left:40rpx;
-        top:0rpx;
+        width: 50%;
+        height:100%;
+    }
+    .lost{
+        padding : 0 20rpx;
     }
     .box1{
         width:100%;
         height:200rpx;
-        margin:20rpx 0;
+        margin:20rpx 0rpx;
         background-color: #a4bdf7;
         position:relative;
     }
@@ -38,98 +75,93 @@
         top:30rpx;
     }
     .box4{
-        width:200rpx;
-        height:60rpx;
         font-size:28rpx;
         color:black;
         position:absolute;
         left:530rpx;
         top:150rpx;
     }
-    .one{
-        width:640rpx;
-    }
-    .tab{
-        width:100%;
-        height:138rpx;
-        background-color:white;
-        position:relative;
-        left:0rpx;
-        top:45rpx;
-    }
-    image{
-        width:80rpx;
-        height:80rpx;
-    }
-    .tab view view{
-        margin-left:15rpx;
-    }
-    .souye{
-        width:135rpx;
-        height:135rpx;
-        position:absolute;
-        left:100rpx;
-        top:0rpx;
-    }
-    .fabu{
-        width:135rpx;
-        height:135rpx;
-        position:absolute;
-        left:340rpx;
-        top:0rpx;
-    }
-    .wode{
-        width:135rpx;
-        height:135rpx;
-        position:absolute;
-        left:580rpx;
-        top:0rpx;
-    }
+    .release{
+    width: 100rpx;
+    height:100rpx;
+    position:fixed;
+    bottom:40rpx;
+    right:40rpx;
+    border-radius:50%;
+    background-color:#fff;
+    box-shadow:2px 2px 4px #000;
+}
+.release image{
+    width: 85%;
+    height:85%;
+    position:absolute;
+    left:50%;
+    top:1%;
+    transform:translateX(-50%);
+    -webkit-transform:translateX(-50%);
+}
+.release .release-text{
+    color:#0081ff;
+    font-size: 22rpx;
+    position:absolute;
+    bottom:4rpx;
+    left:0;
+    right:0;
+    text-align:center;
+}
 </style>
 
 <template>
     <block>
         <custom-nav isCustom="{{true}}" bgColor="text-custom-white">
-            <view slot="content">失物招领</view>
+            <view slot="content">信息广场</view>
         </custom-nav>
-        <view class="container">
-            <scroll-view  scroll-y class="box">
-                <repeat for="{{info}}" key="id">
-                    <view class="box1">
-                        <view class="box2">
-                            <image src="{{item.imgurl}}"></image>
-                        </view>
-                        <view class="box3">
-                            {{item.name}}
-                        </view>
-                        <view class="box4">
-                            {{item.date}}
-                        </view>
-                    </view>
-                </repeat>
-                    
-            </scroll-view>
-            <view class="tab">
-                <navigator url="/pages/lostandfound/lostandfound" hover-class="navigator-hover">
-                    <view class="souye">
-                        <image src="/assets/img/guangchang1.png"></image>
-                        <view style="color:#1296db;font-size:30rpx;">广场</view> 
-                    </view>
-                </navigator>
-                <navigator url="/pages/lostandfound/fabu" hover-class="navigator-hover">
-                    <view class="fabu">
-                        <image src="/assets/img/fabu.png"></image>
-                        <view style="color:#515151;font-size:30rpx;">发布</view> 
-                    </view>
-                </navigator>
-                <navigator url="/pages/lostandfound/wode" hover-class="navigator-hover">
-                    <view class="wode">
-                        <image src="/assets/img/wode.png"></image>
-                        <view style="color:#515151;font-size:30rpx;">我的</view> 
-                    </view>
-                </navigator>
-            </view>
+        <view class="navbar">
+            <text class="{{pageShow==0?'textActive':''}}" @tap="showone(0)">失物招领</text>
+            <text class="{{pageShow==1?'textActive':''}}" @tap="showone(1)">寻物启事</text>
         </view>
+        <view animation="{{animationPage}}" style="width:200%;top:{{toTop}}px;" class="scroll-wrap scroll">
+            <scroll-view  scroll-y class="box lost">
+                <repeat for="{{info}}" key="id">
+                    <navigator url="/pages/lostandfound/xiangqing">
+                        <view class="box1">
+                            <view class="box2">
+                                <image src="{{item.imgurl}}"></image>
+                            </view>
+                            <view class="box3">
+                                {{item.name}}
+                            </view>
+                            <view class="box4">
+                                {{item.date}}
+                            </view>
+                        </view>
+                    </navigator>
+                </repeat>
+            </scroll-view>
+            <scroll-view  scroll-y class="box lost">
+                <repeat for="{{info}}" key="id">
+                    <navigator url="/pages/lostandfound/xiangqing">
+                        <view class="box1">
+                            <view class="box2">
+                                <image src="{{item.imgurl}}"></image>
+                            </view>
+                            <view class="box3">
+                                {{item.name}}
+                            </view>
+                            <view class="box4">
+                                {{item.date}}
+                            </view>
+                        </view>
+                    </navigator>
+                </repeat>
+            </scroll-view>
+        </view>
+        <navigator url="/pages/lostandfound/fabu">
+            <view class="release">
+                <image src="/assets/img/release.png"></image>
+                <text class="release-text">发布</text>
+            </view>
+        </navigator>
     </block>
 </template>
 
@@ -179,15 +211,35 @@ export default class lostandfound extends wepy.page{
                 name:"**食堂捡到**同学校园一卡通",
                 date:"2019-5-28"
             }
-        ]
+        ],
+        animationPage : {},
+        toTop : 0,
+        pageShow : 0
     }
 
     components = {
         'custom-nav' : Customnav
     }
 
-    methods = {
+    onLoad(){
+        this.system=wepy.getSystemInfoSync();
+        let query=wepy.createSelectorQuery();
+        query.select('.navbar').boundingClientRect((res)=>{
+            this.toTop=res.height+this.$parent.globalData.customBar;
+            this.$apply();
+        }).exec()
+    }
 
+    methods = {
+        showone(n){
+            let {screenWidth}=this.system;
+            this.pageShow=n;
+            let animation=wepy.createAnimation({
+                duration: 200
+            });
+            animation.translate(-screenWidth*n).step();
+            this.animationPage=animation.export();
+        }
     }
 }
 </script>

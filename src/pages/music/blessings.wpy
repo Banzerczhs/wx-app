@@ -85,7 +85,7 @@
 <script>
 import wepy from "wepy";
 import Customnav from "@/components/customnav";
-export default class Music extends wepy.page{
+export default class blessings extends wepy.page{
     data = {
 
     }

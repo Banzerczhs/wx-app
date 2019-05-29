@@ -5,12 +5,12 @@ let indexlist = {
             name:'失物招领',
             child:[
                 {
-                    name:"失物招领",
+                    name:"信息广场",
                     url:"/pages/lostandfound/lostandfound"
                 },
                 {
-                    name:"寻物启事",
-                    url:"/pages/lostandfound/searchfornotices"
+                    name:"我的发布",
+                    url:"/pages/lostandfound/wode"
                 }
             ]
         },

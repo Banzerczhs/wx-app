@@ -129,7 +129,7 @@
 <script>
 import wepy from "wepy";
 import Customnav from "@/components/customnav";
-export default class Music extends wepy.page{
+export default class playlist extends wepy.page{
     data = {
         music:[
             {

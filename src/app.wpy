@@ -57,23 +57,22 @@ export default class app extends wepy.app {
       'pages/teachbuillding/teacher',
       'pages/association/associationform',
       'pages/association/issue',
-<<<<<<< HEAD
       'pages/music/music',
       'pages/music/playlist',
       'pages/music/uploadmusic',
       'pages/music/blessings',
       'pages/music/searchresult',
       'pages/lostandfound/lostandfound',
-      'pages/lostandfound/searchfornotices',
+      'pages/lostandfound/wodefabu',
       'pages/lostandfound/fabu',
       'pages/lostandfound/wode',
-=======
+      'pages/lostandfound/xiangqing',
+      'pages/lostandfound/liaotian',
       'pages/association/detail',
       'pages/association/myactive',
       'pages/association/comment',
       'pages/dorm/pay',
       'pages/dorm/repair'
->>>>>>> d6e2210dff96080d45727683ef0adec76087703a
     ],
     window: {
       backgroundTextStyle: 'light',

@@ -1,0 +1,133 @@
+<style scoped>
+    .container{
+        width:100%;
+    }
+    .box{
+        width:670rpx;
+        height:1100rpx;
+        position:relative;
+        left:40rpx;
+    }
+    .box1{
+        width:620rpx;
+        height:200rpx;
+        margin:20rpx 0;
+        background-color: #a4bdf7;
+        position: relative;
+        left:30rpx;
+        top:0rpx;
+    }
+    .box2{
+        width:145rpx;
+        height:145rpx;
+        position:absolute;
+        left:30rpx;
+        top:30rpx;
+    }
+    .box2 image{
+        width:100%;
+        height:100%;
+    }
+    .box3{
+        width:450rpx;
+        height:120rpx;
+        font-size:32rpx;
+        color:black;
+        position:absolute;
+        left:175rpx;
+        top:30rpx;
+    }
+    .box4{
+        font-size:28rpx;
+        color:black;
+        position:absolute;
+        left:480rpx;
+        top:150rpx;
+    }
+</style>
+
+<template>
+    <block>
+        <custom-nav isCustom="{{true}}" bgColor="text-custom-white">
+            <view slot="content">我的发布</view>
+        </custom-nav>
+        <view class="container">
+            <scroll-view  scroll-y class="box">
+                <repeat for="{{info}}" key="id">
+                    <navigator url="/pages/lostandfound/xiangqing">
+                        <view class="box1">
+                            <view class="box2">
+                                <image src="{{item.imgurl}}"></image>
+                            </view>
+                            <view class="box3">
+                                {{item.name}}
+                            </view>
+                            <view class="box4">
+                                {{item.date}}
+                            </view>
+                        </view>
+                    </navigator>
+                </repeat>
+            </scroll-view>
+        </view>
+    </block>
+</template>
+
+<script>
+import wepy from "wepy";
+import Customnav from "@/components/customnav";
+export default class wodefabu extends wepy.page{
+    data = {
+         info:[
+            {
+                imgurl:"/assets/img/yangtu.png",
+                name:"**食堂捡到**同学校园一卡通",
+                date:"2019-5-28"
+            },
+            {
+                imgurl:"/assets/img/yangtu.png",
+                name:"**食堂捡到**同学校园一卡通",
+                date:"2019-5-28"
+            },
+            {
+                imgurl:"/assets/img/yangtu.png",
+                name:"**食堂捡到**同学校园一卡通",
+                date:"2019-5-28"
+            },
+            {
+                imgurl:"/assets/img/yangtu.png",
+                name:"**食堂捡到**同学校园一卡通",
+                date:"2019-5-28"
+            },
+            {
+                imgurl:"/assets/img/yangtu.png",
+                name:"**食堂捡到**同学校园一卡通",
+                date:"2019-5-28"
+            },
+            {
+                imgurl:"/assets/img/yangtu.png",
+                name:"**食堂捡到**同学校园一卡通",
+                date:"2019-5-28"
+            },
+            {
+                imgurl:"/assets/img/yangtu.png",
+                name:"**食堂捡到**同学校园一卡通",
+                date:"2019-5-28"
+            },
+            {
+                imgurl:"/assets/img/yangtu.png",
+                name:"**食堂捡到**同学校园一卡通",
+                date:"2019-5-28"
+            }
+        ]
+    }
+
+    components = {
+        'custom-nav' : Customnav
+    }
+
+    methods = {
+
+    }
+}
+</script>
