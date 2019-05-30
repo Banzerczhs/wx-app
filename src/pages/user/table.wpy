@@ -1,0 +1,59 @@
+<style scoped>
+    .table-wrap{
+        width: 90%;
+        margin:0 auto;
+    }
+    .table{
+        width: 100%;
+        display:grid;
+        display:-webkit-grid;
+        grid-template-columns:repeat(6,16.6%);
+        grid-template-rows:repeat(9,120rpx);
+        background-color:rgba(0,0,0,0.5);
+    }
+    .table .item{
+        color:#fff;
+        display:flex;
+        display:-webkit-flex;
+        align-items:center;
+        justify-content: center;
+    }
+    .item-row-0{
+        height:80rpx;
+    }
+</style>
+
+<template>
+    <block>
+        <custom-nav isBack="{{true}}" class="text-custom-white">
+            <view solt="content">我的课程表</view>
+        </custom-nav>
+        <view class="table-wrap">
+            <view class="table">
+                <view class="item item-row-0 item-col-1">15周</view>
+                <view class="item item-row-0 item-col-2">周一</view>
+                <view class="item item-row-0 item-col-3">周二</view>
+                <view class="item item-row-0 item-col-3">周三</view>
+                <view class="item item-row-0 item-col-3">周四</view>
+                <view class="item item-row-0 item-col-3">周五</view>
+                <repeat for="{{48}}" key="index">
+                    <view class="item item-row-{{index/6}} item-col-{{index}}">星期{{index+1}}</view>
+                </repeat>
+            </view>
+        </view>
+    </block>
+</template>
+
+<script>
+import wepy from "wepy";
+import Customnav from "@/components/customnav";
+export default class Table extends wepy.page{
+    data = {
+
+    }
+
+    components = {
+        'custom-nav' : Customnav
+    }
+}
+</script>

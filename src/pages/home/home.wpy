@@ -22,6 +22,13 @@
             </repeat>
           </view>
         </repeat>
+        <view class="credit">
+          <view class="credit-box">
+            <view class="credit-mask"></view>
+            <view class="credit-bg"></view>
+            <text class="credit-text">4</text>
+          </view>
+        </view>
         <!--循环渲染 三条鱼-->
         <!-- <repeat for="{{list.fish}}" index="index">
           <view class="{{index}}">
@@ -57,11 +64,30 @@
       @tap="hideMask"
       data-tap="tap">
       <view 
-        class="mask-box"
-        style="display:{{beckzIndex?'block':'none'}}"
-      > 
-        <repeat for="{{BuildingChild}}" key="item.name">
+        class="newsTip"
+        style="display:{{beckzIndex?'none':'block'}};margin-top:{{mTop}}px;" 
+        data-tap="tap">
+        <repeat for="{{5}}" key="index">
           <view 
+            class="tip"
+            style="display:{{tipActive>=index?'none':'block'}};"
+            hover-class="tipactive" 
+            animation="{{animationinfo[index]}}"
+            data-id="{{index}}"
+            @transitionend="moveEnd">
+            <view class="tip-info">
+              <view class="important">你借的书快要到期了</view>
+              <view class="secondary">linux实战100天还有1天到期</view>
+            </view>
+            <text class="tip-time">20:11</text>
+          </view>
+        </repeat>
+      </view>
+      <view
+        class="mask-box"
+        style="display:{{beckzIndex?'block':'none'}}">
+        <repeat for="{{BuildingChild}}" key="item.name">
+          <view
             class="mask-element"
             animation="{{maskement[index]}}"
             @tap="GoPage({{item.url}}))"
@@ -73,7 +99,7 @@
       class="indexbg-Beck {{beckzIndex?'filter':''}}"
       data-sign="true"
       @tap="Beck">
-      <recentlyUsed :appList.sync="applist"></recentlyUsed>
+      <recentlyUsed :appList.sync="applist" @clearNews.user="clearInfo"></recentlyUsed>
       <view class="Beckimg">
         <view animation="{{animationbeck}}">
           <image src="https://www.quyun.online/assets/image/%E8%B4%9D%E5%A3%B3.png" class="beck"></image>
@@ -103,11 +129,15 @@
       ismask : false,
       animationbeck : {},
       aniamtionsecon : {},
+      animationinfo : [],
       maskement : [],
       applist : [],
       beckzIndex : false,
       bgAnimationState : false,
-      BuildingChild:[]
+      BuildingChild:[],
+      mTop : 0,
+      clearState : false,
+      tipActive : -1
     }
 
     components={
@@ -161,6 +191,35 @@
           }
           this.$apply();
         }
+      },
+
+      clearInfo(){
+        if(!this.clearState){
+          this.clearState=true;
+          this.animationinfo=[];
+          let animation=wepy.createAnimation({
+            duration: 300
+          });
+          let num=0;
+          let timer=setInterval(()=>{
+            animation.translate('120%',0).step();
+            this.animationinfo.push(animation.export());
+            num++;
+            if(num>=5){
+              clearInterval(timer);
+              this.clearState=false;
+            }
+            this.$apply();
+          },100);
+        }
+      },
+
+      moveEnd(e){
+        setTimeout(() => {
+          let {id}=e.currentTarget.dataset;
+          this.tipActive=id;
+          this.$apply();
+        },400);
       }
     }
 
@@ -189,21 +248,26 @@
       })
       //贝壳状态
       this.beckState=null;
+      this.mTop=this.$parent.globalData.customBar+20;
     }
 
     onReady(){
       let {windowiScale,windowiH}=this;
       this.applist=[{
-        url : '',
+        imgurl : 'disable',
+        path : '',
         name : ''
       },{
-        url : 'userInfo',
+        imgurl : 'userInfo',
+        path : '/pages/user/info',
         name : '个人信息'
       },{
-        url : 'table',
+        imgurl : 'table',
+        path : '/pages/user/table',
         name : '个人课表'
       },{
-        url : '',
+        imgurl : 'disable',
+        path : '',
         name : ''
       }];
     }

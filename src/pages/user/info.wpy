@@ -1,0 +1,135 @@
+<style scoped>
+    .container{
+        background-image: linear-gradient(45deg,#3a78ff 10%,#1d5dea);
+        width: 100%;
+        height:100%;
+        position:relative;
+    }
+    .info-box{
+        width: 100%;
+    }
+    .info-box .info-image{
+        width: 150rpx;
+        height:150rpx;
+        position:absolute;
+        left:50%;
+        top:10%;
+        transform:translateX(-50%);
+        -webkit-transform:translateX(-50%);
+        border-radius:50%;
+        overflow:hidden;
+        box-shadow:1px 1px 4px 2px rgba(0,0,0,0.5);
+    }
+    .info-box .info-image image{
+        width: 100%;
+        height:100%;
+    }
+    .info-box .info-content{
+        position:relative;
+        top:40vh;
+    }
+    .info-box .info-content .info-state{
+        width: 70%;
+        background-color:#fff;
+        border-radius:6rpx 6rpx 0 0;
+        display:flex;
+        display:-webkit-flex;
+        height:200rpx;
+        justify-content: space-around;
+        align-items:center;
+        text-align:center;
+        font-size: 26rpx;
+        color:rgb(149, 149, 149);
+        position:absolute;
+        top:-48%;
+        left:0;
+        right:0;
+        margin:0 auto;
+        padding:20rpx;
+    }
+    .info-box .info-content .info-state view text{
+        display:block;
+    }
+    .info-box .info-content .info-list{
+        width: 100%;
+        padding:20rpx;
+        background-color:#fff;
+        color:rgb(149, 149, 149);
+        width:90%;
+        margin:0 auto;
+        height:400rpx;
+        border-radius:6rpx;
+    }
+    .info-content .info-list view{
+        padding:20rpx 0;
+        margin:20rpx 0;
+        border-bottom: 1px solid rgb(177, 177, 177);
+    }
+    .bottom-img{
+        position:absolute;
+        bottom:0;
+        left:0;
+        right:0;
+        width: 100%;
+        height:200rpx;
+    }
+    .bottom-img image{
+        width: 100%;
+        height:100%;
+    }
+</style>
+
+<template>
+    <view class="container">
+        <custom-nav isBack="{{true}}" class="text-custom-white">
+            <view slot="content">个人信息</view>
+        </custom-nav>
+        <view class="info-box scroll" style="top:{{toTop}}px;">
+            <view class="info-image">
+                <image src="https://www.quyun.online/assets/image/looks.jpg"></image>
+            </view>
+            <view class="info-content">
+                <view class="info-state">
+                    <view>
+                        <text>姓名</text>
+                        <text>陈子惠生</text>
+                    </view>
+                    <view>
+                        <text>学分</text>
+                        <text>4</text>
+                    </view>
+                    <view>
+                        <text>籍贯</text>
+                        <text>湖北襄阳</text>
+                    </view>
+                </view>
+                <view class="info-list">
+                    <view>学号：1701302147</view>
+                    <view>学院：计算机技术与软件工程学院</view>
+                    <view>班级：网络17304</view>
+                </view>
+            </view>
+            <view class="bottom-img">
+                <image src="https://image.weilanwl.com/gif/wave.gif" class="gif-black response" mode="scaleToFill"></image>
+            </view>
+        </view>
+    </view>
+</template>
+
+<script>
+import wepy from "wepy";
+import Customnav from "@/components/customnav";
+export default class Info extends wepy.page{
+    data = {
+        toTop : 0
+    }
+
+    onLoad(){
+        this.toTop=this.$parent.globalData.customBar;
+    }
+
+    components = {
+        'custom-nav' : Customnav
+    }
+}
+</script>

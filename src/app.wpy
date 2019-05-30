@@ -44,6 +44,8 @@ export default class app extends wepy.app {
   config = {
     pages: [
       'pages/home/home',
+      'pages/user/info',
+      'pages/user/table',
       'pages/library/library',
       'pages/library/borrowinfo',
       'pages/library/collection',

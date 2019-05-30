@@ -31,6 +31,7 @@
         color:rgba(255,255,255,0.5);
         padding:0 60rpx;
         position:relative;
+        color:#fff;
     }
     .list-item .item-info view{
         margin:10rpx 0;

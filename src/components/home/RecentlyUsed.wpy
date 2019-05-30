@@ -47,8 +47,8 @@
         <view
             class="app {{hide?'hide':''}} {{activeNum==index?'active':''}}"
             animation="{{appmove[index]}}"
-            @tap.stop="clickapp({{index}})">
-            <image wx:if="{{item.url}}" src="/assets/img/{{item.url}}{{activeNum==index?'true':'false'}}.png"></image>
+            @tap.stop="clickapp({{item}},{{index}})">
+            <image src="/assets/img/{{item.imgurl}}.png"></image>
         </view>
     </repeat>
 </template>
@@ -64,7 +64,6 @@
         }
 
         data = {
-            appshow : false,
             appmove : [],
             hide : false,
             activeNum : -1
@@ -81,9 +80,22 @@
         }
         
         methods={
-            clickapp(num){
-                this.activeNum=num;
-                this.$apply();
+            clickapp(item,num){
+                if(item.name){
+                    let _this=this;
+                    _this.activeNum=num;
+                    wepy.navigateTo({
+                        url: item.path,
+                        success(){
+                            setTimeout(() => {
+                                _this.activeNum=-1;
+                                _this.$apply();
+                            },200);
+                        }
+                    });
+                }else{
+                    this.$emit('clearNews');
+                }
             }
         }
         

@@ -101,25 +101,33 @@
                  <view style="position:absolute;left:460rpx;top:32rpx;font-size:36rpx;">时长</view>
                  <view class="content">
                     <scroll-view scroll-y style="height:100%;">
-                    <view class="one">
-                        <view wx:for="{{music}}">
-                            <view>{{item.xuhao}}</view>
+                        <view class="one">
+                            <repeat for="{{music}}" key="index">
+                                <view>
+                                    <view>{{item.xuhao}}</view>
+                                </view>
+                            </repeat>
                         </view>
-                    </view>
-                    <view class="two">
-                            <view wx:for="{{music}}">
-                                <view>{{item.name}}</view>
-                            </view>
+                        <view class="two">
+                            <repeat for="{{music}}" key="index">
+                                <view>
+                                    <view>{{item.name}}</view>
+                                </view>
+                            </repeat>
                         </view>
                         <view class="three">
-                            <view wx:for="{{music}}">
-                                <view>{{item.geshou}}</view>
-                            </view>
+                            <repeat for="{{music}}" key="index">
+                                <view>
+                                    <view>{{item.geshou}}</view>
+                                </view>
+                            </repeat>
                         </view>
                         <view class="four">
-                            <view wx:for="{{music}}">
-                                <view>{{item.shichang}}</view>
-                            </view>
+                            <repeat for="{{music}}" key="index">
+                                <view>
+                                    <view>{{item.shichang}}</view>
+                                </view>
+                            </repeat>
                         </view>
                     </scroll-view>
                 </view>
