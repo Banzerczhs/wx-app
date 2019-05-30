@@ -1,0 +1,120 @@
+<style scoped>
+    .container{
+        width:650rpx;
+        height:600rpx;
+        background-color:#ddd;
+        position:relative;
+        left:50rpx;
+        top:200rpx;
+        border-radius:8rpx;
+    }
+    .logo{
+        width:150rpx;
+        height:150rpx;
+        border-radius:50%;
+        position:absolute;
+        left:250rpx;
+        top:20rpx;
+        /* background-color: aqua; */
+        box-shadow: 1px 1px 4px 0 rgba(0,0,0,0.3);
+    }
+    .logo image{
+        width:100%;
+        height:100%;
+    }
+    .yhm{
+        width:550rpx;
+        height:80rpx;
+        position:absolute;
+        left:50rpx;
+        top:220rpx;
+        background-color: white;
+    }
+    .yhm image{
+        width:80rpx;
+        height:80rpx;
+        float:left;
+    }
+    .yhm input{
+        width:450rpx;
+        height:80rpx;
+        float:left;
+        margin-left:10rpx;
+        font-size:32rpx;
+        color:black;
+    }
+    .mm{
+        width:550rpx;
+        height:80rpx;
+        position:absolute;
+        left:50rpx;
+        top:350rpx;
+        background-color: white;
+    }
+    .mm image{
+        width:80rpx;
+        height:80rpx;
+        float:left;
+    }
+    .mm input{
+        width:450rpx;
+        height:80rpx;
+        float:left;
+        margin-left:10rpx;
+        font-size:32rpx;
+        color:black;
+    }
+    .btn{
+        width:550rpx;
+        height:100rpx;
+        position:absolute;
+        left:50rpx;
+        top:480rpx;
+    }
+    .btn button{
+        width:100%;
+        height:100%;
+        line-height:100rpx;
+        text-align:center;
+        font-size:36rpx;
+        color:white;
+        background-color: orangered;
+    }
+</style>
+
+<template>
+     <block>
+        <custom-nav  bgColor="text-custom-white"><view slot="content">登录</view></custom-nav>
+        <view class="container">
+            <view class="logo"><image src="/assets/img/loginimg.png"></image></view>
+            <form action="#">
+                <view class="yhm">
+                    <image src="/assets/img/xh.png"></image>
+                    <input type="text" placeholder="请输入学号"/>
+                </view>
+                <view class="mm">
+                    <image src="/assets/img/mima.png"></image>
+                    <input type="password" placeholder="请输入密码"/>
+                </view>
+                <navigator url="/pages/home/home"><view class="btn"><button form-type="submit">登录</button></view></navigator>
+            </form>
+        </view>
+    </block>
+</template>
+
+<script>
+import wepy from "wepy";
+import Customnav from "@/components/customnav";
+export default class liaotian extends wepy.page{
+    data={
+
+    }
+    components = {
+        'custom-nav' : Customnav
+    }
+
+    methods = {
+      
+    }
+}
+</script>
