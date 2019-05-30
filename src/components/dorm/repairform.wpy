@@ -1,0 +1,297 @@
+<style scoped>
+.cu-form-group+.cu-form-group {
+    border-top:0;
+}
+.title{
+    width:100%;
+    height:50rpx;
+    line-height:50rpx;
+    text-align: center;
+    background:#1cbbb4;
+    color:white;
+    font-weight: 500;
+}
+.form-title{
+    text-align: justify;
+    padding-right:30rpx;
+    font-size:30rpx;
+    position: relative;
+    height:60rpx;
+    line-height: 60rpx;
+}
+.form-textarea {
+    padding:0 30rpx;
+}
+.form-title-textarea{
+    width:100%;
+    position:relative;
+}
+.form-title-textarea textarea{
+    width: 100%;
+    height:180rpx;
+    padding:10rpx;
+}
+.form-title-textarea .textmask{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    top:0;
+    background-color:#fff;
+}
+.button-bottom{
+    position:absolute;
+    bottom:20rpx;
+    width:80%;
+    left:10%;
+}
+.imagebox{
+    height:220rpx;
+    padding:1px 30rpx;
+}
+.image-title{
+    height:60rpx;
+    line-height:60rpx;
+    font-size:30rpx;
+}
+.image-title > text{
+    float:right;
+    color: rgb(146, 146, 146);
+}
+.imageadd > text,.imageadd{
+    width:110rpx;
+    height:120rpx;
+    overflow: hidden;
+}
+.imageadd > text{
+    position:absolute;
+    font-size:30px;
+    top:50%;
+    left:50%;
+    transform: translate(-20%,-20%);
+}
+.image-items{
+    height:120rpx;
+    width:110rpx;
+    position:relative;
+    float:left; 
+    margin-right:5rpx;
+}
+.image-items > image{
+    height:120rpx;
+    width:120rpx;
+} 
+.image-del{
+    width:30rpx;
+    height:30rpx;
+    position:absolute;
+    right:0;
+    top:0;
+}
+.Texthide{
+    display: none;
+}
+</style>
+
+<template>
+   <block>
+       <view class="title"> {{DataObj.title}} </view>
+        <view class="cu-bar bg-white">
+            <view class="action">
+            选择楼栋：
+            </view>
+            <view class="action">
+                <button class="cu-btn bg-green shadow" bindtap="showModal(0)">{{DataObj.opt}}</button>
+            </view>
+        </view>
+        <view class="cu-bar bg-white ">
+            <view class="action">
+                选择位置：
+            </view>
+            <view class="action">
+                <button class="cu-btn bg-green shadow" bindtap="showModal(1)">{{DataObj.select}}</button>
+            </view>
+        </view>
+        <view class="cu-form-group">
+            <view class="form-title">电话：</view>
+            <input placeholder="留下联系方式" type="number" maxlength="11" value="{{DataObj.Tel}}" @input="InputNum"/>
+        </view>
+        <view class="form-textarea">
+            <view class="form-title">情况简介：</view>
+            <view class="form-title-textarea">
+                <textarea
+                    maxlength="-1" 
+                    placeholder="详情描述"
+                    value="{{DataObj.Textarea}}"
+                    @input="InputText"
+                    wx:if="{{DataObj.status!='hide'}}"
+                ></textarea>
+            </view>
+        </view>
+        <view class="imagebox">
+            <view class="image-title">照片：<text class="">{{DataObj.imgList.length}}/4</text></view>
+            <repeat for="{{DataObj.imgList}}" key="{{index}}">
+                <view class="image-items" data-url="{{DataObj.imgList[index]}}">
+                    <image src='{{DataObj.imgList[index]}}' mode='aspectFilt'/>
+                    <view class="cu-tag bg-blue image-del" @tap.stop="DelImg"   data-index="{{index}}">
+                        <text class="cuIcon-close"></text>
+                    </view>
+                </view>
+            </repeat>
+            <view class="solids imageadd" @tap="ChooseImage" wx-if="{{DataObj.imgList.length < 4}}">
+                <text class="cuIcon-cameraadd"></text>
+            </view>
+        </view>
+        <button class="cu-btn round lines-blue button-bottom" type="button" @tap="sbumitText">提交</button>
+   </block>
+</template>
+
+<script>
+    import wepy from "wepy";
+    export default class repairform extends wepy.component{
+        props = {
+          DataObj : {
+            twoWay : true,
+            type : Object,
+            default:{},
+          }
+        }
+
+        data = {
+          
+        }
+        onLoad(){
+        }
+        
+        methods={
+            ChooseImage(e){
+                wx.chooseImage({
+                    count: 4, //默认9
+                    sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+                    sourceType: ['album'], //从相册选择
+                    success: (res) => {
+                        console.log(res)
+                        if(this.DataObj.imgList.length+res.tempFilePaths.length<=4){
+                            this.DataObj.imgList.push(...res.tempFilePaths);
+                        }else{
+                            wx.showToast({
+                            title:'图片不要超过4张',
+                            mask:true,
+                            icon:'none'
+                            })
+                        }
+                        this.$apply();
+                    }
+                });
+            },
+            DelImg(e) {
+                wx.showModal({
+                    title: '是否删除',
+                    content: '确定要删除这张吗？',
+                    cancelText: '再看看',
+                    confirmText: '删除',
+                    success: res => {
+                        if (res.confirm){
+                            this.DataObj.imgList.splice(e.currentTarget.dataset.index, 1);
+                            this.DataObj.imgList = this.DataObj.imgList;
+                        }
+                        this.$apply();
+                    }
+                })
+            },
+            InputNum(e){
+                let {value} = e.detail;
+                if(value.length==0){
+                    this.DataObj.Tel = null;
+                    return;
+                }
+                this.DataObj.Tel = value;
+                this.$emit('showData')
+
+            },
+            InputText(e){
+                let {value} = e.detail;
+                 if(value.length==0){
+                    this.DataObj.Textarea = null;
+                    return;
+                }
+                this.DataObj.Textarea = value;
+                console.log('x',this);
+                this.$emit('showData');
+            },
+            showModal(e) {
+                let {datalist,title,id} = this.DataObj;
+                this.$emit('showModal',datalist[e],title,e,id)
+            },
+            sbumitText(){
+                if(this.DataObj.opt=="选择" || this.DataObj.select=="选择"){
+                    this.showCall('楼栋和位置不能为空！');return;
+                }
+                if(this.DataObj.Tel==null){
+                    this.showCall('电话还是要给一个的！！');return;
+                }
+                if(this.DataObj.Tel.length<11){
+                    this.showCall('这电话咋没有11位？？！');return;
+                }
+                if(this.DataObj.Textarea==null){
+                    this.showCall('没有描述，就没有办法！！');return;
+                }
+                if(this.DataObj.imgList.length==0){
+                    this.showCall('小哥，来个图片可以不？');return;
+                }
+                let _this = this;
+                wx.showModal({
+                    title: '确认',
+                    content: '是否确认本次提交',
+                    confirmText:"提交",
+                    confirmColor:'#39b54a',
+                    cancelColor:'#ed1c24',
+                    success (res) {
+                        if (res.confirm) {
+                            wx.showLoading({
+                                title: '上传中',
+                                mask:true,
+                                success:()=>{
+                                    setTimeout(()=>{
+                                        wx.hideLoading({
+                                            success:()=>{
+                                                wx.showToast({
+                                                    title:'提交成功',
+                                                    mask:true,
+                                                    success:()=>{
+                                                        _this.reset();
+                                                    }
+                                                })
+                                            }
+                                        })
+                                    },1000)
+                                }
+                            })
+                        } else if (res.cancel) {
+                        console.log('用户点击取消')
+                        }
+                    }
+                    })
+            }
+
+
+        }
+        showCall(title){
+            wx.showToast({
+                title,
+                icon: 'none',
+                mask: true
+            });
+        }
+        reset(){
+            this.DataObj.opt = "选择";
+            this.DataObj.select = "选择";
+            this.DataObj.Tel = null;
+            this.DataObj.Textarea = null;
+            this.DataObj.imgList = [];
+            this.$apply();
+        }
+        
+       
+    }
+</script>

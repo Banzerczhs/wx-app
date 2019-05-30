@@ -62,7 +62,7 @@ let indexlist = {
         },
         {
             src:"https://www.quyun.online/assets/image/x_0040_%E5%AE%BF%E8%88%8D.png",
-            name:'宿舍',
+            name:'服务中心',
             child:[
                 {
                     name:"费用缴纳",
@@ -91,11 +91,6 @@ let indexlist = {
                     url:"/pages/music/uploadmusic"
                 }
             ]
-            
-        },
-        {
-            src:"https://www.quyun.online/assets/image/x_0036_%E7%BD%91%E7%BB%9C%E4%B8%AD%E5%BF%83.png",
-            name:'网络中心'
         }
     ]
 }

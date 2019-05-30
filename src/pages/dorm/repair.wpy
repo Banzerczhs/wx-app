@@ -1,16 +1,101 @@
 <style>
-
+@import '/styles/drom/repair.wxss';
 </style>
 <template>
      <block>
-        <custom-nav bgColor="bg-custom-color" isCustom="{{true}}">
-            <view slot="content">维修上报</view>
-        </custom-nav>xxx
-        
-
+        <custom-nav bgColor="text-custom-white" isCustom="{{true}}">
+            <view slot="content">维修列表</view>
+        </custom-nav>
+        <view class="navbar">
+            <view class="{{showNow == 1 ? 'textActive':''}}" @tap="showNum(1)">宿舍</view>
+            <view class="{{showNow == 2 ? 'textActive':''}}" @tap="showNum(2)">教学楼</view>
+        </view>
+        <view class="content-box scroll" animation="{{cenAnimation}}" style="top:{{toTop}}px;"> 
+            <view class="content-item">
+                <scroll-view
+                    style="height:100%;"
+                    scroll-y="true"
+                    lower-threshold="200"
+                    @scrolltolower="scrollNew">
+                    <view class="scroll-box">
+                        <repeat for="{{datalist}}" key="index" index="index" >
+                            <view class="scroll-item">
+                                <image src="/assets/img/1.jpg" class="item-image"/>
+                                <view class="item-right">
+                                    <view class="item-name">{{item.name}}</view>
+                                    <view class="item-time">{{item.time}}</view>
+                                    <text>{{item.title}}</text>
+                                    <view class="item-image-box">
+                                        <repeat for="{{item.imgArr}}" key="item" item="imgitem">
+                                            <image src="{{imgitem}}" mode="aspectFit"/>
+                                        </repeat>
+                                    </view>
+                                </view>
+                            </view>
+                        </repeat>
+                    </view>
+                </scroll-view>
+            </view>
+            <view class="content-item">
+                <scroll-view
+                    class="scroll"
+                    scroll-y="true"
+                    lower-threshold="200"
+                    @scrolltolower="scrollNew">
+                    <view class="scroll-box">
+                        <repeat for="{{datalist}}" key="index" index="index" >
+                            <view class="scroll-item">
+                                <image src="/assets/img/1.jpg" class="item-image"/>
+                                <view class="item-right">
+                                    <view class="item-name">{{item.name}}</view>
+                                    <view class="item-time">{{item.time}}</view>
+                                    <text>{{item.title}}</text>
+                                    <view class="item-image-box">
+                                        <repeat for="{{item.imgArr}}" key="item" item="imgitem">
+                                            <image src="{{imgitem}}" mode="aspectFit"/>
+                                        </repeat>
+                                    </view>
+                                </view>
+                            </view>
+                        </repeat>
+                    </view>
+                </scroll-view>
+            </view>
+        </view>
+        <view class="option">
+            <view 
+                class="Bookshelf {{toActive?'active':''}}" 
+                @tap="likeBook">
+                <text>宿舍保修</text>
+            </view>
+            <view class="btn" @tap="operation">
+                <image src="/assets/img/add.png"></image>
+            </view>
+        </view>
     </block>
 </template>
+
 <script>
+    let datalist = [
+        {
+            name:'千年老妖',
+            time:'2019-5-24',
+            title:'东十C338宿舍水龙头有问题，晚上一直滴水',
+            imgArr:['/assets/img/logo.png','/assets/img/1.jpg']
+        },
+         {
+            name:'绊中二',
+            time:'2019-5-23',
+            title:'东十556宿舍热水坏了，不出热水',
+            imgArr:['/assets/img/1.jpg']
+        },
+         {
+            name:'承蒙所梦',
+            time:'2019-5-22',
+            title:'东三C338宿舍灯管坏了，怎么还没有来修',
+            imgArr:['/assets/img/logo.png']
+        }
+    ]
     import wepy from "wepy";
     import Customnav from "@/components/customnav";
     export default class repair extends wepy.page{
@@ -22,16 +107,41 @@
         }
          
         data = {
-           
+            showNow : 1,
+            cenAnimation:{},
+            toActive : false,
+            datalist,
+            toTop:0
         }
         methods = {
-        
+            showNum(num){
+                this.showNow = num;
+                let animation1=wepy.createAnimation({
+                    duration: 200,
+                    timingFunction: 'linear'
+                });
+                 animation1.translate(`-${(num-1)*50}%`,0).step();
+                 this.cenAnimation=animation1.export();
+            },
+            likeBook(){
+                wepy.navigateTo({
+                    url: '/pages/dorm/formdorm'
+                });
+            },
+            operation(e){
+                this.toActive=!this.toActive;
+            },
         }
         events = {
         
         }
         onLoad(){
-         
+            let query=wepy.createSelectorQuery();
+            query.select('.navbar').boundingClientRect((res)=>{
+                this.toTop=res.height+this.$parent.globalData.customBar;
+                this.$apply();
+            }).exec();
+
         }
     }
 </script>

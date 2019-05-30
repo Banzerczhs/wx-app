@@ -1,0 +1,244 @@
+<style>
+page{
+    background:url('https://www.quyun.online/assets/image/repairbg.png');
+    position: relative;
+}
+.page{
+    width:100%;
+    height:100%;
+}
+.box3D{
+    position: relative;
+    top:6vh;
+    height:80%;
+    perspective: 500px;
+    -webkit-perspective: 500px;
+    perspective-origin: right top;
+    -webkit-perspective-origin: right top;
+}
+.box3D>view{
+    position:absolute;
+    left:50%;
+    top:3vh;
+    width:70%;
+    height:90%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform-style:preserve-3d;
+    -webkit-transform-style:preserve-3d;
+}
+.box3d-item{
+    width: 100%;
+    height:100%;
+    border-radius:8px;
+    overflow: hidden;
+    position: absolute;
+    left:0;
+    top:0;
+    transition:.3s;
+    opacity: 0.6;
+    background:#fff;
+    transform: translateZ(-50px) translateX(20px) translateY(-20px);
+    -webkit-transform: translateZ(-50px) translateX(20px) translateY(-20px);
+}
+.box3d-item.show{
+    opacity: 1;
+    transform: translateZ(0px) translateX(0px) translateY(0px);
+    -webkit-transform: translateZ(0px) translateX(0px) translateY(0px);
+}
+.box3d-item.hide{
+    opacity: 0;
+    transform: translateZ(0px) translateX(-300px) translateY(0px);
+    -webkit-transform: translateZ(0px) translateX(-300px) translateY(0px);
+}
+.cu-top{
+    top:15%;
+}
+</style>
+<template>
+     <block>
+        <custom-nav bgColor="text-custom-white" isCustom="{{true}}">
+            <view slot="content">维修信息填写</view>
+        </custom-nav>
+        <view class="box3D" @touchstart="start" @touchend="end">
+            <view>
+                <view class="box3d-item box3d-one {{oneClass}}">
+                    <drom-form :DataObj.sync="oneform"></drom-form>
+                </view>
+                <view class="box3d-item box3d-two {{twoClass}}">
+                    <drom-form-two :DataObj.sync="twoform" ></drom-form-two>
+                </view>
+            </view>
+        </view>
+        <view class="cu-modal  {{modalName=='教室报修'?'show':''}}" @tap.stop="hideModal">
+            <view class="cu-dialog cu-top">
+                <radio-group class="block">
+                <view class="cu-list menu text-left">
+                    <view class="cu-item" wx:for="{{oneform.arrayname=='opt'?oneform.arrayOpt:oneform.arrayselect}}" wx:key>
+                    <label class="flex justify-between align-center flex-sub">
+                        <view class="flex-sub">{{item}}</view>
+                        <radio class="round" @tap="radioClickOne(oneform)" data-index="{{index}}" data-target="{{item}}"></radio>
+                    </label>
+                    </view>
+                </view>
+                </radio-group>
+            </view>
+        </view>
+        <view class="cu-modal {{modalName=='宿舍报修'?'show':''}}" @tap.stop="hideModal">
+            <view class="cu-dialog  cu-top">
+                <radio-group class="block">
+                <view class="cu-list menu text-left">
+                    <view class="cu-item " wx:for="{{twoform.arrayname=='opt'?twoform.arrayOpt:twoform.arrayselect}}" wx:key>
+                    <label class="flex justify-between align-center flex-sub">
+                        <view class="flex-sub">{{item}}</view>
+                        <radio class="round" @tap="radioClickOne(twoform)" data-index="{{index}}" data-target="{{item}}"></radio>
+                    </label>
+                    </view>
+                </view>
+                </radio-group>
+            </view>
+        </view>
+    </block>
+</template>
+<script>
+    import wepy from "wepy";
+    import Customnav from "@/components/customnav";
+    import repairform from "@/components/dorm/repairform";
+    import dataForm from "@/structure/dorm/classroom.js";
+    let {datalist,dataClassRoom} = dataForm;
+    let obj = {
+        opt:'选择',
+        select:"选择",
+        arrayOpt:[],
+        arrayselect:[],
+        arrayitem:null,
+        arrayname:'',
+        Tel:null,
+        Textarea:null,
+        imgList: [],
+    }
+    export default class repair extends wepy.page{
+        config={
+            
+        }
+        components = {
+            'custom-nav' : Customnav,
+            'drom-form'  : repairform,
+            'drom-form-two'  : repairform,
+        }
+         
+        data = {
+           clientX:0,
+           oneClass:'',
+           twoClass:'',
+           oneform:{
+                title:'教室报修',
+                id:'oneform',
+                status:'show',
+                ...obj,
+                datalist:dataClassRoom
+           },
+           twoform:{
+                title:'宿舍报修',
+                id:"twoform",
+                status:'hide',
+                ...obj,
+                datalist
+           },
+           modalName:'',
+           state : false,
+        }
+        methods = {
+            start(e){
+                this.startX = e.changedTouches[0].clientX;
+            },
+            end(e){
+                let { clientX }  = e.changedTouches[0];
+                clearTimeout(this.animTimer);
+                if(clientX-this.startX<=-80){
+                    if(!this.state){
+                        this.twoClass='show';
+                        this.oneClass='hide';
+                        this.showText('oneform');
+                        this.showText('twoform');
+                    }else{
+                        this.twoClass='hide';
+                        this.oneClass='show';
+                        this.showText('oneform');
+                        this.showText('twoform');
+                    }
+                    this.state =! this.state;
+                    this.animTimer=setTimeout(() => {
+                        if(this.oneClass=='hide'){
+                            this.oneClass='';
+                        }
+                        if(this.twoClass=='hide'){
+                            this.twoClass='';
+                        }
+                        this.$apply();
+                    },300);
+                }
+            },
+            hideModal(){
+                this.modalName = null;
+            },
+            radioClickOne(obj,e){
+                let { target } = e.currentTarget.dataset;
+                let  index   = e.target.dataset.index;
+                if(this[obj].arrayname=="opt"){  //点击的上面的一个
+                     this[obj].arrayitem = index;
+                     this[obj].arrayselect = [...this[obj].datalist[1][this[obj].arrayitem]];
+                }
+                this[obj].opt = this[obj].arrayOpt[this[obj].arrayitem]; 
+                this[obj].select = this[obj].arrayselect[index]; 
+                this.showText(obj);
+            }    
+        }
+
+        onLoad(){
+            this.oneClass='show';
+            this.animTimer=null;
+        }
+
+        events = {
+            showModal(arr,modelname,num,id){   //数组，名字，上下，id
+                if(num == 0 ){
+                    this.modalName = modelname;
+                    this[id].arrayOpt = [...arr];
+                    this[id].arrayname = 'opt';
+                    this.showText(id);
+                }else{
+                    if(this[id].arrayitem!=null){
+                        this.modalName = modelname;
+                        this.showText(id);
+                        this[id].arrayselect = [...arr[this[id].arrayitem]];
+                        this[id].arrayname = 'select';
+                    }else{
+                       this.showCall('请先选择楼栋！')
+                    }
+                }
+            },
+            showData(){
+                console.log(this)
+            }
+        }
+    showCall(title){
+            wx.showToast({
+                title,
+                icon: 'none',
+                mask: true
+            });
+    }
+    showText(id){
+        this[id].status =='show' ?this[id].status="hide":setTimeout(()=>{
+            this[id].status="show"
+            this.$apply();
+        },110) ;
+        // this.twoform.status =='show' ?this.twoform.status="hide":setTimeout(()=>{
+        //     this.twoform.status="show"
+        //     this.$apply();
+        // },150) ;
+    }
+        
+    }
+</script>

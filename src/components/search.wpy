@@ -12,7 +12,7 @@
                 <text class="cuIcon-search" slot="icon"></text>
             </slot>
             <input
-                type="text" 
+                type="text"
                 placeholder="{{placeholder}}"
                 placeholder-style="{{tipcss}}"
                 disabled="{{disabled}}" 

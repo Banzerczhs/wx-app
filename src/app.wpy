@@ -45,6 +45,8 @@ export default class app extends wepy.app {
     pages: [
       'pages/login/login',
       'pages/home/home',
+      'pages/user/info',
+      'pages/user/table',
       'pages/library/library',
       'pages/library/borrowinfo',
       'pages/library/collection',
@@ -58,22 +60,30 @@ export default class app extends wepy.app {
       'pages/teachbuillding/teacher',
       'pages/association/associationform',
       'pages/association/issue',
+      'pages/association/detail',
+      'pages/association/myactive',
+      'pages/association/comment',
       'pages/music/music',
       'pages/music/playlist',
       'pages/music/uploadmusic',
       'pages/music/blessings',
-      'pages/music/searchresult',
+      'pages/music/search',
+      'pages/music/result',
       'pages/lostandfound/lostandfound',
       'pages/lostandfound/wodefabu',
       'pages/lostandfound/fabu',
       'pages/lostandfound/wode',
+<<<<<<< HEAD
       'pages/lostandfound/xiangqing',
       'pages/lostandfound/liaotian',
       'pages/association/detail',
       'pages/association/myactive',
       'pages/association/comment',
+=======
+>>>>>>> fab11ae3a5ba644cc572b1a5720cd043458a6b8f
       'pages/dorm/pay',
-      'pages/dorm/repair'
+      'pages/dorm/repair',
+      'pages/dorm/formdorm'
     ],
     window: {
       backgroundTextStyle: 'light',

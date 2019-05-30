@@ -55,7 +55,11 @@
 <script>
 import wepy from "wepy";
 import Customnav from "@/components/customnav";
+<<<<<<< HEAD
 export default class uploadmusic extends wepy.page{
+=======
+export default class uploadMusic extends wepy.page{
+>>>>>>> fab11ae3a5ba644cc572b1a5720cd043458a6b8f
     data = {
 
     }

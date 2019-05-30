@@ -7,11 +7,9 @@
         box-shadow: 0 0 0 4rpx #0cf inset,0 0 32rpx 2rpx #0cf inset;
         color:#fff;
         z-index:10;
-        text-align:center;
-        font-size: 28rpx;
-        line-height:105rpx;
         left:calc(50% - 26%);
         top:calc(50% - 24%);
+        font-size: 20rpx;
     }
     .app::before{
         content:"";
@@ -33,6 +31,15 @@
         box-shadow: 0 0 0 4rpx yellow inset,0 0 32rpx 2rpx yellow inset;
         color:yellow;
     }
+    .app image{
+        width: 55rpx;
+        height:52rpx;
+        position:absolute;
+        left:50%;
+        top:50%;
+        transform:translate(-50%,-50%);
+        -webkit-transform:translate(-50%,-50%);
+    }
 </style>
 
 <template>
@@ -40,8 +47,9 @@
         <view
             class="app {{hide?'hide':''}} {{activeNum==index?'active':''}}"
             animation="{{appmove[index]}}"
-            @tap.stop="clickapp({{index}})"
-        >{{item}}</view>
+            @tap.stop="clickapp({{item}},{{index}})">
+            <image src="/assets/img/{{item.imgurl}}.png"></image>
+        </view>
     </repeat>
 </template>
 
@@ -56,7 +64,6 @@
         }
 
         data = {
-            appshow : false,
             appmove : [],
             hide : false,
             activeNum : -1
@@ -73,9 +80,22 @@
         }
         
         methods={
-            clickapp(num){
-                this.activeNum=num;
-                this.$apply();
+            clickapp(item,num){
+                if(item.name){
+                    let _this=this;
+                    _this.activeNum=num;
+                    wepy.navigateTo({
+                        url: item.path,
+                        success(){
+                            setTimeout(() => {
+                                _this.activeNum=-1;
+                                _this.$apply();
+                            },200);
+                        }
+                    });
+                }else{
+                    this.$emit('clearNews');
+                }
             }
         }
         

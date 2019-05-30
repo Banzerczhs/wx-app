@@ -37,3 +37,11 @@ page{
 .bg-custom-orange{
     background-color:#ec5109;
 }
+.search-text{
+    display:inline-block;
+    border-radius:30rpx;
+    padding:12rpx 30rpx;
+    margin:20rpx;
+    background-color:rgba(255,255,255,0.3);
+    color:#fff;
+}

@@ -1,4 +1,5 @@
 <style scoped>
+<<<<<<< HEAD
     .container{
         margin-left:50rpx;
         position:relative;
@@ -123,6 +124,88 @@
         left:0rpx;
         top:80rpx;
     }
+=======
+.music{
+    margin-top: 20rpx;
+}
+.music-info{
+    width: 90%;
+    position:relative;
+    margin:0 auto;
+}
+.music-info::after{
+    content:"";
+    display:block;
+    clear:both;
+}
+.music-info .visualization{
+    width: 60%;
+    height: 220rpx;
+    float:left;
+    margin:auto 0;
+    background-color:rgba(255,255,255,0.3);
+    border-radius:10rpx;
+}
+.music-info .info-image{
+    width: 215rpx;
+    height:215rpx;
+    float:right;
+    margin-left: 20rpx;
+}
+.music-info .info-image image{
+    width: 100%;
+    height:100%;
+}
+.music-search{
+    width: 92%;
+    height:60rpx;
+    border-radius:30rpx;
+    position:relative;
+    margin:30rpx auto;
+    background-color:rgba(255,255,255,0.3);
+}
+.music-search .search{
+    height:100%;
+    color:#fff;
+    line-height:60rpx;
+    text-indent:1em;
+}
+.music-search .img{
+    width: 50rpx;
+    height:50rpx;
+    position:absolute;
+    right:20rpx;
+    top:50%;
+    transform:translateY(-50%);
+    -webkit-transform:translateY(-50%);
+}
+.music-list{
+    width:90%;
+    margin:0 auto;
+    color:#fff;
+}
+.list-nav,.music-scroll{
+    display:flex;
+    display:-webkit-flex;
+    justify-content: center;
+    align-items:center;
+    text-align:center;
+    min-height:80rpx;
+}
+.list-nav view,.music-scroll view{
+    width:15%;
+    float:left;
+    height:60rpx;
+    line-height:60rpx;
+}
+.music-scroll view:nth-child(1),.list-nav view:nth-child(1),.music-scroll view:nth-child(2),.list-nav view:nth-child(2){
+    width:25%;
+    text-align:left;
+}
+.music-scroll image{
+    margin-top:14rpx;
+}
+>>>>>>> fab11ae3a5ba644cc572b1a5720cd043458a6b8f
 </style>
 
 <template>
@@ -130,6 +213,7 @@
         <custom-nav isCustom="{{true}}" bgColor="text-custom-white">
             <view slot="content">歌库</view>
         </custom-nav>
+<<<<<<< HEAD
         <view class="container">
             <view class="box">
                 <view class="ls">历史点歌记录</view>
@@ -176,6 +260,36 @@
                         <view class="six">
                             <view wx:for="{{music}}">
                                 <navigator url="/pages/music/blessings" hover-class="navigator-hover"><image src="{{item.icon3}}" style="width:35rpx;height:35rpx;"></image></navigator>
+=======
+        <view class="music scroll" style="top:{{boxTop}}px;">
+            <view class="music-info">
+                <view class="visualization"></view>
+                <image src="/assets/img/music.png" class="info-image"></image>
+            </view>
+            <view class="music-search" @tap="navigTo">
+                <view class="search">请输入要搜索的歌曲</view>
+                <image src="/assets/img/button.png" class="img"/>
+            </view>
+            <view class="music-list scroll" style="top:{{toTop}}px;bottom:30rpx;">
+                <view class="list-nav">
+                    <view>歌曲</view>
+                    <view>歌手</view>
+                    <view>时长</view>
+                    <view>热度</view>
+                    <view>点歌</view>
+                </view>
+                <scroll-view scroll-y style="height:100%;">
+                    <repeat for="{{music}}" key="id">
+                        <view class="music-scroll" @tap="playMusic">
+                            <view class="musics-name">{{item.name}}</view>
+                            <view>{{item.geshou}}</view>
+                            <view>{{item.shichang}}</view>
+                            <view style="margin-left:-10rpx;">
+                                <image src="{{item.icon1}}" style="width:35rpx;height:35rpx;"></image>
+                            </view>
+                            <view>
+                                <navigator url="/pages/music/blessings" hover-class="navigator-hover"><image src="{{item.icon3}}" style="width:30rpx;height:40rpx;"></image></navigator>    
+>>>>>>> fab11ae3a5ba644cc572b1a5720cd043458a6b8f
                             </view>
                         </view>
                     </scroll-view>
@@ -187,182 +301,45 @@
 <script>
 import wepy from "wepy";
 import Customnav from "@/components/customnav";
+<<<<<<< HEAD
 export default class music extends wepy.page{
+=======
+import musicData from "@/structure/music/music";
+
+export default class Music extends wepy.page{
+>>>>>>> fab11ae3a5ba644cc572b1a5720cd043458a6b8f
     data = {
-        music:[
-            {
-                name:"出山",
-                geshou:"王胜男",
-                shichang:"3:38",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
-            },
-            {
-                name:"往后余生",
-                geshou:"马良",
-                shichang:"3:58",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
-            },
-            {
-                name:"沙漠骆驼",
-                geshou:"展展与罗罗",
-                shichang:"5:38",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
-            },
-            {
-                name:"沙漠骆驼",
-                geshou:"展展与罗罗",
-                shichang:"5:38",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
-            },
-            {
-                name:"乞丐",
-                geshou:"摩登兄弟",
-                shichang:"4:07",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
-            },
-            {
-                name:"乞丐",
-                geshou:"摩登兄弟",
-                shichang:"4:07",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
-            },
-            {
-                name:"学猫叫",
-                geshou:"冯提莫",
-                shichang:"3:15",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
-            },
-            {
-                name:"学猫叫",
-                geshou:"冯提莫",
-                shichang:"3:15",
-                icon1:"/assets/img/redu.png",
-                 icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
-
-            },
-            {
-                name:"学猫叫",
-                geshou:"冯提莫",
-                shichang:"3:15",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png",
-               
-            },
-            {
-                name:"学猫叫",
-                geshou:"冯提莫",
-                shichang:"3:15",
-                icon1:"/assets/img/redu"+".png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
-            },
-             {
-                name:"出山",
-                geshou:"王胜男",
-                shichang:"3:38",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
-            },
-            {
-                name:"往后余生",
-                geshou:"马良",
-                shichang:"3:58",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
-            },
-            {
-                name:"沙漠骆驼",
-                geshou:"展展与罗罗",
-                shichang:"5:38",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
-            },
-            {
-                name:"沙漠骆驼",
-                geshou:"展展与罗罗",
-                shichang:"5:38",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
-            },
-            {
-                name:"乞丐",
-                geshou:"摩登兄弟",
-                shichang:"4:07",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
-            },
-            {
-                name:"乞丐",
-                geshou:"摩登兄弟",
-                shichang:"4:07",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
-            },
-            {
-                name:"学猫叫",
-                geshou:"冯提莫",
-                shichang:"3:15",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
-            },
-            {
-                name:"学猫叫",
-                geshou:"冯提莫",
-                shichang:"3:15",
-                icon1:"/assets/img/redu.png",
-                 icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
-
-            },
-            {
-                name:"学猫叫",
-                geshou:"冯提莫",
-                shichang:"3:15",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png",
-               
-            },
-            {
-                name:"学猫叫",
-                geshou:"冯提莫",
-                shichang:"3:15",
-                icon1:"/assets/img/redu"+".png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png"
-            }
-        ]
+        music : musicData.music,
+        toTop : 0,
+        boxTop : 0
     }
 
     components = {
         'custom-nav' : Customnav
     }
+    
+    onLoad(){
+        let query=wepy.createSelectorQuery();
+        query.select('.music-info').boundingClientRect();
+        query.select('.music-search').boundingClientRect();
+        query.exec((res)=>{
+            this.toTop=res[0].height+res[1].height+30;
+            this.boxTop=this.$parent.globalData.customBar;
+            this.$apply();
+        });
+
+        // console.log(new FileReader());
+    }
 
     methods = {
-
+        navigTo(){
+            wepy.navigateTo({
+                url: '/pages/music/search'
+            });
+        },
+        playMusic(){
+            console.log('播放该歌曲');
+        }
     }
 }
 </script>
