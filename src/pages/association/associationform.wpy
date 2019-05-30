@@ -53,6 +53,14 @@ form .title .tipSign{
     display: none;
 }
 </style>
+<<<<<<< HEAD
+=======
+<template >
+  <block>
+        <custom-nav bgColor="text-custom-white" isCustom="{{true}}">
+            <view slot="content">发布活动</view>
+        </custom-nav>
+>>>>>>> zzk
 
 <template>
     <block>

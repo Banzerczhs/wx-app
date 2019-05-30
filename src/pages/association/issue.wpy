@@ -133,8 +133,13 @@
 </style>
 <template>
     <block>
+<<<<<<< HEAD
         <custom-nav bgColor="text-custom-white" isBack="{{true}}">
             <view slot="backText">活动时间表</view>
+=======
+        <custom-nav bgColor="text-custom-white" isCustom="{{true}}">
+            <view slot="content">活动时间表</view>
+>>>>>>> zzk
         </custom-nav>
         <view class="nav">
             <view class="nav-ul" animation="{{TopAnimation}}">
@@ -146,6 +151,7 @@
                 </repeat>
             </view>
         </view>
+<<<<<<< HEAD
         <view 
             class="scroll-box scroll" 
             animation="{{cenAnimation}}"
@@ -159,6 +165,16 @@
                     lower-threshold="200"
                     style="height:100%;"
                     @scrolltolower="scrollNew">
+=======
+        <view  class="scroll-box">
+            <view class="contentpage" animation="{{cenAnimation}}">
+                <repeat for="{{TimeData.date}}" key="item" index="index" item="item">
+                    <scroll-view
+                class="scroll-item"
+                scroll-y="true"
+                lower-threshold="200"
+                @scrolltolower="scrollNew">
+>>>>>>> zzk
                     <view class="contentbox">
                         <repeat for="{{item.list}}" key="item" index="index" item="itemchild">
                             <view class="box-item" @tap="goTo">
