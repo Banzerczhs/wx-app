@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <style scoped>
     .container{
         width:100%;
@@ -83,10 +84,21 @@
                 </view>
         </view>
     </block>
+=======
+<style>
+
+</style>
+
+<template>
+    <view>
+        123
+    </view>
+>>>>>>> d12fade9c177aa91a0f5f1e7aeb907cc254db15b
 </template>
 
 <script>
 import wepy from "wepy";
+<<<<<<< HEAD
 import Customnav from "@/components/customnav";
 export default class wode extends wepy.page{
     data = {
@@ -103,3 +115,9 @@ export default class wode extends wepy.page{
 }
 </script>
 
+=======
+export default class Wode extends wepy.page{
+    
+}
+</script>
+>>>>>>> d12fade9c177aa91a0f5f1e7aeb907cc254db15b
