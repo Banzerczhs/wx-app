@@ -43,8 +43,6 @@ export default class app extends wepy.app {
 
   config = {
     pages: [
-      
-      'pages/dorm/formdorm',
       'pages/home/home',
       'pages/user/info',
       'pages/user/table',
@@ -75,7 +73,8 @@ export default class app extends wepy.app {
       'pages/lostandfound/fabu',
       'pages/lostandfound/wode',
       'pages/dorm/pay',
-      'pages/dorm/repair'
+      'pages/dorm/repair',
+      'pages/dorm/formdorm'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -89,10 +88,6 @@ export default class app extends wepy.app {
   onLaunch(){
     let res=wepy.getSystemInfoSync();
     let custom=wepy.getMenuButtonBoundingClientRect();
-<<<<<<< HEAD
-=======
-    this.globalData.customBar = custom.bottom+custom.top-res.statusBarHeight;
->>>>>>> zzk
     this.globalData.statusBarHeight=res.statusBarHeight;
     this.globalData.screenWidth=res.screenWidth;
     this.globalData.customBar=custom.bottom+custom.top-res.statusBarHeight;
@@ -100,12 +95,8 @@ export default class app extends wepy.app {
 
   globalData = {
     statusBarHeight : 0,
-<<<<<<< HEAD
     customBar : 0,
     screenWidth : 0
-=======
-    customBar : 0
->>>>>>> zzk
   }
 }
 </script>

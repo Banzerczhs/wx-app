@@ -13,51 +13,51 @@
         <view class="content-box scroll" animation="{{cenAnimation}}" style="top:{{toTop}}px;"> 
             <view class="content-item">
                 <scroll-view
-                style="height:100%;"
-                scroll-y="true"
-                lower-threshold="200"
-                @scrolltolower="scrollNew">
+                    style="height:100%;"
+                    scroll-y="true"
+                    lower-threshold="200"
+                    @scrolltolower="scrollNew">
                     <view class="scroll-box">
-                            <repeat for="{{datalist}}" key="index" index="index" >
-                                <view class="scroll-item">
-                                    <image src="/assets/img/1.jpg" class="item-image"/>
-                                    <view class="item-right">
-                                        <view class="item-name">{{item.name}}</view>
-                                        <view class="item-time">{{item.time}}</view>
-                                        <text>{{item.title}}</text>
-                                        <view class="item-image-box">
-                                            <repeat for="{{item.imgArr}}" key="item" item="imgitem">
-                                                <image src="{{imgitem}}" mode="aspectFit"/>
-                                            </repeat>
-                                        </view>
+                        <repeat for="{{datalist}}" key="index" index="index" >
+                            <view class="scroll-item">
+                                <image src="/assets/img/1.jpg" class="item-image"/>
+                                <view class="item-right">
+                                    <view class="item-name">{{item.name}}</view>
+                                    <view class="item-time">{{item.time}}</view>
+                                    <text>{{item.title}}</text>
+                                    <view class="item-image-box">
+                                        <repeat for="{{item.imgArr}}" key="item" item="imgitem">
+                                            <image src="{{imgitem}}" mode="aspectFit"/>
+                                        </repeat>
                                     </view>
                                 </view>
-                            </repeat>
+                            </view>
+                        </repeat>
                     </view>
                 </scroll-view>
             </view>
             <view class="content-item">
                 <scroll-view
-                class="scroll"
-                scroll-y="true"
-                lower-threshold="200"
-                @scrolltolower="scrollNew">
+                    class="scroll"
+                    scroll-y="true"
+                    lower-threshold="200"
+                    @scrolltolower="scrollNew">
                     <view class="scroll-box">
-                            <repeat for="{{datalist}}" key="index" index="index" >
-                                <view class="scroll-item">
-                                    <image src="/assets/img/1.jpg" class="item-image"/>
-                                    <view class="item-right">
-                                        <view class="item-name">{{item.name}}</view>
-                                        <view class="item-time">{{item.time}}</view>
-                                        <text>{{item.title}}</text>
-                                        <view class="item-image-box">
-                                            <repeat for="{{item.imgArr}}" key="item" item="imgitem">
-                                                <image src="{{imgitem}}" mode="aspectFit"/>
-                                            </repeat>
-                                        </view>
+                        <repeat for="{{datalist}}" key="index" index="index" >
+                            <view class="scroll-item">
+                                <image src="/assets/img/1.jpg" class="item-image"/>
+                                <view class="item-right">
+                                    <view class="item-name">{{item.name}}</view>
+                                    <view class="item-time">{{item.time}}</view>
+                                    <text>{{item.title}}</text>
+                                    <view class="item-image-box">
+                                        <repeat for="{{item.imgArr}}" key="item" item="imgitem">
+                                            <image src="{{imgitem}}" mode="aspectFit"/>
+                                        </repeat>
                                     </view>
                                 </view>
-                            </repeat>
+                            </view>
+                        </repeat>
                     </view>
                 </scroll-view>
             </view>
@@ -74,6 +74,7 @@
         </view>
     </block>
 </template>
+
 <script>
     let datalist = [
         {
@@ -119,7 +120,7 @@
                     duration: 200,
                     timingFunction: 'linear'
                 });
-                 animation1.translateX(`-${(num-1)*50}%`).step();
+                 animation1.translate(`-${(num-1)*50}%`,0).step();
                  this.cenAnimation=animation1.export();
             },
             likeBook(){
