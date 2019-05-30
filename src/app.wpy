@@ -73,14 +73,11 @@ export default class app extends wepy.app {
       'pages/lostandfound/wodefabu',
       'pages/lostandfound/fabu',
       'pages/lostandfound/wode',
-<<<<<<< HEAD
       'pages/lostandfound/xiangqing',
       'pages/lostandfound/liaotian',
       'pages/association/detail',
       'pages/association/myactive',
       'pages/association/comment',
-=======
->>>>>>> fab11ae3a5ba644cc572b1a5720cd043458a6b8f
       'pages/dorm/pay',
       'pages/dorm/repair',
       'pages/dorm/formdorm'
