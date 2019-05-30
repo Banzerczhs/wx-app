@@ -52,7 +52,7 @@ let indexlist = {
         },
         {
             src:"https://www.quyun.online/assets/image/x_0040_%E5%AE%BF%E8%88%8D.png",
-            name:'宿舍',
+            name:'服务中心',
             child:[
                 {
                     name:"费用缴纳",

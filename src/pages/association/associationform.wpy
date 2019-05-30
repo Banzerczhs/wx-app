@@ -46,7 +46,7 @@
 </style>
 <template >
   <block>
-        <custom-nav bgColor="bg-custom-color" isCustom="{{true}}">
+        <custom-nav bgColor="text-custom-white" isCustom="{{true}}">
             <view slot="content">发布活动</view>
         </custom-nav>
 

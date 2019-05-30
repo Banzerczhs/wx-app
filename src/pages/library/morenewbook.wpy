@@ -51,27 +51,30 @@
 </style>
 
 <template>
-    <custom-nav bgColor="text-custom-white" isCustom="{{true}}">
-        <view slot="content">{{title}}</view>
-    </custom-nav>
-    <scroll-view scroll-y class="scroll" style="top:{{toTop}}px;">
-        <view class="book">
-            <repeat for="{{bookList}}" key="{{index}}">
-                <view class="book-item" @tap="gotoMore">
-                    <view class="item-image">
-                        <image src="{{item.url}}"/>
-                    </view>
-                    <view class="item-desc">
-                        <view>
-                            <view class="h1">{{item.name}}</view>
-                            <view class="p">{{item.desc}}</view>
-                            <view class="span">{{item.anthor}}</view>
+    <block>
+         <custom-nav bgColor="text-custom-white" isCustom="{{true}}">
+            <view slot="content">{{title}}</view>
+        </custom-nav>
+        <scroll-view scroll-y class="scroll" style="top:{{toTop}}px;">
+            <view class="book">
+                <repeat for="{{bookList}}" key="{{index}}">
+                    <view class="book-item" @tap="gotoMore">
+                        <view class="item-image">
+                            <image src="{{item.url}}"/>
+                        </view>
+                        <view class="item-desc">
+                            <view>
+                                <view class="h1">{{item.name}}</view>
+                                <view class="p">{{item.desc}}</view>
+                                <view class="span">{{item.anthor}}</view>
+                            </view>
                         </view>
                     </view>
-                </view>
-            </repeat>
-        </view>
-    </scroll-view>
+                </repeat>
+            </view>
+        </scroll-view>
+    </block>
+   
 </template>
 
 <script>

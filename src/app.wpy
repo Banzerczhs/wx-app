@@ -43,6 +43,8 @@ export default class app extends wepy.app {
 
   config = {
     pages: [
+      
+      'pages/dorm/formdorm',
       'pages/home/home',
       'pages/library/library',
       'pages/library/borrowinfo',
@@ -71,11 +73,14 @@ export default class app extends wepy.app {
 
   onLaunch(){
     let res=wepy.getSystemInfoSync();
+    let custom=wepy.getMenuButtonBoundingClientRect();
+    this.globalData.customBar = custom.bottom+custom.top-res.statusBarHeight;
     this.globalData.statusBarHeight=res.statusBarHeight;
   }
 
   globalData = {
-    statusBarHeight : 0
+    statusBarHeight : 0,
+    customBar : 0
   }
 }
 </script>
