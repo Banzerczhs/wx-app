@@ -16,7 +16,7 @@
     <view class="book" @tap="getDetail">
         <view class="book-image">
             <image
-                src="https://www.quyun.online/assets/image/looks1.jpg"
+                src="https://www.quyun.online/assets/image/library/looks1.jpg"
                 style="height:{{height}}rpx;"
             />
         </view>

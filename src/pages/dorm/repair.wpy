@@ -20,7 +20,7 @@
                     <view class="scroll-box">
                         <repeat for="{{datalist}}" key="index" index="index" >
                             <view class="scroll-item">
-                                <image src="/assets/img/1.jpg" class="item-image"/>
+                                <image src="https://www.quyun.online/assets/image/dorm/1.jpg" class="item-image"/>
                                 <view class="item-right">
                                     <view class="item-name">{{item.name}}</view>
                                     <view class="item-time">{{item.time}}</view>
@@ -45,7 +45,7 @@
                     <view class="scroll-box">
                         <repeat for="{{datalist}}" key="index" index="index" >
                             <view class="scroll-item">
-                                <image src="/assets/img/1.jpg" class="item-image"/>
+                                <image src="https://www.quyun.online/assets/image/dorm/1.jpg" class="item-image"/>
                                 <view class="item-right">
                                     <view class="item-name">{{item.name}}</view>
                                     <view class="item-time">{{item.time}}</view>
@@ -66,10 +66,10 @@
             <view 
                 class="Bookshelf {{toActive?'active':''}}" 
                 @tap="likeBook">
-                <text>宿舍保修</text>
+                <text>报修</text>
             </view>
             <view class="btn" @tap="operation">
-                <image src="/assets/img/add.png"></image>
+                <image src="https://www.quyun.online/assets/image/add.png"></image>
             </view>
         </view>
     </block>
@@ -81,19 +81,19 @@
             name:'千年老妖',
             time:'2019-5-24',
             title:'东十C338宿舍水龙头有问题，晚上一直滴水',
-            imgArr:['/assets/img/logo.png','/assets/img/1.jpg']
+            imgArr:['https://www.quyun.online/assets/image/Logo.png','https://www.quyun.online/assets/image/dorm/1.jpg']
         },
          {
             name:'绊中二',
             time:'2019-5-23',
             title:'东十556宿舍热水坏了，不出热水',
-            imgArr:['/assets/img/1.jpg']
+            imgArr:['https://www.quyun.online/assets/image/dorm/1.jpg']
         },
          {
             name:'承蒙所梦',
             time:'2019-5-22',
             title:'东三C338宿舍灯管坏了，怎么还没有来修',
-            imgArr:['/assets/img/logo.png']
+            imgArr:['https://www.quyun.online/assets/image/Logo.png']
         }
     ]
     import wepy from "wepy";

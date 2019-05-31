@@ -37,17 +37,17 @@
                                                 <view class="action text-blue" @tap="showModel(dromOne,1)">取消</view>
                                             </view>
                                             <view class="padding-xl">
-                                                    <picker-view indicator-class="pickerview" style="width: 100%; height: 300px;"  @change="bindChange(dromOne)">
-                                                        <picker-view-column>
-                                                        <view wx:for="{{dromOne.drom}}" wx:key="item" style="line-height: 60rpx">{{item}}</view>
-                                                        </picker-view-column>
-                                                        <picker-view-column>
-                                                            <view style="height:100%; line-height:60rpx">---</view>
-                                                        </picker-view-column>
-                                                        <picker-view-column>
-                                                        <view wx:for="{{dromOne.dromitem}}" wx:key="item" style="line-height: 60rpx">{{item}}</view>
-                                                        </picker-view-column>
-                                                    </picker-view>
+                                                <picker-view indicator-class="pickerview" style="width: 100%; height: 300px;"  @change="bindChange(dromOne)">
+                                                    <picker-view-column>
+                                                    <view wx:for="{{dromOne.drom}}" wx:key="item" style="line-height: 60rpx">{{item}}</view>
+                                                    </picker-view-column>
+                                                    <picker-view-column>
+                                                        <view style="height:100%; line-height:60rpx">---</view>
+                                                    </picker-view-column>
+                                                    <picker-view-column>
+                                                    <view wx:for="{{dromOne.dromitem}}" wx:key="item" style="line-height: 60rpx">{{item}}</view>
+                                                    </picker-view-column>
+                                                </picker-view>
                                             </view>
                                             </view>
                                         </view>
@@ -62,13 +62,12 @@
                                             <button class="cu-btn bg-green shadow" @tap="showModel(dromOne,2)">{{dromOne.payNum}}</button>
                                         </view>
                                     </view>
-                                     <text class="TextShow">1元 = 1.5度电</text>
+                                    <text class="TextShow">1元 = 1.5度电</text>
                                     <view class="cu-modal bottom-modal {{dromOne.modalName==true?'show':''}} model-width " @tap="showModel(dromOne,2)">
                                         <view class="cu-dialog model-position" catchtap >
                                             <view class="cu-bar bg-white">
                                                 <view class="action text-green" @tap="hidepayOk(dromOne)">确定</view>
                                                 <view class="action text-blue" @tap="showModel(dromOne,2)">取消</view>
-                                              
                                             </view>
                                             <view class="grid col-3 padding-sm">
                                                 <view wx:for="{{checkbox}}" class="padding-xs" wx:key="{{index}}">

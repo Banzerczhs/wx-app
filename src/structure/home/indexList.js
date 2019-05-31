@@ -1,7 +1,7 @@
 let indexlist = {
     indexnav:[
         {
-            src:"https://www.quyun.online/assets/image/x_0042_%E5%A4%B1%E7%89%A9%E6%8B%9B%E9%A2%861.png",
+            src:"https://www.quyun.online/assets/image/home/x_0042_%E5%A4%B1%E7%89%A9%E6%8B%9B%E9%A2%861.png",
             name:'失物招领',
             child:[
                 {
@@ -15,7 +15,7 @@ let indexlist = {
             ]
         },
         {
-            src:"https://www.quyun.online/assets/image/x_0038_%E5%9B%BE%E4%B9%A6%E9%A6%86.png",
+            src:"https://www.quyun.online/assets/image/home/x_0038_%E5%9B%BE%E4%B9%A6%E9%A6%86.png",
             name:'图书馆',
             child:[
                 {
@@ -33,7 +33,7 @@ let indexlist = {
             ]
         },
         {
-            src:"https://www.quyun.online/assets/image/x_0037_%E6%95%99%E5%AD%A6%E6%A5%BC.png",
+            src:"https://www.quyun.online/assets/image/home/x_0037_%E6%95%99%E5%AD%A6%E6%A5%BC.png",
             name:'教学楼',
             child:[
                 {
@@ -47,7 +47,7 @@ let indexlist = {
             ]
         },
         {
-            src:"https://www.quyun.online/assets/image/x_0039_%E7%A4%BE%E5%9B%A2.png",
+            src:"https://www.quyun.online/assets/image/home/x_0039_%E7%A4%BE%E5%9B%A2.png",
             name:'社团',
             child:[
                 {
@@ -61,7 +61,7 @@ let indexlist = {
             ]
         },
         {
-            src:"https://www.quyun.online/assets/image/x_0040_%E5%AE%BF%E8%88%8D.png",
+            src:"https://www.quyun.online/assets/image/home/x_0040_%E5%AE%BF%E8%88%8D.png",
             name:'服务中心',
             child:[
                 {
@@ -75,7 +75,7 @@ let indexlist = {
             ]
         },
         {
-            src:"https://www.quyun.online/assets/image/x_0041_%E7%82%B9%E6%AD%8C%E5%8F%B0.png",
+            src:"https://www.quyun.online/assets/image/home/x_0041_%E7%82%B9%E6%AD%8C%E5%8F%B0.png",
             name:'点歌台',
             child:[
                 {

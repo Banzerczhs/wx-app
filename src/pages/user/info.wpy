@@ -13,7 +13,7 @@
         height:150rpx;
         position:absolute;
         left:50%;
-        top:10%;
+        top:2%;
         transform:translateX(-50%);
         -webkit-transform:translateX(-50%);
         border-radius:50%;
@@ -26,10 +26,10 @@
     }
     .info-box .info-content{
         position:relative;
-        top:40vh;
+        top:30vh;
     }
     .info-box .info-content .info-state{
-        width: 70%;
+        width: 90%;
         background-color:#fff;
         border-radius:6rpx 6rpx 0 0;
         display:flex;
@@ -41,7 +41,7 @@
         font-size: 26rpx;
         color:rgb(149, 149, 149);
         position:absolute;
-        top:-48%;
+        top:-30%;
         left:0;
         right:0;
         margin:0 auto;
@@ -57,13 +57,23 @@
         color:rgb(149, 149, 149);
         width:90%;
         margin:0 auto;
-        height:400rpx;
         border-radius:6rpx;
     }
     .info-content .info-list view{
         padding:20rpx 0;
         margin:20rpx 0;
         border-bottom: 1px solid rgb(177, 177, 177);
+        position:relative;
+    }
+    .info-content .info-list view image{
+        width: 50rpx;
+        height:50rpx;
+        position:absolute;
+        right:10rpx;
+        top:12rpx;
+    }
+    .info-content .info-list view.selector{
+        background-color:rgb(235, 235, 235);
     }
     .bottom-img{
         position:absolute;
@@ -107,6 +117,8 @@
                     <view>学号：1701302147</view>
                     <view>学院：计算机技术与软件工程学院</view>
                     <view>班级：网络17304</view>
+                    <view>身份证：420602199905251512</view>
+                    <view hover-class="selector" @tap="addinfo">完善个人信息<image src="https://www.quyun.online/assets/image/library/right.png"></image></view>
                 </view>
             </view>
             <view class="bottom-img">
@@ -130,6 +142,14 @@ export default class Info extends wepy.page{
 
     components = {
         'custom-nav' : Customnav
+    }
+
+    methods = {
+        addinfo(){
+            wepy.navigateTo({
+                url: '/pages/user/addinfo'
+            });
+        }
     }
 }
 </script>

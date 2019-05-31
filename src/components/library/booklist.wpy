@@ -85,12 +85,12 @@
                         <view>还书时间:{{item.endTime}}</view>
                         <view class="action" style="float:right;margin-top:30rpx;">
                             <text class="text-df margin-right-sm">还书提醒</text>
-                            <switch class="sm" style="top:-1px;"></switch>
+                            <switch class="sm" style="top:-1px;" @tap.stop="switchState"></switch>
                         </view>
                     </view>
                     <view wx:if="{{item.radioBtn}}" class="radioBtn" @tap="Choice({{index}})">
                         <text>续</text>
-                        <image src="/assets/img/{{item.radioBtn.radio}}.png"></image>
+                        <image src="https://www.quyun.online/assets/image/library/{{item.radioBtn.radio}}.png"></image>
                     </view>
                 </view>
             </view>
@@ -130,6 +130,10 @@
                 setTimeout(() => {
                     this.$emit('hideBook',id);
                 },50);
+            },
+
+            switchState(e){
+                
             }
         }
     }

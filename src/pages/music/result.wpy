@@ -82,7 +82,7 @@
                             <view class="music-author">赵钊坤</view>
                         </view>
                         <view class="item-image" @tap="uploadMusic">
-                            <image src="/assets/img/diange.png"></image>
+                            <image src="https://www.quyun.online/assets/image/music/diange.png"></image>
                         </view>
                     </view>
                 </repeat>

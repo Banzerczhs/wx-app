@@ -98,7 +98,7 @@
         onLoad(option){
             this.bookList.length=15;
             this.bookList=this.bookList.fill({
-                url : 'https://www.quyun.online/assets/image/looks1.jpg',
+                url : 'https://www.quyun.online/assets/image/library/looks1.jpg',
                 name : '褐色的血液',
                 desc : `我们终会因为想要找到某些东西而踏上旅途。
                         彼此的所求不尽...`,

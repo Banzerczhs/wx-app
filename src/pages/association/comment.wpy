@@ -62,7 +62,7 @@
         </custom-nav>
         <view class="commit commit-title">
             <view class="commit-image">
-                <image src="/assets/img/logo.png"></image>
+                <image src="https://www.quyun.online/assets/image/Logo.png"></image>
             </view>
             <view class="commit-info">
                 <view class="score">

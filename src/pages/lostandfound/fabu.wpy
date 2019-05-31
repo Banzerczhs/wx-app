@@ -134,7 +134,7 @@
                         <view class="xq">
                             <textarea placeholder="物品详情描述" maxlength="-1" class="text"/>
                             <view class="tjtp">
-                            <button type="button" class="btn" plain="{{true}}"><image src="/assets/img/tianjia.png"></image></button>
+                                <button type="button" class="btn" plain="{{true}}"><image src="https://www.quyun.online/assets/image/lostandfound/tianjia.png"></image></button>
                             </view>
                         </view>
                         <view class="lx">

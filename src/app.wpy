@@ -43,10 +43,11 @@ export default class app extends wepy.app {
 
   config = {
     pages: [
-      'pages/login/login',
+      // 'pages/login/login',
       'pages/home/home',
       'pages/user/info',
       'pages/user/table',
+      'pages/user/addinfo',
       'pages/library/library',
       'pages/library/borrowinfo',
       'pages/library/collection',
@@ -75,9 +76,6 @@ export default class app extends wepy.app {
       'pages/lostandfound/wode',
       'pages/lostandfound/xiangqing',
       'pages/lostandfound/liaotian',
-      'pages/association/detail',
-      'pages/association/myactive',
-      'pages/association/comment',
       'pages/dorm/pay',
       'pages/dorm/repair',
       'pages/dorm/formdorm'

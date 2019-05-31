@@ -87,9 +87,6 @@
     color:rgb(196, 247, 238);
     margin-bottom:10px;
 }
-.item-image-box{
-
-}
 .item-image-box image{
     display: inline-block;
     max-width: 500rpx;
@@ -126,15 +123,16 @@
     -webkit-transform:translate(-50%,-50%);
 }
 .option view text{
-     width: 80rpx;
-    height:80rpx;
-    text-align:center;
     position:absolute;
-    left:8rpx;
-    top:18rpx;
-    font-size: 25rpx;
+    left:0;
+    right:0;
+    bottom:0;
+    top:0;
     color:#fff;
-    bottom:2rpx;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items:center;
 }
 .option .btn{
     transform:scale(1);

@@ -1,0 +1,58 @@
+<style scoped>
+    .load-mask{
+        position:absolute;
+        top:0;
+        left:0;
+        width: 100%;
+        height:100%;
+        background: url('https://www.quyun.online/assets/image/bg1.jpg') no-repeat 0 0;
+        background-size:100% 100%;
+        z-index:9999;
+
+    }
+    .load-mask image{
+        position:absolute;
+        left:50%;
+        top:50%;
+        transform:translate(-50%,-50%);
+        -webkit-transform:translate(-50%,-50%);
+        text-align:center;
+        color:#fff;
+    }
+    .load-mask text{
+        position:absolute;
+        left:50%;
+        top:60%;
+        transform:translate(-50%,-50%);
+        -webkit-transform:translate(-50%,-50%);
+        text-align:center;
+        color:#fff;
+    }
+</style>
+
+<template>
+    <view class="load-mask" style="display:{{showState?'block':'none'}}">
+        <image src="https://image.weilanwl.com/gif/rhomb-black.gif" mode="widthFix" class="gif-black response" style="height:240rpx"></image>
+        <text>别忘记点右下角的个人中心完善个人信息哦</text>
+    </view>
+</template>
+
+<script>
+import wepy from "wepy";
+export default class Loading extends wepy.component{
+
+    data = {
+        showState : false
+    }
+
+    onLoad(){
+        this.showState=true;
+        this.$apply();
+        setTimeout(() => {
+            this.showState=false;
+            this.$emit('loadend');
+            this.$apply();
+        },2000);
+    }
+}
+</script>

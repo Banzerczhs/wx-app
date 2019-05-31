@@ -1,8 +1,8 @@
 <style scoped>
     .container{
         width:100%;
-        height:1182rpx;
         background-color:white;
+        position:absolute;
     }
     .box1{
         width:650rpx;
@@ -119,9 +119,9 @@
         <custom-nav isCustom="{{true}}" bgColor="text-custom-white">
             <view slot="content">详情</view>
         </custom-nav>
-        <view class="container">
+        <view class="container scroll" style="top:{{toTop}}px;">
                 <view class="box1">
-                    <view class="tx"><image src="/assets/img/tx.png"></image></view>
+                    <view class="tx"><image src="https://www.quyun.online/assets/image/lostandfound/tx.png"></image></view>
                     <view class="yhm">用户名</view>
                     <view class="sj">2019-5-29</view>
                 </view>
@@ -132,10 +132,10 @@
                         </view>
                         <view class="content">
                             <text>我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容我是内容</text>
-                            <image src="/assets/img/yt.jpg"></image>
-                            <image src="/assets/img/yt.jpg"></image>
-                            <image src="/assets/img/yt.jpg"></image>
-                            <image src="/assets/img/yt.jpg"></image>
+                            <image src="https://www.quyun.online/assets/image/lostandfound/yt.jpg"></image>
+                            <image src="https://www.quyun.online/assets/image/lostandfound/yt.jpg"></image>
+                            <image src="https://www.quyun.online/assets/image/lostandfound/yt.jpg"></image>
+                            <image src="https://www.quyun.online/assets/image/lostandfound/yt.jpg"></image>
                         </view>
                     </scroll-view>
                 </view>
@@ -146,7 +146,7 @@
                     </view>
                     <view class="xx">
                         <navigator url="/pages/lostandfound/liaotian">
-                        <button type="button" plain="{{true}}"><image src="/assets/img/xx.png"></image></button>
+                        <button type="button" plain="{{true}}"><image src="https://www.quyun.online/assets/image/lostandfound/xx.png"></image></button>
                         </navigator>
                     </view>
                 </view>
@@ -159,11 +159,15 @@ import wepy from "wepy";
 import Customnav from "@/components/customnav";
 export default class xiangqing extends wepy.page{
     data = {
-        
+        toTop : 0
     }
 
     components = {
         'custom-nav' : Customnav
+    }
+
+    onLoad(){
+        this.toTop=this.$parent.globalData.customBar;
     }
 
     methods = {

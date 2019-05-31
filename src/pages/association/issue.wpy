@@ -163,7 +163,7 @@
                         <repeat for="{{item.list}}" key="item" index="index" item="itemchild">
                             <view class="box-item" @tap="goTo">
                                 <view class="bg-custom-orange tag">进行中</view>
-                                <image src="/assets/img/logo.png" class="item-image"/>
+                                <image src="https://www.quyun.online/assets/image/Logo.png" class="item-image"/>
                                 <view class="item-right">
                                     <view class="title">{{itemchild.title}}</view>
                                     <text>报名时间：{{itemchild.start}}</text>
@@ -176,19 +176,20 @@
             </repeat>
         </view>
         <view class="release" @tap="release">
-            <image src="/assets/img/release.png"></image>
+            <image src="https://www.quyun.online/assets/image/release.png"></image>
             <text class="release-text">发布</text>
         </view>
+        <load></load>
     </block>
 </template>
 
 <script>
 import wepy from 'wepy';
 import Customnav from "@/components/customnav";
-import TimeData from "@/structure/association/issue.js"
+import TimeData from "@/structure/association/issue.js";
 export default class associationform extends wepy.page {
     components = {
-       "custom-nav":Customnav
+       "custom-nav":Customnav,
     }
 
     onLoad(){

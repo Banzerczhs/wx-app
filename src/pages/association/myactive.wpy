@@ -129,7 +129,7 @@
                         <repeat for="{{item.list}}" key="item" index="index" item="itemchild">
                             <view class="box-item" @tap="goTo">
                                 <view class="bg-custom-orange tag">进行中</view>
-                                <image src="/assets/img/logo.png" class="item-image"/>
+                                <image src="https://www.quyun.online/assets/image/Logo.png" class="item-image"/>
                                 <view class="item-right">
                                     <view class="title">{{itemchild.title}}</view>
                                     <text>报名时间：{{itemchild.start}}</text>

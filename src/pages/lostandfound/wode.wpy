@@ -67,7 +67,7 @@
         <view class="container">
                 <view class="box1">
                     <view class="yhicon">
-                        <image src="/assets/img/tx.png"></image>
+                        <image src="https://www.quyun.online/assets/image/lostandfound/tx.png"></image>
                     </view>
                     <text>用户名</text>
                 </view>
@@ -75,7 +75,7 @@
                     <navigator url="/pages/lostandfound/wodefabu">
                         <button type="button" style="width:100%;height:100rpx;">
                             <view class="xicon">
-                                <image src="/assets/img/wodefabu.png"></image>
+                                <image src="https://www.quyun.online/assets/image/lostandfound/wodefabu.png"></image>
                             </view>
                             <text class="text">我的发布 ></text>
                         </button>

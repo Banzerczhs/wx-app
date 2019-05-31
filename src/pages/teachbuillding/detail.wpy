@@ -15,11 +15,11 @@
         @touchmove.stop="move">
         <view class="roomState-Icon">
           <view>
-            <image src="https://www.quyun.online/assets/image/true.png"/>
+            <image src="https://www.quyun.online/assets/image/teachbuillding/fangtrue.png"/>
             <text>使用中</text>
           </view>
           <view>
-            <image src="https://www.quyun.online/assets/image/false.png"/>
+            <image src="https://www.quyun.online/assets/image/teachbuillding/fangfalse.png"/>
             <text>未使用</text>
           </view>
         </view>
@@ -52,7 +52,7 @@
               <scroll-view class="row-list" scroll-x>
                 <repeat for="{{item}}" key="item" item="itemchild" index="rid">
                   <view class="state">
-                    <image src="https://www.quyun.online/assets/image/{{itemchild}}.png"/>
+                    <image src="https://www.quyun.online/assets/image/teachbuillding/fang{{itemchild}}.png"/>
                     <text>{{index+1}}{{rid+1>=10?rid+1:'0'+(rid+1)}}</text>
                   </view>
                 </repeat>

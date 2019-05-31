@@ -2,7 +2,6 @@
     .container{
         width:650rpx;
         height:600rpx;
-        background-color:#ddd;
         position:relative;
         left:50rpx;
         top:200rpx;
@@ -14,7 +13,7 @@
         border-radius:50%;
         position:absolute;
         left:250rpx;
-        top:20rpx;
+        top:-80rpx;
         /* background-color: aqua; */
         box-shadow: 1px 1px 4px 0 rgba(0,0,0,0.3);
     }
@@ -86,15 +85,15 @@
      <block>
         <custom-nav  bgColor="text-custom-white"><view slot="content">登录</view></custom-nav>
         <view class="container">
-            <view class="logo"><image src="/assets/img/loginimg.png"></image></view>
-            <form action="#">
+            <view class="logo"><image src="https://www.quyun.online/assets/image/login/loginimg.png"></image></view>
+            <form @submit="submitData">
                 <view class="yhm">
-                    <image src="/assets/img/xh.png"></image>
-                    <input type="text" placeholder="请输入学号"/>
+                    <image src="https://www.quyun.online/assets/image/login/xh.png"></image>
+                    <input type="text" name="username" placeholder="请输入学号"/>
                 </view>
                 <view class="mm">
-                    <image src="/assets/img/mima.png"></image>
-                    <input type="password" placeholder="请输入密码"/>
+                    <image src="https://www.quyun.online/assets/image/login/mima.png"></image>
+                    <input type="password" name="password" placeholder="身份证后六位"/>
                 </view>
                 <navigator url="/pages/home/home"><view class="btn"><button form-type="submit">登录</button></view></navigator>
             </form>
@@ -109,12 +108,32 @@ export default class liaotian extends wepy.page{
     data={
 
     }
+
     components = {
         'custom-nav' : Customnav
     }
 
     methods = {
-      
+        async submitData(e){
+            let {username:student,password}=e.detail.value;
+
+            // let info=await new Promise((resolve,reject)=>{
+            //     wepy.request({
+            //         url : 'https://www.quyun.online/xuexiao/public/api/login',
+            //         data : {
+            //             student,
+            //             password
+            //         },
+            //         method : 'post',
+            //         success(res){
+            //             resolve(res);
+            //         }
+            //     })
+            // })
+            
+
+            // console.log(info);
+        }
     }
 }
 </script>

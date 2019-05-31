@@ -2,12 +2,13 @@
   @import "/styles/home/home.wxss";
 </style>
 <template>
-    <block>
+  <block>
+    <block wx:if="{{showContext}}">
       <custom-nav>
         <view slot="content" class="text-white">深海学院</view>
       </custom-nav>
       <view class="indexCon shadow-blur {{ismask ? 'addFilter':''}}">
-        <image src="https://www.quyun.online/assets/image/%E8%B7%AF.png" class="bg-com"></image>
+        <image src="https://www.quyun.online/assets/image/%E8%B7%AF.gif" class="bg-com"></image>
         <repeat for="{{list.indexlist}}" index="index">
           <view class="{{index}}">
             <repeat for="{{list.indexlist[index]}}" index="n" item="child" key="child.src">
@@ -56,57 +57,59 @@
             class="rightSeaweed {{bgAnimationState?'animationStop':''}}"
           />
         </view>
-    </view>
-    <!--遮罩-->
-    <view
-      class="mask"
-      style="display:{{ismask?'block':'none'}}"
-      @tap="hideMask"
-      data-tap="tap">
-      <view 
-        class="newsTip"
-        style="display:{{beckzIndex?'none':'block'}};margin-top:{{mTop}}px;" 
-        data-tap="tap">
-        <repeat for="{{5}}" key="index">
-          <view 
-            class="tip"
-            style="display:{{tipActive>=index?'none':'block'}};"
-            hover-class="tipactive" 
-            animation="{{animationinfo[index]}}"
-            data-id="{{index}}"
-            @transitionend="moveEnd">
-            <view class="tip-info">
-              <view class="important">你借的书快要到期了</view>
-              <view class="secondary">linux实战100天还有1天到期</view>
-            </view>
-            <text class="tip-time">20:11</text>
-          </view>
-        </repeat>
       </view>
+      <!--遮罩-->
       <view
-        class="mask-box"
-        style="display:{{beckzIndex?'block':'none'}}">
-        <repeat for="{{BuildingChild}}" key="item.name">
-          <view
-            class="mask-element"
-            animation="{{maskement[index]}}"
-            @tap="GoPage({{item.url}}))"
-          >{{item.name}}</view> <!--需要动态渲染的-->
-        </repeat>
-      </view>
-    </view>
-    <view
-      class="indexbg-Beck {{beckzIndex?'filter':''}}"
-      data-sign="true"
-      @tap="Beck">
-      <recentlyUsed :appList.sync="applist" @clearNews.user="clearInfo"></recentlyUsed>
-      <view class="Beckimg">
-        <view animation="{{animationbeck}}">
-          <image src="https://www.quyun.online/assets/image/%E8%B4%9D%E5%A3%B3.png" class="beck"></image>
+        class="mask"
+        style="display:{{ismask?'block':'none'}}"
+        @tap="hideMask"
+        data-tap="tap">
+        <view 
+          class="newsTip"
+          style="display:{{beckzIndex?'none':'block'}};margin-top:{{mTop}}px;" 
+          data-tap="tap">
+          <repeat for="{{5}}" key="index">
+            <view 
+              class="tip"
+              style="display:{{tipActive>=index?'none':'block'}};"
+              hover-class="tipactive" 
+              animation="{{animationinfo[index]}}"
+              data-id="{{index}}"
+              @transitionend="moveEnd">
+              <view class="tip-info">
+                <view class="important">你借的书快要到期了</view>
+                <view class="secondary">linux实战100天还有1天到期</view>
+              </view>
+              <text class="tip-time">20:11</text>
+            </view>
+          </repeat>
+        </view>
+        <view
+          class="mask-box"
+          style="display:{{beckzIndex?'block':'none'}}">
+          <repeat for="{{BuildingChild}}" key="item.name">
+            <view
+              class="mask-element"
+              animation="{{maskement[index]}}"
+              @tap="GoPage({{item.url}}))"
+            >{{item.name}}</view> <!--需要动态渲染的-->
+          </repeat>
         </view>
       </view>
-    </view>
-    <view class="{{beckzIndex?'beckzIndex':''}}"></view>
+      <view
+        class="indexbg-Beck {{beckzIndex?'filter':''}}"
+        data-sign="true"
+        @tap="Beck">
+        <recentlyUsed :appList.sync="applist" @clearNews.user="clearInfo"></recentlyUsed>
+        <view class="Beckimg">
+          <view animation="{{animationbeck}}">
+            <image src="https://www.quyun.online/assets/image/%E8%B4%9D%E5%A3%B3.gif" class="beck"></image>
+          </view>
+        </view>
+      </view>
+      <view class="{{beckzIndex?'beckzIndex':''}}"></view>
+    </block>
+    <load @loadend.user="showScene"></load>
   </block>
 </template>
  
@@ -117,6 +120,7 @@
   import Tools from "@/util/tools";
   import RecentlyUsed from "@/components/home/RecentlyUsed";
   import Customnav from "@/components/customnav";
+  import Loading from "@/components/loading";
 
   export default class Index extends wepy.page {
     config = {  //页面配置对象，对应于原生的page.json文件，类似于app.wpy中的config
@@ -137,12 +141,14 @@
       BuildingChild:[],
       mTop : 0,
       clearState : false,
-      tipActive : -1
+      tipActive : -1,
+      showContext : false
     }
 
     components={
       recentlyUsed : RecentlyUsed,
-      'custom-nav' : Customnav
+      'custom-nav' : Customnav,
+      'load' : Loading
     }
   
     methods = {
@@ -220,6 +226,11 @@
           this.tipActive=id;
           this.$apply();
         },400);
+      },
+
+      showScene(){
+        console.log(123);
+        this.showContext=true;
       }
     }
 

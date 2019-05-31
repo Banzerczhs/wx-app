@@ -14,7 +14,7 @@
     <repeat for="{{datalist}}" key="index">
         <view class="cu-item" style="background-color:rgba(255,255,255,0);">
             <view class="cu-avatar round lg imagehead">
-                <image src="/assets/img/teachBuillding/head02.png"/>
+                <image src="https://www.quyun.online/assets/image/teachbuillding/head02.png"/>
             </view>
             <view class="content">
                 <view class="text-white">

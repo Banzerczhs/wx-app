@@ -48,7 +48,7 @@
             class="app {{hide?'hide':''}} {{activeNum==index?'active':''}}"
             animation="{{appmove[index]}}"
             @tap.stop="clickapp({{item}},{{index}})">
-            <image src="/assets/img/{{item.imgurl}}.png"></image>
+            <image src="https://www.quyun.online/assets/image/home/{{item.imgurl}}.png"></image>
         </view>
     </repeat>
 </template>

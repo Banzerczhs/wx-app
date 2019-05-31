@@ -11,7 +11,7 @@
             :bgImage.sync="bgUrl"
         ></custom-nav>
         <view class="backText text-white" style="height:{{toHeight}}px;">
-            <image src="/assets/img/left.png" @tap="toBack" style="top:{{backTextTop}}px;"></image>
+            <image src="https://www.quyun.online/assets/image/library/left.png" @tap="toBack" style="top:{{backTextTop}}px;"></image>
             <view class="text {{backText?'active':''}}" style="top:{{backTextTop}}px;">
                 <text>哈利波特之学霸传奇</text>
             </view>
@@ -19,7 +19,7 @@
         <view class="cover" style="background-image:url({{bgUrl}})">
             <view class="cover-box" style="padding-top:{{toHeight+5}}px;">
                 <view class="cover-image" style="height:{{imgHeight}}">
-                    <image src="https://www.quyun.online/assets/image/looks1.jpg"></image>
+                    <image src="https://www.quyun.online/assets/image/library/looks1.jpg"></image>
                 </view>
                 <view class="cover-desc">
                     <view class="desc-h2">哈利波特之学霸传奇</view>
@@ -60,14 +60,14 @@
             <view class="Catalog">
                 <text>目录</text>
                 <text>总共19章</text>
-                <image src="/assets/img/right.png"></image>
+                <image src="https://www.quyun.online/assets/image/library/right.png"></image>
             </view>
         </view>
         <view class="comment">
             <view class="comment-title">
                 <text>用户评论</text>
                 <text>1220人评论</text>
-                <image src="/assets/img/right.png"></image>
+                <image src="https://www.quyun.online/assets/image/library/right.png"></image>
             </view>
             <repeat for="{{10}}" key="{{index}}">
                 <view class="comment-item">
@@ -86,19 +86,19 @@
         </view>
         <view class="option">
             <view 
-                class="Borrowing {{toActive?'active':''}}" 
+                class="Borrowing {{toActive?'active':''}}"
                 @tap="Borrowing">
-                <image src="/assets/img/zu.png"></image>
+                <image src="https://www.quyun.online/assets/image/library/zu.png"></image>
                 <text>借阅</text>
             </view>
             <view 
                 class="Bookshelf {{toActive?'active':''}} {{likestate?'activebg':''}}" 
                 @tap="likeBook">
-                <image src="{{likestate?'/assets/img/likeing.png':'/assets/img/like.png'}}"></image>
+                <image src="{{likestate?'https://www.quyun.online/assets/image/library/likeing.png':'https://www.quyun.online/assets/image/library/like.png'}}"></image>
                 <text>收藏</text>
             </view>
             <view class="btn" @tap="operation">
-                <image src="/assets/img/add.png"></image>
+                <image src="https://www.quyun.online/assets/image/add.png"></image>
             </view>
         </view>
     </view>
@@ -110,7 +110,7 @@
     import Customnav from "@/components/customnav";
     export default class Bookdetail extends wepy.page{
         data = {
-            bgUrl : 'https://www.quyun.online/assets/image/bookcover.jpg',
+            bgUrl : 'https://www.quyun.online/assets/image/library/bookcover.jpg',
             score : [{
                 id : 1,
                 state:true

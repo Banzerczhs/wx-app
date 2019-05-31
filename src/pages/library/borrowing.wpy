@@ -43,7 +43,7 @@
             <view class="borrowing-box">
                 <view class="bookInfo">
                     <view class="bookInfo-left">
-                        <image src="https://www.quyun.online/assets/image/looks1.jpg"/>
+                        <image src="https://www.quyun.online/assets/image/library/looks1.jpg"/>
                     </view>
                     <view class="bookInfo-right">
                         <view>书名：克罗斯的遗产</view>

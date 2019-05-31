@@ -94,7 +94,7 @@
 <template>
     <block>
         <custom-nav isBack="{{true}}" bgColor="text-custom-white">
-                <view slot="content">搜索结果</view>
+            <view slot="content">搜索结果</view>
         </custom-nav>
         <view class="container">
             <view class="box">
@@ -103,7 +103,7 @@
                 <form action="#">
                 <input type="text" value="搜索的内容" focus="{{true}}"/>
                     <button form-type="submit" plain="{{true}}" class="btn">
-                        <image src="/assets/img/button.png"   class="img"/>
+                        <image src="https://www.quyun.online/assets/image/music/button.png"   class="img"/>
                     </button>
                 </form>
             </view>
@@ -142,192 +142,11 @@
 <script>
 import wepy from "wepy";
 import Customnav from "@/components/customnav";
+import Music from "@/structure/music/music";
+
 export default class searchresult extends wepy.page{
     data = {
-         music:[
-            {
-                name:"出山",
-                geshou:"王胜男",
-                shichang:"3:38",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png",
-                xian:"——————————————————————————————————————————"
-            },
-            {
-                name:"往后余生",
-                geshou:"马良",
-                shichang:"3:58",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png",
-                xian:"——————————————————————————————————————————"
-            },
-            {
-                name:"沙漠骆驼",
-                geshou:"展展与罗罗",
-                shichang:"5:38",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png",
-                xian:"——————————————————————————————————————————"
-            },
-            {
-                name:"沙漠骆驼",
-                geshou:"展展与罗罗",
-                shichang:"5:38",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png",
-                xian:"——————————————————————————————————————————"
-            },
-            {
-                name:"乞丐",
-                geshou:"摩登兄弟",
-                shichang:"4:07",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png",
-                xian:"——————————————————————————————————————————"
-            },
-            {
-                name:"乞丐",
-                geshou:"摩登兄弟",
-                shichang:"4:07",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png",
-                xian:"——————————————————————————————————————————"
-            },
-            {
-                name:"学猫叫",
-                geshou:"冯提莫",
-                shichang:"3:15",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png",
-                xian:"——————————————————————————————————————————"
-            },
-            {
-                name:"学猫叫",
-                geshou:"冯提莫",
-                shichang:"3:15",
-                icon1:"/assets/img/redu.png",
-                 icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png",
-                xian:"——————————————————————————————————————————"
-
-            },
-            {
-                name:"学猫叫",
-                geshou:"冯提莫",
-                shichang:"3:15",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png",
-               xian:"——————————————————————————————————————————"
-            },
-            {
-                name:"学猫叫",
-                geshou:"冯提莫",
-                shichang:"3:15",
-                icon1:"/assets/img/redu"+".png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png",
-                xian:"——————————————————————————————————————————"
-            },
-             {
-                name:"出山",
-                geshou:"王胜男",
-                shichang:"3:38",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png",
-                xian:"——————————————————————————————————————————"
-            },
-            {
-                name:"往后余生",
-                geshou:"马良",
-                shichang:"3:58",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png",
-                xian:"——————————————————————————————————————————"
-            },
-            {
-                name:"沙漠骆驼",
-                geshou:"展展与罗罗",
-                shichang:"5:38",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png",
-                xian:"——————————————————————————————————————————"
-            },
-            {
-                name:"沙漠骆驼",
-                geshou:"展展与罗罗",
-                shichang:"5:38",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png",
-                xian:"——————————————————————————————————————————"
-            },
-            {
-                name:"乞丐",
-                geshou:"摩登兄弟",
-                shichang:"4:07",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png",
-                xian:"——————————————————————————————————————————"
-            },
-            {
-                name:"乞丐",
-                geshou:"摩登兄弟",
-                shichang:"4:07",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png",
-                xian:"——————————————————————————————————————————"
-            },
-            {
-                name:"学猫叫",
-                geshou:"冯提莫",
-                shichang:"3:15",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png",
-                xian:"——————————————————————————————————————————"
-            },
-            {
-                name:"学猫叫",
-                geshou:"冯提莫",
-                shichang:"3:15",
-                icon1:"/assets/img/redu.png",
-                 icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png",
-                xian:"——————————————————————————————————————————"
-
-            },
-            {
-                name:"学猫叫",
-                geshou:"冯提莫",
-                shichang:"3:15",
-                icon1:"/assets/img/redu.png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png",
-               xian:"——————————————————————————————————————————"
-            },
-            {
-                name:"学猫叫",
-                geshou:"冯提莫",
-                shichang:"3:15",
-                icon1:"/assets/img/redu"+".png",
-                icon2:"/assets/img/bofang.png",
-                icon3:"/assets/img/diange.png",
-                xian:"——————————————————————————————————————————"
-            }
-        ]
+        music:[...Music.music]
     }
 
     components = {

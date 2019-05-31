@@ -158,7 +158,7 @@
         </view>
         <navigator url="/pages/lostandfound/fabu">
             <view class="release">
-                <image src="/assets/img/release.png"></image>
+                <image src="https://www.quyun.online/assets/image/release.png"></image>
                 <text class="release-text">发布</text>
             </view>
         </navigator>
@@ -172,42 +172,42 @@ export default class lostandfound extends wepy.page{
     data = {
         info:[
             {
-                imgurl:"/assets/img/yangtu.png",
+                imgurl:"https://www.quyun.online/assets/image/lostandfound/yangtu.png",
                 name:"**食堂捡到**同学校园一卡通",
                 date:"2019-5-28"
             },
             {
-                imgurl:"/assets/img/yangtu.png",
+                imgurl:"https://www.quyun.online/assets/image/lostandfound/yangtu.png",
                 name:"**食堂捡到**同学校园一卡通",
                 date:"2019-5-28"
             },
             {
-                imgurl:"/assets/img/yangtu.png",
+                imgurl:"https://www.quyun.online/assets/image/lostandfound/yangtu.png",
                 name:"**食堂捡到**同学校园一卡通",
                 date:"2019-5-28"
             },
             {
-                imgurl:"/assets/img/yangtu.png",
+                imgurl:"https://www.quyun.online/assets/image/lostandfound/yangtu.png",
                 name:"**食堂捡到**同学校园一卡通",
                 date:"2019-5-28"
             },
             {
-                imgurl:"/assets/img/yangtu.png",
+                imgurl:"https://www.quyun.online/assets/image/lostandfound/yangtu.png",
                 name:"**食堂捡到**同学校园一卡通",
                 date:"2019-5-28"
             },
             {
-                imgurl:"/assets/img/yangtu.png",
+                imgurl:"https://www.quyun.online/assets/image/lostandfound/yangtu.png",
                 name:"**食堂捡到**同学校园一卡通",
                 date:"2019-5-28"
             },
             {
-                imgurl:"/assets/img/yangtu.png",
+                imgurl:"https://www.quyun.online/assets/image/lostandfound/yangtu.png",
                 name:"**食堂捡到**同学校园一卡通",
                 date:"2019-5-28"
             },
             {
-                imgurl:"/assets/img/yangtu.png",
+                imgurl:"https://www.quyun.online/assets/image/lostandfound/yangtu.png",
                 name:"**食堂捡到**同学校园一卡通",
                 date:"2019-5-28"
             }

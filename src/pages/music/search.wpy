@@ -120,7 +120,7 @@
             <view class="music-title">
                 <view class="name">历史记录</view>
                 <view class="icon">
-                    <image src="/assets/img/delete.png"></image>
+                    <image src="https://www.quyun.online/assets/image/music/delete.png"></image>
                 </view>
             </view>
             <view class="music-tag">

@@ -1,130 +1,4 @@
 <style scoped>
-<<<<<<< HEAD
-    .container{
-        margin-left:50rpx;
-        position:relative;
-    }
-    .box{
-        position:relative;
-        width:702rpx;
-        height:284rpx;
-    }
-    .ls{
-        position:absolute;
-        left:0rpx;
-        top:30rpx;
-        width:405rpx;
-        height:170rpx;
-        background-color:#9cb6f7;
-        border-radius:5%;
-    }
-    .music{
-        position:absolute;
-        left:434rpx;
-        top:0rpx;
-        width:260rpx;
-        height:260rpx;
-    }
-    .search{
-        position:absolute;
-        left:0rpx;
-        top:226rpx;
-        width:476rpx;
-        height:58rpx;
-        background-color:#9cb6f7;
-        border-radius:58rpx;
-    }
-    .sousuo{
-        position:absolute;
-        left:36rpx;
-        top:232rpx;
-        width:354rpx;
-        height:45rpx;
-        background-color:#ffffff;
-        border-radius:45rpx;
-    }
-    input{
-        position:absolute;
-        left:40rpx;
-        top:225rpx;
-        width:354rpx;
-        height:45rpx;
-    }
-    .btn{
-        position:absolute;
-        left:375rpx;
-        top:230rpx;
-        border:none;
-    }
-    .img{
-        width:55rpx;
-        height:55rpx;
-    }
-    .box1{
-        position:relative;
-        left:0rpx;
-        top:50rpx;
-        width:656rpx;
-        height:800rpx;
-        border-radius:5%;
-        background-color:#9cb6f7;
-    }
-    text{
-        position: absolute;
-        left:60rpx;
-        top:32rpx;
-        font-size:36rpx;
-        word-spacing:38rpx;
-    }
-    .one{
-        position:absolute;
-        left:60rpx;
-        top:10rpx;
-        font-size:26rpx;
-        line-height:70rpx;
-    }
-    .two{
-        position:absolute;
-        left:200rpx;
-        top:10rpx;
-        font-size:26rpx;
-        line-height:70rpx;
-        width:100rpx;
-        white-space: nowrap;
-        overflow: hidden;
-    }
-    .three{
-        position:absolute;
-        left:335rpx;
-        top:10rpx;
-        font-size:26rpx;
-        line-height:70rpx;
-    }
-    .four{
-        position:absolute;
-        left:450rpx;
-        top:15rpx;
-        line-height:70rpx;
-    }
-    .five{
-        position:absolute;
-        left:520rpx;
-        top:15rpx;
-        line-height:70rpx;
-    }
-    .six{
-        position:absolute;
-        left:590rpx;
-        top:15rpx;
-        line-height:70rpx;
-    }
-    .content{
-        height:700rpx;
-        position:absolute;
-        left:0rpx;
-        top:80rpx;
-    }
-=======
 .music{
     margin-top: 20rpx;
 }
@@ -171,10 +45,10 @@
     text-indent:1em;
 }
 .music-search .img{
-    width: 50rpx;
-    height:50rpx;
+    width: 40rpx;
+    height:40rpx;
     position:absolute;
-    right:20rpx;
+    right:30rpx;
     top:50%;
     transform:translateY(-50%);
     -webkit-transform:translateY(-50%);
@@ -205,7 +79,6 @@
 .music-scroll image{
     margin-top:14rpx;
 }
->>>>>>> fab11ae3a5ba644cc572b1a5720cd043458a6b8f
 </style>
 
 <template>
@@ -213,62 +86,14 @@
         <custom-nav isCustom="{{true}}" bgColor="text-custom-white">
             <view slot="content">歌库</view>
         </custom-nav>
-<<<<<<< HEAD
-        <view class="container">
-            <view class="box">
-                <view class="ls">历史点歌记录</view>
-                <image src="/assets/img/music.png" class="music"></image>
-                <view class="search"></view>
-                <view class="sousuo"></view>
-                <form action="#">
-                <input type="text" value="请输入搜索的歌曲" focus="{{true}}"/>
-                <navigator url="/pages/music/searchresult" hover-class="navigator-hover">
-                    <button form-type="submit" plain="{{true}}" class="btn">
-                        <image src="/assets/img/button.png"   class="img"/>
-                    </button>
-                </navigator>
-                </form>
-            </view>
-            <view class="box1">
-                <text>歌曲</text><text style="position:absolute;left:200rpx;">歌手 时长 热度 点歌</text>
-                    <scroll-view scroll-y class="content">
-                        <view class="one">
-                            <view wx:for="{{music}}">
-                                <view>{{item.name}}</view>
-                            </view>
-                        </view>
-                        <view class="two">
-                            <view wx:for="{{music}}">
-                                <view>{{item.geshou}}</view>
-                            </view>
-                        </view>
-                        <view class="three">
-                            <view wx:for="{{music}}">
-                                <view>{{item.shichang}}</view>
-                            </view>
-                        </view>
-                        <view class="four">
-                            <view wx:for="{{music}}">
-                                <image src="{{item.icon1}}" style="width:35rpx;height:35rpx;"></image>
-                            </view>
-                        </view>
-                        <view class="five">
-                            <view wx:for="{{music}}">
-                                <image src="{{item.icon2}}" style="width:35rpx;height:35rpx;"></image>
-                            </view>
-                        </view>
-                        <view class="six">
-                            <view wx:for="{{music}}">
-                                <navigator url="/pages/music/blessings" hover-class="navigator-hover"><image src="{{item.icon3}}" style="width:35rpx;height:35rpx;"></image></navigator>
-=======
         <view class="music scroll" style="top:{{boxTop}}px;">
             <view class="music-info">
                 <view class="visualization"></view>
-                <image src="/assets/img/music.png" class="info-image"></image>
+                <image src="https://www.quyun.online/assets/image/music/music.png" class="info-image"/>
             </view>
             <view class="music-search" @tap="navigTo">
                 <view class="search">请输入要搜索的歌曲</view>
-                <image src="/assets/img/button.png" class="img"/>
+                <image src="https://www.quyun.online/assets/image/music/searchbtn.png" class="img"/>
             </view>
             <view class="music-list scroll" style="top:{{toTop}}px;bottom:30rpx;">
                 <view class="list-nav">
@@ -285,14 +110,14 @@
                             <view>{{item.geshou}}</view>
                             <view>{{item.shichang}}</view>
                             <view style="margin-left:-10rpx;">
-                                <image src="{{item.icon1}}" style="width:35rpx;height:35rpx;"></image>
+                                <image src="{{item.icon1}}" style="width:35rpx;height:35rpx;"/>
                             </view>
                             <view>
-                                <navigator url="/pages/music/blessings" hover-class="navigator-hover"><image src="{{item.icon3}}" style="width:30rpx;height:40rpx;"></image></navigator>    
->>>>>>> fab11ae3a5ba644cc572b1a5720cd043458a6b8f
+                                <navigator url="/pages/music/blessings" hover-class="navigator-hover"><image src="{{item.icon3}}" style="width:30rpx;height:40rpx;"/></navigator>    
                             </view>
                         </view>
-                    </scroll-view>
+                    </repeat>
+                </scroll-view>
             </view>
         </view>
     </block>
@@ -301,13 +126,9 @@
 <script>
 import wepy from "wepy";
 import Customnav from "@/components/customnav";
-<<<<<<< HEAD
-export default class music extends wepy.page{
-=======
 import musicData from "@/structure/music/music";
 
 export default class Music extends wepy.page{
->>>>>>> fab11ae3a5ba644cc572b1a5720cd043458a6b8f
     data = {
         music : musicData.music,
         toTop : 0,
@@ -327,8 +148,6 @@ export default class Music extends wepy.page{
             this.boxTop=this.$parent.globalData.customBar;
             this.$apply();
         });
-
-        // console.log(new FileReader());
     }
 
     methods = {

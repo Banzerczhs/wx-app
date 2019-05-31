@@ -1,15 +1,18 @@
 <style scoped>
     .table-wrap{
         width: 90%;
+        height:85%;
         margin:0 auto;
     }
     .table{
         width: 100%;
+        height:100%;
         display:grid;
         display:-webkit-grid;
-        grid-template-columns:repeat(6,16.6%);
-        grid-template-rows:repeat(9,120rpx);
+        grid-template-columns:1fr repeat(5,2fr);
+        grid-template-rows:1fr repeat(8,2fr);
         background-color:rgba(0,0,0,0.5);
+        padding:10rpx;
     }
     .table .item{
         color:#fff;
@@ -21,23 +24,59 @@
     .item-row-0{
         height:80rpx;
     }
+    .item-col-1{
+        grid-column-start:1;
+        grid-column-end:2;
+    }
+    .item-col-2{
+        grid-column-start:2;
+        grid-column-end:3;
+    }
+    .item-col-3{
+        grid-column-start:3;
+        grid-column-end:4;
+    }
+    .item-col-4{
+        grid-column-start:4;
+        grid-column-end:5;
+    }
+    .item-col-5{
+        grid-column-start:5;
+        grid-column-end:6;
+    }
+    .item-col-6{
+        grid-column-start:6;
+        grid-column-end:7;
+    }
+    .item-row-0.item-col-1{
+        flex-direction:column;
+    }
+    .row1_row4{
+        grid-row-start:2;
+        grid-row-end:6;
+    }
+    .none{
+        display:none;
+    }
 </style>
 
 <template>
     <block>
         <custom-nav isBack="{{true}}" class="text-custom-white">
-            <view solt="content">我的课程表</view>
+            <view slot="content">我的课程表</view>
         </custom-nav>
         <view class="table-wrap">
             <view class="table">
-                <view class="item item-row-0 item-col-1">15周</view>
+                <view class="item item-row-0 item-col-1"><view>15</view><view>周</view></view>
                 <view class="item item-row-0 item-col-2">周一</view>
                 <view class="item item-row-0 item-col-3">周二</view>
-                <view class="item item-row-0 item-col-3">周三</view>
-                <view class="item item-row-0 item-col-3">周四</view>
-                <view class="item item-row-0 item-col-3">周五</view>
-                <repeat for="{{48}}" key="index">
-                    <view class="item item-row-{{index/6}} item-col-{{index}}">星期{{index+1}}</view>
+                <view class="item item-row-0 item-col-4">周三</view>
+                <view class="item item-row-0 item-col-5">周四</view>
+                <view class="item item-row-0 item-col-6">周五</view>
+                <repeat for="{{8}}" index="i">
+                    <repeat for="{{6}}" key="index" index="j">
+                        <view class="item item-row-{{i+1}} item-col-{{j+1}} ">{{j==0?i+1:''}}{{j==listData[j-1][i-1].node[0]?listData[j-1][i-1].name:''}}</view>
+                    </repeat>
                 </repeat>
             </view>
         </view>
@@ -47,11 +86,25 @@
 <script>
 import wepy from "wepy";
 import Customnav from "@/components/customnav";
+import Tablelist from "@/structure/user/table"
 export default class Table extends wepy.page{
     data = {
-
+        delTable : 0,
+        listData : [...Tablelist.table]
     }
 
+    onLoad(){
+        let {listData}=this;
+
+        listData.forEach(child=>{
+            child.forEach(item=>{
+                item.node=item.split('-');
+            })
+        })
+
+        this.listData=[...listData];
+    }
+    
     components = {
         'custom-nav' : Customnav
     }

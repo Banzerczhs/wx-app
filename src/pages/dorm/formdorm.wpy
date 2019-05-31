@@ -73,28 +73,28 @@ page{
         <view class="cu-modal  {{modalName=='教室报修'?'show':''}}" @tap.stop="hideModal">
             <view class="cu-dialog cu-top">
                 <radio-group class="block">
-                <view class="cu-list menu text-left">
-                    <view class="cu-item" wx:for="{{oneform.arrayname=='opt'?oneform.arrayOpt:oneform.arrayselect}}" wx:key>
-                    <label class="flex justify-between align-center flex-sub">
-                        <view class="flex-sub">{{item}}</view>
-                        <radio class="round" @tap="radioClickOne(oneform)" data-index="{{index}}" data-target="{{item}}"></radio>
-                    </label>
+                    <view class="cu-list menu text-left">
+                        <view class="cu-item" wx:for="{{oneform.arrayname=='opt'?oneform.arrayOpt:oneform.arrayselect}}" wx:key>
+                        <label class="flex justify-between align-center flex-sub">
+                            <view class="flex-sub">{{item}}</view>
+                            <radio class="round" @tap="radioClickOne(oneform)" data-index="{{index}}" data-target="{{item}}"></radio>
+                        </label>
+                        </view>
                     </view>
-                </view>
                 </radio-group>
             </view>
         </view>
         <view class="cu-modal {{modalName=='宿舍报修'?'show':''}}" @tap.stop="hideModal">
             <view class="cu-dialog  cu-top">
                 <radio-group class="block">
-                <view class="cu-list menu text-left">
-                    <view class="cu-item " wx:for="{{twoform.arrayname=='opt'?twoform.arrayOpt:twoform.arrayselect}}" wx:key>
-                    <label class="flex justify-between align-center flex-sub">
-                        <view class="flex-sub">{{item}}</view>
-                        <radio class="round" @tap="radioClickOne(twoform)" data-index="{{index}}" data-target="{{item}}"></radio>
-                    </label>
+                    <view class="cu-list menu text-left">
+                        <view class="cu-item " wx:for="{{twoform.arrayname=='opt'?twoform.arrayOpt:twoform.arrayselect}}" wx:key>
+                        <label class="flex justify-between align-center flex-sub">
+                            <view class="flex-sub">{{item}}</view>
+                            <radio class="round" @tap="radioClickOne(twoform)" data-index="{{index}}" data-target="{{item}}"></radio>
+                        </label>
+                        </view>
                     </view>
-                </view>
                 </radio-group>
             </view>
         </view>

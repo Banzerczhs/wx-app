@@ -12,7 +12,7 @@
             style="height:{{detailIh}}px;">
             <view class="detail-head">
                 <view class="head-img">
-                    <image src="/assets/img/logo.png"></image>
+                    <image src="https://www.quyun.online/assets/image/Logo.png"></image>
                 </view>
                 <view class="head-desc">
                     <view class="title">弹指之间&DN舞协联合专场</view>
@@ -79,7 +79,7 @@
                             <view>
                                 <repeat for="{{20}}" key="index">
                                     <view class="student">
-                                        <image src="/assets/img/Logo.png"></image>
+                                        <image src="https://www.quyun.online/assets/image/Logo.png"></image>
                                         <view>
                                             <text class="tag bg-orange radius">管理员</text>
                                             <text class="tag bg-grey radius">已签到</text>
@@ -99,7 +99,7 @@
                             <view>
                                 <repeat for="{{20}}" key="index">
                                     <view class="evaluate">
-                                        <image src="/assets/img/Logo.png"></image>
+                                        <image src="https://www.quyun.online/assets/image/Logo.png"></image>
                                         <view class="evaluate-box">
                                             <view class="evaluate-name">纺服学院分团委</view>
                                             <view class="evaluate-val">这次的活动很好，很不错</view>
@@ -116,7 +116,7 @@
         </view>
         <view class="area">
             <view class="area-btn" @tap="switchState">
-                <image src="/assets/img/{{btnUrl}}.png"></image>
+                <image wx:if="{{btnUrl}}" src="https://www.quyun.online/assets/image/association/{{btnUrl}}.png"></image>
                 <text class="area-tip">{{btnUrl=='apply'?'报名':'签到'}}</text>
             </view>
         </view>
