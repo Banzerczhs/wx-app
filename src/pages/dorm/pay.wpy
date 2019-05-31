@@ -3,10 +3,9 @@
 </style>
 <template>
      <block>
-        <custom-nav bgColor="text-custom-white" isCustom="{{true}}">
-            <view slot="content" class="{{payNow==index ? 'active' :''}}">{{payType[payNow]}}</view>
+        <custom-nav bgColor="text-custom-white" isBack="{{true}}">
+            <view slot="content">费用充值</view>
         </custom-nav>
-    
         <view class="nav">
             <view class="nav-ul">
                   <repeat for="{{payType}}" key="item" index="index" item="item">
@@ -16,8 +15,8 @@
                   </repeat>
             </view>
         </view>
-        <view  class="overflow-box">
-            <view class="contentpage" animation="{{cenAnimation}}">
+        <view>
+            <view class="contentpage scroll" animation="{{cenAnimation}}" style="top:{{toTop}}px;">
                 <!-- 电费充值 -->
                     <view class="contentbox">
                         <form action="" @submit="formSubmitOne(dromOne)">
@@ -272,6 +271,11 @@
             this.dromOne.dromitem =  datalist[1][0];   
             this.dromTwo.drom =  datalist[0];  
             this.dromTwo.dromitem =  datalist[1][0];  
+            let query=wepy.createSelectorQuery();
+            query.select('.nav').boundingClientRect((res)=>{
+                this.toTop=this.$parent.globalData.customBar+res.height;
+                this.$apply();
+            }).exec();
         }
         data = {
             payType,
@@ -280,19 +284,19 @@
             dromOne:{...obj},
             dromTwo:{...obj},
             dromThree:{...obj},
-            checkbox:model
+            checkbox:model,
+            toTop : 0
         }
         methods = {
             clickTop(val){ //点击切换界面
                 this.payNow = val;
-                console.log(val)
+                this.cenAnimation={};
                 let animation2=wepy.createAnimation({
-                    duration: 100,
-                    timingFunction: 'linear'
+                    duration: 300
                 })
-                animation2.translateX(`-${val*33.33}%`).step();
+                animation2.translate(`-${val*33.33}%`,0).step();
                 this.cenAnimation=animation2.export();
-                },
+            },
             showModel(obj,a){ //切换显示
                 switch (a){
                     case '1':{
@@ -380,14 +384,12 @@
                 }
             },
             checkNumber(e){ //网费输入时
-                console.log(e)
                 let {value,cursor} = e.detail;
                 if(cursor > 11){
                     cursor = 11
                 }
                 value = value.slice(0,cursor);
                 this.dromThree.dromOkText = value;
-                console.log(this.dromThree.dromOkText)
             },
             focusDromThree(){   //聚焦与失焦时
                 let a = this.dromThree.dromOkText == "还未选择";

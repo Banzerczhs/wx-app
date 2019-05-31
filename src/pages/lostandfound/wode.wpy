@@ -61,7 +61,7 @@
 
 <template>
     <block>
-        <custom-nav isCustom="{{true}}" bgColor="text-custom-white">
+        <custom-nav isBack="{{true}}" bgColor="text-custom-white">
             <view slot="content">我的</view>
         </custom-nav>
         <view class="container">

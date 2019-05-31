@@ -280,7 +280,7 @@ export default class Detail extends wepy.page{
                 this.boxTop=res[0].height;
                 this.conTop=res[3].height;
                 this.toTop=res[1].height+res[2].height+60;
-                this.detailIh=res[0].height+res[1].height+res[2].height+this.system.screenHeight;
+                this.detailIh=res[0].height+res[1].height+res[2].height+this.system.screenHeight-10;
                 this.$apply();
             },200);
         })

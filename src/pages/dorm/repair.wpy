@@ -3,7 +3,7 @@
 </style>
 <template>
      <block>
-        <custom-nav bgColor="text-custom-white" isCustom="{{true}}">
+        <custom-nav bgColor="text-custom-white" isBack="{{true}}">
             <view slot="content">维修列表</view>
         </custom-nav>
         <view class="navbar">

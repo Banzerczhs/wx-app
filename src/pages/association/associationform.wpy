@@ -360,7 +360,7 @@ export default class Associationform extends wepy.page {
             let {start,end} = this[obj].TimeActivities;
             let objStart = new Date(start).getTime();
             let nowTime = T.getTime();
-            if(objStart - nowTime <=0){
+            if(objStart - nowTime <0){
                 wepy.showToast({
                     icon:"none",
                     mask:"true",

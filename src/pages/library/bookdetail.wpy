@@ -71,7 +71,7 @@
             </view>
             <repeat for="{{10}}" key="{{index}}">
                 <view class="comment-item">
-                    <image src="/assets/img/teachBuillding/head.png"></image>
+                    <image src="https://www.quyun.online/assets/image/library/head.png"></image>
                     <view class="item-text">
                         <text class="item-author">review</text>
                         <view class="item-content">

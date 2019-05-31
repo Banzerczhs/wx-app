@@ -81,22 +81,13 @@ page{
     float:left;
     color:#fff;
 }
-.navbox  .active{
+.navbox .active{
     color:lightcoral;
     font-size:16px;
-    transition: all 0.5s;
-}
-.overflow-box{
-    position: relative;
-    height:100%;
-    width:100%;
-    overflow: hidden;
 }
 .contentpage{
     width:300%;
     height:100%;
-    position: relative;
-    transform: translateX(0%);
 }
 .contentbox{
     width:750rpx;

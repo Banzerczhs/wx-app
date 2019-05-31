@@ -83,7 +83,7 @@
 
 <template>
     <block>
-        <custom-nav isCustom="{{true}}" bgColor="text-custom-white">
+        <custom-nav isBack="{{true}}" bgColor="text-custom-white">
             <view slot="content">歌库</view>
         </custom-nav>
         <view class="music scroll" style="top:{{boxTop}}px;">

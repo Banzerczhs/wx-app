@@ -33,7 +33,7 @@
 </style>
 <template>
     <block>
-        <custom-nav isCustom="{{true}}" bgColor="text-custom-white">
+        <custom-nav isBack="{{true}}" bgColor="text-custom-white">
             <view slot="content">上传音乐</view>
         </custom-nav>
         <view class="container">

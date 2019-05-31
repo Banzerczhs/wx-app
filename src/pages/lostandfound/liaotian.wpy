@@ -3,7 +3,7 @@
       padding-bottom: 100rpx;
     }
     .cu-chat{
-        background: url('https://www.quyun.online/assets/image/bg1.png') no-repeat 0 0;
+        background: url('https://www.quyun.online/assets/image/bg1.jpg') no-repeat 0 0;
         background-size:100% 100%;
     }
 </style>

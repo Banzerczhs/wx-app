@@ -54,7 +54,7 @@
                         slot="tag" 
                         style="position:absolute;top:26rpx;right:28rpx;"
                         @tap="refresh">
-                        <image src="/assets/img/reflsh.png" style="width:40rpx;height:40rpx;"></image>
+                        <image src="https://www.quyun.online/assets/image/reflsh.png" style="width:40rpx;height:40rpx;"></image>
                         <text>获取新内容</text>
                     </view>
                 </new-book>

@@ -1,0 +1,17 @@
+
+
+var processNum=function(j,n,m){
+    if(j==0){
+        return false;
+    }
+
+    if(m||n){
+        return false;
+    }else{
+        return true;
+    }
+}
+
+module.exports={
+    processNum : processNum
+}

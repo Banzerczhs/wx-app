@@ -3,7 +3,7 @@
     font-family: 'iconfont';
 }
 .detail{
-    background: url('https://www.quyun.online/assets/image/bg1.png') no-repeat 0 0;
+    background: url('https://www.quyun.online/assets/image/bg1.jpg') no-repeat 0 0;
     background-size:cover;
     position: relative;
 }

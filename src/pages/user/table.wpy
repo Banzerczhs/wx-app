@@ -11,7 +11,7 @@
         display:-webkit-grid;
         grid-template-columns:1fr repeat(5,2fr);
         grid-template-rows:1fr repeat(8,2fr);
-        background-color:rgba(0,0,0,0.5);
+        background-color:rgba(0,0,0,0.3);
         padding:10rpx;
     }
     .table .item{
@@ -20,6 +20,7 @@
         display:-webkit-flex;
         align-items:center;
         justify-content: center;
+        padding:10rpx;
     }
     .item-row-0{
         height:80rpx;
@@ -55,8 +56,28 @@
         grid-row-start:2;
         grid-row-end:6;
     }
+    .row5_row8{
+        grid-row-start:6;
+        grid-row-end:10;
+    }
+    .row1_row2{
+        grid-row-start:2;
+        grid-row-end:4;
+    }
+    .row3_row4{
+        grid-row-start:4;
+        grid-row-end:6;
+    }
+    .row5_row6{
+        grid-row-start:6;
+        grid-row-end:8;
+    }
+    .row7_row8{
+        grid-row-start:8;
+        grid-row-end:10;
+    }
     .none{
-        display:none;
+        display:none !important;
     }
 </style>
 
@@ -75,7 +96,7 @@
                 <view class="item item-row-0 item-col-6">周五</view>
                 <repeat for="{{8}}" index="i">
                     <repeat for="{{6}}" key="index" index="j">
-                        <view class="item item-row-{{i+1}} item-col-{{j+1}} ">{{j==0?i+1:''}}{{j==listData[j-1][i-1].node[0]?listData[j-1][i-1].name:''}}</view>
+                        <view class="item item-row-{{i+1}} item-col-{{j+1}} {{m1.processNum(j,listData[j-1][i].node[0]-1,listData[j-1][i].node[1]-1)?'none':'row'+listData[j-1][i].node[0]+'_'+'row'+listData[j-1][i].node[1]}}">{{j==0?i+1:''}}{{i==listData[j-1][i].node[0]-1?listData[j-1][i].name:''}}</view>
                     </repeat>
                 </repeat>
             </view>
@@ -86,7 +107,8 @@
 <script>
 import wepy from "wepy";
 import Customnav from "@/components/customnav";
-import Tablelist from "@/structure/user/table"
+import Tablelist from "@/structure/user/table";
+import Mywxs from "../../wxs/mywxs.wxs";
 export default class Table extends wepy.page{
     data = {
         delTable : 0,
@@ -98,13 +120,19 @@ export default class Table extends wepy.page{
 
         listData.forEach(child=>{
             child.forEach(item=>{
-                item.node=item.split('-');
+                item.node=item.time?item.time.split('-').filter(ch=>{
+                    return Number(ch);
+                }):[];
             })
         })
 
         this.listData=[...listData];
     }
     
+    wxs = {
+        m1 : Mywxs
+    }
+
     components = {
         'custom-nav' : Customnav
     }

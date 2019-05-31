@@ -23,6 +23,7 @@
             <text>未使用</text>
           </view>
         </view>
+        <image src="https://www.quyun.online/assets/image/association/toright.png" class="tipImg"></image>
         <view class="roomState-model">
           <view class="text model-title">教室使用率</view>
           <view class="text model-desc">{{useing}}/{{total}}</view>

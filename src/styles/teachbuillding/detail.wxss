@@ -77,6 +77,14 @@
     padding:15rpx 0;
     box-sizing:content-box;
 }
+.tipImg{
+    position: absolute;
+    left:182rpx;
+    top:16vh;
+    width: 50rpx;
+    height:50rpx;
+    opacity:0.3;
+}
 .roomState-Icon{
     position:absolute;
     top:50%;

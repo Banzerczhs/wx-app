@@ -64,7 +64,7 @@
   -webkit-transition:transform .3s;
   transform-origin:center center;
   -webkit-transform-origin:center center;
-  background: url('https://www.quyun.online/assets/image/bg1.png') no-repeat 0 0;
+  background: url('https://www.quyun.online/assets/image/bg1.jpg') no-repeat 0 0;
   background-size:cover;
   z-index:99;
 }

@@ -88,7 +88,7 @@
 </style>
 <template>
     <view style="overflow:hidden;height:100%;">
-        <custom-nav isCustom="{{true}}" bgColor="text-custom-white">
+        <custom-nav isBack="{{true}}" bgColor="text-custom-white">
             <view slot="content">播放列表</view>
         </custom-nav>
         <view class="container">
