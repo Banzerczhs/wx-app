@@ -1,4 +1,9 @@
 # 学校综合服务项目
+# 使用方式
+# 根目录
+yarn install
+
+yarn run dev
 
 ## 模块
 
